@@ -1,1 +1,1 @@
-web: java $JVM_OPTS -cp target/rubix-bootstrap.jar clojure.main -m rubix-bootstrap.server
+web: NODE_ENV=production APP=demo node server.js
