@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*! rubix - v3.0.3 - 2015-08-08 [copyright: SketchPixy LLP, email: support@sketchpixy.com] */
+/*! rubix - v3.0.3 - 2016-04-20 [copyright: SketchPixy LLP, email: support@sketchpixy.com] */
 @charset "UTF-8";
 @keyframes vex-flipin-horizontal {
   0% {
@@ -383,7 +383,6 @@ ul.messenger.messenger-spinner-active .messenger-spinner .messenger-spinner {
   -webkit-animation-name: ui-spinner-rotate-left;
   animation-name: ui-spinner-rotate-left;
   -webkit-transform-origin: 0 50%;
-  -ms-transform-origin: 0 50%;
   transform-origin: 0 50%; }
 
 .messenger-spinner .messenger-spinner-side-right {
@@ -396,7 +395,6 @@ ul.messenger.messenger-spinner-active .messenger-spinner .messenger-spinner {
   -webkit-animation-name: ui-spinner-rotate-right;
   animation-name: ui-spinner-rotate-right;
   -webkit-transform-origin: 100% 50%;
-  -ms-transform-origin: 100% 50%;
   transform-origin: 100% 50%; }
 
 ul.messenger-theme-flat {
@@ -1283,21 +1281,17 @@ html .sidebar-nav > li > a > .toggle-button {
   right: 15px;
   position: absolute;
   -webkit-transform-origin: 4px;
-      -ms-transform-origin: 4px;
           transform-origin: 4px;
   -webkit-transition: all 0.125s ease;
           transition: all 0.125s ease; }
   html .sidebar-nav > li > a > .toggle-button.open {
     -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
             transform: rotate(-90deg); }
   html .sidebar-nav > li > a > .toggle-button.opposite {
     -webkit-transform-origin: 12px;
-        -ms-transform-origin: 12px;
             transform-origin: 12px; }
     html .sidebar-nav > li > a > .toggle-button.opposite.open {
       -webkit-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
 
 html.touch, html.touch > body, html.touch #app-container, html.touch #app-container > #container {
@@ -2097,21 +2091,17 @@ html .sidebar-nav > li > a > .toggle-button {
   right: 15px;
   position: absolute;
   -webkit-transform-origin: 4px;
-      -ms-transform-origin: 4px;
           transform-origin: 4px;
   -webkit-transition: all 0.125s ease;
           transition: all 0.125s ease; }
   html .sidebar-nav > li > a > .toggle-button.open {
     -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
             transform: rotate(-90deg); }
   html .sidebar-nav > li > a > .toggle-button.opposite {
     -webkit-transform-origin: 12px;
-        -ms-transform-origin: 12px;
             transform-origin: 12px; }
     html .sidebar-nav > li > a > .toggle-button.opposite.open {
       -webkit-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
 
 html.touch, html.touch > body, html.touch #app-container, html.touch #app-container > #container {
@@ -2911,21 +2901,17 @@ html .sidebar-nav > li > a > .toggle-button {
   right: 15px;
   position: absolute;
   -webkit-transform-origin: 4px;
-      -ms-transform-origin: 4px;
           transform-origin: 4px;
   -webkit-transition: all 0.125s ease;
           transition: all 0.125s ease; }
   html .sidebar-nav > li > a > .toggle-button.open {
     -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
             transform: rotate(-90deg); }
   html .sidebar-nav > li > a > .toggle-button.opposite {
     -webkit-transform-origin: 12px;
-        -ms-transform-origin: 12px;
             transform-origin: 12px; }
     html .sidebar-nav > li > a > .toggle-button.opposite.open {
       -webkit-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
 
 html.touch, html.touch > body, html.touch #app-container, html.touch #app-container > #container {
@@ -3725,21 +3711,17 @@ html .sidebar-nav > li > a > .toggle-button {
   right: 15px;
   position: absolute;
   -webkit-transform-origin: 4px;
-      -ms-transform-origin: 4px;
           transform-origin: 4px;
   -webkit-transition: all 0.125s ease;
           transition: all 0.125s ease; }
   html .sidebar-nav > li > a > .toggle-button.open {
     -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
             transform: rotate(-90deg); }
   html .sidebar-nav > li > a > .toggle-button.opposite {
     -webkit-transform-origin: 12px;
-        -ms-transform-origin: 12px;
             transform-origin: 12px; }
     html .sidebar-nav > li > a > .toggle-button.opposite.open {
       -webkit-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
 
 html.touch, html.touch > body, html.touch #app-container, html.touch #app-container > #container {
@@ -4539,21 +4521,17 @@ html .sidebar-nav > li > a > .toggle-button {
   right: 15px;
   position: absolute;
   -webkit-transform-origin: 4px;
-      -ms-transform-origin: 4px;
           transform-origin: 4px;
   -webkit-transition: all 0.125s ease;
           transition: all 0.125s ease; }
   html .sidebar-nav > li > a > .toggle-button.open {
     -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
             transform: rotate(-90deg); }
   html .sidebar-nav > li > a > .toggle-button.opposite {
     -webkit-transform-origin: 12px;
-        -ms-transform-origin: 12px;
             transform-origin: 12px; }
     html .sidebar-nav > li > a > .toggle-button.opposite.open {
       -webkit-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
 
 html.touch, html.touch > body, html.touch #app-container, html.touch #app-container > #container {
@@ -5353,21 +5331,17 @@ html .sidebar-nav > li > a > .toggle-button {
   right: 15px;
   position: absolute;
   -webkit-transform-origin: 4px;
-      -ms-transform-origin: 4px;
           transform-origin: 4px;
   -webkit-transition: all 0.125s ease;
           transition: all 0.125s ease; }
   html .sidebar-nav > li > a > .toggle-button.open {
     -webkit-transform: rotate(-90deg);
-        -ms-transform: rotate(-90deg);
             transform: rotate(-90deg); }
   html .sidebar-nav > li > a > .toggle-button.opposite {
     -webkit-transform-origin: 12px;
-        -ms-transform-origin: 12px;
             transform-origin: 12px; }
     html .sidebar-nav > li > a > .toggle-button.opposite.open {
       -webkit-transform: rotate(90deg);
-          -ms-transform: rotate(90deg);
               transform: rotate(90deg); }
 
 html.touch, html.touch > body, html.touch #app-container, html.touch #app-container > #container {

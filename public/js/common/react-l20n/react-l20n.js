@@ -520,7 +520,6 @@
 	              id = _x2,
 	              data = _x3,
 	              prevSource = _x4;
-	          loc = locale = entry = value = source = undefined;
 	          _again = false;
 
 	          /* jshint validthis: true */
@@ -552,6 +551,7 @@
 	            _x3 = data;
 	            _x4 = prevSource;
 	            _again = true;
+	            loc = locale = entry = undefined;
 	            continue _function;
 	          }
 
@@ -573,6 +573,7 @@
 	                _x3 = data;
 	                _x4 = source;
 	                _again = true;
+	                loc = locale = entry = value = source = undefined;
 	                continue _function;
 	              }
 	              _x = cur + 1;
@@ -580,6 +581,7 @@
 	              _x3 = data;
 	              _x4 = prevSource;
 	              _again = true;
+	              loc = locale = entry = value = source = undefined;
 	              continue _function;
 	            } else {
 	              throw error(e);
@@ -2148,7 +2150,6 @@
 	          var expr = _x5,
 	              locals = _x6,
 	              ctxdata = _x7;
-	          current = undefined;
 	          _again2 = false;
 
 	          // Bail out early if it's a primitive value or `null`.  This is exactly
@@ -2175,6 +2176,7 @@
 	            _x6 = locals;
 	            _x7 = ctxdata;
 	            _again2 = true;
+	            current = undefined;
 	            continue _function2;
 	          }
 

@@ -1,5 +1,5 @@
 @charset "UTF-8";
-/*! rubix - v3.0.3 - 2015-08-08 [copyright: SketchPixy LLP, email: support@sketchpixy.com] */
+/*! rubix - v3.0.3 - 2016-04-20 [copyright: SketchPixy LLP, email: support@sketchpixy.com] */
 /* defaults */
 .btn-default {
   background: #89949B;
@@ -7071,8 +7071,8 @@
   .btn-davygray:hover, .btn-davygray:focus, .btn-davygray:active, .btn-davygray.active {
     outline: none;
     color: white;
-    background: #6e6e6e;
-    border-color: #6e6e6e; }
+    background: #6f6f6f;
+    border-color: #6f6f6f; }
     .btn-davygray:hover.btn-outlined, .btn-davygray:focus.btn-outlined, .btn-davygray:active.btn-outlined, .btn-davygray.active.btn-outlined {
       background: #555555;
       color: white;
