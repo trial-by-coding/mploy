@@ -44,13 +44,12 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
-
 	var l20n = __webpack_require__(1);
 	window.ReactL20n = {
 	  l20n: l20n,
 	  Entity: l20n.Entity
 	};
+
 
 /***/ },
 /* 1 */

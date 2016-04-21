@@ -1,1 +1,1 @@
-web: NODE_ENV=production APP=demo node server.js
+web: NODE_ENV=production APP=app node server.js

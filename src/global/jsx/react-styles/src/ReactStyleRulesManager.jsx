@@ -1,6 +1,5 @@
 /**
  * @providesModule ReactStyleRulesManager
- * @jsx React.DOM
  */
 
 'use strict'

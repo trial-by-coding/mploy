@@ -1,3 +1,7 @@
 .modal, .modal-backdrop {
-  z-index: 999999999999999999;
+  z-index: -1;
+
+  &.in {
+    z-index: 999999999999999999;
+  }
 }

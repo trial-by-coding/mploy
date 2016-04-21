@@ -131,7 +131,7 @@ var IonTabContainer = React.createClass({
     ReactBootstrap.Dispatcher.emit('ionTabs:'+this.state.id, key, value);
   },
   componentDidMount: function() {
-    $.ionTabs(this.refs.tab.getDOMNode(), {
+    $.ionTabs(ReactDOM.findDOMNode(this.refs.tab), {
       type: 'none'
     });
   },

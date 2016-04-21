@@ -22,7 +22,7 @@ $panel-radius: 8px;
   }
 }
 
-html.no-touch .rubix-panel-container-with-controls {
+html.no-touchevents .rubix-panel-container-with-controls {
   &:hover, &:focus, &.active {
     > .rubix-panel-controls {
       top: - (4 * $line-height-computed / 5);

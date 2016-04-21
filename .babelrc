@@ -1,0 +1,5 @@
+{
+  "plugins": ["transform-decorators-legacy", "transform-runtime"],
+  "presets": ["es2015", "react", "stage-0"],
+  "ignore": ["rubix-bootstrap.js", "react-l20n.js", "*.node.js"],
+}

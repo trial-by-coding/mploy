@@ -148,7 +148,7 @@ export default React.createClass({
     }
 
     lorem.query = this.props.query;
-    var l = lorem.createLorem(this.refs.node.getDOMNode());
+    var l = lorem.createLorem(ReactDOM.findDOMNode(this.refs.node));
   },
   render: function() {
     var props = {

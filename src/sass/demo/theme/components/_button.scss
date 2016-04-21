@@ -1,5 +1,0 @@
-@mixin theme-button($list) {
-  .btn {
-    color: get($list, components, button, color);
-  }
-}

@@ -1,67 +1,116 @@
-import { Router } from 'react-router';
-import Location from 'react-router/lib/Location';
+import { Provider } from 'react-redux';
+import { Router, match, RoutingContext } from 'react-router';
+
+import createHashHistory from 'history/lib/createHashHistory';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
+
+import thunk from 'redux-thunk';
+
+import actions from 'redux/actions';
+import reducers from 'redux/reducers';
+
+global.isBrowser = 'document' in window;
+
+const reducer = combineReducers({
+  ...reducers,
+  routing: routeReducer
+});
 
 if(window.hasOwnProperty('vex')) {
   vex.defaultOptions.className = 'vex-theme-flat-attack';
 }
 
-var onUpdate = (notReady) => {
-  // cleanup (do not modify)
-  rubix_bootstrap.core.reset_globals_BANG_();
-  if(window.Rubix) window.Rubix.Cleanup();
-
-  Pace.restart();
+var initGoogleAnalytics = () => {
   if(window.hasOwnProperty('ga') && typeof window.ga === 'function') {
     window.ga('send', 'pageview', {
      'page': window.location.pathname + window.location.search  + window.location.hash
     });
   }
+};
 
-  if(!notReady) {
-    // l20n initialized only after everything is rendered/updated
-    l20n.ready();
-    setTimeout(() => {
-      $('body').removeClass('fade-out');
-    }, 500);
-  }
+var finishPageLoad = () => {
+  // l20n initialized only after everything is rendered/updated
+  l20n.ready();
+  setTimeout(() => {
+    $('body').removeClass('fade-out');
+  }, 500);
+};
+
+var onUpdate = (notReady) => {
+  // cleanup (do not modify)
+  rubix_bootstrap.core.reset_globals_BANG_();
+  if(window.Rubix && notReady) window.Rubix.Cleanup();
+
+  Pace.restart();
+
+  initGoogleAnalytics();
+  if(!notReady) finishPageLoad();
 };
 
 var InitializeRouter = (routes) => {
   onUpdate(true);
-  var rootInstance = React.render(routes, document.getElementById('app-container'), () => {
-    // l20n initialized only after everything is rendered/updated
-    l20n.ready();
-    setTimeout(() => {
-      $('body').removeClass('fade-out');
-    }, 500);
+  var rootInstance = ReactDOM.render(routes, document.getElementById('app-container'), () => {
+    finishPageLoad();
   });
-
-  // initialize react-hot-loader
-  if(module.hot) {
-    require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
-      getRootInstances() {
-        // Help React Hot Loader figure out the root component instances on the page:
-        return [rootInstance];
-      }
-    });
-  }
 };
 
 module.exports = (routes) => {
-  if('document' in window) {
-    InitializeRouter(routes(true, onUpdate));
+  if(isBrowser) {
+    const history = (Modernizr.history ?
+                      createBrowserHistory()
+                    : createHashHistory());
+
+    var initialState = undefined;
+    if(global.server_data) initialState = JSON.parse(decodeURIComponent(unescape(global.server_data)));
+    const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+    const store = createStoreWithMiddleware(reducer, initialState);
+    syncReduxAndRouter(history, store);
+    var r = routes(history, onUpdate);
+    r = (
+      <Provider store={store}>
+        {r}
+      </Provider>
+    );
+
+    InitializeRouter(r);
   } else {
     // called only server side!
     if(__BACKEND__ === 'rails') {
+      var RoutingContextWrapper = React.createClass({
+        displayName: "RoutingContextWrapper",
+        childContextTypes: {
+          data: React.PropTypes.oneOfType([
+                  React.PropTypes.string,
+                  React.PropTypes.object
+                ])
+        },
+        getChildContext: function getChildContext() {
+          return { data: this.props.data };
+        },
+        render: function render() {
+          return React.createElement(RoutingContext, this.props.renderProps);
+        }
+      });
+
       global.StaticComponent = React.createClass({
         render() {
-          var Handler = null;
-          var location = new Location(this.props.path, this.props.query);
+          var Handler = null, props = this.props, data = props.data || "";
+
           ReactBootstrap.Dispatcher.removeAllListeners();
           rubix_bootstrap.core.reset_globals_BANG_();
-          Router.run(routes(false), location, (e, i, t) => {
-            Handler = <Router {...i} />;
+
+          match({
+            routes: routes({ listen: () => {} }),
+            location: (this.props.path +
+                        (this.props.query ? ('?' + this.props.query)
+                                          : ''))
+          }, function(err, redirectLocation, renderProps) {
+            Handler = <RoutingContextWrapper data={data} renderProps={renderProps} />
           });
+
           return Handler;
         }
       });
@@ -69,7 +118,7 @@ module.exports = (routes) => {
       return () => {
         ReactBootstrap.Dispatcher.removeAllListeners();
         rubix_bootstrap.core.reset_globals_BANG_();
-        return routes(false);
+        return routes({ listen: () => {} });
       };
     }
   }

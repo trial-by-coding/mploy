@@ -288,7 +288,7 @@ Rubix.prototype.draw = function() {
     }
     this.data_changed = false;
     if(!this.root_elem.is(':visible')) return;
-    this._draw($(window).width(), $(window).height());
+    this._draw();
 };
 
 Rubix.prototype.uid = function(type) {
@@ -444,6 +444,33 @@ Rubix.prototype._setupOpts = function() {
     (this.opts.subtitle.length) ? this.subtitle.show() : this.subtitle.hide();
 };
 
+function d3_scale_ordinal_invert(x) {
+  // TODO take into account current ranger
+
+  var _range = this.range().concat();
+  var _domain = this.domain().concat();
+
+  _range.sort(function(a, b) {
+    if(a > b) {
+        return 1;
+    } else if(a === b) {
+        return 0;
+    } else {
+        return -1;
+    }
+  })
+  _domain.sort(function(a, b) {
+    if(a > b) {
+        return 1;
+    } else if(a === b) {
+        return 0;
+    } else {
+        return -1;
+    }
+  })
+  return _domain[d3.bisect(_range, x) - 1];
+}
+
 /** @private */
 Rubix.prototype._setupOnce = function() {
     var self = this;
@@ -512,6 +539,7 @@ Rubix.prototype._setupAxis = function(animate) {
         break;
         case 'ordinal':
             this.x = d3.scale.ordinal();
+            this.x.invert = d3_scale_ordinal_invert.bind(this.x);
 
             var range = [0, this.width];
             var masterRange = [0, this.width];
@@ -591,11 +619,13 @@ Rubix.prototype._setupAxis = function(animate) {
         break;
         case 'ordinal':
             this.y = d3.scale.ordinal();
+            this.y.invert = d3_scale_ordinal_invert.bind(this.y);
 
             var range = [this.height, 0];
             var masterRange = [this.master_detail_height, 0];
             if(this.master_detail) {
                 this.y2 = d3.scale.ordinal();
+                this.y2.invert = d3_scale_ordinal_invert.bind(this.y2);
             }
 
             if(this.axis.y.range === 'round') {
@@ -1565,11 +1595,9 @@ Rubix.prototype._setupRedraw = function() {
 };
 
 /**
- * @param {number} window_width
- * @param {number} window_height
  * @private
  */
-Rubix.prototype._draw = function(window_width, window_height) {
+Rubix.prototype._draw = function() {
     this._cleanElement();
     this._setSize();
     this._setupCanvas();
@@ -1591,7 +1619,6 @@ Rubix.prototype._cleanElement = function() {
 Rubix.prototype._setSize = function() {
     this.outerWidth  = this.elem.width();
     this.outerHeight = this.elem.height();
-
 
     if(this.opts.hideYAxis) {
         this.margin.left = 0;
@@ -1983,8 +2010,6 @@ Rubix.prototype.move_tooltip_y = function(dy, yx, points) {
     }
 
     html = html.slice(0, html.length-4);
-
-    console.log(html);
 
     this.tooltip.html(html);
     } catch(e) {
@@ -3510,15 +3535,13 @@ Rubix.PieDonut.prototype._setupRedraw = function() {
 };
 
 Rubix.PieDonut.prototype.draw = function() {
-    this._draw($(window).width(), $(window).height());
+    this._draw();
 };
 
 /**
- * @param {number} window_width
- * @param {number} window_height
  * @private
  */
-Rubix.PieDonut.prototype._draw = function(window_width, window_height) {
+Rubix.PieDonut.prototype._draw = function() {
     this._cleanElement();
     this._setSize();
     this._setupCanvas();
