@@ -1,4 +1,4 @@
-require('./globals');
+require('../globals');
 
 var fs = require('fs');
 var path = require('path');
@@ -11,13 +11,13 @@ app.use(compression());
 app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-var rpackage = require('./package.json');
+var rpackage = require('../package.json');
 var Router = require('react-router').Router;
 var Location = require('react-router/lib/Location');
 
 var defaultAppName = process.env.APP ? process.env.APP : 'app';
 
-var routes = require('./public/js/' + defaultAppName + '/' + defaultAppName + '.node.js');
+var routes = require('../public/js/' + defaultAppName + '/' + defaultAppName + '.node.js');
 
 var webpack_host = process.env.WHOST ? process.env.WHOST : 'localhost';
 var webpack_dev_server_port = process.env.WPORT ? process.env.WPORT : 8079;
