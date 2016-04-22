@@ -13,7 +13,11 @@ app.use(compression());
 app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), 'public')));
 
-var router = express.Router();
+// var router = express.Router();
+
+var user = express.Router();
+require = ('./server/routes/user.js')(user);
+app.use('/user', user)
 
 app.get('/', function(req, res, next) {
   var store = getStore();

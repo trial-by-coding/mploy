@@ -32,17 +32,17 @@ Applications.submit = function(appObj) {
 	})
 };
 
-Applications.getAll = function() {
+// Applications.getAll = function() {
 	
-	return db('applications').select()
-	.then(function(records) {
-		console.log('All Application records: ', records)
-		return records
-	})
-	.catch(function(err) {
-		console.log('Applications.getAll Error: ', err)
-	})
-};
+// 	return db('applications').select()
+// 	.then(function(records) {
+// 		console.log('All Application records: ', records)
+// 		return records
+// 	})
+// 	.catch(function(err) {
+// 		console.log('Applications.getAll Error: ', err)
+// 	})
+// };
 
 Applications.getAppsByUser = function(userID) {
 	

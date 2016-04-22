@@ -2,13 +2,6 @@ var db = require('../db/db.js');
 
 var Users = module.exports;
 
-Users.checkId = function(userObj) {
-  return db('users').where({
-    user: userObj.username,
-    linkedin_id: userObj.id
-  }).limit(1);
-};
-
 Users.create = function(incomingAttrs) {
   var attrs = Object.assign({}, incomingAttrs);
 
@@ -17,17 +10,6 @@ Users.create = function(incomingAttrs) {
       return result[0];
     }).catch(function(err) {
     console.log('create user error: ', err)
-  })
-};
-
-Users.grabID = function(passID) {
-  return db('users').select('*').where({
-    linkedin_id: passID
-  }).then(function(record) {
-    console.log('Record for passID', record);
-    return record;
-  }).catch(function(err) {
-    console.log('Users.grabID error: ', err)
   })
 };
 
@@ -45,6 +27,7 @@ Users.verify= function(id) {
 };
 
 //Is this proper syntax? Where before returning?
+//put request? are we updating a null value to a file?
 Users.insertResume = function(uid, resume) {
   return db('users')
   .where({userID: uid})
@@ -58,6 +41,8 @@ Users.insertResume = function(uid, resume) {
   })
 };
 
+
+//put request?
 Users.updateResume = function(uid, newResume) {
   return db('users')
   .where({userID: uid})

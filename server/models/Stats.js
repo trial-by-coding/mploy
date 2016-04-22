@@ -2,6 +2,8 @@ var db = require('../db/db.js');
 
 var Stats = module.exports;
 
+//Decrement previous status when application moves to next status?
+
 //only run when new user created
 Stats.newUserData = function(userID) {
 	return db('stats')
@@ -13,7 +15,7 @@ Stats.newUserData = function(userID) {
 			interview_offer: 0,
 			user_id: userID
 		})
-}
+};
 
 Stats.incrementTotalApps = function(userID) {
 	return db('stats')
