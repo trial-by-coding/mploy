@@ -1,11 +1,20 @@
 module.exports = function(router) {
 
+var applicant = express.Router();
+require = ('./server/routes/applicant.js')(applicant);
+app.use('/applicant', applicant)
+
+var employer = express.Router();
+require = ('./server/routes/employer.js')(employer);
+app.use('/employer', employer)
+
 	router.use(function(req,res,next) {
 		//check if logged in
-		//something like if (req.isAuthenticated())
-		//if logged in, return next()
+		if (req.isAuthenticated()){
+			return next()
+		}
 
-		//else redirect to login
+		res.redirect('/login')
 	});
 
 	router.get('/newemployer', function(req, res) {
