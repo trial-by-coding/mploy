@@ -11,7 +11,7 @@ JobPosts.create = function(jobObj) {
 		job_description: jobObj.job_description,
 		desired_education: jobObj.desired_education,
 		min_salary: jobObj.min_salary,
-		max_salary: jobObj max_salary,
+		max_salary: jobObj.max_salary,
 		location: jobObj.location,
 		employment_type: jobObj.employment_type,
 		visa_required: jobObj.visa_required,

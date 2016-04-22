@@ -47,7 +47,7 @@ Users.updateResume = function(uid, newResume) {
   return db('users')
   .where({userID: uid})
   .returning('userID')
-  .update({resume: newResume}
+  .update({resume: newResume})
   .then(function(userID) {
     console.log('Record for userID', uid);
     return userID
