@@ -52,7 +52,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _router = __webpack_require__(166);
+	var _router = __webpack_require__(167);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -113,13 +113,17 @@
 
 	var _blank2 = _interopRequireDefault(_blank);
 
+	var _applications = __webpack_require__(166);
+
+	var _applications2 = _interopRequireDefault(_applications);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (history, onUpdate) {
 	  return React.createElement(
 	    _reactRouter.Router,
 	    { history: history, onUpdate: onUpdate },
-	    React.createElement(_reactRouter.Route, { path: '/', component: _blank2.default })
+	    React.createElement(_reactRouter.Route, { path: '/', component: _applications2.default })
 	  );
 	};
 
@@ -9672,6 +9676,152 @@
 /* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _dec, _class, _class2;
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _sidebar_component = __webpack_require__(103);
+
+	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
+
+	var _header = __webpack_require__(109);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _sidebar = __webpack_require__(110);
+
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+
+	var _footer = __webpack_require__(112);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRedux = __webpack_require__(113);
+
+	var _actions = __webpack_require__(130);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
+		return state;
+	}), _dec(_class = function (_React$Component) {
+		(0, _inherits3.default)(Body, _React$Component);
+
+		function Body() {
+			(0, _classCallCheck3.default)(this, Body);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Body, [{
+			key: 'render',
+			value: function render() {
+				var dispatch = this.props.dispatch;
+				var visibilityFilter = this.props.visibilityFilter;
+
+				return React.createElement(
+					Container,
+					{ id: 'body' },
+					React.createElement(
+						Grid,
+						null,
+						React.createElement(
+							Row,
+							null,
+							React.createElement(
+								Col,
+								{ sm: 12 },
+								React.createElement(
+									PanelContainer,
+									null,
+									React.createElement(
+										Panel,
+										null,
+										React.createElement(
+											PanelBody,
+											null,
+											React.createElement(
+												Grid,
+												null,
+												'This is Working!'
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+		return Body;
+	}(React.Component)) || _class);
+
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+		(0, _inherits3.default)(_default, _React$Component2);
+
+		function _default() {
+			(0, _classCallCheck3.default)(this, _default);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(_default, [{
+			key: 'render',
+			value: function render() {
+				var classes = (0, _classnames2.default)({
+					'container-open': this.props.open
+				});
+				return React.createElement(
+					Container,
+					{ id: 'container', className: classes },
+					React.createElement(_sidebar2.default, null),
+					React.createElement(_header2.default, null),
+					React.createElement(Body, null),
+					React.createElement(_footer2.default, null)
+				);
+			}
+		}]);
+		return _default;
+	}(React.Component)) || _class2;
+
+	exports.default = _default;
+
+/***/ },
+/* 167 */
+/***/ function(module, exports, __webpack_require__) {
+
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	var _extends2 = __webpack_require__(104);
@@ -9686,15 +9836,15 @@
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createBrowserHistory = __webpack_require__(167);
+	var _createBrowserHistory = __webpack_require__(168);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(120);
 
-	var _reduxSimpleRouter = __webpack_require__(168);
+	var _reduxSimpleRouter = __webpack_require__(169);
 
-	var _reduxThunk = __webpack_require__(169);
+	var _reduxThunk = __webpack_require__(170);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -9702,7 +9852,7 @@
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _reducers = __webpack_require__(170);
+	var _reducers = __webpack_require__(171);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -9817,7 +9967,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 167 */
+/* 168 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -10001,7 +10151,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 168 */
+/* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10201,7 +10351,7 @@
 
 
 /***/ },
-/* 169 */
+/* 170 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10220,7 +10370,7 @@
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 170 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10229,7 +10379,7 @@
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _todos = __webpack_require__(171);
+	var _todos = __webpack_require__(172);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
@@ -10238,7 +10388,7 @@
 	module.exports = (0, _extends3.default)({}, _todos2.default);
 
 /***/ },
-/* 171 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10247,7 +10397,7 @@
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-	var _toConsumableArray2 = __webpack_require__(172);
+	var _toConsumableArray2 = __webpack_require__(173);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -10294,12 +10444,12 @@
 	};
 
 /***/ },
-/* 172 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _from = __webpack_require__(173);
+	var _from = __webpack_require__(174);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -10318,21 +10468,21 @@
 	exports.__esModule = true;
 
 /***/ },
-/* 173 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(174), __esModule: true };
-
-/***/ },
 /* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(134);
-	__webpack_require__(175);
-	module.exports = __webpack_require__(61).Array.from;
+	module.exports = { "default": __webpack_require__(175), __esModule: true };
 
 /***/ },
 /* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(134);
+	__webpack_require__(176);
+	module.exports = __webpack_require__(61).Array.from;
+
+/***/ },
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

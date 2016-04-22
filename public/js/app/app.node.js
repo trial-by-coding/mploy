@@ -53,7 +53,7 @@ module.exports =
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _router = __webpack_require__(199);
+	var _router = __webpack_require__(200);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -114,13 +114,17 @@ module.exports =
 
 	var _blank2 = _interopRequireDefault(_blank);
 
+	var _applications = __webpack_require__(199);
+
+	var _applications2 = _interopRequireDefault(_applications);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (history, onUpdate) {
 	  return React.createElement(
 	    _reactRouter.Router,
 	    { history: history, onUpdate: onUpdate },
-	    React.createElement(_reactRouter.Route, { path: '/', component: _blank2.default })
+	    React.createElement(_reactRouter.Route, { path: '/', component: _applications2.default })
 	  );
 	};
 
@@ -20989,6 +20993,152 @@ module.exports =
 
 	'use strict';
 
+	var _dec, _class, _class2;
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(52);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(64);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(65);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(69);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(94);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(101);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _sidebar_component = __webpack_require__(102);
+
+	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
+
+	var _header = __webpack_require__(108);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _sidebar = __webpack_require__(109);
+
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+
+	var _footer = __webpack_require__(111);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRedux = __webpack_require__(112);
+
+	var _actions = __webpack_require__(129);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(161);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
+		return state;
+	}), _dec(_class = function (_React$Component) {
+		(0, _inherits3.default)(Body, _React$Component);
+
+		function Body() {
+			(0, _classCallCheck3.default)(this, Body);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Body, [{
+			key: 'render',
+			value: function render() {
+				var dispatch = this.props.dispatch;
+				var visibilityFilter = this.props.visibilityFilter;
+
+				return React.createElement(
+					Container,
+					{ id: 'body' },
+					React.createElement(
+						Grid,
+						null,
+						React.createElement(
+							Row,
+							null,
+							React.createElement(
+								Col,
+								{ sm: 12 },
+								React.createElement(
+									PanelContainer,
+									null,
+									React.createElement(
+										Panel,
+										null,
+										React.createElement(
+											PanelBody,
+											null,
+											React.createElement(
+												Grid,
+												null,
+												'This is Working!'
+											)
+										)
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+		return Body;
+	}(React.Component)) || _class);
+
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+		(0, _inherits3.default)(_default, _React$Component2);
+
+		function _default() {
+			(0, _classCallCheck3.default)(this, _default);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(_default, [{
+			key: 'render',
+			value: function render() {
+				var classes = (0, _classnames2.default)({
+					'container-open': this.props.open
+				});
+				return React.createElement(
+					Container,
+					{ id: 'container', className: classes },
+					React.createElement(_sidebar2.default, null),
+					React.createElement(_header2.default, null),
+					React.createElement(Body, null),
+					React.createElement(_footer2.default, null)
+				);
+			}
+		}]);
+		return _default;
+	}(React.Component)) || _class2;
+
+	exports.default = _default;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _extends2 = __webpack_require__(103);
 
 	var _extends3 = _interopRequireDefault(_extends2);
@@ -21001,15 +21151,15 @@ module.exports =
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createBrowserHistory = __webpack_require__(200);
+	var _createBrowserHistory = __webpack_require__(201);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(119);
 
-	var _reduxSimpleRouter = __webpack_require__(201);
+	var _reduxSimpleRouter = __webpack_require__(202);
 
-	var _reduxThunk = __webpack_require__(202);
+	var _reduxThunk = __webpack_require__(203);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -21017,7 +21167,7 @@ module.exports =
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _reducers = __webpack_require__(203);
+	var _reducers = __webpack_require__(204);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -21131,7 +21281,7 @@ module.exports =
 	};
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21314,7 +21464,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21514,7 +21664,7 @@ module.exports =
 
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21533,7 +21683,7 @@ module.exports =
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21542,7 +21692,7 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _todos = __webpack_require__(204);
+	var _todos = __webpack_require__(205);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
@@ -21551,7 +21701,7 @@ module.exports =
 	module.exports = (0, _extends3.default)({}, _todos2.default);
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21560,7 +21710,7 @@ module.exports =
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-	var _toConsumableArray2 = __webpack_require__(205);
+	var _toConsumableArray2 = __webpack_require__(206);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -21607,12 +21757,12 @@ module.exports =
 	};
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _from = __webpack_require__(206);
+	var _from = __webpack_require__(207);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -21631,21 +21781,21 @@ module.exports =
 	exports.__esModule = true;
 
 /***/ },
-/* 206 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(207), __esModule: true };
-
-/***/ },
 /* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(133);
-	__webpack_require__(208);
-	module.exports = __webpack_require__(60).Array.from;
+	module.exports = { "default": __webpack_require__(208), __esModule: true };
 
 /***/ },
 /* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(133);
+	__webpack_require__(209);
+	module.exports = __webpack_require__(60).Array.from;
+
+/***/ },
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
