@@ -1,12 +1,14 @@
+var express = require('express');
+
 module.exports = function(router) {
 
 var applicant = express.Router();
-require = ('./server/routes/applicant.js')(applicant);
-app.use('/applicant', applicant)
+require('./applicant.js')(applicant, express);
+router.use('/applicant', applicant)
 
 var employer = express.Router();
-require = ('./server/routes/employer.js')(employer);
-app.use('/employer', employer)
+require('./employer.js')(employer);
+router.use('/employer', employer)
 
 	router.use(function(req,res,next) {
 		//check if logged in

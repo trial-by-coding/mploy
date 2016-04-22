@@ -16,7 +16,7 @@ app.use(express.static(path.join(process.cwd(), 'public')));
 // var router = express.Router();
 
 var user = express.Router();
-require = ('./server/routes/user.js')(user);
+require('./server/routes/user.js')(user, express);
 app.use('/user', user)
 
 app.get('/', function(req, res, next) {
