@@ -6719,7 +6719,7 @@ module.exports =
 	                React.createElement(
 	                  'div',
 	                  { style: { top: 23, fontSize: 16, lineHeight: 1, position: 'relative' } },
-	                  'Anna Sanchez'
+	                  'Demo Girl'
 	                ),
 	                React.createElement(
 	                  'div',
@@ -21050,10 +21050,143 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var Description = function (_React$Component) {
+		(0, _inherits3.default)(Description, _React$Component);
+
+		function Description() {
+			(0, _classCallCheck3.default)(this, Description);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Description).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Description, [{
+			key: 'render',
+			value: function render() {
+				return React.createElement(
+					Row,
+					null,
+					React.createElement(
+						'div',
+						{ 'class': 'skills' },
+						'Skills'
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'experience' },
+						'Experience'
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'education' },
+						'Education'
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'description' },
+						'Description'
+					)
+				);
+			}
+		}]);
+		return Description;
+	}(React.Component);
+
+	var Headline = function (_React$Component2) {
+		(0, _inherits3.default)(Headline, _React$Component2);
+
+		function Headline() {
+			(0, _classCallCheck3.default)(this, Headline);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Headline).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Headline, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					margin: '12.5px 0',
+					borderBottom: '1px dotted #999',
+					paddingBottom: 12.5,
+					'text-align': 'center'
+				};
+				return React.createElement(
+					Row,
+					null,
+					React.createElement(
+						'div',
+						{ style: styles, 'class': 'header' },
+						React.createElement('img', null),
+						'Name'
+					)
+				);
+			}
+		}]);
+		return Headline;
+	}(React.Component);
+
+	var Application = function (_React$Component3) {
+		(0, _inherits3.default)(Application, _React$Component3);
+
+		function Application() {
+			(0, _classCallCheck3.default)(this, Application);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Application).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Application, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					margin: '12.5px 0',
+					borderBottom: '1px dotted #999',
+					paddingBottom: 12.5,
+					'text-align': 'center'
+				};
+				var textStyle = {
+					textDecoration: this.props.completed ? 'line-through' : ''
+				};
+				var buttonStyle = {
+					height: 25,
+					color: 'red',
+					fontSize: 20,
+					lineHeight: 0,
+					marginTop: -3,
+					border: 'none',
+					background: 'none'
+				};
+
+				return React.createElement(
+					Col,
+					{ xs: 6, md: 4 },
+					React.createElement(
+						PanelContainer,
+						null,
+						React.createElement(
+							Panel,
+							null,
+							React.createElement(
+								PanelBody,
+								null,
+								React.createElement(
+									Grid,
+									null,
+									React.createElement(
+										Row,
+										null,
+										React.createElement(Headline, null),
+										React.createElement(Description, null)
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+		return Application;
+	}(React.Component);
+
 	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
 		return state;
-	}), _dec(_class = function (_React$Component) {
-		(0, _inherits3.default)(Body, _React$Component);
+	}), _dec(_class = function (_React$Component4) {
+		(0, _inherits3.default)(Body, _React$Component4);
 
 		function Body() {
 			(0, _classCallCheck3.default)(this, Body);
@@ -21063,6 +21196,7 @@ module.exports =
 		(0, _createClass3.default)(Body, [{
 			key: 'render',
 			value: function render() {
+				var app = ['Some text', 'More Text', 'Even More Text'];
 				var dispatch = this.props.dispatch;
 				var visibilityFilter = this.props.visibilityFilter;
 
@@ -21075,27 +21209,9 @@ module.exports =
 						React.createElement(
 							Row,
 							null,
-							React.createElement(
-								Col,
-								{ sm: 12 },
-								React.createElement(
-									PanelContainer,
-									null,
-									React.createElement(
-										Panel,
-										null,
-										React.createElement(
-											PanelBody,
-											null,
-											React.createElement(
-												Grid,
-												null,
-												'This is Working!'
-											)
-										)
-									)
-								)
-							)
+							app.map(function (text) {
+								return React.createElement(Application, null);
+							})
 						)
 					)
 				);
@@ -21104,8 +21220,8 @@ module.exports =
 		return Body;
 	}(React.Component)) || _class);
 
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
-		(0, _inherits3.default)(_default, _React$Component2);
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component5) {
+		(0, _inherits3.default)(_default, _React$Component5);
 
 		function _default() {
 			(0, _classCallCheck3.default)(this, _default);
