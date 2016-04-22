@@ -21050,8 +21050,44 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Description = function (_React$Component) {
-		(0, _inherits3.default)(Description, _React$Component);
+	var Confirm = function (_React$Component) {
+		(0, _inherits3.default)(Confirm, _React$Component);
+
+		function Confirm() {
+			(0, _classCallCheck3.default)(this, Confirm);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Confirm).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Confirm, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					margin: '12.5px 0',
+					borderBottom: '1px dotted #999',
+					paddingBottom: 12.5,
+					'text-align': 'center'
+				};
+				return React.createElement(
+					Row,
+					{ style: styles },
+					React.createElement(
+						'div',
+						{ 'class': 'accept' },
+						'Accept'
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'reject' },
+						'Reject'
+					)
+				);
+			}
+		}]);
+		return Confirm;
+	}(React.Component);
+
+	var Description = function (_React$Component2) {
+		(0, _inherits3.default)(Description, _React$Component2);
 
 		function Description() {
 			(0, _classCallCheck3.default)(this, Description);
@@ -21061,9 +21097,15 @@ module.exports =
 		(0, _createClass3.default)(Description, [{
 			key: 'render',
 			value: function render() {
+				var styles = {
+					margin: '12.5px 0',
+					borderBottom: '1px dotted #999',
+					paddingBottom: 12.5,
+					'text-align': 'center'
+				};
 				return React.createElement(
 					Row,
-					null,
+					{ style: styles },
 					React.createElement(
 						'div',
 						{ 'class': 'skills' },
@@ -21090,8 +21132,8 @@ module.exports =
 		return Description;
 	}(React.Component);
 
-	var Headline = function (_React$Component2) {
-		(0, _inherits3.default)(Headline, _React$Component2);
+	var Headline = function (_React$Component3) {
+		(0, _inherits3.default)(Headline, _React$Component3);
 
 		function Headline() {
 			(0, _classCallCheck3.default)(this, Headline);
@@ -21122,8 +21164,8 @@ module.exports =
 		return Headline;
 	}(React.Component);
 
-	var Application = function (_React$Component3) {
-		(0, _inherits3.default)(Application, _React$Component3);
+	var Application = function (_React$Component4) {
+		(0, _inherits3.default)(Application, _React$Component4);
 
 		function Application() {
 			(0, _classCallCheck3.default)(this, Application);
@@ -21171,7 +21213,8 @@ module.exports =
 										Row,
 										null,
 										React.createElement(Headline, null),
-										React.createElement(Description, null)
+										React.createElement(Description, null),
+										React.createElement(Confirm, null)
 									)
 								)
 							)
@@ -21185,8 +21228,8 @@ module.exports =
 
 	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
 		return state;
-	}), _dec(_class = function (_React$Component4) {
-		(0, _inherits3.default)(Body, _React$Component4);
+	}), _dec(_class = function (_React$Component5) {
+		(0, _inherits3.default)(Body, _React$Component5);
 
 		function Body() {
 			(0, _classCallCheck3.default)(this, Body);
@@ -21220,8 +21263,8 @@ module.exports =
 		return Body;
 	}(React.Component)) || _class);
 
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component5) {
-		(0, _inherits3.default)(_default, _React$Component5);
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component6) {
+		(0, _inherits3.default)(_default, _React$Component6);
 
 		function _default() {
 			(0, _classCallCheck3.default)(this, _default);
