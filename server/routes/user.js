@@ -6,10 +6,22 @@ module.exports = function(router) {
 		//if logged in, return next()
 
 		//else redirect to login
-	})
+	});
+
+	router.get('/newemployer', function(req, res) {
+		
+	});
+
+	router.get('/job', function(req, res) {
+		
+	});
+
+	router.get('/job/:id', function(req, res) {
+		
+	});
 
 	router.get('/*', function(req, res) {
-		res.redirect('/joblistings')
-	})
+		res.redirect('/job')
+	});
 
 }
