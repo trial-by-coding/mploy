@@ -133,7 +133,8 @@
 	    { history: history, onUpdate: onUpdate },
 	    React.createElement(_reactRouter.Route, { path: '/', component: _landing2.default }),
 	    React.createElement(_reactRouter.Route, { path: '/applications', component: _applications2.default }),
-	    React.createElement(_reactRouter.Route, { path: '/jobs', component: _jobs2.default })
+	    React.createElement(_reactRouter.Route, { path: '/jobs', component: _jobs2.default }),
+	    React.createElement(_reactRouter.Route, { path: '/blank', component: _blank2.default })
 	  );
 	};
 
@@ -10472,6 +10473,7 @@
 				var panelStyle = {
 					'max-width': '400px'
 				};
+
 				return React.createElement(
 					Col,
 					{ sm: 12, md: 4, lg: 4 },

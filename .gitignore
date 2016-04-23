@@ -1,14 +1,8 @@
+public/**
+node_modules/**
 ./dist
-**/node_modules
 .DS_Store
 .sass-cache
 update
 server/auth/config.js
-<<<<<<< Updated upstream
 knexfile.js
-public/**
-=======
-**/knexfile
-public/**
-
->>>>>>> Stashed changes
