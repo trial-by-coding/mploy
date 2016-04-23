@@ -1,3 +1,4 @@
+import { Link, State, Navigation } from 'react-router';
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
@@ -5,28 +6,66 @@ import Header from 'common/header';
 import Sidebar from 'common/sidebar';
 import Footer from 'common/footer';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 export default class Body extends React.Component {
-	render() {
-		return (
-			<Grid>
-				<Col>
-					<h2>Job Seeker</h2>
-					<div> 
-					<button type='submit'>Log In</button>
-					</div>
-				</Col>
-				<Col>
-					<div>
-					<h2>Employers</h2>
-					<button type='submit'>Log In</button>
-					</div>
-				</Col>
-			</Grid>
-		)
-	}
+		render() {
+				return (
+					<Container id="body">
+						<Grid>
+							<Row>
+  							<Col sm={6} collapseRight>
+                  <PanelContainer>
+                    <Panel>
+                      <PanelBody style={{padding: 0}}>
+                        <div className='text-center bg-darkblue fg-white'>
+                          <h3 style={{margin: 0, padding: 25}}>Candidates</h3>
+                        </div>
+								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
+                       <div>You need to sign in for those awesome features</div>
+                          <div style={{marginTop: 12.5, marginBottom: 12.5}}>
+                            <Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.back}>
+                              <Icon glyph='icon-fontello-linkedin-6' />
+                              <span>  Sign in <span className='hidden-xs'>with linkedin</span></span>
+                            </Button>
+                          </div>
+                        <div>
+                      <a id='github-link' href='#' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
+                   </div>
+                 </div>
+                </PanelBody>
+                </Panel>
+              </PanelContainer>
+							</Col>
+							<Col sm={6} collapseRight>
+                  <PanelContainer>
+                    <Panel>
+                      <PanelBody style={{padding: 0}}>
+                        <div className='text-center bg-darkblue fg-white'>
+                          <h3 style={{margin: 0, padding: 25}}>Employers</h3>
+                        </div>
+								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
+                       <div>You need to sign in for those awesome features</div>
+                          <div style={{marginTop: 12.5, marginBottom: 12.5}}>
+                            <Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.back}>
+                              <Icon glyph='icon-fontello-linkedin-6' />
+                              <span>  Sign in <span className='hidden-xs'>with linkedin</span></span>
+                            </Button>
+                          </div>
+                        <div>
+                      <a id='github-link' href='#' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
+                   </div>
+                 </div>
+                </PanelBody>
+                </Panel>
+              </PanelContainer>
+							</Col>
+							</Row>
+					</Grid>
+				</Container>
+				)
+		}
 }

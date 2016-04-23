@@ -33,12 +33,20 @@ class JobsContainer extends React.Component {
       border: 'none',
       background: 'none',
     };
+<<<<<<< HEAD:src/jsx/app/routes/containers/jobs.js
     const panelStyle = {
     	'max-width': '400px'
     }
 		return (
 			<Col sm={12} md={4} lg={4}>
 			<PanelContainer style={panelStyle}>
+=======
+
+	return (
+
+		<Col xs={12} sm={6} md={4}>
+			<PanelContainer>
+>>>>>>> signin_linkedin:src/jsx/app/routes/applications.jsx
 				<Panel>
 					<PanelBody >
 						<Grid>
@@ -56,7 +64,7 @@ class JobsContainer extends React.Component {
 
 @connect((state) => state)
 class Body extends React.Component {
-	
+
 
 	render() {
 		const jobs = ['Sr Developer', 'Mid Developer', 'Entry Developer'];
@@ -72,8 +80,8 @@ class Body extends React.Component {
 					}
 				</Row>
 			</Grid>
-		</Container>	
-	)}	
+		</Container>
+	)}
 }
 
 @SidebarMixin
