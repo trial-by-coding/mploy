@@ -36,10 +36,10 @@ Applications.submit = function(appObj) {
 
 //delete old unconsidered records
 Applications.getUnconsidered = function() {
-  return db(applications).where({
-    status: 'Not yet considered',
-    created_at: 
-  })
+  // return db(applications).where({
+  //   status: 'Not yet considered',
+  //   created_at: 
+  // })
 	
 	return db('applications').where('status', 'Not yet considered')
 	.then(function(records) {
