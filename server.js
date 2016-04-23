@@ -8,7 +8,12 @@ var compression = require('compression');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
-var db  = require('./server/db/db.js');
+var db = require('./server/db/db.js');
+var Users = require('./server/models/Users.js')
+var Employers = require('./server/models/Employers.js')
+var JobPosts = require('./server/models/JobPosts.js')
+var Stats = require('./server/models/Stats.js')
+var Applications = require('./server/models/Applications.js')
 
 var app = express();
 app.use(compression());
@@ -18,8 +23,13 @@ app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(express.static(path.join(process.cwd(), 'public')));
+app.use(bodyParser.json());
 
-var router = express.Router();
+// var router = express.Router();
+
+var user = express.Router();
+require('./server/routes/user.js')(user);
+app.use('/user', user)
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
@@ -46,7 +56,7 @@ app.get('*', function(req, res, next) {
 var server = app.listen(process.env.PORT, function() {
   try {
     process.send('CONNECTED');
-  } catch(e) {}
+  } catch (e) {}
 });
 
 process.on('uncaughtException', function(err) {

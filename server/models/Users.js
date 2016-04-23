@@ -2,33 +2,29 @@ var db = require('../db/db.js');
 
 var Users = module.exports;
 
-Users.checkId = function(userObj) {
-  return db('users').where({
-    user: userObj.username,
-    linkedin_id: userObj.id
-  }).limit(1);
-};
-
 Users.create = function(incomingAttrs) {
   var attrs = Object.assign({}, incomingAttrs);
 
   return db('users').insert(attrs)
     .then(function(result) {
       return result[0];
-    }).catch(function(err) {
+    })
+    .catch(function(err) {
       console.log('create user error: ', err);
     });
 };
 
 Users.grabID = function(passID) {
   return db('users').select('*').where({
-    linkedin_id: passID
-  }).then(function(record) {
-    console.log('Record for passID', record);
-    return record;
-  }).catch(function(err) {
-    console.log('Users.grabID error: ', err);
-  });
+      linkedin_id: passID
+    })
+    .then(function(record) {
+      console.log('Record for passID', record);
+      return record;
+    })
+    .catch(function(err) {
+      console.log('Users.grabID error: ', err);
+    });
 };
 
 Users.verify = function(id) {
@@ -39,12 +35,14 @@ Users.verify = function(id) {
     .then(function(record) {
       console.log('Verified user record', record);
       return record;
-    }).catch(function(err) {
+    })
+    .catch(function(err) {
       console.log('Users.verify error: ', err);
     });
 };
 
 //Is this proper syntax? Where before returning?
+//put request? are we updating a null value to a file?
 Users.insertResume = function(uid, resume) {
   return db('users')
     .where({ userID: uid })
@@ -53,11 +51,14 @@ Users.insertResume = function(uid, resume) {
     .then(function(userID) {
       console.log('Record for userID', uid);
       return userID;
-    }).catch(function(err) {
+    })
+    .catch(function(err) {
       console.log('Users.insertResume error: ', err);
     });
 };
 
+
+//put request?
 Users.updateResume = function(uid, newResume) {
   return db('users')
     .where({ userID: uid })
@@ -65,8 +66,9 @@ Users.updateResume = function(uid, newResume) {
     .update({ resume: newResume })
     .then(function(userID) {
       console.log('Record for userID', uid);
-      return userID;
-    }).catch(function(err) {
-      console.log('Users.insertResume error: ', err);
-    });
+      return userID
+    })
+    .catch(function(err) {
+      console.log('Users.insertResume error: ', err)
+    })
 };
