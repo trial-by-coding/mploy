@@ -4,5 +4,4 @@ node_modules
 .sass-cache
 update
 public/bower_components
-server/auth/config.js
 
