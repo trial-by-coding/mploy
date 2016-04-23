@@ -59,7 +59,7 @@ class ApplicationContainer extends React.Component {
 
 @connect((state) => state)
 class Body extends React.Component {
-	
+
 
 	render() {
 		const app = ['Some text', 'More Text', 'Even More Text'];
@@ -75,8 +75,8 @@ class Body extends React.Component {
 					}
 				</Row>
 			</Grid>
-		</Container>	
-	)}	
+		</Container>
+	)}
 }
 
 @SidebarMixin

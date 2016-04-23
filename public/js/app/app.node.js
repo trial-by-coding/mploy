@@ -21680,7 +21680,11 @@ module.exports =
 				};
 				return React.createElement(
 					Col,
+<<<<<<< c3374390f65856467cd5cd7ba316a1cba75e6a54
 					{ sm: 12, md: 4, lg: 4 },
+=======
+					{ xs: 12, sm: 6, md: 4 },
+>>>>>>> hamburger modifications
 					React.createElement(
 						PanelContainer,
 						{ style: panelStyle },
