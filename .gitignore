@@ -5,4 +5,4 @@ node_modules
 update
 public/bower_components
 server/auth/config.js
-
+knexfile.js

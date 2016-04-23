@@ -19,6 +19,34 @@ exports.up = function(knex, Promise) {
         .inTable('users');
     }),
 
+    // //job posts table
+    knex.schema.createTable('job_posts', function(table) {
+      table.increments('jobID').primary();
+      table.timestamp('created_at').defaultTo(knex.fn.now());
+      table.string('company_name');
+      table.string('job_title');
+      table.string('job_description', 400);
+      table.string('desired_education');
+      table.integer('min_salary');
+      table.integer('max_salary');
+      table.string('location');
+      table.string('employment_type');
+      table.boolean('visa_required');
+      table.string('skill_1');
+      table.string('skill_2');
+      table.string('skill_3');
+      table.string('skill_4');
+      table.string('skill_5');
+      table.string('skill_6');
+      table.string('skill_7');
+      table.string('skill_8');
+      table.string('skill_9');
+      table.string('skill_10');
+      table.integer('user_id')
+        .references('userID')
+        .inTable('users');
+    }),
+    
     //applications table
     knex.schema.createTable('applications', function(table) {
       table.increments('appID').primary();
@@ -47,33 +75,6 @@ exports.up = function(knex, Promise) {
         .inTable('job_posts');
      }),
 
-    // //job posts table
-    knex.schema.createTable('job_posts', function(table) {
-      table.increments('jobID').primary();
-      table.timestamp('created_at').defaultTo(knex.fn.now());
-      table.string('company_name');
-      table.string('job_description');
-      table.string('desired_education');
-      table.integer('min_salary');
-      table.integer('max_salary');
-      table.string('location');
-      table.string('employment_type');
-      table.boolean('visa_required');
-      table.string('skill_1');
-      table.string('skill_2');
-      table.string('skill_3');
-      table.string('skill_4');
-      table.string('skill_5');
-      table.string('skill_6');
-      table.string('skill_7');
-      table.string('skill_8');
-      table.string('skill_9');
-      table.string('skill_10');
-      table.integer('user_id')
-        .references('userID')
-        .inTable('users');
-    }),
-
     // //stats table
     knex.schema.createTable('stats', function(table) {
       table.increments('statID').primary();
@@ -93,8 +94,8 @@ exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTable('users'),
     knex.schema.dropTable('companies'),
-    knex.schema.dropTable('applications'),
     knex.schema.dropTable('job_posts'),
+    knex.schema.dropTable('applications'),
     knex.schema.dropTable('stats'),
   ]);
 };
