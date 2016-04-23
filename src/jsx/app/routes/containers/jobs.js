@@ -33,10 +33,11 @@ class JobsContainer extends React.Component {
       border: 'none',
       background: 'none',
     };
+
     const panelStyle = {
     	'max-width': '400px'
     }
-    
+
 		return (
 			<Col sm={12} md={4} lg={4}>
 			<PanelContainer style={panelStyle}>
