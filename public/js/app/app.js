@@ -10365,11 +10365,15 @@
 				};
 				return React.createElement(
 					Col,
+<<<<<<< HEAD
 <<<<<<< c3374390f65856467cd5cd7ba316a1cba75e6a54
 					{ sm: 12, md: 4, lg: 4 },
 =======
 					{ xs: 12, sm: 6, md: 4 },
 >>>>>>> hamburger modifications
+=======
+					{ xs: 12, sm: 6, md: 4 },
+>>>>>>> af3db3caec39c4adb5b5c31a7fc8767d42835134
 					React.createElement(
 						PanelContainer,
 						{ style: panelStyle },

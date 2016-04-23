@@ -33,13 +33,13 @@ Applications.submit = function(appObj) {
 	})
 };
 
-
 //delete old unconsidered records
 Applications.getUnconsidered = function() {
   // return db(applications).where({
   //   status: 'Not yet considered',
   //   created_at: 
   // })
+//get not yet considered apps
 	
 	return db('applications').where('status', 'Not yet considered')
 	.then(function(records) {
@@ -63,6 +63,19 @@ Applications.updateStatus = function(userID) {
 // Applications.delete = function(appID) {
 //   return db('applications').where().del()
 // };
+
+
+//update status
+Applications.updateStatus = function(userID) {
+  
+
+};
+
+//denied this will delete the app and should run after the stats method
+Applications.delete = function(userID) {
+  
+
+};
 
 Applications.getAppsByUser = function(userID) {
 	
