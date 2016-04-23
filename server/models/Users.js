@@ -16,8 +16,8 @@ Users.create = function(incomingAttrs) {
     .then(function(result) {
       return result[0];
     }).catch(function(err) {
-    console.log('create user error: ', err)
-  })
+      console.log('create user error: ', err);
+    });
 };
 
 Users.grabID = function(passID) {
@@ -27,49 +27,46 @@ Users.grabID = function(passID) {
     console.log('Record for passID', record);
     return record;
   }).catch(function(err) {
-    console.log('Users.grabID error: ', err)
-  })
+    console.log('Users.grabID error: ', err);
+  });
 };
 
-Users.verify= function(id) {
+Users.verify = function(id) {
   return db('users')
-  .where({
-    linkedin_id: id
-  }).limit(1)
-  .then(function(record) {
-    console.log('Verified user record', record);
-    return record
-  }).catch(function(err) {
-    console.log('Users.verify error: ', err)
-  })
+    .where({
+      linkedin_id: id
+    }).limit(1)
+    .then(function(record) {
+      console.log('Verified user record', record);
+      return record;
+    }).catch(function(err) {
+      console.log('Users.verify error: ', err);
+    });
 };
 
 //Is this proper syntax? Where before returning?
 Users.insertResume = function(uid, resume) {
   return db('users')
-  .where({userID: uid})
-  .returning('userID')
-  .insert({resume: resume})
-  .then(function(userID) {
-    console.log('Record for userID', uid);
-    return userID
-  }).catch(function(err) {
-    console.log('Users.insertResume error: ', err)
-  })
+    .where({ userID: uid })
+    .returning('userID')
+    .insert({ resume: resume })
+    .then(function(userID) {
+      console.log('Record for userID', uid);
+      return userID;
+    }).catch(function(err) {
+      console.log('Users.insertResume error: ', err);
+    });
 };
 
 Users.updateResume = function(uid, newResume) {
   return db('users')
-  .where({userID: uid})
-  .returning('userID')
-  .update({resume: newResume}
-  .then(function(userID) {
-    console.log('Record for userID', uid);
-    return userID
-  }).catch(function(err) {
-    console.log('Users.insertResume error: ', err)
-  })
+    .where({ userID: uid })
+    .returning('userID')
+    .update({ resume: newResume })
+    .then(function(userID) {
+      console.log('Record for userID', uid);
+      return userID;
+    }).catch(function(err) {
+      console.log('Users.insertResume error: ', err);
+    });
 };
-
-
-
