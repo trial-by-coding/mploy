@@ -10,17 +10,19 @@ import { connect } from 'react-redux'
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
-class Body extends React.Component {
+export default class Body extends React.Component {
 	render() {
 		return (
 			<Grid>
 				<Col>
+					<h2>Job Seeker</h2>
 					<div> 
 					<button type='submit'>Log In</button>
 					</div>
 				</Col>
 				<Col>
 					<div>
+					<h2>Employers</h2>
 					<button type='submit'>Log In</button>
 					</div>
 				</Col>
