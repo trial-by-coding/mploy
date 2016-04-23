@@ -23,7 +23,8 @@ function apply(data) {
 			data: data,
 			success: function(resp) {
 				if (response.status >= 400) {
-	        throw new Error("Bad response from server");
+	        reject("Bad response from server");
+	        return;
 	      }
 	      resolve(resp);
 			}
