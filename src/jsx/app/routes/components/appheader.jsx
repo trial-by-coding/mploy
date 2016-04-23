@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
-export default class Headline extends React.Component {
+export default class AppHeader extends React.Component {
 	render() {
 		const styles = {
       margin: '12.5px 0',
@@ -16,7 +16,7 @@ export default class Headline extends React.Component {
 		return (
 			<Row>
 				<div style={styles} class="header">
-					<img></img>
+					<img src='/imgs/app/logo.png'/>
 						Name
 				</div>
 			</Row>
