@@ -32,6 +32,7 @@
     "css-flip": "^0.5.0",
     "del": "^2.2.0",
     "enzyme": "^1.4.1",
+    "es6-promise": "^3.1.2",
     "eventemitter2": "^0.4.14",
     "express": "^4.13.4",
     "gulp": "^3.9.0",
