@@ -66,9 +66,9 @@ Users.updateResume = function(uid, newResume) {
     .update({ resume: newResume })
     .then(function(userID) {
       console.log('Record for userID', uid);
-      return userID
+      return userID;
     })
     .catch(function(err) {
-      console.log('Users.insertResume error: ', err)
-    })
+      console.log('Users.insertResume error: ', err);
+    });
 };
