@@ -10,7 +10,7 @@ Applications.submit = function(appObj) {
 		years_experience: appObj.years_experience,
 		desired_education: appObj.desired_education,
 		personal_statement: appObj.personal_statement,
-		status: appObj.status,
+		status: 'Not yet considered',
 		skill_1_met: appObj.skill_1,
 	  skill_2_met: appObj.skill_2,
 	  skill_3_met: appObj.skill_3,
@@ -32,6 +32,8 @@ Applications.submit = function(appObj) {
 	})
 };
 
+
+//get not yet considered apps
 // Applications.getAll = function() {
 	
 // 	return db('applications').select()
@@ -43,6 +45,19 @@ Applications.submit = function(appObj) {
 // 		console.log('Applications.getAll Error: ', err)
 // 	})
 // };
+
+
+//update status
+Applications.updateStatus = function(userID) {
+  
+
+};
+
+//denied this will delete the app and should run after the stats method
+Applications.delete = function(userID) {
+  
+
+};
 
 Applications.getAppsByUser = function(userID) {
 	

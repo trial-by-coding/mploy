@@ -25,8 +25,6 @@ router.use('/employer', employer)
 
 	router.post('/newemployer', function(req, res) {
     // console.log('req: ', req)
-    console.log('req.params: ', req.params)
-    console.log('req.body: ', req.body)
     return Employers.insert(req.body.id)
     .then(function(resp) {
       console.log('User ID added: ', resp)

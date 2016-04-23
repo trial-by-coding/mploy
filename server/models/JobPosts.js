@@ -8,6 +8,7 @@ JobPosts.create = function(jobObj) {
 	return db('job_posts').returning('jobID')
 	.insert({
 		company_name: jobObj.company_name,
+		job_title: jobObj.job_title,
 		job_description: jobObj.job_description,
 		desired_education: jobObj.desired_education,
 		min_salary: jobObj.min_salary,
