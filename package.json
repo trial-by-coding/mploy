@@ -23,7 +23,7 @@
     "babel-preset-react": "^6.3.13",
     "babel-preset-stage-0": "^6.3.13",
     "bless-loader": "^1.0.0",
-    "body-parser": "^1.14.2",
+    "body-parser": "https://registry.npmjs.org/body-parser/-/body-parser-1.14.2.tgz",
     "browser-sync": "^2.11.1",
     "classnames": "^2.2.3",
     "compression": "^1.6.1",

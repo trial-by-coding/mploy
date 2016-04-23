@@ -6,17 +6,24 @@ var path = require('path');
 var express = require('express');
 var compression = require('compression');
 var cookieParser = require('cookie-parser');
+var bodyParser = require('body-parser')
 var db  = require('./server/db/db.js');
+var Users = require('./server/models/Users.js')
+var Employers = require('./server/models/Employers.js')
+var JobPosts = require('./server/models/JobPosts.js')
+var Stats = require('./server/models/Stats.js')
+var Applications = require('./server/models/Applications.js')
 
 var app = express();
 app.use(compression());
 app.use(cookieParser());
 app.use(express.static(path.join(process.cwd(), 'public')));
+app.use(bodyParser.json());
 
 // var router = express.Router();
 
 var user = express.Router();
-require('./server/routes/user.js')(user, express);
+require('./server/routes/user.js')(user);
 app.use('/user', user)
 
 app.get('/', function(req, res, next) {
