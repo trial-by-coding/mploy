@@ -4522,31 +4522,35 @@ module.exports =
 			key: 'render',
 			value: function render() {
 				return React.createElement(
-					Grid,
-					null,
+					Container,
+					{ id: 'body' },
 					React.createElement(
-						Col,
+						Grid,
 						null,
 						React.createElement(
-							'div',
+							Col,
 							null,
 							React.createElement(
-								'button',
-								{ type: 'submit' },
-								'Log In'
+								'div',
+								null,
+								React.createElement(
+									'button',
+									{ type: 'submit' },
+									'Log In'
+								)
 							)
-						)
-					),
-					React.createElement(
-						Col,
-						null,
+						),
 						React.createElement(
-							'div',
+							Col,
 							null,
 							React.createElement(
-								'button',
-								{ type: 'submit' },
-								'Log In'
+								'div',
+								null,
+								React.createElement(
+									'button',
+									{ type: 'submit' },
+									'Log In'
+								)
 							)
 						)
 					)
