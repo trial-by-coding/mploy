@@ -5,8 +5,7 @@ node_modules
 update
 server/auth/config.js
 knexfile.js
-<<<<<<< HEAD
+public/js/app
+public/fonts/app
 public/
-=======
 
->>>>>>> signin_linkedin
