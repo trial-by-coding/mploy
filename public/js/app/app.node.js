@@ -53,7 +53,7 @@ module.exports =
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _router = __webpack_require__(200);
+	var _router = __webpack_require__(201);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -110,11 +110,15 @@ module.exports =
 
 	var _reactRouter = __webpack_require__(3);
 
-	var _blank = __webpack_require__(51);
+	var _landing = __webpack_require__(51);
+
+	var _landing2 = _interopRequireDefault(_landing);
+
+	var _blank = __webpack_require__(199);
 
 	var _blank2 = _interopRequireDefault(_blank);
 
-	var _applications = __webpack_require__(199);
+	var _applications = __webpack_require__(200);
 
 	var _applications2 = _interopRequireDefault(_applications);
 
@@ -4456,13 +4460,6 @@ module.exports =
 
 	'use strict';
 
-	var _dec, _class3, _class4;
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = undefined;
-
 	var _getPrototypeOf = __webpack_require__(52);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -4513,265 +4510,51 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Todo = function (_React$Component) {
-	  (0, _inherits3.default)(Todo, _React$Component);
+	var Body = function (_React$Component) {
+		(0, _inherits3.default)(Body, _React$Component);
 
-	  function Todo() {
-	    var _Object$getPrototypeO;
+		function Body() {
+			(0, _classCallCheck3.default)(this, Body);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+		}
 
-	    var _temp, _this, _ret;
-
-	    (0, _classCallCheck3.default)(this, Todo);
-
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-
-	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Todo)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.toggleChecked = function (e) {
-	      _this.props.dispatch(_actions2.default.completeTodo(_this.props.index));
-	    }, _this.deleteTask = function (e) {
-	      _this.props.dispatch(_actions2.default.removeTodo(_this.props.index));
-	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
-	  }
-
-	  (0, _createClass3.default)(Todo, [{
-	    key: 'render',
-	    value: function render() {
-	      var styles = {
-	        margin: '12.5px 0',
-	        borderBottom: '1px dotted #999',
-	        paddingBottom: 12.5
-	      };
-	      var textStyle = {
-	        textDecoration: this.props.completed ? 'line-through' : ''
-	      };
-	      var buttonStyle = {
-	        height: 25,
-	        color: 'red',
-	        fontSize: 20,
-	        lineHeight: 0,
-	        marginTop: -3,
-	        border: 'none',
-	        background: 'none'
-	      };
-
-	      return React.createElement(
-	        Row,
-	        { style: styles },
-	        React.createElement(
-	          Col,
-	          { xs: 10, collapseLeft: true },
-	          React.createElement(
-	            'div',
-	            { style: textStyle },
-	            this.props.text
-	          )
-	        ),
-	        React.createElement(
-	          Col,
-	          { xs: 2, className: 'text-right' },
-	          React.createElement(
-	            Button,
-	            { onClick: this.deleteTask, style: buttonStyle },
-	            '×'
-	          ),
-	          React.createElement(Checkbox, { native: true, readOnly: true, checked: this.props.completed,
-	            onClick: this.toggleChecked })
-	        )
-	      );
-	    }
-	  }]);
-	  return Todo;
+		(0, _createClass3.default)(Body, [{
+			key: 'render',
+			value: function render() {
+				return React.createElement(
+					Grid,
+					null,
+					React.createElement(
+						Col,
+						null,
+						React.createElement(
+							'div',
+							null,
+							React.createElement(
+								'button',
+								{ type: 'submit' },
+								'Log In'
+							)
+						)
+					),
+					React.createElement(
+						Col,
+						null,
+						React.createElement(
+							'div',
+							null,
+							React.createElement(
+								'button',
+								{ type: 'submit' },
+								'Log In'
+							)
+						)
+					)
+				);
+			}
+		}]);
+		return Body;
 	}(React.Component);
-
-	var TodoForm = function (_React$Component2) {
-	  (0, _inherits3.default)(TodoForm, _React$Component2);
-
-	  function TodoForm() {
-	    var _Object$getPrototypeO2;
-
-	    var _temp2, _this2, _ret2;
-
-	    (0, _classCallCheck3.default)(this, TodoForm);
-
-	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-	      args[_key2] = arguments[_key2];
-	    }
-
-	    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO2 = (0, _getPrototypeOf2.default)(TodoForm)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.createTodo = function (e) {
-	      e.preventDefault();
-
-	      // Fetch the value
-	      var text = _this2.refs.textInput.value.trim();
-
-	      // dispatch action
-	      _this2.props.dispatch(_actions2.default.addTodo(text));
-
-	      // Clear form
-	      _this2.refs.textInput.value = '';
-	    }, _this2.setVisibility = function (e) {
-	      e.preventDefault();
-
-	      _this2.props.dispatch(_actions2.default.setVisibilityFilter(_actionTypes.VisibilityFilters[e.target.value]));
-	    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
-	  }
-
-	  (0, _createClass3.default)(TodoForm, [{
-	    key: 'render',
-	    value: function render() {
-	      return React.createElement(
-	        Grid,
-	        null,
-	        React.createElement(
-	          Row,
-	          null,
-	          React.createElement(
-	            Col,
-	            { xs: 10, collapseRight: true },
-	            React.createElement(
-	              Form,
-	              { onSubmit: this.createTodo, style: { margin: '0 12.5px 0 0' } },
-	              React.createElement(Input, { type: 'text', ref: 'textInput', placeholder: 'Add New Tasks' })
-	            )
-	          ),
-	          React.createElement(
-	            Col,
-	            { xs: 2, collapseLeft: true, className: 'text-right' },
-	            React.createElement(
-	              Select,
-	              { onChange: this.setVisibility },
-	              React.createElement(
-	                'option',
-	                { value: 'SHOW_ALL' },
-	                'Show All'
-	              ),
-	              React.createElement(
-	                'option',
-	                { value: 'SHOW_COMPLETED' },
-	                'Show Completed'
-	              ),
-	              React.createElement(
-	                'option',
-	                { value: 'SHOW_ACTIVE' },
-	                'Show Active'
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	  return TodoForm;
-	}(React.Component);
-
-	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
-	  return state;
-	}), _dec(_class3 = function (_React$Component3) {
-	  (0, _inherits3.default)(Body, _React$Component3);
-
-	  function Body() {
-	    (0, _classCallCheck3.default)(this, Body);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(Body, [{
-	    key: 'renderTodo',
-	    value: function renderTodo(index, text, completed) {
-	      return React.createElement(Todo, { key: index,
-	        text: text,
-	        index: index,
-	        completed: completed,
-	        dispatch: this.props.dispatch });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var _this4 = this;
-
-	      var dispatch = this.props.dispatch;
-	      var visibilityFilter = this.props.visibilityFilter;
-
-	      return React.createElement(
-	        Container,
-	        { id: 'body' },
-	        React.createElement(
-	          Grid,
-	          null,
-	          React.createElement(
-	            Row,
-	            null,
-	            React.createElement(
-	              Col,
-	              { sm: 12 },
-	              React.createElement(
-	                PanelContainer,
-	                null,
-	                React.createElement(
-	                  Panel,
-	                  null,
-	                  React.createElement(
-	                    PanelBody,
-	                    { style: { paddingBottom: 12.5 } },
-	                    React.createElement(TodoForm, { dispatch: dispatch }),
-	                    React.createElement(
-	                      Grid,
-	                      null,
-	                      this.props.todos.map(function (_ref, i) {
-	                        var text = _ref.text;
-	                        var completed = _ref.completed;
-
-	                        switch (visibilityFilter) {
-	                          case 'SHOW_COMPLETED':
-	                            if (!completed) return null;
-	                            return _this4.renderTodo(i, text, completed);
-	                          case 'SHOW_ACTIVE':
-	                            if (completed) return null;
-	                          default:
-	                            return _this4.renderTodo(i, text, completed);
-	                        }
-	                      })
-	                    )
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	  return Body;
-	}(React.Component)) || _class3);
-
-	var _default = (0, _sidebar_component2.default)(_class4 = function (_React$Component4) {
-	  (0, _inherits3.default)(_default, _React$Component4);
-
-	  function _default() {
-	    (0, _classCallCheck3.default)(this, _default);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var classes = (0, _classnames2.default)({
-	        'container-open': this.props.open
-	      });
-
-	      return React.createElement(
-	        Container,
-	        { id: 'container', className: classes },
-	        React.createElement(_sidebar2.default, null),
-	        React.createElement(_header2.default, null),
-	        React.createElement(Body, null),
-	        React.createElement(_footer2.default, null)
-	      );
-	    }
-	  }]);
-	  return _default;
-	}(React.Component)) || _class4;
-
-	exports.default = _default;
 
 /***/ },
 /* 52 */
@@ -20993,6 +20776,329 @@ module.exports =
 
 	'use strict';
 
+	var _dec, _class3, _class4;
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(52);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(64);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(65);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(69);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(94);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(101);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _sidebar_component = __webpack_require__(102);
+
+	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
+
+	var _header = __webpack_require__(108);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _sidebar = __webpack_require__(109);
+
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+
+	var _footer = __webpack_require__(111);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _reactRedux = __webpack_require__(112);
+
+	var _actions = __webpack_require__(129);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(161);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Todo = function (_React$Component) {
+	  (0, _inherits3.default)(Todo, _React$Component);
+
+	  function Todo() {
+	    var _Object$getPrototypeO;
+
+	    var _temp, _this, _ret;
+
+	    (0, _classCallCheck3.default)(this, Todo);
+
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+
+	    return _ret = (_temp = (_this = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO = (0, _getPrototypeOf2.default)(Todo)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.toggleChecked = function (e) {
+	      _this.props.dispatch(_actions2.default.completeTodo(_this.props.index));
+	    }, _this.deleteTask = function (e) {
+	      _this.props.dispatch(_actions2.default.removeTodo(_this.props.index));
+	    }, _temp), (0, _possibleConstructorReturn3.default)(_this, _ret);
+	  }
+
+	  (0, _createClass3.default)(Todo, [{
+	    key: 'render',
+	    value: function render() {
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5
+	      };
+	      var textStyle = {
+	        textDecoration: this.props.completed ? 'line-through' : ''
+	      };
+	      var buttonStyle = {
+	        height: 25,
+	        color: 'red',
+	        fontSize: 20,
+	        lineHeight: 0,
+	        marginTop: -3,
+	        border: 'none',
+	        background: 'none'
+	      };
+
+	      return React.createElement(
+	        Row,
+	        { style: styles },
+	        React.createElement(
+	          Col,
+	          { xs: 10, collapseLeft: true },
+	          React.createElement(
+	            'div',
+	            { style: textStyle },
+	            this.props.text
+	          )
+	        ),
+	        React.createElement(
+	          Col,
+	          { xs: 2, className: 'text-right' },
+	          React.createElement(
+	            Button,
+	            { onClick: this.deleteTask, style: buttonStyle },
+	            '×'
+	          ),
+	          React.createElement(Checkbox, { native: true, readOnly: true, checked: this.props.completed,
+	            onClick: this.toggleChecked })
+	        )
+	      );
+	    }
+	  }]);
+	  return Todo;
+	}(React.Component);
+
+	var TodoForm = function (_React$Component2) {
+	  (0, _inherits3.default)(TodoForm, _React$Component2);
+
+	  function TodoForm() {
+	    var _Object$getPrototypeO2;
+
+	    var _temp2, _this2, _ret2;
+
+	    (0, _classCallCheck3.default)(this, TodoForm);
+
+	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	      args[_key2] = arguments[_key2];
+	    }
+
+	    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO2 = (0, _getPrototypeOf2.default)(TodoForm)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.createTodo = function (e) {
+	      e.preventDefault();
+
+	      // Fetch the value
+	      var text = _this2.refs.textInput.value.trim();
+
+	      // dispatch action
+	      _this2.props.dispatch(_actions2.default.addTodo(text));
+
+	      // Clear form
+	      _this2.refs.textInput.value = '';
+	    }, _this2.setVisibility = function (e) {
+	      e.preventDefault();
+
+	      _this2.props.dispatch(_actions2.default.setVisibilityFilter(_actionTypes.VisibilityFilters[e.target.value]));
+	    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
+	  }
+
+	  (0, _createClass3.default)(TodoForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        Grid,
+	        null,
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            Col,
+	            { xs: 10, collapseRight: true },
+	            React.createElement(
+	              Form,
+	              { onSubmit: this.createTodo, style: { margin: '0 12.5px 0 0' } },
+	              React.createElement(Input, { type: 'text', ref: 'textInput', placeholder: 'Add New Tasks' })
+	            )
+	          ),
+	          React.createElement(
+	            Col,
+	            { xs: 2, collapseLeft: true, className: 'text-right' },
+	            React.createElement(
+	              Select,
+	              { onChange: this.setVisibility },
+	              React.createElement(
+	                'option',
+	                { value: 'SHOW_ALL' },
+	                'Show All'
+	              ),
+	              React.createElement(
+	                'option',
+	                { value: 'SHOW_COMPLETED' },
+	                'Show Completed'
+	              ),
+	              React.createElement(
+	                'option',
+	                { value: 'SHOW_ACTIVE' },
+	                'Show Active'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return TodoForm;
+	}(React.Component);
+
+	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
+	  return state;
+	}), _dec(_class3 = function (_React$Component3) {
+	  (0, _inherits3.default)(Body, _React$Component3);
+
+	  function Body() {
+	    (0, _classCallCheck3.default)(this, Body);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Body, [{
+	    key: 'renderTodo',
+	    value: function renderTodo(index, text, completed) {
+	      return React.createElement(Todo, { key: index,
+	        text: text,
+	        index: index,
+	        completed: completed,
+	        dispatch: this.props.dispatch });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this4 = this;
+
+	      var dispatch = this.props.dispatch;
+	      var visibilityFilter = this.props.visibilityFilter;
+
+	      return React.createElement(
+	        Container,
+	        { id: 'body' },
+	        React.createElement(
+	          Grid,
+	          null,
+	          React.createElement(
+	            Row,
+	            null,
+	            React.createElement(
+	              Col,
+	              { sm: 12 },
+	              React.createElement(
+	                PanelContainer,
+	                null,
+	                React.createElement(
+	                  Panel,
+	                  null,
+	                  React.createElement(
+	                    PanelBody,
+	                    { style: { paddingBottom: 12.5 } },
+	                    React.createElement(TodoForm, { dispatch: dispatch }),
+	                    React.createElement(
+	                      Grid,
+	                      null,
+	                      this.props.todos.map(function (_ref, i) {
+	                        var text = _ref.text;
+	                        var completed = _ref.completed;
+
+	                        switch (visibilityFilter) {
+	                          case 'SHOW_COMPLETED':
+	                            if (!completed) return null;
+	                            return _this4.renderTodo(i, text, completed);
+	                          case 'SHOW_ACTIVE':
+	                            if (completed) return null;
+	                          default:
+	                            return _this4.renderTodo(i, text, completed);
+	                        }
+	                      })
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return Body;
+	}(React.Component)) || _class3);
+
+	var _default = (0, _sidebar_component2.default)(_class4 = function (_React$Component4) {
+	  (0, _inherits3.default)(_default, _React$Component4);
+
+	  function _default() {
+	    (0, _classCallCheck3.default)(this, _default);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(_default, [{
+	    key: 'render',
+	    value: function render() {
+	      var classes = (0, _classnames2.default)({
+	        'container-open': this.props.open
+	      });
+
+	      return React.createElement(
+	        Container,
+	        { id: 'container', className: classes },
+	        React.createElement(_sidebar2.default, null),
+	        React.createElement(_header2.default, null),
+	        React.createElement(Body, null),
+	        React.createElement(_footer2.default, null)
+	      );
+	    }
+	  }]);
+	  return _default;
+	}(React.Component)) || _class4;
+
+	exports.default = _default;
+
+/***/ },
+/* 200 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var _dec, _class, _class2;
 
 	Object.defineProperty(exports, "__esModule", {
@@ -21293,7 +21399,7 @@ module.exports =
 	exports.default = _default;
 
 /***/ },
-/* 200 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21310,15 +21416,15 @@ module.exports =
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createBrowserHistory = __webpack_require__(201);
+	var _createBrowserHistory = __webpack_require__(202);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(119);
 
-	var _reduxSimpleRouter = __webpack_require__(202);
+	var _reduxSimpleRouter = __webpack_require__(203);
 
-	var _reduxThunk = __webpack_require__(203);
+	var _reduxThunk = __webpack_require__(204);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -21326,7 +21432,7 @@ module.exports =
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _reducers = __webpack_require__(204);
+	var _reducers = __webpack_require__(205);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -21440,7 +21546,7 @@ module.exports =
 	};
 
 /***/ },
-/* 201 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21623,7 +21729,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 202 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21823,7 +21929,7 @@ module.exports =
 
 
 /***/ },
-/* 203 */
+/* 204 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -21842,7 +21948,7 @@ module.exports =
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 204 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21851,7 +21957,7 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _todos = __webpack_require__(205);
+	var _todos = __webpack_require__(206);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
@@ -21860,7 +21966,7 @@ module.exports =
 	module.exports = (0, _extends3.default)({}, _todos2.default);
 
 /***/ },
-/* 205 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21869,7 +21975,7 @@ module.exports =
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-	var _toConsumableArray2 = __webpack_require__(206);
+	var _toConsumableArray2 = __webpack_require__(207);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -21916,12 +22022,12 @@ module.exports =
 	};
 
 /***/ },
-/* 206 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _from = __webpack_require__(207);
+	var _from = __webpack_require__(208);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -21940,21 +22046,21 @@ module.exports =
 	exports.__esModule = true;
 
 /***/ },
-/* 207 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(208), __esModule: true };
-
-/***/ },
 /* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(133);
-	__webpack_require__(209);
-	module.exports = __webpack_require__(60).Array.from;
+	module.exports = { "default": __webpack_require__(209), __esModule: true };
 
 /***/ },
 /* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(133);
+	__webpack_require__(210);
+	module.exports = __webpack_require__(60).Array.from;
+
+/***/ },
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
