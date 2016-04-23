@@ -5,3 +5,4 @@ node_modules
 update
 server/auth/config.js
 knexfile.js
+public/
