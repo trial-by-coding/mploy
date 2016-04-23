@@ -11,6 +11,7 @@ Users.create = function(incomingAttrs) {
     })
     .catch(function(err) {
       console.log('create user error: ', err);
+      throw err
     });
 };
 
@@ -24,6 +25,7 @@ Users.grabID = function(passID) {
     })
     .catch(function(err) {
       console.log('Users.grabID error: ', err);
+      throw err
     });
 };
 
@@ -38,6 +40,7 @@ Users.verify = function(id) {
     })
     .catch(function(err) {
       console.log('Users.verify error: ', err);
+      throw err
     });
 };
 
@@ -54,6 +57,7 @@ Users.insertResume = function(uid, resume) {
     })
     .catch(function(err) {
       console.log('Users.insertResume error: ', err);
+      throw err
     });
 };
 
@@ -70,5 +74,6 @@ Users.updateResume = function(uid, newResume) {
     })
     .catch(function(err) {
       console.log('Users.insertResume error: ', err);
+      throw err
     });
 };

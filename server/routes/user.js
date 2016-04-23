@@ -1,55 +1,68 @@
 var express = require('express');
-var bodyParser = require('body-parser')
+var JobPosts = require('../models/JobPosts.js')
 var Employers = require('../models/Employers.js')
-
-// app.use(bodyParser.json());
 
 module.exports = function(router) {
 
-var applicant = express.Router();
-require('./applicant.js')(applicant);
-router.use('/applicant', applicant)
+	var applicant = express.Router();
+	require('./applicant.js')(applicant, express);
+	router.use('/applicant', applicant)
 
-var employer = express.Router();
-require('./employer.js')(employer);
-router.use('/employer', employer)
+	var employer = express.Router();
+	require('./employer.js')(employer);
+	router.use('/employer', employer)
 
-	// router.use(function(req,res,next) {
-	// 	//check if logged in
-	// 	if (req.isAuthenticated()){
-	// 		return next()
-	// 	}
+	//router.use(function(req,res,next) {
+	//	//check if logged in
+	//	if (req.isAuthenticated()){
+	//		return next()
+	//	}
+	//	res.redirect('/login')
+	//});
 
-	// 	res.redirect('/login')
-	// });
 
-	router.post('/newemployer', function(req, res) {
-    // console.log('req: ', req)
-    console.log('req.params: ', req.params)
-    console.log('req.body: ', req.body)
-    return Employers.insert(req.body.id)
-    .then(function(resp) {
-      console.log('User ID added: ', resp)
-      res.send(resp)
+	router.get('/job', function(req, res) {
+		console.log("user:job:request for all job data");
+		JobPosts.getAll()
+		.then(function(data){
+			console.log("responding with all job data:",data);
+    	res.status(200).send(data);
     })
-    .catch(function(err) {
-      console.log('post Error: ', err)
-      res.send(err)
+    .catch(function(err){
+    	console.log("error retrieving all job data, err:",err);
+    	res.status(400).send(err);
     })
-		
 	});
-
-
-  router.get('/job', function(req, res) {
-    res.send('Default')
-  });
 
 	router.get('/job/:id', function(req, res) {
-		
+		console.log('user:job:jobID='+req.params.id);
+		JobPosts.getJob(req.params.id)
+		.then(function(data){
+			console.log("return data for jobID "+req.params.id, data);
+			res.status(200).send(data);
+		})
+		.catch(function(err){
+			console.log("error getting data for jobID "+req.params.id, err);
+			res.status(400).send(err);
+		})
 	});
 
-	router.get('*', function(req, res) {
-		res.redirect('/user/job')
+	router.get('/*', function(req, res) {
+		console.log("user:default:redirecting to job");
+		res.redirect('/user/job');
+	});
+
+	router.post('/newemployer', function(req, res) {
+		console.log("newemployer:body:",req.body);
+		Employers.insert(req.body.userID)
+		.then(function(data){
+			console.log("newemployer:insert successful");
+			res.status(200).send("success!");
+		})
+		.catch(function(err){
+			console.log("newemployer:insert failed, err:",err);
+			res.status(400).send(err);
+		})
 	});
 
 }

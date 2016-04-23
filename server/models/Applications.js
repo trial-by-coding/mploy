@@ -10,7 +10,7 @@ Applications.submit = function(appObj) {
 		years_experience: appObj.years_experience,
 		desired_education: appObj.desired_education,
 		personal_statement: appObj.personal_statement,
-		status: appObj.status,
+		status: 'Not yet considered',
 		skill_1_met: appObj.skill_1,
 	  skill_2_met: appObj.skill_2,
 	  skill_3_met: appObj.skill_3,
@@ -21,7 +21,8 @@ Applications.submit = function(appObj) {
 	  skill_8_met: appObj.skill_8,
 	  skill_9_met: appObj.skill_9,
 	  skill_10_met: appObj.skill_10,
-	  job_id: appObj.job_id
+	  job_id: appObj.job_id,
+	  user_id: appObj.user_id
 	})
 	.then(function(recordID) {
 		console.log('Applications.submit recordID', recordID)
@@ -29,30 +30,64 @@ Applications.submit = function(appObj) {
 	})
 	.catch(function(err) {
 		console.log('Applications.submit Error: ', err)
+    throw err
 	})
 };
 
-// Applications.getAll = function() {
+//delete old unconsidered records
+Applications.getUnconsidered = function() {
+  // return db(applications).where({
+  //   status: 'Not yet considered',
+  //   created_at: 
+  // })
+//get not yet considered apps
 	
-// 	return db('applications').select()
-// 	.then(function(records) {
-// 		console.log('All Application records: ', records)
-// 		return records
-// 	})
-// 	.catch(function(err) {
-// 		console.log('Applications.getAll Error: ', err)
-// 	})
+	return db('applications').where('status', 'Not yet considered')
+	.then(function(records) {
+		console.log('getUnconsidred record: ', records)
+		return records
+	})
+	.catch(function(err) {
+		console.log('getUnconsidred Error: ', err)
+    throw err
+	})
+};
+
+//update status
+Applications.updateStatus = function(userID) {
+  
+
+};
+
+//denied this will delete the app and should run after the stats method
+//check current date, if longer than 5 days ago, delete
+// Applications.delete = function(appID) {
+//   return db('applications').where().del()
 // };
+
+
+//update status
+Applications.updateStatus = function(userID) {
+  
+
+};
+
+//denied this will delete the app and should run after the stats method
+Applications.delete = function(userID) {
+  
+
+};
 
 Applications.getAppsByUser = function(userID) {
 	
-	return db('applications').where('user_id', userID)
+	return db('applications').where({'user_id': userID})
 	.then(function(records) {
-		console.log('AppsByUser record: ', record)
-		return record
+		console.log('AppsByUser record: ', records)
+		return records
 	})
 	.catch(function(err) {
 		console.log('AppsByUser Error: ', err)
+    throw err
 	})
 };
 
@@ -60,10 +95,11 @@ Applications.getAppsByJob = function(jobID) {
 	
 	return db('applications').where('job_id', jobID)
 	.then(function(records) {
-		console.log('AppsByJob record: ', record)
-		return record
+		console.log('AppsByJob record: ', records)
+		return records
 	})
 	.catch(function(err) {
 		console.log('AppsByUser Error: ', err)
+    throw err
 	})
 };

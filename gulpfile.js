@@ -156,7 +156,7 @@ var createDistribution = argv.dist;
 
 /* file patterns to watch */
 var paths = {
-  index: ['src/jsx/'+defaultAppName+'/index.html', 'server.js', 'server/routes/*.js'],
+  index: ['src/jsx/'+defaultAppName+'/index.html', 'server.js', 'server/routes/*.js', 'server/models/*.js'],
   jsx: ['src/jsx/*.jsx', 'src/global/requires/*.js', 'src/jsx/**/*.jsx', 'src/jsx/**/**/*.jsx', 'src/jsx/**/**/**/*.jsx', '!src/jsx/**/plugins.jsx', '!src/jsx/**/stylesheets.jsx', 'src/jsx/**/redux/**.js', 'src/jsx/**/redux/**/**.js', 'src/jsx/**/redux/**/**/**.js'],
   scss: ['public/fonts/web/*.ttf', 'src/sass/*.scss', 'src/sass/**/*.scss', 'src/sass/**/**/*.scss', 'src/sass/**/**/**/*.scss', 'src/sass/**/**/**/**/*.scss', 'src/global/sass/*.scss', 'src/global/sass/**/*.scss', 'src/global/sass/**/**/*.scss', 'src/global/sass/**/**/**/*.scss', 'src/global/sass/**/**/**/**/*.scss'],
   ttf: ['public/fonts/dropbox/'+defaultAppName+'/*.ttf'],
