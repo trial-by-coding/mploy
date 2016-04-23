@@ -29,23 +29,28 @@ Applications.submit = function(appObj) {
 	})
 	.catch(function(err) {
 		console.log('Applications.submit Error: ', err)
+    throw err
 	})
 };
 
 
-//get not yet considered apps
-// Applications.getAll = function() {
+//delete old unconsidered records
+Applications.getUnconsidered = function() {
+  return db(applications).where({
+    status: 'Not yet considered',
+    created_at: 
+  })
 	
-// 	return db('applications').select()
-// 	.then(function(records) {
-// 		console.log('All Application records: ', records)
-// 		return records
-// 	})
-// 	.catch(function(err) {
-// 		console.log('Applications.getAll Error: ', err)
-// 	})
-// };
-
+	return db('applications').where('status', 'Not yet considered')
+	.then(function(records) {
+		console.log('getUnconsidred record: ', record)
+		return record
+	})
+	.catch(function(err) {
+		console.log('getUnconsidred Error: ', err)
+    throw err
+	})
+};
 
 //update status
 Applications.updateStatus = function(userID) {
@@ -54,10 +59,10 @@ Applications.updateStatus = function(userID) {
 };
 
 //denied this will delete the app and should run after the stats method
-Applications.delete = function(userID) {
-  
-
-};
+//check current date, if longer than 5 days ago, delete
+// Applications.delete = function(appID) {
+//   return db('applications').where().del()
+// };
 
 Applications.getAppsByUser = function(userID) {
 	
@@ -68,6 +73,7 @@ Applications.getAppsByUser = function(userID) {
 	})
 	.catch(function(err) {
 		console.log('AppsByUser Error: ', err)
+    throw err
 	})
 };
 
@@ -80,5 +86,6 @@ Applications.getAppsByJob = function(jobID) {
 	})
 	.catch(function(err) {
 		console.log('AppsByUser Error: ', err)
+    throw err
 	})
 };
