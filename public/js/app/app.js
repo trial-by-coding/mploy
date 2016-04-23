@@ -52,7 +52,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _router = __webpack_require__(168);
+	var _router = __webpack_require__(171);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -127,7 +127,8 @@
 	  return React.createElement(
 	    _reactRouter.Router,
 	    { history: history, onUpdate: onUpdate },
-	    React.createElement(_reactRouter.Route, { path: '/', component: _applications2.default })
+	    React.createElement(_reactRouter.Route, { path: '/', component: _landing2.default }),
+	    React.createElement(_reactRouter.Route, { path: '/applications', component: _applications2.default })
 	  );
 	};
 
@@ -4573,6 +4574,11 @@
 
 	'use strict';
 
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = undefined;
+
 	var _getPrototypeOf = __webpack_require__(53);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -4641,7 +4647,16 @@
 						Grid,
 						null,
 						React.createElement(
+<<<<<<< HEAD
 							Col,
+=======
+							'h2',
+							null,
+							'Job Seeker'
+						),
+						React.createElement(
+							'div',
+>>>>>>> a40ac88c28c638ae9a726cef9a7412c06c0d5ec4
 							null,
 							React.createElement(
 								'div',
@@ -4657,6 +4672,7 @@
 							Col,
 							null,
 							React.createElement(
+<<<<<<< HEAD
 								'div',
 								null,
 								React.createElement(
@@ -4664,6 +4680,16 @@
 									{ type: 'submit' },
 									'Log In'
 								)
+=======
+								'h2',
+								null,
+								'Employers'
+							),
+							React.createElement(
+								'button',
+								{ type: 'submit' },
+								'Log In'
+>>>>>>> a40ac88c28c638ae9a726cef9a7412c06c0d5ec4
 							)
 						)
 					)
@@ -4672,6 +4698,8 @@
 		}]);
 		return Body;
 	}(React.Component);
+
+	exports.default = Body;
 
 /***/ },
 /* 53 */
@@ -9835,6 +9863,363 @@
 
 	var _footer2 = _interopRequireDefault(_footer);
 
+	var _headline = __webpack_require__(168);
+
+	var _headline2 = _interopRequireDefault(_headline);
+
+	var _description = __webpack_require__(169);
+
+	var _description2 = _interopRequireDefault(_description);
+
+	var _confirm = __webpack_require__(170);
+
+	var _confirm2 = _interopRequireDefault(_confirm);
+
+	var _reactRedux = __webpack_require__(113);
+
+	var _actions = __webpack_require__(130);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ApplicationContainer = function (_React$Component) {
+		(0, _inherits3.default)(ApplicationContainer, _React$Component);
+
+		function ApplicationContainer() {
+			(0, _classCallCheck3.default)(this, ApplicationContainer);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(ApplicationContainer, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					margin: '12.5px 0',
+					borderBottom: '1px dotted #999',
+					paddingBottom: 12.5,
+					'text-align': 'center'
+				};
+				var textStyle = {
+					textDecoration: this.props.completed ? 'line-through' : ''
+				};
+				var buttonStyle = {
+					height: 25,
+					color: 'red',
+					fontSize: 20,
+					lineHeight: 0,
+					marginTop: -3,
+					border: 'none',
+					background: 'none'
+				};
+
+				return React.createElement(
+					Col,
+					{ xs: 6, md: 4 },
+					React.createElement(
+						PanelContainer,
+						null,
+						React.createElement(
+							Panel,
+							null,
+							React.createElement(
+								PanelBody,
+								null,
+								React.createElement(
+									Grid,
+									null,
+									React.createElement(
+										Row,
+										null,
+										React.createElement(_headline2.default, null),
+										React.createElement(_description2.default, null),
+										React.createElement(_confirm2.default, null)
+									)
+								)
+							)
+						)
+					)
+				);
+			}
+		}]);
+		return ApplicationContainer;
+	}(React.Component);
+
+	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
+		return state;
+	}), _dec(_class = function (_React$Component2) {
+		(0, _inherits3.default)(Body, _React$Component2);
+
+		function Body() {
+			(0, _classCallCheck3.default)(this, Body);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Body, [{
+			key: 'render',
+			value: function render() {
+				var app = ['Some text', 'More Text', 'Even More Text'];
+				var dispatch = this.props.dispatch;
+				var visibilityFilter = this.props.visibilityFilter;
+
+				return React.createElement(
+					Container,
+					{ id: 'body' },
+					React.createElement(
+						Grid,
+						null,
+						React.createElement(
+							Row,
+							null,
+							app.map(function (text) {
+								return React.createElement(ApplicationContainer, null);
+							})
+						)
+					)
+				);
+			}
+		}]);
+		return Body;
+	}(React.Component)) || _class);
+
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component3) {
+		(0, _inherits3.default)(_default, _React$Component3);
+
+		function _default() {
+			(0, _classCallCheck3.default)(this, _default);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(_default, [{
+			key: 'render',
+			value: function render() {
+				var classes = (0, _classnames2.default)({
+					'container-open': this.props.open
+				});
+				return React.createElement(
+					Container,
+					{ id: 'container', className: classes },
+					React.createElement(_sidebar2.default, null),
+					React.createElement(_header2.default, null),
+					React.createElement(Body, null),
+					React.createElement(_footer2.default, null)
+				);
+			}
+		}]);
+		return _default;
+	}(React.Component)) || _class2;
+
+	exports.default = _default;
+
+/***/ },
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _reactRedux = __webpack_require__(113);
+
+	var _actions = __webpack_require__(130);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Headline = function (_React$Component) {
+		(0, _inherits3.default)(Headline, _React$Component);
+
+		function Headline() {
+			(0, _classCallCheck3.default)(this, Headline);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Headline).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Headline, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					margin: '12.5px 0',
+					borderBottom: '1px dotted #999',
+					paddingBottom: 12.5,
+					'text-align': 'center'
+				};
+				return React.createElement(
+					Row,
+					null,
+					React.createElement(
+						'div',
+						{ style: styles, 'class': 'header' },
+						React.createElement('img', null),
+						'Name'
+					)
+				);
+			}
+		}]);
+		return Headline;
+	}(React.Component);
+
+	exports.default = Headline;
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _reactRedux = __webpack_require__(113);
+
+	var _actions = __webpack_require__(130);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Description = function (_React$Component) {
+		(0, _inherits3.default)(Description, _React$Component);
+
+		function Description() {
+			(0, _classCallCheck3.default)(this, Description);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Description).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(Description, [{
+			key: 'render',
+			value: function render() {
+				var styles = {
+					margin: '12.5px 0',
+					borderBottom: '1px dotted #999',
+					paddingBottom: 12.5,
+					'text-align': 'center'
+				};
+				return React.createElement(
+					Row,
+					{ style: styles },
+					React.createElement(
+						'div',
+						{ 'class': 'skills' },
+						'Skills'
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'experience' },
+						'Experience'
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'education' },
+						'Education'
+					),
+					React.createElement(
+						'div',
+						{ 'class': 'description' },
+						'Description'
+					)
+				);
+			}
+		}]);
+		return Description;
+	}(React.Component);
+
+	exports.default = Description;
+
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
 	var _reactRedux = __webpack_require__(113);
 
 	var _actions = __webpack_require__(130);
@@ -9881,214 +10266,10 @@
 		return Confirm;
 	}(React.Component);
 
-	var Description = function (_React$Component2) {
-		(0, _inherits3.default)(Description, _React$Component2);
-
-		function Description() {
-			(0, _classCallCheck3.default)(this, Description);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Description).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(Description, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					{ style: styles },
-					React.createElement(
-						'div',
-						{ 'class': 'skills' },
-						'Skills'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'experience' },
-						'Experience'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'education' },
-						'Education'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'description' },
-						'Description'
-					)
-				);
-			}
-		}]);
-		return Description;
-	}(React.Component);
-
-	var Headline = function (_React$Component3) {
-		(0, _inherits3.default)(Headline, _React$Component3);
-
-		function Headline() {
-			(0, _classCallCheck3.default)(this, Headline);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Headline).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(Headline, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					null,
-					React.createElement(
-						'div',
-						{ style: styles, 'class': 'header' },
-						React.createElement('img', null),
-						'Name'
-					)
-				);
-			}
-		}]);
-		return Headline;
-	}(React.Component);
-
-	var Application = function (_React$Component4) {
-		(0, _inherits3.default)(Application, _React$Component4);
-
-		function Application() {
-			(0, _classCallCheck3.default)(this, Application);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Application).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(Application, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				var textStyle = {
-					textDecoration: this.props.completed ? 'line-through' : ''
-				};
-				var buttonStyle = {
-					height: 25,
-					color: 'red',
-					fontSize: 20,
-					lineHeight: 0,
-					marginTop: -3,
-					border: 'none',
-					background: 'none'
-				};
-
-				return React.createElement(
-					Col,
-					{ xs: 6, md: 4 },
-					React.createElement(
-						PanelContainer,
-						null,
-						React.createElement(
-							Panel,
-							null,
-							React.createElement(
-								PanelBody,
-								null,
-								React.createElement(
-									Grid,
-									null,
-									React.createElement(
-										Row,
-										null,
-										React.createElement(Headline, null),
-										React.createElement(Description, null),
-										React.createElement(Confirm, null)
-									)
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-		return Application;
-	}(React.Component);
-
-	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
-		return state;
-	}), _dec(_class = function (_React$Component5) {
-		(0, _inherits3.default)(Body, _React$Component5);
-
-		function Body() {
-			(0, _classCallCheck3.default)(this, Body);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(Body, [{
-			key: 'render',
-			value: function render() {
-				var app = ['Some text', 'More Text', 'Even More Text'];
-				var dispatch = this.props.dispatch;
-				var visibilityFilter = this.props.visibilityFilter;
-
-				return React.createElement(
-					Container,
-					{ id: 'body' },
-					React.createElement(
-						Grid,
-						null,
-						React.createElement(
-							Row,
-							null,
-							app.map(function (text) {
-								return React.createElement(Application, null);
-							})
-						)
-					)
-				);
-			}
-		}]);
-		return Body;
-	}(React.Component)) || _class);
-
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component6) {
-		(0, _inherits3.default)(_default, _React$Component6);
-
-		function _default() {
-			(0, _classCallCheck3.default)(this, _default);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(_default, [{
-			key: 'render',
-			value: function render() {
-				var classes = (0, _classnames2.default)({
-					'container-open': this.props.open
-				});
-				return React.createElement(
-					Container,
-					{ id: 'container', className: classes },
-					React.createElement(_sidebar2.default, null),
-					React.createElement(_header2.default, null),
-					React.createElement(Body, null),
-					React.createElement(_footer2.default, null)
-				);
-			}
-		}]);
-		return _default;
-	}(React.Component)) || _class2;
-
-	exports.default = _default;
+	exports.default = Confirm;
 
 /***/ },
-/* 168 */
+/* 171 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -10105,15 +10286,15 @@
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createBrowserHistory = __webpack_require__(169);
+	var _createBrowserHistory = __webpack_require__(172);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(120);
 
-	var _reduxSimpleRouter = __webpack_require__(170);
+	var _reduxSimpleRouter = __webpack_require__(173);
 
-	var _reduxThunk = __webpack_require__(171);
+	var _reduxThunk = __webpack_require__(174);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -10121,7 +10302,7 @@
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _reducers = __webpack_require__(172);
+	var _reducers = __webpack_require__(175);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -10236,7 +10417,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 169 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -10420,7 +10601,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 170 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10620,7 +10801,7 @@
 
 
 /***/ },
-/* 171 */
+/* 174 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -10639,7 +10820,7 @@
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 172 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10648,7 +10829,7 @@
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _todos = __webpack_require__(173);
+	var _todos = __webpack_require__(176);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
@@ -10657,7 +10838,7 @@
 	module.exports = (0, _extends3.default)({}, _todos2.default);
 
 /***/ },
-/* 173 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10666,7 +10847,7 @@
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-	var _toConsumableArray2 = __webpack_require__(174);
+	var _toConsumableArray2 = __webpack_require__(177);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -10713,12 +10894,12 @@
 	};
 
 /***/ },
-/* 174 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _from = __webpack_require__(175);
+	var _from = __webpack_require__(178);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -10737,21 +10918,21 @@
 	exports.__esModule = true;
 
 /***/ },
-/* 175 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(176), __esModule: true };
+	module.exports = { "default": __webpack_require__(179), __esModule: true };
 
 /***/ },
-/* 176 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(134);
-	__webpack_require__(177);
+	__webpack_require__(180);
 	module.exports = __webpack_require__(61).Array.from;
 
 /***/ },
-/* 177 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

@@ -4,80 +4,17 @@ import SidebarMixin from 'global/jsx/sidebar_component';
 import Header from 'common/header';
 import Sidebar from 'common/sidebar';
 import Footer from 'common/footer';
+import Headline from 'routes/components/headline';
+import Description from 'routes/components/description';
+import Confirm from 'routes/components/confirm';
 
 import { connect } from 'react-redux'
 
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
-class Confirm extends React.Component {
-	render() {
-		const styles = {
-			margin: '12.5px 0',
-      borderBottom: '1px dotted #999',
-      paddingBottom: 12.5,
-      'text-align': 'center'
-    };
-    return (
-    	<Row style={styles}>
-				<div class='accept'>
-				Accept
-				</div>
-				<div class='reject'>
-				Reject
-				</div>
-			</Row>
-    )
-	}
-}
 
-class Description extends React.Component {
-	render() {
-		const styles = {
-      margin: '12.5px 0',
-      borderBottom: '1px dotted #999',
-      paddingBottom: 12.5,
-      'text-align': 'center'
-    };
-		return (
-			<Row style={styles}>
-				<div class='skills'>
-				Skills
-				</div>
-				<div class='experience'>
-				Experience
-				</div>
-				<div class='education'>
-				Education
-				</div>
-				<div class='description'>
-				Description
-				</div>
-			</Row>
-		)
-	}
-}
-
-class Headline extends React.Component {
-	render() {
-		const styles = {
-      margin: '12.5px 0',
-      borderBottom: '1px dotted #999',
-      paddingBottom: 12.5,
-      'text-align': 'center'
-    };
-		return (
-			<Row>
-				<div style={styles} class="header">
-					<img></img>
-						Name
-				</div>
-			</Row>
-		)
-	}
-}
-
-class Application extends React.Component {
+class ApplicationContainer extends React.Component {
 	render() {
     const styles = {
       margin: '12.5px 0',
@@ -130,7 +67,7 @@ class Body extends React.Component {
 			<Grid>
 				<Row>
 					{app.map(function(text) {
-						return <Application />
+						return <ApplicationContainer />
 					})
 					}
 				</Row>
