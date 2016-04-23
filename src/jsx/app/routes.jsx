@@ -12,6 +12,7 @@ export default (history, onUpdate) => {
       <Route path='/' component={Landing} />
       <Route path='/applications' component={Applications} />
       <Route path='/jobs' component={Jobs} />
+      <Route path='/blank' component={Blank} />
     </Router>
   );
 };
