@@ -99,7 +99,8 @@ class Application extends React.Component {
     };
 
 	return (
-		<Col xs={12} md={4}>
+
+		<Col xs={12} sm={6} md={4}>
 			<PanelContainer>
 				<Panel>
 					<PanelBody >
