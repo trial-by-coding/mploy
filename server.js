@@ -6,7 +6,7 @@ var path = require('path');
 var express = require('express');
 var compression = require('compression');
 var cookieParser = require('cookie-parser');
-var db  = require('./server/db/db.js');
+// var db  = require('./server/db/db.js');
 
 var app = express();
 app.use(compression());
