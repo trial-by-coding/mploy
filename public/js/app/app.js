@@ -9991,7 +9991,7 @@
 
 				return React.createElement(
 					Col,
-					{ xs: 12, sm: 6, md: 4 },
+					{ xs: 6, md: 4 },
 					React.createElement(
 						PanelContainer,
 						null,
