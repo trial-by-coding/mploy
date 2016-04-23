@@ -19,7 +19,7 @@ import "bower_components/jquery/dist/jquery.min.js";
 import "bower_components/eventemitter2/lib/eventemitter2.js";
 
 // Perfect Scrollbar
-import "bower_components/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js";
+// import "bower_components/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.js";
 
 /* ------------------------------------------------------------------------ */
 /*                            Optional Scripts.                             */
