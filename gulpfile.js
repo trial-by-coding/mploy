@@ -11,6 +11,7 @@ var gcallback = require('gulp-callback');
 var browserSync = require('browser-sync');
 var transform = require('vinyl-transform');
 var child_process = require('child_process');
+var shell = require('gulp-shell');
 
 var argv = require('yargs').argv;
 
@@ -808,6 +809,24 @@ gulp.task('base64-css:watch', ['base64-css'], function() {
   }
 });
 /*END: ALIASES*/
+
+gulp.task('startpg', shell.task([
+  'postgres -D /usr/local/var/postgres',
+  'createdb mploy_dev'
+]));
+
+gulp.task('cleardb', shell.task([
+  'dropdb mploy_dev',
+  'createdb mploy_dev',
+  'knex migrate:latest'
+]));
+
+gulp.task('seeddb', shell.task([
+  'dropdb mploy_dev',
+  'createdb mploy_dev',
+  'knex migrate:latest',
+  'knex seed:run'
+]));
 
 gulp.task('watch', function() {
   gulp.watch(paths.index, ['express:watch']);
