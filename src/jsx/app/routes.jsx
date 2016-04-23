@@ -8,6 +8,7 @@ export default (history, onUpdate) => {
   return (
     <Router history={history} onUpdate={onUpdate}>
       <Route path='/' component={Landing} />
+      <Route path='/applications' component={Applications} />
     </Router>
   );
 };

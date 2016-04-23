@@ -127,7 +127,8 @@
 	  return React.createElement(
 	    _reactRouter.Router,
 	    { history: history, onUpdate: onUpdate },
-	    React.createElement(_reactRouter.Route, { path: '/', component: _landing2.default })
+	    React.createElement(_reactRouter.Route, { path: '/', component: _landing2.default }),
+	    React.createElement(_reactRouter.Route, { path: '/applications', component: _applications2.default })
 	  );
 	};
 
@@ -4646,6 +4647,11 @@
 						Col,
 						null,
 						React.createElement(
+							'h2',
+							null,
+							'Job Seeker'
+						),
+						React.createElement(
 							'div',
 							null,
 							React.createElement(
@@ -4661,6 +4667,11 @@
 						React.createElement(
 							'div',
 							null,
+							React.createElement(
+								'h2',
+								null,
+								'Employers'
+							),
 							React.createElement(
 								'button',
 								{ type: 'submit' },
