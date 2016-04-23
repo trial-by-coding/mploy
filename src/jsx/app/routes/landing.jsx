@@ -13,6 +13,7 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 class Body extends React.Component {
 	render() {
 		return (
+			<Container id="body">
 			<Grid>
 				<Col>
 					<div> 
@@ -25,6 +26,7 @@ class Body extends React.Component {
 					</div>
 				</Col>
 			</Grid>
+			</Container>
 		)
 	}
 }
