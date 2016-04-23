@@ -99,7 +99,7 @@ class Application extends React.Component {
     };
 
 	return (
-		<Col xs={6} md={4}>
+		<Col xs={12} sm={6} md={4}>
 			<PanelContainer>
 				<Panel>
 					<PanelBody >
@@ -119,7 +119,7 @@ class Application extends React.Component {
 
 @connect((state) => state)
 class Body extends React.Component {
-	
+
 
 	render() {
 		const app = ['Some text', 'More Text', 'Even More Text'];
@@ -135,8 +135,8 @@ class Body extends React.Component {
 					}
 				</Row>
 			</Grid>
-		</Container>	
-	)}	
+		</Container>
+	)}
 }
 
 @SidebarMixin
