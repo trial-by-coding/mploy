@@ -13,6 +13,7 @@ Employers.insert = function(userID){
     })
     .catch(function(err) {
       console.log('Employer insert failure: ', err)
+      throw err
     })
 };
 
@@ -26,5 +27,6 @@ Employers.verify = function(userID){
     })
     .catch(function(err) {
       console.log('Employer verification failure: ', err)
+      throw err;
     })
 };

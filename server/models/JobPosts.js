@@ -8,10 +8,11 @@ JobPosts.create = function(jobObj) {
 	return db('job_posts').returning('jobID')
 	.insert({
 		company_name: jobObj.company_name,
+		job_title: jobObj.job_title,
 		job_description: jobObj.job_description,
 		desired_education: jobObj.desired_education,
 		min_salary: jobObj.min_salary,
-		max_salary: jobObj max_salary,
+		max_salary: jobObj.max_salary,
 		location: jobObj.location,
 		employment_type: jobObj.employment_type,
 		visa_required: jobObj.visa_required,
@@ -33,6 +34,7 @@ JobPosts.create = function(jobObj) {
 	})
 	.catch(function(err) {
 		console.log('Create Job Error: ', err)
+		throw err
 	})
 };
 
@@ -45,6 +47,7 @@ JobPosts.getAll = function() {
 	})
 	.catch(function(err) {
 		console.log('getAll Jobs Error: ', err)
+		throw err
 	})
 };
 
@@ -57,6 +60,7 @@ JobPosts.getJob = function(jobID) {
 	})
 	.catch(function(err) {
 		console.log('getJob Error: ', err)
+		throw err
 	})
 };
 

@@ -45,14 +45,14 @@ module.exports = function(router) {
       res.status(400).send("/submitjob expected a body object");
     } else {
       console.log("body:",req.body);
-      Applications.submit(req.body)
+      JobPosts.create(req.body)
       .then(function(data){
-        console.log("application successfully submitted")
+        console.log("job post successfully submitted")
         res.status(200).send("success!");
       })
       .catch(function(err){
-        console.log("application submission failed, err:",err);
-        req.status(400).send("application submission failed:",err);
+        console.log("job post submission failed, err:",err);
+        res.status(400).send("job post submission failed:",err);
       })
     }
   });

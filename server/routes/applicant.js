@@ -3,8 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 module.exports = function(router) {
-  //var app = express();
-  router.use(bodyParser.json()); // support json encoded bodies
+  var app = express();
+  app.use(bodyParser.json()); // support json encoded bodies
   //app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
   //var router = express.Router();
 
@@ -31,6 +31,7 @@ module.exports = function(router) {
   router.post('/submitapp', function(req, res) {
     console.log('received submit application POST, body:',req.body);
     if(! req || !req.body) {
+      console.log("error: submitapp POST with no body");
       res.status(400).send("/submitapp expected a body object");
     } else {
       console.log("body:",req.body);
@@ -41,7 +42,7 @@ module.exports = function(router) {
       })
       .catch(function(err){
         console.log("application submission failed, err:",err);
-        res.status(400).send("application submission failed:",err);
+        res.status(400).send("application submission failed");  
       })
     }
   });
