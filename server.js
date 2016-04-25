@@ -17,7 +17,7 @@ var knex = Knex({
   client: 'pg',
   connection: {
     database: 'mploy_dev',
-    user: 'Matt'
+    user: 'lancespears'
   }
 });
 
@@ -37,23 +37,23 @@ app.use(bodyParser.urlencoded({
 app.use(express.static(path.join(process.cwd(), 'public')));
 app.use(bodyParser.json());
 
-// var router = express.Router();
 
 var store = new KnexSessionStore({
-  knex: knex,
+  knex,
   tablename: 'sessions' // optional. Defaults to 'sessions'
 });
 
-app.use(session({ secret: 'supersecretysecret', store: store })); // session secret
+app.use(session({
+  secret: 'supersecretysecret',
+  store,
+  resave: true,
+  saveUninitialized: true
+})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // *** routes *** //
 // load our routes and pass in our app and fully configured  passport
-var routes = express.Router();
-require('./server/routes-auth.js')(routes, passport);
-
-// var router = express.Router();
 
 var user = express.Router();
 require('./server/routes/user.js')(user);

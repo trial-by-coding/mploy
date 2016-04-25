@@ -12,6 +12,15 @@ import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 export default class Body extends React.Component {
+
+	showLogin() {
+		if ((this.props.currentUser)) {
+			return {
+				display: "none"
+			};
+		}
+}
+
 		render() {
 				return (
 					<Container id="body">
@@ -27,13 +36,15 @@ export default class Body extends React.Component {
 								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
                        <div>You need to sign in for those awesome features</div>
                           <div style={{marginTop: 12.5, marginBottom: 12.5}}>
-                            <Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.back}>
+														<a href="/auth/linkedin">
+														<Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.showLogin.bind(this).call()}>
                               <Icon glyph='icon-fontello-linkedin-6' />
                               <span>  Sign in <span className='hidden-xs'>with linkedin</span></span>
                             </Button>
+													</a>
                           </div>
                         <div>
-                      <a id='github-link' href='#' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
+                      <a id='github-link' href='/auth/github' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
                    </div>
                  </div>
                 </PanelBody>
@@ -50,13 +61,15 @@ export default class Body extends React.Component {
 								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
                        <div>You need to sign in for those awesome features</div>
                           <div style={{marginTop: 12.5, marginBottom: 12.5}}>
-                            <Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.back}>
+														<a href="/auth/linkedin">
+														<Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.showLogin.bind(this).call()}>
                               <Icon glyph='icon-fontello-linkedin-6' />
                               <span>  Sign in <span className='hidden-xs'>with linkedin</span></span>
                             </Button>
+													</a>
                           </div>
                         <div>
-                      <a id='github-link' href='#' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
+                      <a id='github-link' href='/auth/github' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
                    </div>
                  </div>
                 </PanelBody>
@@ -66,6 +79,6 @@ export default class Body extends React.Component {
 							</Row>
 					</Grid>
 				</Container>
-				)
+				);
 		}
 }
