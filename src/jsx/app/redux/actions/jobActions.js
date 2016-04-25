@@ -15,7 +15,7 @@ function getJobs(jobID) {
 	})
 }
 
-function apply(data) {
+function applyToJob(data) {
 	return new Promise(function(resolve, reject) {
 		$.ajax({
 			type: 'POST',
@@ -33,5 +33,6 @@ function apply(data) {
 }
 
 module.exports = {
-	getJobs: getJobs
+	getJobs: getJobs,
+	applyToJob: applyToJob
 }
