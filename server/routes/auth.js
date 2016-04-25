@@ -1,10 +1,7 @@
 var express = require('express');
 var Users = require('../models/users-auth.js');
 var passportGithub = require('../auth/github');
-var passportGoogle = require('../auth/google');
 var passportLinkedIn = require('../auth/linkedin');
-var passportLocal = require('../auth/local');
-var passportTwitter = require('../auth/twitter');
 
 
 module.exports = function(router, passport) {
@@ -48,15 +45,16 @@ module.exports = function(router, passport) {
   });
 
   //get endpoint to serve up index.html
-  router.get('/dashboard', function(req, res) {
-    res.sendFile(assetFolder + '/index.html');
-  });
+  // router.get('/dashboard', function(req, res) {
+  //   res.sendFile(assetFolder + '/index.html');
+  // });
 
 
   //------Authentication Routes
 
   // Github
-  router.get('/github', passportGithub.authenticate('github', {
+  router.get('/github', 
+    passportGithub.authenticate('github', {
     //scope: ['user:email']
   }));
 
@@ -67,9 +65,8 @@ module.exports = function(router, passport) {
     }));
 
   // LinkedIn
-  router.get('/linkedin', passportLinkedIn.authenticate('linkedin', {
-    scope: ['r_basicprofile', 'r_emailaddress']
-  }));
+  router.get('/linkedin', 
+    passportLinkedIn.authenticate('linkedin'));
 
   router.get('/linkedin/callback',
     passportLinkedIn.authenticate('linkedin', {

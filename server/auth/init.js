@@ -13,12 +13,12 @@ module.exports = function() {
     console.log('deserializeUser == ', user);
 
     User.verifyId(user.linkedin_id).then(function(data) {
-        console.log('verifyId err = ', data);
+        console.log('verifyId = ', data);
         console.log('user is = ', user);
         done(null, user);
       })
       .catch(function(err) {
-        console.log('deserial errr = ', err);
+        console.log('deserialize err = ', err);
         done(null, user);
       });
   });

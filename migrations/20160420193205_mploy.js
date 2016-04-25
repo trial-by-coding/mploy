@@ -10,6 +10,10 @@ exports.up = function(knex, Promise) {
       table.string('lastname', 30);
       table.string('profile_picture');
       table.string('email');
+      table.string('industry');
+      table.string('linkedin_headline');
+      table.string('location');
+      table.string('linkedin_url');
       table.binary('resume');
     }),
 

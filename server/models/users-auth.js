@@ -49,30 +49,42 @@ Users.verifyId = function(id) {
 Users.verifyInsert = function(obj) {
   var session = {};
   console.log('verifyInsert obj:', obj)
-  console.log('obj.name: ', obj.name)
+
   session.passid = obj.id;
   session.username = obj.displayName;
   session.givenName = obj.name.givenName;
   session.familyName = obj.name.familyName;
+  session.profile_picture = obj._json.pictureUrls.values[0];
+  session.email = obj._json.emailAddress;
+  session.industry = obj._json.industry;
+  session.headline = obj._json.headline;
+  session.location = obj._json.location.name;
+  session.profileUrl = obj._json.publicProfileUrl;
 
 
   return db('users').where({
     linkedin_id: session.passid
   }).then(function(data) {
     if (data.length === 0) {
-      console.log('firstname: ', session.firstName)
       return db('users').insert({
+        
         linkedin_id: session.passid,
         username: session.username,
         firstname: session.givenName,
-        lastname: session.familyName
-        // profile_picture: session.profile_picture
+        lastname: session.familyName,
+        profile_picture: session.profile_picture,
+        email: session.email,
+        industry: session.industry,
+        linkedin_headline: session.headline,
+        location: session.location,
+        linkedin_url: session.profileUrl
+
       }).limit(1).then(function(array) {
         console.log('returning sessions!', session);
         return session;
       });
     } else {
-      console.log('datas = ', data);
+      console.log('data = ', data);
       if (Array.isArray(data)) {
         return data[0];
       } else {
