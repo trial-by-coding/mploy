@@ -1,5 +1,5 @@
 var passport = require('passport');
-var User = require('../models/users-auth');
+var User = require('../models/Users');
 
 
 module.exports = function() {
@@ -12,13 +12,13 @@ module.exports = function() {
   passport.deserializeUser(function(user, done) {
     console.log('deserializeUser == ', user);
 
-    User.verifyId(user.passid).then(function(data) {
-        console.log('verifyId err = ', data);
+    User.verifyId(user.linkedin_id).then(function(data) {
+        console.log('verifyId = ', data);
         console.log('user is = ', user);
         done(null, user);
       })
       .catch(function(err) {
-        console.log('deserial errr = ', err);
+        console.log('deserialize err = ', err);
         done(null, user);
       });
   });

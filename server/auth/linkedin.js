@@ -1,23 +1,32 @@
 var passport = require('passport');
-var LinkedInStrategy = require('passport-linkedin').Strategy;
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
-var User = require('../models/users-auth');
+var User = require('../models/Users');
 var config = require('./config');
 var init = require('./init');
 
 
 passport.use(new LinkedInStrategy({
-    consumerKey: config.linkedin.clientID,
-    consumerSecret: config.linkedin.clientSecret,
-    callbackURL: config.linkedin.callbackURL
+    clientID: config.linkedin.clientID,
+    clientSecret: config.linkedin.clientSecret,
+    callbackURL: config.linkedin.callbackURL,
+    scope: [ 'r_basicprofile', 'r_emailaddress'],
+    state: true
   },
   function(accessToken, refreshToken, profile, done) {
-
+    console.log('linkedin profile: ', profile)
     User.verifyInsert(profile).then(function(obj) {
         console.log('inserted vi linkedin = ', obj);
         var send = {
-          user: obj.user,
-          passid: obj.passid
+          username: obj.username,
+          linkedin_id: obj.passid,
+          firstname: obj.givenName,
+          lastname:  obj.familyName,
+          profile_picture: obj.profile_picture,
+          email: obj.email,
+          industry: obj.industry,
+          location: obj.location,
+          linkedin_url: obj.profileUrl
         };
 
         return done(null, send);
@@ -33,14 +42,3 @@ passport.use(new LinkedInStrategy({
 init();
 
 module.exports = passport;
-
-
-/*
-    user is =  { passid: 'io5JAPc1Ax' }
-    row here =  [ { uid: 2,
-    passid: 'io5JAPc1Ax',
-    user: null,
-    password: null,
-    profile_picture: null } ]
-
-    */

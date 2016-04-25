@@ -12,16 +12,7 @@ var passport = require('passport');
 var db = require('./server/db/db.js');
 var session = require('express-session');
 var KnexSessionStore = require('connect-session-knex')(session);
-var Knex = require('knex');
-var knex = Knex({
-  client: 'pg',
-  connection: {
-    database: 'mploy_dev',
-    user: 'lancespears'
-  }
-});
 
-var Users = require('./server/models/Users.js');
 var Employers = require('./server/models/Employers.js');
 var JobPosts = require('./server/models/JobPosts.js');
 var Stats = require('./server/models/Stats.js');
@@ -39,7 +30,7 @@ app.use(bodyParser.json());
 
 
 var store = new KnexSessionStore({
-  knex,
+  knex: db,
   tablename: 'sessions' // optional. Defaults to 'sessions'
 });
 
@@ -54,7 +45,6 @@ app.use(passport.session()); // persistent login sessions
 
 // *** routes *** //
 // load our routes and pass in our app and fully configured  passport
-
 var user = express.Router();
 require('./server/routes/user.js')(user);
 app.use('/user', user);

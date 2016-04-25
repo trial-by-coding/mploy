@@ -2,47 +2,66 @@ var db = require('../db/db.js');
 
 var Users = module.exports;
 
-Users.create = function(incomingAttrs) {
-  var attrs = Object.assign({}, incomingAttrs);
+//Auth:
 
-  return db('users').insert(attrs)
-    .then(function(result) {
-      return result[0];
-    })
-    .catch(function(err) {
-      console.log('create user error: ', err);
-      throw err
-    });
+Users.verifyId = function(id) {
+  console.log('verifyId id == ', id);
+  return db('users').where({
+    linkedin_id: id
+  }).limit(1);
 };
 
-Users.grabID = function(passID) {
-  return db('users').select('*').where({
-      linkedin_id: passID
-    })
-    .then(function(record) {
-      console.log('Record for passID', record);
-      return record;
-    })
-    .catch(function(err) {
-      console.log('Users.grabID error: ', err);
-      throw err
-    });
+Users.verifyInsert = function(obj) {
+  var session = {};
+  console.log('verifyInsert obj:', obj)
+
+  session.passid = obj.id;
+  session.username = obj.displayName;
+  session.givenName = obj.name.givenName;
+  session.familyName = obj.name.familyName;
+  session.profile_picture = obj._json.pictureUrls.values[0];
+  session.email = obj._json.emailAddress;
+  session.industry = obj._json.industry;
+  session.headline = obj._json.headline;
+  session.location = obj._json.location.name;
+  session.profileUrl = obj._json.publicProfileUrl;
+
+
+  return db('users').where({
+    linkedin_id: session.passid
+  })
+
+  .then(function(data) {
+    if (data.length === 0) {
+      return db('users').insert({
+        
+        linkedin_id: session.passid,
+        username: session.username,
+        firstname: session.givenName,
+        lastname: session.familyName,
+        profile_picture: session.profile_picture,
+        email: session.email,
+        industry: session.industry,
+        linkedin_headline: session.headline,
+        location: session.location,
+        linkedin_url: session.profileUrl
+
+      }).limit(1).then(function(array) {
+        console.log('returning sessions!', session);
+        return session;
+      });
+    } else {
+      console.log('data = ', data);
+      if (Array.isArray(data)) {
+        return data[0];
+      } else {
+        return data;
+      }
+    }
+  });
 };
 
-Users.verify = function(id) {
-  return db('users')
-    .where({
-      linkedin_id: id
-    }).limit(1)
-    .then(function(record) {
-      console.log('Verified user record', record);
-      return record;
-    })
-    .catch(function(err) {
-      console.log('Users.verify error: ', err);
-      throw err
-    });
-};
+//Resume handling:
 
 //Is this proper syntax? Where before returning?
 //put request? are we updating a null value to a file?
@@ -60,7 +79,6 @@ Users.insertResume = function(uid, resume) {
       throw err
     });
 };
-
 
 //put request?
 Users.updateResume = function(uid, newResume) {

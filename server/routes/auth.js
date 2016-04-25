@@ -1,31 +1,26 @@
 var express = require('express');
-var Users = require('../models/users-auth.js');
+var Users = require('../models/Users.js');
 var passportGithub = require('../auth/github');
 var passportLinkedIn = require('../auth/linkedin');
-
-module.exports = function(router, passport) {
-
-router.get('/test', function(req, res) {
-    res.send('test success');
-  });
-
   //get endpoint for json obj for posts
+  //might get used later, otherwise delete
   router.get('/feed', function(req, res) {
     if (req.user) {
       console.log('user = ', req.user);
     }
   });
 
+  //might get used later, otherwise delete
   router.get('/userstate', function(req, res) {
     if (req.user) {
-      Users.grabID(req.user.passid).then(function(resp) {
+      Users.verifyId(req.user.passid).then(function(resp) {
         var obj = {};
         console.log(resp);
         if (resp[0]) {
           obj = {
-            user: req.user.user,
-            passid: req.user.passid,
-            userId: resp[0].uid,
+            username: req.user.user,
+            linkedin_id: req.user.passid,
+            userID: resp[0].uid,
             profile_picture: resp[0].profile_picture
           };
         } else {
@@ -40,9 +35,9 @@ router.get('/test', function(req, res) {
   });
 
   //get endpoint to serve up index.html
-  router.get('/dashboard', function(req, res) {
-    res.sendFile(assetFolder + '/index.html');
-  });
+  // router.get('/dashboard', function(req, res) {
+  //   res.sendFile(assetFolder + '/index.html');
+  // });
 
   //------Authentication Routes
 
@@ -59,9 +54,7 @@ router.get('/test', function(req, res) {
 
   // LinkedIn
   router.get('/linkedin',
-  passportLinkedIn.authenticate('linkedin', {
-    scope: ['r_basicprofile', 'r_emailaddress']
-  }));
+    passportLinkedIn.authenticate('linkedin'));
 
   router.get('/linkedin/callback',
     passportLinkedIn.authenticate('linkedin', {
