@@ -4,6 +4,8 @@ var passportGithub = require('../auth/github');
 var passportLinkedIn = require('../auth/linkedin');
   //get endpoint for json obj for posts
   //might get used later, otherwise delete
+module.exports = function(router, passport) {
+
   router.get('/feed', function(req, res) {
     if (req.user) {
       console.log('user = ', req.user);
