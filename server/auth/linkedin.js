@@ -12,12 +12,14 @@ passport.use(new LinkedInStrategy({
     callbackURL: config.linkedin.callbackURL
   },
   function(accessToken, refreshToken, profile, done) {
-
+    console.log('linkedin profile: ', profile)
     User.verifyInsert(profile).then(function(obj) {
         console.log('inserted vi linkedin = ', obj);
         var send = {
-          user: obj.user,
-          passid: obj.passid
+          username: obj.username,
+          linkedin_id: obj.passid,
+          firstname: obj.givenName,
+          lastname:  obj.familyName
         };
 
         return done(null, send);

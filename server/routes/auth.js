@@ -9,11 +9,6 @@ var passportTwitter = require('../auth/twitter');
 
 module.exports = function(router, passport) {
 
-
-router.get('/test', function(req, res) {
-    res.send('test success')
-  });
-
   //get endpoint for json obj for posts
   router.get('/feed', function(req, res) {
     console.log('getting feed!');
@@ -26,6 +21,7 @@ router.get('/test', function(req, res) {
   });
 
   router.get('/userstate', function(req, res) {
+    console.log('req.user: ', req.user)
 
     if (req.user) {
       Users.grabID(req.user.passid).then(function(resp) {
@@ -33,9 +29,9 @@ router.get('/test', function(req, res) {
         console.log(resp);
         if (resp[0]) {
           obj = {
-            user: req.user.user,
-            passid: req.user.passid,
-            userId: resp[0].uid,
+            username: req.user.user,
+            linkedin_id: req.user.passid,
+            userID: resp[0].uid,
             profile_picture: resp[0].profile_picture
           };
         } else {
@@ -86,19 +82,5 @@ router.get('/test', function(req, res) {
     req.logout();
     res.redirect('/');
   });
-
-  // -----------------Authenticate  login-----------------
-  // process the login form
-  router.post('/login', passportLocal.authenticate('local-login', {
-    successRedirect: '/',
-    failureRedirect: 'http://www.google.com'
-  }));
-
-  // ----------------User  Registration------
-  // process the signup form
-  router.post('/signup', passportLocal.authenticate('local-signup', {
-    successRedirect: '/index.html',
-    failureRedirect: 'http://www.yahoo.com'
-  }));
 
 };

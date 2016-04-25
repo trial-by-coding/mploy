@@ -6,8 +6,8 @@ var Users = module.exports;
 
 Users.checkId = function(obj) {
   return db('users').where({
-    user: obj.username,
-    passid: obj.id
+    username: obj.username,
+    linkedin_id: obj.id
   }).limit(1);
 };
 
@@ -23,17 +23,16 @@ Users.create = function(incomingAttrs) {
 
 Users.grabID = function(passID) {
   return db('users').select('*').where({
-    passid: passID
+    linkedin_id: passID
   }).then(function(row) {
     console.log('row here = ', row);
     return row;
   });
 };
 
-Users.verify = function(username, password) {
+Users.verify = function(username) {
   return db('users').where({
-      username: username,
-      password: password,
+      username: username
     }).limit(1)
     .then(function(rows) {
       return rows[0];
@@ -43,47 +42,31 @@ Users.verify = function(username, password) {
 Users.verifyId = function(id) {
   console.log('verifyId id == ', id);
   return db('users').where({
-    passid: id
+    linkedin_id: id
   }).limit(1);
 };
 
 Users.verifyInsert = function(obj) {
   var session = {};
+  console.log('verifyInsert obj:', obj)
+  console.log('obj.name: ', obj.name)
   session.passid = obj.id;
-
-  if (obj.provider === 'google') {
-    session.user = obj.displayName;
-  } else {
-    session.user = obj.username;
-  }
-
-  if (obj.provider === 'github'){
-    session.profile_picture = obj._json.avatar_url;
-
-    if (obj._json.name){
-      session.user = obj._json.name;
-    }
-    else{
-      session.user = obj.username;
-    }
-  }
-
-  if (obj.provider === 'linkedin'){
-    session.user = obj.user;
-  }
-  else{
-    session.user = obj.username;
-  }
+  session.username = obj.displayName;
+  session.givenName = obj.name.givenName;
+  session.familyName = obj.name.familyName;
 
 
   return db('users').where({
-    passid: session.passid
+    linkedin_id: session.passid
   }).then(function(data) {
     if (data.length === 0) {
+      console.log('firstname: ', session.firstName)
       return db('users').insert({
-        user: session.user,
-        passid: session.passid,
-        profile_picture: session.profile_picture
+        linkedin_id: session.passid,
+        username: session.username,
+        firstname: session.givenName,
+        lastname: session.familyName
+        // profile_picture: session.profile_picture
       }).limit(1).then(function(array) {
         console.log('returning sessions!', session);
         return session;
@@ -98,16 +81,4 @@ Users.verifyInsert = function(obj) {
     }
   });
 
-};
-
-//only did categories here because we only use it once! not an actual relation to the users
-Users.categories = function(incomingAttrs) {
-
-  var attrs = Object.assign({}, incomingAttrs);
-
-  return db('categories').insert(attrs)
-    .then(function(result) {
-      // Prepare new user for outside world
-      return result[0];
-    });
 };
