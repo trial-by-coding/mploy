@@ -1,7 +1,7 @@
 var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
-var User = require('../models/users-auth');
+var User = require('../models/Users');
 var config = require('./config');
 var init = require('./init');
 

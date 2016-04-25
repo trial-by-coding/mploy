@@ -1,5 +1,5 @@
 var express = require('express');
-var Users = require('../models/users-auth.js');
+var Users = require('../models/Users.js');
 var passportGithub = require('../auth/github');
 var passportLinkedIn = require('../auth/linkedin');
 
@@ -7,6 +7,7 @@ var passportLinkedIn = require('../auth/linkedin');
 module.exports = function(router, passport) {
 
   //get endpoint for json obj for posts
+  //might get used later, otherwise delete
   router.get('/feed', function(req, res) {
     console.log('getting feed!');
 
@@ -17,11 +18,12 @@ module.exports = function(router, passport) {
 
   });
 
+  //might get used later, otherwise delete
   router.get('/userstate', function(req, res) {
     console.log('req.user: ', req.user)
 
     if (req.user) {
-      Users.grabID(req.user.passid).then(function(resp) {
+      Users.verifyId(req.user.passid).then(function(resp) {
         var obj = {};
         console.log(resp);
         if (resp[0]) {

@@ -13,7 +13,6 @@ var db = require('./server/db/db.js');
 var session = require('express-session');
 var KnexSessionStore = require('connect-session-knex')(session);
 
-var Users = require('./server/models/Users.js');
 var Employers = require('./server/models/Employers.js');
 var JobPosts = require('./server/models/JobPosts.js');
 var Stats = require('./server/models/Stats.js');
