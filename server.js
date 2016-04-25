@@ -8,7 +8,19 @@ var compression = require('compression');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var passport = require('passport');
-// var db = require('./server/db/db.js');
+
+var db = require('./server/db/db.js');
+var session = require('express-session');
+var KnexSessionStore = require('connect-session-knex')(session);
+var Knex = require('knex');
+var knex = Knex({
+  client: 'pg',
+  connection: {
+    database: 'mploy_dev',
+    user: 'Matt'
+  }
+});
+
 var Users = require('./server/models/Users.js');
 var Employers = require('./server/models/Employers.js');
 var JobPosts = require('./server/models/JobPosts.js');
@@ -27,10 +39,12 @@ app.use(bodyParser.json());
 
 // var router = express.Router();
 
-var user = express.Router();
-require('./server/routes/user.js')(user);
-app.use('/user', user);
+var store = new KnexSessionStore({
+  knex: knex,
+  tablename: 'sessions' // optional. Defaults to 'sessions'
+});
 
+app.use(session({ secret: 'supersecretysecret', store: store })); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
@@ -44,6 +58,10 @@ require('./server/routes-auth.js')(routes, passport);
 var user = express.Router();
 require('./server/routes/user.js')(user);
 app.use('/user', user);
+
+var auth = express.Router();
+require('./server/routes/auth.js')(auth);
+app.use('/auth', auth);
 
 app.get('/', function(req, res, next) {
   var store = getStore();
