@@ -34,10 +34,11 @@ class ApplicationContainer extends React.Component {
   }
 
 
+
+
 	render() {
-
-
     // const { dispatch } = this.props;
+
     console.log('in render func props:', this.props)
 
     const styles = {
@@ -76,7 +77,6 @@ class ApplicationContainer extends React.Component {
               {this.state.applicants.map(function(app){
                  <AppCard fuckingApps={app} />
               })}
-             
 							</Row>
 					  </Grid>
 					</PanelBody>
