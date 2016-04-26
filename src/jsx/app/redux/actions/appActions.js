@@ -11,18 +11,11 @@ import { ADD_APP,
 
 function getApplications(jobID) {
 
-	const request = axios.get('user/employer/appsbyjob?jobID=' + jobID)
-		.then(function(response) {
-			if (response.status >= 400) {
-        throw new Error("Bad response from server");
-      }
-      console.log(response);
-		})
-
-    return {
-      type: FETCH_APP,
-      payload: request
-    }
+    return dispatch => axios.get('user/employer/appsbyjob?jobID=' + jobID)
+    .then(
+      payload => dispatch({ type: FETCH_APP, payload })
+    );
+	
 }
 
 module.exports = {

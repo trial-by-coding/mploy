@@ -9,7 +9,11 @@ import { ADD_APP,
 function appList(state = [], action) {
   switch (action.type) {
     case FETCH_APP:
-      console.log(action.payload)
+      console.log('action recieved:', action)
+      const data = action.payload.data;
+      return Object.assign({}, state, {
+        items: data
+      })
     
   }
   return state;

@@ -22,20 +22,23 @@ class ApplicationContainer extends React.Component {
       applicants: []
     }
 
-    this.onDbLoad();
+
+    // this.onDbLoad = this.onDbLoad.bind(this)
     
   }
-  onDbLoad(){
-    const recentApps = this.props.dispatch(actions.getApplications(1));
-    this.setState({applicants: recentApps})
 
-     // this.props.getApplications(1)
+  componentWillMount(){
+    const fuckingData = this.props.dispatch(getApplications(1))  
+    this.setState({applicants:fuckingData})
+    console.log('fuckingData:', fuckingData)
   }
+
+
 
 	render() {
     // const { dispatch } = this.props;
 
-    console.log('in render func:', this.props.applicants)
+    console.log('in render func props:', this.props)
     const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
