@@ -49,6 +49,25 @@ Applications.deleteApp = function(appID) {
   })
 };
 
+//update status
+Applications.updateStatus = function(appID, status) {
+  
+  return db('applications')
+  .returning()
+  .where({
+    appID: appID
+  })
+  .update({
+    status: status
+  })
+  .then(function(record) {
+    return record
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
 Applications.getUnconsidered = function(jobID) {
   
   return db('applications')
@@ -62,19 +81,6 @@ Applications.getUnconsidered = function(jobID) {
   })
   .catch(function(err) {
       throw err
-  })
-};
-
-//update status
-Applications.updateStatus = function(appID, status) {
-  
-  return db('applications')
-  .returning('appID')
-  .where({
-    appID: appID
-  })
-  .update({
-    status: status
   })
 };
 

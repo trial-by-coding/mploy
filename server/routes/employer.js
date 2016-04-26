@@ -78,6 +78,25 @@ module.exports = function(router) {
     }
   });
 
+  router.put('/updatestatus', function(req, res){
+    console.log('Received updatestatus PUT, body:',req.body);
+    if(! req || !req.body) {
+      console.log("Error: updatestatus PUT with no body");
+      res.status(400).send("/updatestatus expected a body object");
+    } else {
+      console.log("body: ",req.body);
+      Applications.updateStatus(req.body.appID, req.body.status)
+      .then(function(data){
+        console.log("Application successfully updated")
+        res.status(200).send("success!");
+      })
+      .catch(function(err){
+        console.log("Application update failed, err:",err);
+        res.status(400).send("Application update failed:",err);
+      })
+    }
+  });
+
   router.delete('/deleteapp', function(req, res){
     console.log('---delete app:received DELETE, query='+JSON.stringify(req.query));
     var rq = req.query;
