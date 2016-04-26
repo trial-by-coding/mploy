@@ -6,8 +6,14 @@ exports.up = function(knex, Promise) {
       table.increments('userID').primary();
       table.string('linkedin_id').unique();
       table.string('username', 30); //needs character limit
+      table.string('firstname', 30);
+      table.string('lastname', 30);
       table.string('profile_picture');
       table.string('email');
+      table.string('industry');
+      table.string('linkedin_headline');
+      table.string('location');
+      table.string('linkedin_url');
       table.binary('resume');
     }),
 

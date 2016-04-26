@@ -12,13 +12,14 @@ module.exports = function(router) {
 	require('./employer.js')(employer);
 	router.use('/employer', employer)
 
-	//router.use(function(req,res,next) {
-	//	//check if logged in
-	//	if (req.isAuthenticated()){
-	//		return next()
-	//	}
-	//	res.redirect('/login')
-	//});
+	router.use(function(req,res,next) {
+		//check if logged in
+		if (req.isAuthenticated()){
+			'User is authenticated'
+			return next()
+		}
+		res.redirect('/')
+	});
 
 
 	router.get('/job', function(req, res) {
