@@ -29,16 +29,17 @@ class ApplicationContainer extends React.Component {
 
   componentWillMount(){
     this.props.dispatch(getApplications(1))  
-    // this.setState({applicants:this.props.appList.items})
+    this.setState({applicants:this.props.appList.items})
     // console.log('appList.items:', this.props.appList.item)
   }
 
 
-
 	render() {
-    // const { dispatch } = this.props;
 
+
+    // const { dispatch } = this.props;
     console.log('in render func props:', this.props)
+
     const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
@@ -61,6 +62,10 @@ class ApplicationContainer extends React.Component {
     	'maxWidth': '400px'
     }
 
+  if(!this.state.applicants) {
+    return <div> Loading... </div>
+  } else{
+
 	return (
 		<Col sm={12} md={4} lg={4}>
 			<PanelContainer style={panelStyle}>
@@ -68,7 +73,10 @@ class ApplicationContainer extends React.Component {
 					<PanelBody >
 						<Grid>
 							<Row>
-              <AppCard fuckingApps={this.props.appList} />
+              {this.state.applicants.map(function(app){
+                 <AppCard fuckingApps={app} />
+              })}
+             
 							</Row>
 					  </Grid>
 					</PanelBody>
@@ -76,6 +84,7 @@ class ApplicationContainer extends React.Component {
 			</PanelContainer>
 		</Col>
 	)}
+  }
 }
 
 
