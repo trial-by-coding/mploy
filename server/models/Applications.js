@@ -8,7 +8,7 @@ Applications.submit = function(appObj) {
   .insert({
     cover_letter: appObj.cover_letter,
     years_experience: appObj.years_experience,
-    desired_education: appObj.desired_education,
+    education: appObj.education,
     personal_statement: appObj.personal_statement,
     status: 'Not yet considered',
     skill_1_met: appObj.skill_1,

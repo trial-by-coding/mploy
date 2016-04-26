@@ -59,7 +59,7 @@ exports.up = function(knex, Promise) {
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.binary('cover_letter');
       table.decimal('years_experience', 4, 1);
-      table.string('desired_education', 100);
+      table.string('education', 100);
       table.string('personal_statement', 300);
       table.string('status');
       table.boolean('skill_1_met');
