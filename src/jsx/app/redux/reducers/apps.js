@@ -7,13 +7,19 @@ import { ADD_APP,
          VisibilityFilters } from '../actions/actionTypes';
 
 function appList(state = [], action) {
+  console.log('state in reducer is:', state)
   switch (action.type) {
     case FETCH_APP:
-      console.log('action recieved:', action)
+      console.log('action recieved:', action.payload)
       const data = action.payload.data;
       return Object.assign({}, state, {
         items: data
       })
+    case REMOVE_APP:
+      return [
+        ...state.items.slice(0, action.index),
+        ...state.items.slice(action.index + 1)
+      ];
     
   }
   return state;

@@ -18,6 +18,11 @@ function getApplications(jobID) {
 	
 }
 
+function rejectApp(index) {
+  return { type: REMOVE_APP, index };
+}
+
 module.exports = {
-	getApplications: getApplications
+	getApplications: getApplications,
+  rejectApp: rejectApp
 }
