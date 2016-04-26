@@ -1,4 +1,6 @@
-var Applications = require('../models/Applications.js')
+var Applications = require('../models/Applications.js');
+var Employers = require('../models/Employers.js');
+var Stats = require('../models/Stats.js');
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -43,12 +45,19 @@ module.exports = function(router) {
       console.log("body:",req.body);
       Applications.submit(req.body)
       .then(function(data){
-        console.log("application successfully submitted")
         res.status(200).send("success!");
+        console.log("Application successfully submitted")
+        Stats.incrementTotalApps(req.body.user_id)
+        .then(function() {
+          console.log("Total apps increment successful")  
+        })
+        .catch(function() {
+          console.log("Total apps increment failed")
+        })  
       })
       .catch(function(err){
-        console.log("application submission failed, err:",err);
-        res.status(400).send("application submission failed");  
+        console.log("application submission failed, err:", err);
+        res.status(400).send("Application submission and/or increment failed");  
       })
     }
   });

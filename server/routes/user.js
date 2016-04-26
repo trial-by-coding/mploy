@@ -3,6 +3,9 @@ var JobPosts = require('../models/JobPosts.js')
 var Employers = require('../models/Employers.js')
 var Users = require('../models/Users.js')
 
+//http://www.localhost8080/auth/linkedin/employer
+//http://www.localhost8080/auth/linkedin/callback
+
 module.exports = function(router) {
 
 	var applicant = express.Router();

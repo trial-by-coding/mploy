@@ -1,5 +1,6 @@
-var JobPosts = require('../models/JobPosts.js')
-var Applications = require('../models/Applications.js')
+var JobPosts = require('../models/JobPosts.js');
+var Employers = require('../models/Employers.js');
+var Applications = require('../models/Applications.js');
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -9,6 +10,7 @@ module.exports = function(router) {
 
 	//router.use(function(req,res,next) {
 		//check to see if employer
+    //Employers.verify
 		//if employer res.next()
 		// }
 
