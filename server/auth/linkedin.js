@@ -2,6 +2,7 @@ var passport = require('passport');
 var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
 var User = require('../models/Users');
+var Stats = require('../models/Stats');
 var config = require('./config');
 var init = require('./init');
 
@@ -15,8 +16,9 @@ passport.use(new LinkedInStrategy({
   },
   function(accessToken, refreshToken, profile, done) {
     console.log('linkedin profile: ', profile)
-    User.verifyInsert(profile).then(function(obj) {
-        console.log('inserted vi linkedin = ', obj);
+    User.verifyInsert(profile)
+    .then(function(obj) {
+        console.log('inserted by verifyInsert linkedin = ', obj);
         var send = {
           username: obj.username,
           linkedin_id: obj.passid,
@@ -32,7 +34,7 @@ passport.use(new LinkedInStrategy({
         return done(null, send);
       })
       .catch(function(err) {
-        console.log('vi prom err = ', err);
+        console.log('verify insert promise err = ', err);
         return done(null, err);
       });
 

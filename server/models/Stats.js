@@ -6,13 +6,16 @@ var Stats = module.exports;
 
 //only run when new user created
 Stats.newUserData = function(userID) {
+  console.log('userID in stats: ', userID)
   return db('stats')
     .returning('statID')
     .insert({
       total_apps: 0,
       denied: 0,
       considered: 0,
-      interview_offer: 0,
+      interviewed: 0,
+      additional: 0,
+      offered: 0,
       user_id: userID
     })
     .then(function(statID) {
