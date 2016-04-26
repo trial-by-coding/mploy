@@ -19,7 +19,11 @@ Users.verifyInsert = function(obj) {
   session.username = obj.displayName;
   session.givenName = obj.name.givenName;
   session.familyName = obj.name.familyName;
-  session.profile_picture = obj._json.pictureUrls.values[0];
+  if (obj._json.pictureUrls.values){
+    session.profile_picture = obj._json.pictureUrls.values[0]; 
+  } else {
+    session.profile_picture = 'https://5481cf3ac956b3637572-6a158f98e8017b9014d6ed26285e201d.ssl.cf2.rackcdn.com/static/images/anonymousUser.jpg'
+  }
   session.email = obj._json.emailAddress;
   session.industry = obj._json.industry;
   session.headline = obj._json.headline;

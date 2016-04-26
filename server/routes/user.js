@@ -23,6 +23,7 @@ module.exports = function(router) {
 
 
 	router.get('/job', function(req, res) {
+		console.log('req stuff: ', req._passport.session.user)
 		console.log("user:job:request for all job data");
 		JobPosts.getAll()
 		.then(function(data){
@@ -48,9 +49,14 @@ module.exports = function(router) {
 		})
 	});
 
+	router.get('/jobs', function(req, res) {
+		console.log("jobs dash");
+		res.redirect('/user/jobs');
+	});
+
 	router.get('/*', function(req, res) {
 		console.log("user:default:redirecting to job");
-		res.redirect('/user/job');
+		res.redirect('/user/jobs');
 	});
 
 	router.post('/newemployer', function(req, res) {
