@@ -28,9 +28,9 @@ class ApplicationContainer extends React.Component {
   }
 
   componentWillMount(){
-    const fuckingData = this.props.dispatch(getApplications(1))  
-    this.setState({applicants:fuckingData})
-    console.log('fuckingData:', fuckingData)
+    this.props.dispatch(getApplications(1))  
+    // this.setState({applicants:this.props.appList.items})
+    // console.log('appList.items:', this.props.appList.item)
   }
 
 
@@ -68,6 +68,7 @@ class ApplicationContainer extends React.Component {
 					<PanelBody >
 						<Grid>
 							<Row>
+              <AppCard fuckingApps={this.props.appList} />
 							</Row>
 					  </Grid>
 					</PanelBody>
