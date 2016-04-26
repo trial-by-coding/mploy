@@ -29,12 +29,10 @@ JobPosts.create = function(jobObj) {
       user_id: jobObj.user_id
     })
     .then(function(recordID) {
-        console.log('Job recordID: ', recordID)
-        return recordID
+      return recordID
     })
     .catch(function(err) {
-        console.log('Create Job Error: ', err)
-        throw err
+      throw err
     })
 };
 
@@ -42,12 +40,10 @@ JobPosts.getAll = function() {
     
     return db('job_posts').select()
     .then(function(records) {
-        console.log('Job records: ', records)
-        return records
+      return records
     })
     .catch(function(err) {
-        console.log('getAll Jobs Error: ', err)
-        throw err
+      throw err
     })
 };
 
@@ -55,12 +51,10 @@ JobPosts.getJob = function(jobID) {
     
     return db('job_posts').where('jobID', jobID)
     .then(function(record) {
-        console.log('Job record: ', record)
-        return record
+      return record
     })
     .catch(function(err) {
-        console.log('getJob Error: ', err)
-        throw err
+      throw err
     })
 };
 

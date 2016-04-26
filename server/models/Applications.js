@@ -4,7 +4,7 @@ var Applications = module.exports;
 
 //Will cover letter have to be added separately?
 Applications.submit = function(appObj) {
-  return db('job_posts').returning('appID')
+  return db('applications').returning('appID')
   .insert({
     cover_letter: appObj.cover_letter,
     years_experience: appObj.years_experience,
@@ -25,7 +25,6 @@ Applications.submit = function(appObj) {
     user_id: appObj.user_id
   })
   .then(function(recordID) {
-    console.log('Applications.submit recordID', recordID)
     return recordID
   })
   .catch(function(err) {
@@ -34,11 +33,16 @@ Applications.submit = function(appObj) {
 };
 
 //delete old unconsidered records
+//denied this will delete the app and should run after the stats method
+//check current date, if longer than 5 days ago, delete
 Applications.getUnconsidered = function(jobID) {
   
-  return db('applications').where({job_id: jobID, status: 'Not yet considered'})
+  return db('applications')
+  .where({
+    job_id: jobID, 
+    status: 'Not yet considered'
+  })
   .then(function(records) {
-    console.log('AppsByJob record: ', records)
     return records
   })
   .catch(function(err) {
@@ -47,35 +51,25 @@ Applications.getUnconsidered = function(jobID) {
 };
 
 //update status
-Applications.updateStatus = function(userID) {
+Applications.updateStatus = function(appID, status) {
   
-
-};
-
-//denied this will delete the app and should run after the stats method
-//check current date, if longer than 5 days ago, delete
-// Applications.delete = function(appID) {
-//   return db('applications').where().del()
-// };
-
-
-//update status
-Applications.updateStatus = function(userID) {
-  
-
-};
-
-//denied this will delete the app and should run after the stats method
-Applications.delete = function(userID) {
-  
-
+  return db('applications')
+  .returning('appID')
+  .where({
+    appID: appID
+  })
+  .update({
+    status: status
+  })
 };
 
 Applications.getAppsByUser = function(userID) {
   
-  return db('applications').where({'user_id': userID})
+  return db('applications')
+  .where({
+    'user_id': userID
+  })
   .then(function(records) {
-    console.log('AppsByUser record: ', records)
     return records
   })
   .catch(function(err) {
@@ -87,7 +81,6 @@ Applications.getAppsByJob = function(jobID) {
   
   return db('applications').where('job_id', jobID)
   .then(function(records) {
-    console.log('AppsByJob record: ', records)
     return records
   })
   .catch(function(err) {

@@ -26,7 +26,6 @@ Users.verifyInsert = function(obj) {
   session.location = obj._json.location.name;
   session.profileUrl = obj._json.publicProfileUrl;
 
-
   return db('users').where({
     linkedin_id: session.passid
   })
@@ -75,7 +74,6 @@ Users.insertResume = function(uid, resume) {
       return userID;
     })
     .catch(function(err) {
-      console.log('Users.insertResume error: ', err);
       throw err
     });
 };
@@ -91,7 +89,6 @@ Users.updateResume = function(uid, newResume) {
       return userID;
     })
     .catch(function(err) {
-      console.log('Users.insertResume error: ', err);
       throw err
     });
 };

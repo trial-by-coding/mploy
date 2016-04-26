@@ -7,26 +7,22 @@ Employers.insert = function(userID){
   .insert({
     user_id: userID
   })
-    .then(function(recordID) {
-      console.log('Employer recordID: ', recordID)
-      return recordID
-    })
-    .catch(function(err) {
-      console.log('Employer insert failure: ', err)
-      throw err
-    })
+  .then(function(recordID) {
+    return recordID
+  })
+  .catch(function(err) {
+    throw err
+  })
 };
 
 Employers.verify = function(userID){
   return db('employers').select('*').where({
     user_id: userID
   })
-    .then(function(record) {
-      console.log('Employer record: ', record)
-      return record;
-    })
-    .catch(function(err) {
-      console.log('Employer verification failure: ', err)
-      throw err;
-    })
+  .then(function(record) {
+    return record;
+  })
+  .catch(function(err) {
+    throw err;
+  })
 };

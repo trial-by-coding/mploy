@@ -64,7 +64,6 @@ module.exports = function(router, passport) {
       successRedirect: '/user/job'
     }));
 
-
   // LOGOUT
   router.get('/logout', function(req, res) {
     req.logout();
