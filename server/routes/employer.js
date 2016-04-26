@@ -6,8 +6,6 @@ var bodyParser = require('body-parser');
 module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
-  //var router = express.Router();
-  //app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 	//router.use(function(req,res,next) {
 		//check to see if employer
@@ -17,13 +15,33 @@ module.exports = function(router) {
 		// res.redirect('/job')
 	//});
 
-	//routes:
+	//Routes:
   router.get('/appsbyjob', function(req, res){
     console.log('---appsbyjob:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.jobID) {
       console.log("request for jobId = ",rq.jobID);
       Applications.getAppsByJob(rq.jobID) 
+      .then(function(data){
+        console.log("returning application data", data);
+        res.status(200).send(JSON.stringify(data));
+      })
+      .catch(function(err){
+        console.log("could not get application data for jobID "+rq.jobID+", err:", err);
+        res.status(400).send(err);
+      })
+    } else {
+      console.log("must supply jobID in query string"); 
+      res.status(400).send("must supply jobID in query string");       
+    }
+  });
+
+    router.get('/unconsideredapps', function(req, res){
+    console.log('---unconsideredapps:received GET, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.jobID) {
+      console.log("request for jobId = ",rq.jobID);
+      Applications.getUnconsidered(rq.jobID) 
       .then(function(data){
         console.log("returning application data", data);
         res.status(200).send(JSON.stringify(data));

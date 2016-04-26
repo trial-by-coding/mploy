@@ -5,8 +5,14 @@ var bodyParser = require('body-parser');
 module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
-  //app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
-  //var router = express.Router();
+
+  //router.use(function(req,res,next) {
+    //check to see if applicant
+    //if applicant res.next()
+    // }
+
+    // res.redirect('/job')
+  //});
 
   router.get('/appsbyuser', function(req, res){
     console.log('---appsbyuser:received GET, query='+JSON.stringify(req.query));
