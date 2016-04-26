@@ -88,6 +88,8 @@ exports.up = function(knex, Promise) {
       table.integer('denied');
       table.integer('considered');
       table.integer('interviewed');
+      table.integer('additional');
+      table.integer('offered');
       table.integer('user_id')
         .references('userID')
         .inTable('users'); 
