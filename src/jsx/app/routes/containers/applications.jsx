@@ -4,18 +4,38 @@ import SidebarMixin from 'global/jsx/sidebar_component';
 import Header from 'common/header';
 import Sidebar from 'common/sidebar';
 import Footer from 'common/footer';
-import AppHeader from 'routes/components/appheader';
-import AppDescription from 'routes/components/appdescription';
-import AppConfirm from 'routes/components/appconfirm';
+import AppCard from 'routes/components/appCard';
+import { getApplications } from 'redux/actions/index.js';
 
 import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
 
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
-
+@connect((state) => state)
 class ApplicationContainer extends React.Component {
+    constructor(props){
+    super(props)
+
+    this.state = {
+      applicants: []
+    }
+
+    this.onDbLoad();
+    
+  }
+  onDbLoad(){
+    const recentApps = this.props.dispatch(actions.getApplications(1));
+    this.setState({applicants: recentApps})
+
+     // this.props.getApplications(1)
+  }
+
 	render() {
+    // const { dispatch } = this.props;
+
+    console.log('in render func:', this.props.applicants)
     const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
@@ -45,9 +65,6 @@ class ApplicationContainer extends React.Component {
 					<PanelBody >
 						<Grid>
 							<Row>
-								<AppHeader />
-								<AppDescription />
-								<AppConfirm />
 							</Row>
 					  </Grid>
 					</PanelBody>
@@ -57,31 +74,20 @@ class ApplicationContainer extends React.Component {
 	)}
 }
 
-@connect((state) => state)
-class Body extends React.Component {
 
+// function mapDispatchToProps(dispatch) {
+//   let actions = bindActionCreators({ getApplications });
+//   return { ...actions, dispatch };
+// }
 
-	render() {
-		const app = ['Some text', 'More Text', 'Even More Text'];
-		const { dispatch } = this.props;
-		const { visibilityFilter } = this.props;
-	return (
-		<Container id='body'>
-			<Grid>
-				<Row>
-					{app.map(function(text) {
-						return <ApplicationContainer />
-					})
-					}
-				</Row>
-			</Grid>
-		</Container>
-	)}
-}
+// export default connect(null,mapDispatchToProps)(ApplicationContainer);
 
 @SidebarMixin
 export default class extends React.Component {
+
 	render() {
+    const app = ['Some text', 'More Text', 'Even More Text'];
+
 		var classes = classNames({
 			'container-open': this.props.open
 		})
@@ -89,8 +95,19 @@ export default class extends React.Component {
 			<Container id='container' className={classes}>
 				<Sidebar />
 				<Header />
-				<Body />
+        <Container id='body'>
+          <Grid>
+            <Row>
+              <ApplicationContainer />
+            </Row>
+          </Grid>
+        </Container>
 				<Footer />
 			</Container>
 	)}
 }
+
+
+// {app.map(function(text) {
+//   return <ApplicationContainer />
+// })}
