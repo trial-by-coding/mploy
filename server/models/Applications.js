@@ -35,9 +35,24 @@ Applications.submit = function(appObj) {
 //delete old unconsidered records
 //denied this will delete the app and should run after the stats method
 //check current date, if longer than 5 days ago, delete
+
+Applications.deleteApp = function(appID) {
+  
+  return db('applications')
+  .delete()
+  .where('appID', appID)
+  .then(function(records) {
+    return records
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
 Applications.getUnconsidered = function(jobID) {
   
   return db('applications')
+  .orderBy('created_at', 'desc')
   .where({
     job_id: jobID, 
     status: 'Not yet considered'

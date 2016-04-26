@@ -36,6 +36,9 @@ module.exports = function(router) {
     }
   });
 
+  //offset to get certain number of jobs at a time
+  //need user information a
+
     router.get('/unconsideredapps', function(req, res){
     console.log('---unconsideredapps:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
@@ -72,6 +75,26 @@ module.exports = function(router) {
         console.log("job post submission failed, err:",err);
         res.status(400).send("job post submission failed:",err);
       })
+    }
+  });
+
+  router.delete('/deleteapp', function(req, res){
+    console.log('---delete app:received DELETE, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.appID) {
+      console.log("request for appId = ",rq.appID);
+      Applications.deleteApp(rq.appID) 
+      .then(function(data){
+        console.log("returning application data", data);
+        res.status(200).send(JSON.stringify(data));
+      })
+      .catch(function(err){
+        console.log("could not get application data for appID "+rq.appID+", err:", err);
+        res.status(400).send(err);
+      })
+    } else {
+      console.log("must supply appID in query string"); 
+      res.status(400).send("must supply appID in query string");       
     }
   });
 
