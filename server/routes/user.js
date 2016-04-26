@@ -39,6 +39,11 @@ module.exports = function(router) {
 		console.log('user:job:jobID='+req.params.id);
 		JobPosts.getJob(req.params.id)
 		.then(function(data){
+			if (data.length === 0){
+				console.log("no data returned for request for jobID "+reg.params.id);
+				err = "no data returned for request for jobID "+reg.params.id;
+				res.status(400).send(err);
+			}
 			console.log("return data for jobID "+req.params.id, data);
 			res.status(200).send(data);
 		})

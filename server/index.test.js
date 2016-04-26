@@ -31,8 +31,52 @@ describe('endpoints', function(){
     });
   });
 
-  it('should fail if job id does not exist POST');
-  it('should fail if user id does not exist POST');
+  it('should fail if job id does not exist POST', function(done) { // <= Pass in done callback
+    chai.request('http://localhost:8080')
+    .post('/user/applicant/submitapp')
+    .send({
+      'years_experience': 1.5, 
+      'desired_education': 'MA in CS', 
+      'personal_statement': 'submitted during chai testing', 
+      'skill_1_met': true, 
+      'skill_2_met': true, 
+      'skill_3_met': false, 
+      'skill_4_met': false, 
+      'skill_5_met': true, 
+      'skill_6_met': true, 
+      'skill_7_met': true, 
+      'can_work_here': false, 
+      'user_id': 5, 
+      'job_id': 9999
+    })
+    .end(function(err, res) {
+      expect(res).to.have.status(400);
+      done();                               // <= Call done to signal callback end
+    });
+  });
+  it('should fail if user id does not exist POST', function(done) { // <= Pass in done callback
+    chai.request('http://localhost:8080')
+    .post('/user/applicant/submitapp')
+    .send({
+      'years_experience': 1.5, 
+      'desired_education': 'MA in CS', 
+      'personal_statement': 'submitted during chai testing', 
+      'skill_1_met': true, 
+      'skill_2_met': true, 
+      'skill_3_met': false, 
+      'skill_4_met': false, 
+      'skill_5_met': true, 
+      'skill_6_met': true, 
+      'skill_7_met': true, 
+      'can_work_here': false, 
+      'user_id': 9999, 
+      'job_id': 2
+    })
+    .end(function(err, res) {
+      expect(res).to.have.status(400);
+      done();                               // <= Call done to signal callback end
+    });
+  });
 
 //================testing appsbyuser endpoint====================
   it('should successfully retrieve applications associated with a user id GET', function(done) { // <= Pass in done callback
@@ -55,14 +99,65 @@ describe('endpoints', function(){
   });
 
 //================testing appsbyjob endpoint=====================
-  it('should successfully retrieve applications associated with a job id GET');
-  it('should fail if job id does not exist GET');
+  it('should successfully retrieve applications associated with a job id GET', function(done) { // <= Pass in done callback
+    chai.request('http://localhost:8080')
+    .get('/user/employer/appsbyjob')
+    .query({jobID: 4})
+    .end(function(err, res) {
+      expect(res).to.have.status(200);
+      done();                               // <= Call done to signal callback end
+    });
+  });
+
+  it('should fail if job id does not exist GET', function(done) { // <= Pass in done callback
+    chai.request('http://localhost:8080')
+    .get('/user/employer/appsbyjob')
+    .query({jobID: 9999})
+    .end(function(err, res) {
+      expect(res).to.have.status(400);
+      done();                               // <= Call done to signal callback end
+    });
+  });
 
 //================testing submitjob endpoint=====================
-  it('should successfully submit an application with a user id POST');
+  it('should successfully submit a job POST');  //, function(done) {
+//    chai.request('http://localhost:8080')
+//    .post('/user/employer/submitjob')
+//    .send({
+//      'company_name': 'MakerSquare', 
+//      'job_title': 'Instructor', 
+//      'job_description': 'Submitted during chai test', 
+//      'desired_education': 'Bachelors Degree in CS', 
+//      'min_salary': 40000, 
+//      'max_salary': 50000, 
+//      'location': 'Austin', 
+//      'employment_type': 'Full-Time', 
+//      'visa_required': true, 
+//      'skill_1': 'Javascript', 
+//      'skill_2': 'Node.js', 
+//      'skill_3': 'Express', 
+//      'skill_4': 'SQL', 
+//      'skill_5': 'MongoDB', 
+//      'skill_6': 'AngularJS', 
+//      'skill_7': 'React', 
+//      'user_id': 3
+//    })
+//    .end(function(err, res) {
+//      expect(res).to.have.status(200);
+//      done();                               // <= Call done to signal callback end
+//    });
+//  });
 
 //================testing job endpoint=====================
-  it('should return all jobs GET');
+  it('should return all jobs GET'); //, function(done){
+//      it('should successfully retrieve all jobs GET', function(done) { // <= Pass in done callback
+//    chai.request('http://localhost:8080')
+//    .get('/user/job')
+//    .end(function(err, res) {
+//      expect(res).to.have.status(200);
+//      done();                               // <= Call done to signal callback end
+//    });
+//  });
 
 //================testing job/:id endpoint=====================
   it('should successfully retrieve job if jobID exists GET');
