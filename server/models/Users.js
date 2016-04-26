@@ -4,10 +4,10 @@ var Users = module.exports;
 
 //Auth:
 
-Users.verifyId = function(id) {
-  console.log('verifyId id == ', id);
+Users.verifyId = function(linkedin_id) {
+  console.log('verifyId id == ', linkedin_id);
   return db('users').where({
-    linkedin_id: id
+    linkedin_id: linkedin_id
   }).limit(1);
 };
 

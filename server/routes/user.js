@@ -1,6 +1,7 @@
 var express = require('express');
 var JobPosts = require('../models/JobPosts.js')
 var Employers = require('../models/Employers.js')
+var Users = require('../models/Users.js')
 
 module.exports = function(router) {
 
@@ -12,15 +13,28 @@ module.exports = function(router) {
 	require('./employer.js')(employer);
 	router.use('/employer', employer)
 
-	// router.use(function(req,res,next) {
-	// 	//check if logged in
-	// 	if (req.isAuthenticated()){
-	// 		'User is authenticated'
-	// 		return next()
-	// 	}
-	// 	res.redirect('/')
-	// });
+	router.use(function(req,res,next) {
+		//check if logged in
+		if (req.isAuthenticated()){
+			'User is authenticated'
+			return next()
+		}
+		res.redirect('/')
+	});
 
+	router.get('/verifyuser', function(req, res) {
+		console.log('req stuff: ', req._passport.session.user.linkedin_id)
+		var linkedin_id = req._passport.session.user.linkedin_id
+		Users.verifyId(linkedin_id)
+		.then(function(data){
+			console.log("responding with user data:",data);
+    	res.status(200).send(data);
+	    })
+	    .catch(function(err){
+	    	console.log("error retrieving user data, err:",err);
+	    	res.status(400).send(err);
+	    })
+	});
 
 	router.get('/job', function(req, res) {
 		console.log('req stuff: ', req._passport.session.user)
@@ -29,11 +43,11 @@ module.exports = function(router) {
 		.then(function(data){
 			console.log("responding with all job data:",data);
     	res.status(200).send(data);
-    })
-    .catch(function(err){
-    	console.log("error retrieving all job data, err:",err);
-    	res.status(400).send(err);
-    })
+	    })
+	    .catch(function(err){
+	    	console.log("error retrieving all job data, err:",err);
+	    	res.status(400).send(err);
+	    })
 	});
 
 	router.get('/job/:id', function(req, res) {
