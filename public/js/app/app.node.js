@@ -53,7 +53,7 @@ module.exports =
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _router = __webpack_require__(206);
+	var _router = __webpack_require__(238);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -114,15 +114,15 @@ module.exports =
 
 	var _landing2 = _interopRequireDefault(_landing);
 
-	var _blank = __webpack_require__(199);
+	var _blank = __webpack_require__(233);
 
 	var _blank2 = _interopRequireDefault(_blank);
 
-	var _applications = __webpack_require__(200);
+	var _applications = __webpack_require__(234);
 
 	var _applications2 = _interopRequireDefault(_applications);
 
-	var _jobs = __webpack_require__(204);
+	var _jobs = __webpack_require__(236);
 
 	var _jobs2 = _interopRequireDefault(_jobs);
 
@@ -4533,6 +4533,15 @@ module.exports =
 	  }
 
 	  (0, _createClass3.default)(Body, [{
+	    key: 'showLogin',
+	    value: function showLogin() {
+	      if (this.props.currentUser) {
+	        return {
+	          display: "none"
+	        };
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
@@ -4577,17 +4586,21 @@ module.exports =
 	                        'div',
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
-	                          Button,
-	                          { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
+	                          'a',
+	                          { href: '/auth/linkedin' },
 	                          React.createElement(
-	                            'span',
-	                            null,
-	                            '  Sign in ',
+	                            Button,
+	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
+	                            React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
 	                            React.createElement(
 	                              'span',
-	                              { className: 'hidden-xs' },
-	                              'with linkedin'
+	                              null,
+	                              '  Sign in ',
+	                              React.createElement(
+	                                'span',
+	                                { className: 'hidden-xs' },
+	                                'with linkedin'
+	                              )
 	                            )
 	                          )
 	                        )
@@ -4597,7 +4610,7 @@ module.exports =
 	                        null,
 	                        React.createElement(
 	                          'a',
-	                          { id: 'github-link', href: '#', onClick: this.back },
+	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
 	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
 	                          React.createElement(
 	                            'span',
@@ -4644,17 +4657,21 @@ module.exports =
 	                        'div',
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
-	                          Button,
-	                          { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
+	                          'a',
+	                          { href: '/auth/linkedin' },
 	                          React.createElement(
-	                            'span',
-	                            null,
-	                            '  Sign in ',
+	                            Button,
+	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
+	                            React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
 	                            React.createElement(
 	                              'span',
-	                              { className: 'hidden-xs' },
-	                              'with linkedin'
+	                              null,
+	                              '  Sign in ',
+	                              React.createElement(
+	                                'span',
+	                                { className: 'hidden-xs' },
+	                                'with linkedin'
+	                              )
 	                            )
 	                          )
 	                        )
@@ -4664,7 +4681,7 @@ module.exports =
 	                        null,
 	                        React.createElement(
 	                          'a',
-	                          { id: 'github-link', href: '#', onClick: this.back },
+	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
 	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
 	                          React.createElement(
 	                            'span',
@@ -8057,9 +8074,17 @@ module.exports =
 
 	var _todos2 = _interopRequireDefault(_todos);
 
+	var _appActions = __webpack_require__(201);
+
+	var _appActions2 = _interopRequireDefault(_appActions);
+
+	var _jobActions = __webpack_require__(232);
+
+	var _jobActions2 = _interopRequireDefault(_jobActions);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = (0, _extends3.default)({}, _todos2.default);
+	module.exports = (0, _extends3.default)({}, _todos2.default, _appActions2.default, _jobActions2.default);
 
 /***/ },
 /* 130 */
@@ -8073,7 +8098,7 @@ module.exports =
 
 	var _actionTypes = __webpack_require__(161);
 
-	var _isomorphicFetch = __webpack_require__(163);
+	var _isomorphicFetch = __webpack_require__(165);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -9038,9 +9063,17 @@ module.exports =
 
 	var _todos2 = _interopRequireDefault(_todos);
 
+	var _apps = __webpack_require__(163);
+
+	var _apps2 = _interopRequireDefault(_apps);
+
+	var _jobs = __webpack_require__(164);
+
+	var _jobs2 = _interopRequireDefault(_jobs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = (0, _extends3.default)({}, _todos2.default);
+	module.exports = (0, _extends3.default)({}, _todos2.default, _apps2.default, _jobs2.default);
 
 /***/ },
 /* 162 */
@@ -9066,11 +9099,51 @@ module.exports =
 
 /***/ },
 /* 163 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  ADD_APP: 'ADD_APP',
+	  REMOVE_APP: 'REMOVE_APP',
+	  ACCEPT_APP: 'ACCEPT_APP',
+	  REJECT_APP: 'REJECT_APP',
+	  FETCH_APP: 'FETCH_APP',
+	  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
+	  VisibilityFilters: {
+	    SHOW_ALL: 'SHOW_ALL',
+	    SHOW_COMPLETED: 'SHOW_COMPLETED',
+	    SHOW_ACTIVE: 'SHOW_ACTIVE'
+	  }
+	};
+
+/***/ },
+/* 164 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  ADD_JOB: 'ADD_JOB',
+	  REMOVE_JOB: 'REMOVE_JOB',
+	  APPLY_JOB: 'APPLY_JOB',
+	  SHOW_FORM: 'SHOW_FORM',
+	  FETCH_JOBS: 'FETCH_JOBS',
+	  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
+	  VisibilityFilters: {
+	    SHOW_ALL: 'SHOW_ALL',
+	    SHOW_COMPLETED: 'SHOW_COMPLETED',
+	    SHOW_ACTIVE: 'SHOW_ACTIVE'
+	  }
+	};
+
+/***/ },
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var realFetch = __webpack_require__(164);
+	var realFetch = __webpack_require__(166);
 	module.exports = function(url, options) {
 		if (/^\/\//.test(url)) {
 			url = 'https:' + url;
@@ -9087,7 +9160,7 @@ module.exports =
 
 
 /***/ },
-/* 164 */
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -9097,16 +9170,16 @@ module.exports =
 	 * a request API compatible with window.fetch
 	 */
 
-	var parse_url = __webpack_require__(165).parse;
-	var resolve_url = __webpack_require__(165).resolve;
-	var http = __webpack_require__(166);
-	var https = __webpack_require__(167);
-	var zlib = __webpack_require__(168);
-	var stream = __webpack_require__(169);
+	var parse_url = __webpack_require__(167).parse;
+	var resolve_url = __webpack_require__(167).resolve;
+	var http = __webpack_require__(168);
+	var https = __webpack_require__(169);
+	var zlib = __webpack_require__(170);
+	var stream = __webpack_require__(171);
 
-	var Response = __webpack_require__(170);
-	var Headers = __webpack_require__(197);
-	var Request = __webpack_require__(198);
+	var Response = __webpack_require__(172);
+	var Headers = __webpack_require__(199);
+	var Request = __webpack_require__(200);
 
 	module.exports = Fetch;
 
@@ -9296,37 +9369,37 @@ module.exports =
 
 
 /***/ },
-/* 165 */
+/* 167 */
 /***/ function(module, exports) {
 
 	module.exports = require("url");
 
 /***/ },
-/* 166 */
+/* 168 */
 /***/ function(module, exports) {
 
 	module.exports = require("http");
 
 /***/ },
-/* 167 */
+/* 169 */
 /***/ function(module, exports) {
 
 	module.exports = require("https");
 
 /***/ },
-/* 168 */
+/* 170 */
 /***/ function(module, exports) {
 
 	module.exports = require("zlib");
 
 /***/ },
-/* 169 */
+/* 171 */
 /***/ function(module, exports) {
 
 	module.exports = require("stream");
 
 /***/ },
-/* 170 */
+/* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -9336,9 +9409,9 @@ module.exports =
 	 * Response class provides content decoding
 	 */
 
-	var http = __webpack_require__(166);
-	var convert = __webpack_require__(171).convert;
-	var Headers = __webpack_require__(197);
+	var http = __webpack_require__(168);
+	var convert = __webpack_require__(173).convert;
+	var Headers = __webpack_require__(199);
 
 	module.exports = Response;
 
@@ -9518,15 +9591,15 @@ module.exports =
 
 
 /***/ },
-/* 171 */
+/* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-	var iconvLite = __webpack_require__(172);
+	var iconvLite = __webpack_require__(174);
 	// Load Iconv from an external file to be able to disable Iconv for webpack
 	// Add /\/iconv-loader$/ to webpack.IgnorePlugin to ignore it
-	var Iconv = __webpack_require__(195);
+	var Iconv = __webpack_require__(197);
 
 	// Expose to the world
 	module.exports.convert = convert;
@@ -9637,12 +9710,12 @@ module.exports =
 
 
 /***/ },
-/* 172 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
 
-	var bomHandling = __webpack_require__(173),
+	var bomHandling = __webpack_require__(175),
 	    iconv = module.exports;
 
 	// All codecs and aliases are kept here, keyed by encoding name/alias.
@@ -9700,7 +9773,7 @@ module.exports =
 	iconv._codecDataCache = {};
 	iconv.getCodec = function getCodec(encoding) {
 	    if (!iconv.encodings)
-	        iconv.encodings = __webpack_require__(174); // Lazy load all encoding definitions.
+	        iconv.encodings = __webpack_require__(176); // Lazy load all encoding definitions.
 	    
 	    // Canonicalize encoding name: strip all non-alphanumeric chars and appended year.
 	    var enc = (''+encoding).toLowerCase().replace(/[^0-9a-z]|:\d{4}$/g, "");
@@ -9774,17 +9847,17 @@ module.exports =
 	    // Load streaming support in Node v0.10+
 	    var nodeVerArr = nodeVer.split(".").map(Number);
 	    if (nodeVerArr[0] > 0 || nodeVerArr[1] >= 10) {
-	        __webpack_require__(192)(iconv);
+	        __webpack_require__(194)(iconv);
 	    }
 
 	    // Load Node primitive extensions.
-	    __webpack_require__(193)(iconv);
+	    __webpack_require__(195)(iconv);
 	}
 
 
 
 /***/ },
-/* 173 */
+/* 175 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -9842,7 +9915,7 @@ module.exports =
 
 
 /***/ },
-/* 174 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -9850,14 +9923,14 @@ module.exports =
 	// Update this array if you add/rename/remove files in this directory.
 	// We support Browserify by skipping automatic module discovery and requiring modules directly.
 	var modules = [
-	    __webpack_require__(175),
 	    __webpack_require__(177),
-	    __webpack_require__(178),
 	    __webpack_require__(179),
 	    __webpack_require__(180),
 	    __webpack_require__(181),
 	    __webpack_require__(182),
 	    __webpack_require__(183),
+	    __webpack_require__(184),
+	    __webpack_require__(185),
 	];
 
 	// Put all encoding/alias/codec definitions to single object and export it. 
@@ -9870,7 +9943,7 @@ module.exports =
 
 
 /***/ },
-/* 175 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -9920,7 +9993,7 @@ module.exports =
 	//------------------------------------------------------------------------------
 
 	// We use node.js internal decoder. Its signature is the same as ours.
-	var StringDecoder = __webpack_require__(176).StringDecoder;
+	var StringDecoder = __webpack_require__(178).StringDecoder;
 
 	if (!StringDecoder.prototype.end) // Node v0.8 doesn't have this method.
 	    StringDecoder.prototype.end = function() {};
@@ -10063,13 +10136,13 @@ module.exports =
 
 
 /***/ },
-/* 176 */
+/* 178 */
 /***/ function(module, exports) {
 
 	module.exports = require("string_decoder");
 
 /***/ },
-/* 177 */
+/* 179 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -10249,7 +10322,7 @@ module.exports =
 
 
 /***/ },
-/* 178 */
+/* 180 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -10544,7 +10617,7 @@ module.exports =
 
 
 /***/ },
-/* 179 */
+/* 181 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -10622,7 +10695,7 @@ module.exports =
 
 
 /***/ },
-/* 180 */
+/* 182 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -10797,7 +10870,7 @@ module.exports =
 
 
 /***/ },
-/* 181 */
+/* 183 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -11253,7 +11326,7 @@ module.exports =
 	}
 
 /***/ },
-/* 182 */
+/* 184 */
 /***/ function(module, exports) {
 
 	"use strict"
@@ -11813,7 +11886,7 @@ module.exports =
 
 
 /***/ },
-/* 183 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -11859,7 +11932,7 @@ module.exports =
 
 	    'shiftjis': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(184) },
+	        table: function() { return __webpack_require__(186) },
 	        encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
 	        encodeSkipVals: [{from: 0xED40, to: 0xF940}],
 	    },
@@ -11874,7 +11947,7 @@ module.exports =
 
 	    'eucjp': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(185) },
+	        table: function() { return __webpack_require__(187) },
 	        encodeAdd: {'\u00a5': 0x5C, '\u203E': 0x7E},
 	    },
 
@@ -11900,21 +11973,21 @@ module.exports =
 	    '936': 'cp936',
 	    'cp936': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(186) },
+	        table: function() { return __webpack_require__(188) },
 	    },
 
 	    // GBK (~22000 chars) is an extension of CP936 that added user-mapped chars and some other.
 	    'gbk': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(186).concat(__webpack_require__(187)) },
+	        table: function() { return __webpack_require__(188).concat(__webpack_require__(189)) },
 	    },
 	    'xgbk': 'gbk',
 
 	    // GB18030 is an algorithmic extension of GBK.
 	    'gb18030': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(186).concat(__webpack_require__(187)) },
-	        gb18030: function() { return __webpack_require__(188) },
+	        table: function() { return __webpack_require__(188).concat(__webpack_require__(189)) },
+	        gb18030: function() { return __webpack_require__(190) },
 	    },
 
 	    'chinese': 'gb18030',
@@ -11930,7 +12003,7 @@ module.exports =
 	    '949': 'cp949',
 	    'cp949': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(189) },
+	        table: function() { return __webpack_require__(191) },
 	    },
 
 	    'cseuckr': 'cp949',
@@ -11970,14 +12043,14 @@ module.exports =
 	    '950': 'cp950',
 	    'cp950': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(190) },
+	        table: function() { return __webpack_require__(192) },
 	    },
 
 	    // Big5 has many variations and is an extension of cp950. We use Encoding Standard's as a consensus.
 	    'big5': 'big5hkscs',
 	    'big5hkscs': {
 	        type: '_dbcs',
-	        table: function() { return __webpack_require__(190).concat(__webpack_require__(191)) },
+	        table: function() { return __webpack_require__(192).concat(__webpack_require__(193)) },
 	        encodeSkipVals: [0xa2cc],
 	    },
 
@@ -11989,7 +12062,7 @@ module.exports =
 
 
 /***/ },
-/* 184 */
+/* 186 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -12540,7 +12613,7 @@ module.exports =
 	];
 
 /***/ },
-/* 185 */
+/* 187 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -13365,7 +13438,7 @@ module.exports =
 	];
 
 /***/ },
-/* 186 */
+/* 188 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -15989,7 +16062,7 @@ module.exports =
 	];
 
 /***/ },
-/* 187 */
+/* 189 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -16252,7 +16325,7 @@ module.exports =
 	];
 
 /***/ },
-/* 188 */
+/* 190 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -16677,7 +16750,7 @@ module.exports =
 	};
 
 /***/ },
-/* 189 */
+/* 191 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -19060,7 +19133,7 @@ module.exports =
 	];
 
 /***/ },
-/* 190 */
+/* 192 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -19792,7 +19865,7 @@ module.exports =
 	];
 
 /***/ },
-/* 191 */
+/* 193 */
 /***/ function(module, exports) {
 
 	module.exports = [
@@ -20301,12 +20374,12 @@ module.exports =
 	];
 
 /***/ },
-/* 192 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
 
-	var Transform = __webpack_require__(169).Transform;
+	var Transform = __webpack_require__(171).Transform;
 
 
 	// == Exports ==================================================================
@@ -20427,7 +20500,7 @@ module.exports =
 
 
 /***/ },
-/* 193 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict"
@@ -20461,7 +20534,7 @@ module.exports =
 	        }
 
 	        // -- SlowBuffer -----------------------------------------------------------
-	        var SlowBuffer = __webpack_require__(194).SlowBuffer;
+	        var SlowBuffer = __webpack_require__(196).SlowBuffer;
 
 	        original.SlowBufferToString = SlowBuffer.prototype.toString;
 	        SlowBuffer.prototype.toString = function(encoding, start, end) {
@@ -20601,7 +20674,7 @@ module.exports =
 
 	        // -- Readable -------------------------------------------------------------
 	        if (iconv.supportsStreams) {
-	            var Readable = __webpack_require__(169).Readable;
+	            var Readable = __webpack_require__(171).Readable;
 
 	            original.ReadableSetEncoding = Readable.prototype.setEncoding;
 	            Readable.prototype.setEncoding = function setEncoding(enc, options) {
@@ -20624,7 +20697,7 @@ module.exports =
 
 	        delete Buffer.isNativeEncoding;
 
-	        var SlowBuffer = __webpack_require__(194).SlowBuffer;
+	        var SlowBuffer = __webpack_require__(196).SlowBuffer;
 
 	        SlowBuffer.prototype.toString = original.SlowBufferToString;
 	        SlowBuffer.prototype.write = original.SlowBufferWrite;
@@ -20635,7 +20708,7 @@ module.exports =
 	        Buffer.prototype.write = original.BufferWrite;
 
 	        if (iconv.supportsStreams) {
-	            var Readable = __webpack_require__(169).Readable;
+	            var Readable = __webpack_require__(171).Readable;
 
 	            Readable.prototype.setEncoding = original.ReadableSetEncoding;
 	            delete Readable.prototype.collect;
@@ -20647,13 +20720,13 @@ module.exports =
 
 
 /***/ },
-/* 194 */
+/* 196 */
 /***/ function(module, exports) {
 
 	module.exports = require("buffer");
 
 /***/ },
-/* 195 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -20664,7 +20737,7 @@ module.exports =
 	try {
 	    // this is to fool browserify so it doesn't try (in vain) to install iconv.
 	    iconv_package = 'iconv';
-	    Iconv = __webpack_require__(196)(iconv_package).Iconv;
+	    Iconv = __webpack_require__(198)(iconv_package).Iconv;
 	} catch (E) {
 	    // node-iconv not present
 	}
@@ -20673,14 +20746,14 @@ module.exports =
 
 
 /***/ },
-/* 196 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./encoding": 171,
-		"./encoding.js": 171,
-		"./iconv-loader": 195,
-		"./iconv-loader.js": 195
+		"./encoding": 173,
+		"./encoding.js": 173,
+		"./iconv-loader": 197,
+		"./iconv-loader.js": 197
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -20693,11 +20766,11 @@ module.exports =
 	};
 	webpackContext.resolve = webpackContextResolve;
 	module.exports = webpackContext;
-	webpackContext.id = 196;
+	webpackContext.id = 198;
 
 
 /***/ },
-/* 197 */
+/* 199 */
 /***/ function(module, exports) {
 
 	
@@ -20829,7 +20902,7 @@ module.exports =
 
 
 /***/ },
-/* 198 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -20839,8 +20912,8 @@ module.exports =
 	 * Request class contains server only options
 	 */
 
-	var parse_url = __webpack_require__(165).parse;
-	var Headers = __webpack_require__(197);
+	var parse_url = __webpack_require__(167).parse;
+	var Headers = __webpack_require__(199);
 
 	module.exports = Request;
 
@@ -20903,7 +20976,2261 @@ module.exports =
 
 
 /***/ },
-/* 199 */
+/* 201 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(202);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _actionTypes = __webpack_require__(161);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getApplications(jobID) {
+
+	         return function (dispatch) {
+	                  return _axios2.default.get('user/employer/appsbyjob?jobID=' + jobID).then(function (payload) {
+	                           return dispatch({ type: _actionTypes.FETCH_APP, payload: payload });
+	                  });
+	         };
+	}
+
+	module.exports = {
+	         getApplications: getApplications
+	};
+
+/***/ },
+/* 202 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(203);
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var defaults = __webpack_require__(204);
+	var utils = __webpack_require__(205);
+	var dispatchRequest = __webpack_require__(206);
+	var InterceptorManager = __webpack_require__(227);
+	var isAbsoluteURL = __webpack_require__(228);
+	var combineURLs = __webpack_require__(229);
+	var bind = __webpack_require__(230);
+	var transformData = __webpack_require__(210);
+
+	function Axios(defaultConfig) {
+	  this.defaults = utils.merge({}, defaultConfig);
+	  this.interceptors = {
+	    request: new InterceptorManager(),
+	    response: new InterceptorManager()
+	  };
+	}
+
+	Axios.prototype.request = function request(config) {
+	  /*eslint no-param-reassign:0*/
+	  // Allow for axios('example/url'[, config]) a la fetch API
+	  if (typeof config === 'string') {
+	    config = utils.merge({
+	      url: arguments[0]
+	    }, arguments[1]);
+	  }
+
+	  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
+
+	  // Support baseURL config
+	  if (config.baseURL && !isAbsoluteURL(config.url)) {
+	    config.url = combineURLs(config.baseURL, config.url);
+	  }
+
+	  // Don't allow overriding defaults.withCredentials
+	  config.withCredentials = config.withCredentials || this.defaults.withCredentials;
+
+	  // Transform request data
+	  config.data = transformData(
+	    config.data,
+	    config.headers,
+	    config.transformRequest
+	  );
+
+	  // Flatten headers
+	  config.headers = utils.merge(
+	    config.headers.common || {},
+	    config.headers[config.method] || {},
+	    config.headers || {}
+	  );
+
+	  utils.forEach(
+	    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+	    function cleanHeaderConfig(method) {
+	      delete config.headers[method];
+	    }
+	  );
+
+	  // Hook up interceptors middleware
+	  var chain = [dispatchRequest, undefined];
+	  var promise = Promise.resolve(config);
+
+	  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+	    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+	  });
+
+	  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+	    chain.push(interceptor.fulfilled, interceptor.rejected);
+	  });
+
+	  while (chain.length) {
+	    promise = promise.then(chain.shift(), chain.shift());
+	  }
+
+	  return promise;
+	};
+
+	var defaultInstance = new Axios(defaults);
+	var axios = module.exports = bind(Axios.prototype.request, defaultInstance);
+
+	// Expose properties from defaultInstance
+	axios.defaults = defaultInstance.defaults;
+	axios.interceptors = defaultInstance.interceptors;
+
+	// Factory for creating new instances
+	axios.create = function create(defaultConfig) {
+	  return new Axios(defaultConfig);
+	};
+
+	// Expose all/spread
+	axios.all = function all(promises) {
+	  return Promise.all(promises);
+	};
+	axios.spread = __webpack_require__(231);
+
+	// Provide aliases for supported request methods
+	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url
+	    }));
+	  };
+	  axios[method] = bind(Axios.prototype[method], defaultInstance);
+	});
+
+	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, data, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url,
+	      data: data
+	    }));
+	  };
+	  axios[method] = bind(Axios.prototype[method], defaultInstance);
+	});
+
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+
+	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
+	var DEFAULT_CONTENT_TYPE = {
+	  'Content-Type': 'application/x-www-form-urlencoded'
+	};
+
+	module.exports = {
+	  transformRequest: [function transformRequestJSON(data, headers) {
+	    if (utils.isFormData(data)) {
+	      return data;
+	    }
+	    if (utils.isArrayBuffer(data)) {
+	      return data;
+	    }
+	    if (utils.isArrayBufferView(data)) {
+	      return data.buffer;
+	    }
+	    if (utils.isObject(data) && !utils.isFile(data) && !utils.isBlob(data)) {
+	      // Set application/json if no Content-Type has been specified
+	      if (!utils.isUndefined(headers)) {
+	        utils.forEach(headers, function processContentTypeHeader(val, key) {
+	          if (key.toLowerCase() === 'content-type') {
+	            headers['Content-Type'] = val;
+	          }
+	        });
+
+	        if (utils.isUndefined(headers['Content-Type'])) {
+	          headers['Content-Type'] = 'application/json;charset=utf-8';
+	        }
+	      }
+	      return JSON.stringify(data);
+	    }
+	    return data;
+	  }],
+
+	  transformResponse: [function transformResponseJSON(data) {
+	    /*eslint no-param-reassign:0*/
+	    if (typeof data === 'string') {
+	      data = data.replace(PROTECTION_PREFIX, '');
+	      try {
+	        data = JSON.parse(data);
+	      } catch (e) { /* Ignore */ }
+	    }
+	    return data;
+	  }],
+
+	  headers: {
+	    common: {
+	      'Accept': 'application/json, text/plain, */*'
+	    },
+	    patch: utils.merge(DEFAULT_CONTENT_TYPE),
+	    post: utils.merge(DEFAULT_CONTENT_TYPE),
+	    put: utils.merge(DEFAULT_CONTENT_TYPE)
+	  },
+
+	  timeout: 0,
+
+	  xsrfCookieName: 'XSRF-TOKEN',
+	  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+	  maxContentLength: -1
+	};
+
+
+/***/ },
+/* 205 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*global toString:true*/
+
+	// utils is a library of generic helper functions non-specific to axios
+
+	var toString = Object.prototype.toString;
+
+	/**
+	 * Determine if a value is an Array
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Array, otherwise false
+	 */
+	function isArray(val) {
+	  return toString.call(val) === '[object Array]';
+	}
+
+	/**
+	 * Determine if a value is an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+	 */
+	function isArrayBuffer(val) {
+	  return toString.call(val) === '[object ArrayBuffer]';
+	}
+
+	/**
+	 * Determine if a value is a FormData
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an FormData, otherwise false
+	 */
+	function isFormData(val) {
+	  return toString.call(val) === '[object FormData]';
+	}
+
+	/**
+	 * Determine if a value is a view on an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+	 */
+	function isArrayBufferView(val) {
+	  var result;
+	  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+	    result = ArrayBuffer.isView(val);
+	  } else {
+	    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+	  }
+	  return result;
+	}
+
+	/**
+	 * Determine if a value is a String
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a String, otherwise false
+	 */
+	function isString(val) {
+	  return typeof val === 'string';
+	}
+
+	/**
+	 * Determine if a value is a Number
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Number, otherwise false
+	 */
+	function isNumber(val) {
+	  return typeof val === 'number';
+	}
+
+	/**
+	 * Determine if a value is undefined
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if the value is undefined, otherwise false
+	 */
+	function isUndefined(val) {
+	  return typeof val === 'undefined';
+	}
+
+	/**
+	 * Determine if a value is an Object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Object, otherwise false
+	 */
+	function isObject(val) {
+	  return val !== null && typeof val === 'object';
+	}
+
+	/**
+	 * Determine if a value is a Date
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Date, otherwise false
+	 */
+	function isDate(val) {
+	  return toString.call(val) === '[object Date]';
+	}
+
+	/**
+	 * Determine if a value is a File
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a File, otherwise false
+	 */
+	function isFile(val) {
+	  return toString.call(val) === '[object File]';
+	}
+
+	/**
+	 * Determine if a value is a Blob
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Blob, otherwise false
+	 */
+	function isBlob(val) {
+	  return toString.call(val) === '[object Blob]';
+	}
+
+	/**
+	 * Trim excess whitespace off the beginning and end of a string
+	 *
+	 * @param {String} str The String to trim
+	 * @returns {String} The String freed of excess whitespace
+	 */
+	function trim(str) {
+	  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+	}
+
+	/**
+	 * Determine if we're running in a standard browser environment
+	 *
+	 * This allows axios to run in a web worker, and react-native.
+	 * Both environments support XMLHttpRequest, but not fully standard globals.
+	 *
+	 * web workers:
+	 *  typeof window -> undefined
+	 *  typeof document -> undefined
+	 *
+	 * react-native:
+	 *  typeof document.createElement -> undefined
+	 */
+	function isStandardBrowserEnv() {
+	  return (
+	    typeof window !== 'undefined' &&
+	    typeof document !== 'undefined' &&
+	    typeof document.createElement === 'function'
+	  );
+	}
+
+	/**
+	 * Iterate over an Array or an Object invoking a function for each item.
+	 *
+	 * If `obj` is an Array callback will be called passing
+	 * the value, index, and complete array for each item.
+	 *
+	 * If 'obj' is an Object callback will be called passing
+	 * the value, key, and complete object for each property.
+	 *
+	 * @param {Object|Array} obj The object to iterate
+	 * @param {Function} fn The callback to invoke for each item
+	 */
+	function forEach(obj, fn) {
+	  // Don't bother if no value provided
+	  if (obj === null || typeof obj === 'undefined') {
+	    return;
+	  }
+
+	  // Force an array if not already something iterable
+	  if (typeof obj !== 'object' && !isArray(obj)) {
+	    /*eslint no-param-reassign:0*/
+	    obj = [obj];
+	  }
+
+	  if (isArray(obj)) {
+	    // Iterate over array values
+	    for (var i = 0, l = obj.length; i < l; i++) {
+	      fn.call(null, obj[i], i, obj);
+	    }
+	  } else {
+	    // Iterate over object keys
+	    for (var key in obj) {
+	      if (obj.hasOwnProperty(key)) {
+	        fn.call(null, obj[key], key, obj);
+	      }
+	    }
+	  }
+	}
+
+	/**
+	 * Accepts varargs expecting each argument to be an object, then
+	 * immutably merges the properties of each object and returns result.
+	 *
+	 * When multiple objects contain the same key the later object in
+	 * the arguments list will take precedence.
+	 *
+	 * Example:
+	 *
+	 * ```js
+	 * var result = merge({foo: 123}, {foo: 456});
+	 * console.log(result.foo); // outputs 456
+	 * ```
+	 *
+	 * @param {Object} obj1 Object to merge
+	 * @returns {Object} Result of all merge properties
+	 */
+	function merge(/* obj1, obj2, obj3, ... */) {
+	  var result = {};
+	  function assignValue(val, key) {
+	    if (typeof result[key] === 'object' && typeof val === 'object') {
+	      result[key] = merge(result[key], val);
+	    } else {
+	      result[key] = val;
+	    }
+	  }
+
+	  for (var i = 0, l = arguments.length; i < l; i++) {
+	    forEach(arguments[i], assignValue);
+	  }
+	  return result;
+	}
+
+	module.exports = {
+	  isArray: isArray,
+	  isArrayBuffer: isArrayBuffer,
+	  isFormData: isFormData,
+	  isArrayBufferView: isArrayBufferView,
+	  isString: isString,
+	  isNumber: isNumber,
+	  isObject: isObject,
+	  isUndefined: isUndefined,
+	  isDate: isDate,
+	  isFile: isFile,
+	  isBlob: isBlob,
+	  isStandardBrowserEnv: isStandardBrowserEnv,
+	  forEach: forEach,
+	  merge: merge,
+	  trim: trim
+	};
+
+
+/***/ },
+/* 206 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	/**
+	 * Dispatch a request to the server using whichever adapter
+	 * is supported by the current environment.
+	 *
+	 * @param {object} config The config that is to be used for the request
+	 * @returns {Promise} The Promise to be fulfilled
+	 */
+	module.exports = function dispatchRequest(config) {
+	  return new Promise(function executor(resolve, reject) {
+	    try {
+	      var adapter;
+
+	      if (typeof config.adapter === 'function') {
+	        // For custom adapter support
+	        adapter = config.adapter;
+	      } else if (typeof XMLHttpRequest !== 'undefined') {
+	        // For browsers use XHR adapter
+	        adapter = __webpack_require__(207);
+	      } else if (typeof process !== 'undefined') {
+	        // For node use HTTP adapter
+	        adapter = __webpack_require__(214);
+	      }
+
+	      if (typeof adapter === 'function') {
+	        adapter(resolve, reject, config);
+	      }
+	    } catch (e) {
+	      reject(e);
+	    }
+	  });
+	};
+
+
+
+/***/ },
+/* 207 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+	var buildURL = __webpack_require__(208);
+	var parseHeaders = __webpack_require__(209);
+	var transformData = __webpack_require__(210);
+	var isURLSameOrigin = __webpack_require__(211);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(212);
+
+	module.exports = function xhrAdapter(resolve, reject, config) {
+	  var requestData = config.data;
+	  var requestHeaders = config.headers;
+
+	  if (utils.isFormData(requestData)) {
+	    delete requestHeaders['Content-Type']; // Let the browser set it
+	  }
+
+	  var request = new XMLHttpRequest();
+	  var loadEvent = 'onreadystatechange';
+	  var xDomain = false;
+
+	  // For IE 8/9 CORS support
+	  // Only supports POST and GET calls and doesn't returns the response headers.
+	  // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+	  if (process.env.NODE_ENV !== 'test' && typeof window !== 'undefined' && window.XDomainRequest && !('withCredentials' in request) && !isURLSameOrigin(config.url)) {
+	    request = new window.XDomainRequest();
+	    loadEvent = 'onload';
+	    xDomain = true;
+	  }
+
+	  // HTTP basic authentication
+	  if (config.auth) {
+	    var username = config.auth.username || '';
+	    var password = config.auth.password || '';
+	    requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+	  }
+
+	  request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+	  // Set the request timeout in MS
+	  request.timeout = config.timeout;
+
+	  // For IE 9 CORS support.
+	  request.onprogress = function handleProgress() {};
+	  request.ontimeout = function handleTimeout() {};
+
+	  // Listen for ready state
+	  request[loadEvent] = function handleLoad() {
+	    if (!request || (request.readyState !== 4 && !xDomain)) {
+	      return;
+	    }
+
+	    // The request errored out and we didn't get a response, this will be
+	    // handled by onerror instead
+	    if (request.status === 0) {
+	      return;
+	    }
+
+	    // Prepare the response
+	    var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+	    var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+	    var response = {
+	      data: transformData(
+	        responseData,
+	        responseHeaders,
+	        config.transformResponse
+	      ),
+	      // IE sends 1223 instead of 204 (https://github.com/mzabriskie/axios/issues/201)
+	      status: request.status === 1223 ? 204 : request.status,
+	      statusText: request.status === 1223 ? 'No Content' : request.statusText,
+	      headers: responseHeaders,
+	      config: config,
+	      request: request
+	    };
+
+	    // Resolve or reject the Promise based on the status
+	    ((response.status >= 200 && response.status < 300) ||
+	     (!('status' in request) && request.responseText) ?
+	      resolve :
+	      reject)(response);
+
+	    // Clean up request
+	    request = null;
+	  };
+
+	  // Handle low level network errors
+	  request.onerror = function handleError() {
+	    // Real errors are hidden from us by the browser
+	    // onerror should only fire if it's a network error
+	    reject(new Error('Network Error'));
+
+	    // Clean up request
+	    request = null;
+	  };
+
+	  // Handle timeout
+	  request.ontimeout = function handleTimeout() {
+	    var err = new Error('timeout of ' + config.timeout + 'ms exceeded');
+	    err.timeout = config.timeout;
+	    err.code = 'ECONNABORTED';
+	    reject(err);
+
+	    // Clean up request
+	    request = null;
+	  };
+
+	  // Add xsrf header
+	  // This is only done if running in a standard browser environment.
+	  // Specifically not if we're in a web worker, or react-native.
+	  if (utils.isStandardBrowserEnv()) {
+	    var cookies = __webpack_require__(213);
+
+	    // Add xsrf header
+	    var xsrfValue = config.withCredentials || isURLSameOrigin(config.url) ?
+	        cookies.read(config.xsrfCookieName) :
+	        undefined;
+
+	    if (xsrfValue) {
+	      requestHeaders[config.xsrfHeaderName] = xsrfValue;
+	    }
+	  }
+
+	  // Add headers to the request
+	  if ('setRequestHeader' in request) {
+	    utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+	      if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+	        // Remove Content-Type if data is undefined
+	        delete requestHeaders[key];
+	      } else {
+	        // Otherwise add header to the request
+	        request.setRequestHeader(key, val);
+	      }
+	    });
+	  }
+
+	  // Add withCredentials to request if needed
+	  if (config.withCredentials) {
+	    request.withCredentials = true;
+	  }
+
+	  // Add responseType to request if needed
+	  if (config.responseType) {
+	    try {
+	      request.responseType = config.responseType;
+	    } catch (e) {
+	      if (request.responseType !== 'json') {
+	        throw e;
+	      }
+	    }
+	  }
+
+	  // Handle progress if needed
+	  if (config.progress) {
+	    if (config.method === 'post' || config.method === 'put') {
+	      request.upload.addEventListener('progress', config.progress);
+	    } else if (config.method === 'get') {
+	      request.addEventListener('progress', config.progress);
+	    }
+	  }
+
+	  // Format request data
+	  if (utils.isArrayBuffer(requestData)) {
+	    requestData = new DataView(requestData);
+	  }
+
+	  if (requestData === undefined) {
+	    requestData = null;
+	  }
+
+	  // Send the request
+	  request.send(requestData);
+	};
+
+
+/***/ },
+/* 208 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+
+	function encode(val) {
+	  return encodeURIComponent(val).
+	    replace(/%40/gi, '@').
+	    replace(/%3A/gi, ':').
+	    replace(/%24/g, '$').
+	    replace(/%2C/gi, ',').
+	    replace(/%20/g, '+').
+	    replace(/%5B/gi, '[').
+	    replace(/%5D/gi, ']');
+	}
+
+	/**
+	 * Build a URL by appending params to the end
+	 *
+	 * @param {string} url The base of the url (e.g., http://www.google.com)
+	 * @param {object} [params] The params to be appended
+	 * @returns {string} The formatted url
+	 */
+	module.exports = function buildURL(url, params, paramsSerializer) {
+	  /*eslint no-param-reassign:0*/
+	  if (!params) {
+	    return url;
+	  }
+
+	  var serializedParams;
+	  if (paramsSerializer) {
+	    serializedParams = paramsSerializer(params);
+	  } else {
+	    var parts = [];
+
+	    utils.forEach(params, function serialize(val, key) {
+	      if (val === null || typeof val === 'undefined') {
+	        return;
+	      }
+
+	      if (utils.isArray(val)) {
+	        key = key + '[]';
+	      }
+
+	      if (!utils.isArray(val)) {
+	        val = [val];
+	      }
+
+	      utils.forEach(val, function parseValue(v) {
+	        if (utils.isDate(v)) {
+	          v = v.toISOString();
+	        } else if (utils.isObject(v)) {
+	          v = JSON.stringify(v);
+	        }
+	        parts.push(encode(key) + '=' + encode(v));
+	      });
+	    });
+
+	    serializedParams = parts.join('&');
+	  }
+
+	  if (serializedParams) {
+	    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+	  }
+
+	  return url;
+	};
+
+
+
+/***/ },
+/* 209 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+
+	/**
+	 * Parse headers into an object
+	 *
+	 * ```
+	 * Date: Wed, 27 Aug 2014 08:58:49 GMT
+	 * Content-Type: application/json
+	 * Connection: keep-alive
+	 * Transfer-Encoding: chunked
+	 * ```
+	 *
+	 * @param {String} headers Headers needing to be parsed
+	 * @returns {Object} Headers parsed into an object
+	 */
+	module.exports = function parseHeaders(headers) {
+	  var parsed = {};
+	  var key;
+	  var val;
+	  var i;
+
+	  if (!headers) { return parsed; }
+
+	  utils.forEach(headers.split('\n'), function parser(line) {
+	    i = line.indexOf(':');
+	    key = utils.trim(line.substr(0, i)).toLowerCase();
+	    val = utils.trim(line.substr(i + 1));
+
+	    if (key) {
+	      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+	    }
+	  });
+
+	  return parsed;
+	};
+
+
+/***/ },
+/* 210 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+
+	/**
+	 * Transform the data for a request or a response
+	 *
+	 * @param {Object|String} data The data to be transformed
+	 * @param {Array} headers The headers for the request or response
+	 * @param {Array|Function} fns A single function or Array of functions
+	 * @returns {*} The resulting transformed data
+	 */
+	module.exports = function transformData(data, headers, fns) {
+	  /*eslint no-param-reassign:0*/
+	  utils.forEach(fns, function transform(fn) {
+	    data = fn(data, headers);
+	  });
+
+	  return data;
+	};
+
+
+/***/ },
+/* 211 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+
+	  // Standard browser envs have full support of the APIs needed to test
+	  // whether the request URL is of the same origin as current location.
+	  (function standardBrowserEnv() {
+	    var msie = /(msie|trident)/i.test(navigator.userAgent);
+	    var urlParsingNode = document.createElement('a');
+	    var originURL;
+
+	    /**
+	    * Parse a URL to discover it's components
+	    *
+	    * @param {String} url The URL to be parsed
+	    * @returns {Object}
+	    */
+	    function resolveURL(url) {
+	      var href = url;
+
+	      if (msie) {
+	        // IE needs attribute set twice to normalize properties
+	        urlParsingNode.setAttribute('href', href);
+	        href = urlParsingNode.href;
+	      }
+
+	      urlParsingNode.setAttribute('href', href);
+
+	      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+	      return {
+	        href: urlParsingNode.href,
+	        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+	        host: urlParsingNode.host,
+	        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+	        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+	        hostname: urlParsingNode.hostname,
+	        port: urlParsingNode.port,
+	        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+	                  urlParsingNode.pathname :
+	                  '/' + urlParsingNode.pathname
+	      };
+	    }
+
+	    originURL = resolveURL(window.location.href);
+
+	    /**
+	    * Determine if a URL shares the same origin as the current location
+	    *
+	    * @param {String} requestURL The URL to test
+	    * @returns {boolean} True if URL shares the same origin, otherwise false
+	    */
+	    return function isURLSameOrigin(requestURL) {
+	      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+	      return (parsed.protocol === originURL.protocol &&
+	            parsed.host === originURL.host);
+	    };
+	  })() :
+
+	  // Non standard browser envs (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return function isURLSameOrigin() {
+	      return true;
+	    };
+	  })()
+	);
+
+
+/***/ },
+/* 212 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+	function E() {
+	  this.message = 'String contains an invalid character';
+	}
+	E.prototype = new Error;
+	E.prototype.code = 5;
+	E.prototype.name = 'InvalidCharacterError';
+
+	function btoa(input) {
+	  var str = String(input);
+	  var output = '';
+	  for (
+	    // initialize result and counter
+	    var block, charCode, idx = 0, map = chars;
+	    // if the next str index does not exist:
+	    //   change the mapping table to "="
+	    //   check if d has no fractional digits
+	    str.charAt(idx | 0) || (map = '=', idx % 1);
+	    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+	    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+	  ) {
+	    charCode = str.charCodeAt(idx += 3 / 4);
+	    if (charCode > 0xFF) {
+	      throw new E();
+	    }
+	    block = block << 8 | charCode;
+	  }
+	  return output;
+	}
+
+	module.exports = btoa;
+
+
+/***/ },
+/* 213 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+
+	  // Standard browser envs support document.cookie
+	  (function standardBrowserEnv() {
+	    return {
+	      write: function write(name, value, expires, path, domain, secure) {
+	        var cookie = [];
+	        cookie.push(name + '=' + encodeURIComponent(value));
+
+	        if (utils.isNumber(expires)) {
+	          cookie.push('expires=' + new Date(expires).toGMTString());
+	        }
+
+	        if (utils.isString(path)) {
+	          cookie.push('path=' + path);
+	        }
+
+	        if (utils.isString(domain)) {
+	          cookie.push('domain=' + domain);
+	        }
+
+	        if (secure === true) {
+	          cookie.push('secure');
+	        }
+
+	        document.cookie = cookie.join('; ');
+	      },
+
+	      read: function read(name) {
+	        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+	        return (match ? decodeURIComponent(match[3]) : null);
+	      },
+
+	      remove: function remove(name) {
+	        this.write(name, '', Date.now() - 86400000);
+	      }
+	    };
+	  })() :
+
+	  // Non standard browser env (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return {
+	      write: function write() {},
+	      read: function read() { return null; },
+	      remove: function remove() {}
+	    };
+	  })()
+	);
+
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+	var buildURL = __webpack_require__(208);
+	var transformData = __webpack_require__(210);
+	var http = __webpack_require__(215).http;
+	var https = __webpack_require__(215).https;
+	var url = __webpack_require__(167);
+	var zlib = __webpack_require__(170);
+	var pkg = __webpack_require__(226);
+	var Buffer = __webpack_require__(196).Buffer;
+
+	/*eslint consistent-return:0*/
+	module.exports = function httpAdapter(resolve, reject, config) {
+	  var data = config.data;
+	  var headers = config.headers;
+	  var timer;
+	  var aborted = false;
+
+	  // Set User-Agent (required by some servers)
+	  // Only set header if it hasn't been set in config
+	  // See https://github.com/mzabriskie/axios/issues/69
+	  if (!headers['User-Agent'] && !headers['user-agent']) {
+	    headers['User-Agent'] = 'axios/' + pkg.version;
+	  }
+
+	  if (data) {
+	    if (utils.isArrayBuffer(data)) {
+	      data = new Buffer(new Uint8Array(data));
+	    } else if (utils.isString(data)) {
+	      data = new Buffer(data, 'utf-8');
+	    } else {
+	      return reject(new Error('Data after transformation must be a string or an ArrayBuffer'));
+	    }
+
+	    // Add Content-Length header if data exists
+	    headers['Content-Length'] = data.length;
+	  }
+
+	  // HTTP basic authentication
+	  var auth = undefined;
+	  if (config.auth) {
+	    var username = config.auth.username || '';
+	    var password = config.auth.password || '';
+	    auth = username + ':' + password;
+	  }
+
+	  // Parse url
+	  var parsed = url.parse(config.url);
+	  if (!auth && parsed.auth) {
+	    var urlAuth = parsed.auth.split(':');
+	    var urlUsername = urlAuth[0] || '';
+	    var urlPassword = urlAuth[1] || '';
+	    auth = urlUsername + ':' + urlPassword;
+	  }
+	  var options = {
+	    hostname: parsed.hostname,
+	    port: parsed.port,
+	    path: buildURL(parsed.path, config.params, config.paramsSerializer).replace(/^\?/, ''),
+	    method: config.method,
+	    headers: headers,
+	    agent: config.agent,
+	    auth: auth
+	  };
+
+	  if (config.proxy) {
+	    options.host = config.proxy.host;
+	    options.port = config.proxy.port;
+	    options.path = parsed.protocol + '//' + parsed.hostname + options.path;
+	  }
+
+	  // Create the request
+	  var transport = parsed.protocol === 'https:' ? https : http;
+	  var req = transport.request(options, function handleResponse(res) {
+	    if (aborted) return;
+
+	    // Response has been received so kill timer that handles request timeout
+	    clearTimeout(timer);
+	    timer = null;
+
+	    // uncompress the response body transparently if required
+	    var stream = res;
+	    switch (res.headers['content-encoding']) {
+	    /*eslint default-case:0*/
+	    case 'gzip':
+	    case 'compress':
+	    case 'deflate':
+	      // add the unzipper to the body stream processing pipeline
+	      stream = stream.pipe(zlib.createUnzip());
+
+	      // remove the content-encoding in order to not confuse downstream operations
+	      delete res.headers['content-encoding'];
+	      break;
+	    }
+
+	    var responseBuffer = [];
+	    stream.on('data', function handleStreamData(chunk) {
+	      responseBuffer.push(chunk);
+
+	      // make sure the content length is not over the maxContentLength if specified
+	      if (config.maxContentLength > -1 && Buffer.concat(responseBuffer).length > config.maxContentLength) {
+	        reject(new Error('maxContentLength size of ' + config.maxContentLength + ' exceeded'));
+	      }
+	    });
+
+	    stream.on('end', function handleStreamEnd() {
+	      var d = Buffer.concat(responseBuffer);
+	      if (config.responseType !== 'arraybuffer') {
+	        d = d.toString('utf8');
+	      }
+	      var response = {
+	        data: transformData(
+	          d,
+	          res.headers,
+	          config.transformResponse
+	        ),
+	        status: res.statusCode,
+	        statusText: res.statusMessage,
+	        headers: res.headers,
+	        config: config,
+	        request: req
+	      };
+
+	      // Resolve or reject the Promise based on the status
+	      (res.statusCode >= 200 && res.statusCode < 300 ?
+	        resolve :
+	        reject)(response);
+	    });
+	  });
+
+	  // Handle errors
+	  req.on('error', function handleRequestError(err) {
+	    if (aborted) return;
+	    reject(err);
+	  });
+
+	  // Handle request timeout
+	  if (config.timeout && !timer) {
+	    timer = setTimeout(function handleRequestTimeout() {
+	      var err = new Error('timeout of ' + config.timeout + 'ms exceeded');
+	      err.timeout = config.timeout;
+	      err.code = 'ECONNABORTED';
+	      req.abort();
+	      reject(err);
+	      aborted = true;
+	    }, config.timeout);
+	  }
+
+	  // Send the request
+	  req.end(data);
+	};
+
+
+/***/ },
+/* 215 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(216)({
+	  'http': __webpack_require__(168),
+	  'https': __webpack_require__(169)
+	});
+
+
+/***/ },
+/* 216 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var url = __webpack_require__(167);
+	var debug = __webpack_require__(217)('follow-redirects');
+	var assert = __webpack_require__(224);
+	var consume = __webpack_require__(225);
+
+	module.exports = function(_nativeProtocols) {
+	  var nativeProtocols = {};
+
+	  var publicApi = {
+	    maxRedirects: 5
+	  };
+
+	  for (var p in _nativeProtocols) {
+	    /* istanbul ignore else */
+	    if (_nativeProtocols.hasOwnProperty(p)) {
+	      // http://www.ietf.org/rfc/rfc2396.txt - Section 3.1
+	      assert(/^[A-Z][A-Z\+\-\.]*$/i.test(p), JSON.stringify(p) + ' is not a valid scheme name');
+	      generateWrapper(p, _nativeProtocols[p]);
+	    }
+	  }
+
+	  return publicApi;
+
+	  function execute(options) {
+	    var clientRequest;
+	    var fetchedUrls = [];
+
+	    return (clientRequest = cb());
+
+	    function cb(res) {
+	      // skip the redirection logic on the first call.
+	      if (res) {
+	        var fetchedUrl = url.format(options);
+	        fetchedUrls.unshift(fetchedUrl);
+
+	        if (!isRedirect(res)) {
+	          res.fetchedUrls = fetchedUrls;
+	          return options.userCallback(res);
+	        }
+
+	        // we are going to follow the redirect, but in node 0.10 we must first attach a data listener
+	        // to consume the stream and send the 'end' event
+	        consume(res);
+
+	        // need to use url.resolve() in case location is a relative URL
+	        var redirectUrl = url.resolve(fetchedUrl, res.headers.location);
+	        debug('redirecting to', redirectUrl);
+
+	        // clean all the properties related to the old url away, and copy from the redirect url
+	        wipeUrlProps(options);
+	        extend(options, url.parse(redirectUrl));
+	      }
+
+	      if (fetchedUrls.length > options.maxRedirects) {
+	        var err = new Error('Max redirects exceeded.');
+	        return forwardError(err);
+	      }
+
+	      options.nativeProtocol = nativeProtocols[options.protocol];
+	      options.defaultRequest = defaultMakeRequest;
+
+	      var req = (options.makeRequest || defaultMakeRequest)(options, cb, res);
+
+	      if (res) {
+	        req.on('error', forwardError);
+	      }
+	      return req;
+	    }
+
+	    function defaultMakeRequest(options, cb, res) {
+	      if (res) {
+	        // This is a redirect, so use only GET methods
+	        options.method = 'GET';
+	      }
+
+	      var req = options.nativeProtocol.request(options, cb);
+
+	      if (res) {
+	        // We leave the user to call `end` on the first request
+	        req.end();
+	      }
+
+	      return req;
+	    }
+
+	    // bubble errors that occur on the redirect back up to the initiating client request
+	    // object, otherwise they wind up killing the process.
+	    function forwardError (err) {
+	      clientRequest.emit('error', err);
+	    }
+	  }
+
+	  function generateWrapper (scheme, nativeProtocol) {
+	    var wrappedProtocol = scheme + ':';
+	    var H = function() {};
+	    H.prototype = nativeProtocols[wrappedProtocol] = nativeProtocol;
+	    H = new H();
+	    publicApi[scheme] = H;
+
+	    H.request = function(options, callback) {
+	      return execute(parseOptions(options, callback, wrappedProtocol));
+	    };
+
+	    // see https://github.com/joyent/node/blob/master/lib/http.js#L1623
+	    H.get = function(options, callback) {
+	      options = parseOptions(options, callback, wrappedProtocol);
+	      var req = execute(options);
+	      req.end();
+	      return req;
+	    };
+	  }
+
+	  // returns a safe copy of options (or a parsed url object if options was a string).
+	  // validates that the supplied callback is a function
+	  function parseOptions (options, callback, wrappedProtocol) {
+	    assert.equal(typeof callback, 'function', 'callback must be a function');
+	    if ('string' === typeof options) {
+	      options = url.parse(options);
+	      options.maxRedirects = publicApi.maxRedirects;
+	    } else {
+	      options = extend({
+	        maxRedirects: publicApi.maxRedirects,
+	        protocol: wrappedProtocol
+	      }, options);
+	    }
+	    assert.equal(options.protocol, wrappedProtocol, 'protocol mismatch');
+	    options.protocol = wrappedProtocol;
+	    options.userCallback = callback;
+
+	    debug('options', options);
+	    return options;
+	  }
+	};
+
+	// copies source's own properties onto destination and returns destination
+	function extend(destination, source) {
+	  for (var i in source) {
+	    if (source.hasOwnProperty(i)) {
+	      destination[i] = source[i];
+	    }
+	  }
+	  return destination;
+	}
+
+	// to redirect the result must have
+	// a statusCode between 300-399
+	// and a `Location` header
+	function isRedirect (res) {
+	  return (res.statusCode >= 300 && res.statusCode <= 399 &&
+	  'location' in res.headers);
+	}
+
+	// nulls all url related properties on the object.
+	// required on node <10
+	function wipeUrlProps(options) {
+	  for (var i = 0, l = urlProps.length; i < l; ++i) {
+	    options[urlProps[i]] = null;
+	  }
+	}
+	var urlProps = ['protocol', 'slashes', 'auth', 'host', 'port', 'hostname',
+	  'hash', 'search', 'query', 'pathname', 'path', 'href'];
+
+
+/***/ },
+/* 217 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Module dependencies.
+	 */
+
+	var tty = __webpack_require__(218);
+	var util = __webpack_require__(219);
+
+	/**
+	 * This is the Node.js implementation of `debug()`.
+	 *
+	 * Expose `debug()` as the module.
+	 */
+
+	exports = module.exports = __webpack_require__(220);
+	exports.log = log;
+	exports.formatArgs = formatArgs;
+	exports.save = save;
+	exports.load = load;
+	exports.useColors = useColors;
+
+	/**
+	 * Colors.
+	 */
+
+	exports.colors = [6, 2, 3, 4, 5, 1];
+
+	/**
+	 * The file descriptor to write the `debug()` calls to.
+	 * Set the `DEBUG_FD` env variable to override with another value. i.e.:
+	 *
+	 *   $ DEBUG_FD=3 node script.js 3>debug.log
+	 */
+
+	var fd = parseInt(process.env.DEBUG_FD, 10) || 2;
+	var stream = 1 === fd ? process.stdout :
+	             2 === fd ? process.stderr :
+	             createWritableStdioStream(fd);
+
+	/**
+	 * Is stdout a TTY? Colored output is enabled when `true`.
+	 */
+
+	function useColors() {
+	  var debugColors = (process.env.DEBUG_COLORS || '').trim().toLowerCase();
+	  if (0 === debugColors.length) {
+	    return tty.isatty(fd);
+	  } else {
+	    return '0' !== debugColors
+	        && 'no' !== debugColors
+	        && 'false' !== debugColors
+	        && 'disabled' !== debugColors;
+	  }
+	}
+
+	/**
+	 * Map %o to `util.inspect()`, since Node doesn't do that out of the box.
+	 */
+
+	var inspect = (4 === util.inspect.length ?
+	  // node <= 0.8.x
+	  function (v, colors) {
+	    return util.inspect(v, void 0, void 0, colors);
+	  } :
+	  // node > 0.8.x
+	  function (v, colors) {
+	    return util.inspect(v, { colors: colors });
+	  }
+	);
+
+	exports.formatters.o = function(v) {
+	  return inspect(v, this.useColors)
+	    .replace(/\s*\n\s*/g, ' ');
+	};
+
+	/**
+	 * Adds ANSI color escape codes if enabled.
+	 *
+	 * @api public
+	 */
+
+	function formatArgs() {
+	  var args = arguments;
+	  var useColors = this.useColors;
+	  var name = this.namespace;
+
+	  if (useColors) {
+	    var c = this.color;
+
+	    args[0] = '  \u001b[3' + c + ';1m' + name + ' '
+	      + '\u001b[0m'
+	      + args[0] + '\u001b[3' + c + 'm'
+	      + ' +' + exports.humanize(this.diff) + '\u001b[0m';
+	  } else {
+	    args[0] = new Date().toUTCString()
+	      + ' ' + name + ' ' + args[0];
+	  }
+	  return args;
+	}
+
+	/**
+	 * Invokes `console.error()` with the specified arguments.
+	 */
+
+	function log() {
+	  return stream.write(util.format.apply(this, arguments) + '\n');
+	}
+
+	/**
+	 * Save `namespaces`.
+	 *
+	 * @param {String} namespaces
+	 * @api private
+	 */
+
+	function save(namespaces) {
+	  if (null == namespaces) {
+	    // If you set a process.env field to null or undefined, it gets cast to the
+	    // string 'null' or 'undefined'. Just delete instead.
+	    delete process.env.DEBUG;
+	  } else {
+	    process.env.DEBUG = namespaces;
+	  }
+	}
+
+	/**
+	 * Load `namespaces`.
+	 *
+	 * @return {String} returns the previously persisted debug modes
+	 * @api private
+	 */
+
+	function load() {
+	  return process.env.DEBUG;
+	}
+
+	/**
+	 * Copied from `node/src/node.js`.
+	 *
+	 * XXX: It's lame that node doesn't expose this API out-of-the-box. It also
+	 * relies on the undocumented `tty_wrap.guessHandleType()` which is also lame.
+	 */
+
+	function createWritableStdioStream (fd) {
+	  var stream;
+	  var tty_wrap = process.binding('tty_wrap');
+
+	  // Note stream._type is used for test-module-load-list.js
+
+	  switch (tty_wrap.guessHandleType(fd)) {
+	    case 'TTY':
+	      stream = new tty.WriteStream(fd);
+	      stream._type = 'tty';
+
+	      // Hack to have stream not keep the event loop alive.
+	      // See https://github.com/joyent/node/issues/1726
+	      if (stream._handle && stream._handle.unref) {
+	        stream._handle.unref();
+	      }
+	      break;
+
+	    case 'FILE':
+	      var fs = __webpack_require__(222);
+	      stream = new fs.SyncWriteStream(fd, { autoClose: false });
+	      stream._type = 'fs';
+	      break;
+
+	    case 'PIPE':
+	    case 'TCP':
+	      var net = __webpack_require__(223);
+	      stream = new net.Socket({
+	        fd: fd,
+	        readable: false,
+	        writable: true
+	      });
+
+	      // FIXME Should probably have an option in net.Socket to create a
+	      // stream from an existing fd which is writable only. But for now
+	      // we'll just add this hack and set the `readable` member to false.
+	      // Test: ./node test/fixtures/echo.js < /etc/passwd
+	      stream.readable = false;
+	      stream.read = null;
+	      stream._type = 'pipe';
+
+	      // FIXME Hack to have stream not keep the event loop alive.
+	      // See https://github.com/joyent/node/issues/1726
+	      if (stream._handle && stream._handle.unref) {
+	        stream._handle.unref();
+	      }
+	      break;
+
+	    default:
+	      // Probably an error on in uv_guess_handle()
+	      throw new Error('Implement me. Unknown stream file type!');
+	  }
+
+	  // For supporting legacy API we put the FD here.
+	  stream.fd = fd;
+
+	  stream._isStdio = true;
+
+	  return stream;
+	}
+
+	/**
+	 * Enable namespaces listed in `process.env.DEBUG` initially.
+	 */
+
+	exports.enable(load());
+
+
+/***/ },
+/* 218 */
+/***/ function(module, exports) {
+
+	module.exports = require("tty");
+
+/***/ },
+/* 219 */
+/***/ function(module, exports) {
+
+	module.exports = require("util");
+
+/***/ },
+/* 220 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * This is the common logic for both the Node.js and web browser
+	 * implementations of `debug()`.
+	 *
+	 * Expose `debug()` as the module.
+	 */
+
+	exports = module.exports = debug;
+	exports.coerce = coerce;
+	exports.disable = disable;
+	exports.enable = enable;
+	exports.enabled = enabled;
+	exports.humanize = __webpack_require__(221);
+
+	/**
+	 * The currently active debug mode names, and names to skip.
+	 */
+
+	exports.names = [];
+	exports.skips = [];
+
+	/**
+	 * Map of special "%n" handling functions, for the debug "format" argument.
+	 *
+	 * Valid key names are a single, lowercased letter, i.e. "n".
+	 */
+
+	exports.formatters = {};
+
+	/**
+	 * Previously assigned color.
+	 */
+
+	var prevColor = 0;
+
+	/**
+	 * Previous log timestamp.
+	 */
+
+	var prevTime;
+
+	/**
+	 * Select a color.
+	 *
+	 * @return {Number}
+	 * @api private
+	 */
+
+	function selectColor() {
+	  return exports.colors[prevColor++ % exports.colors.length];
+	}
+
+	/**
+	 * Create a debugger with the given `namespace`.
+	 *
+	 * @param {String} namespace
+	 * @return {Function}
+	 * @api public
+	 */
+
+	function debug(namespace) {
+
+	  // define the `disabled` version
+	  function disabled() {
+	  }
+	  disabled.enabled = false;
+
+	  // define the `enabled` version
+	  function enabled() {
+
+	    var self = enabled;
+
+	    // set `diff` timestamp
+	    var curr = +new Date();
+	    var ms = curr - (prevTime || curr);
+	    self.diff = ms;
+	    self.prev = prevTime;
+	    self.curr = curr;
+	    prevTime = curr;
+
+	    // add the `color` if not set
+	    if (null == self.useColors) self.useColors = exports.useColors();
+	    if (null == self.color && self.useColors) self.color = selectColor();
+
+	    var args = Array.prototype.slice.call(arguments);
+
+	    args[0] = exports.coerce(args[0]);
+
+	    if ('string' !== typeof args[0]) {
+	      // anything else let's inspect with %o
+	      args = ['%o'].concat(args);
+	    }
+
+	    // apply any `formatters` transformations
+	    var index = 0;
+	    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+	      // if we encounter an escaped % then don't increase the array index
+	      if (match === '%%') return match;
+	      index++;
+	      var formatter = exports.formatters[format];
+	      if ('function' === typeof formatter) {
+	        var val = args[index];
+	        match = formatter.call(self, val);
+
+	        // now we need to remove `args[index]` since it's inlined in the `format`
+	        args.splice(index, 1);
+	        index--;
+	      }
+	      return match;
+	    });
+
+	    if ('function' === typeof exports.formatArgs) {
+	      args = exports.formatArgs.apply(self, args);
+	    }
+	    var logFn = enabled.log || exports.log || console.log.bind(console);
+	    logFn.apply(self, args);
+	  }
+	  enabled.enabled = true;
+
+	  var fn = exports.enabled(namespace) ? enabled : disabled;
+
+	  fn.namespace = namespace;
+
+	  return fn;
+	}
+
+	/**
+	 * Enables a debug mode by namespaces. This can include modes
+	 * separated by a colon and wildcards.
+	 *
+	 * @param {String} namespaces
+	 * @api public
+	 */
+
+	function enable(namespaces) {
+	  exports.save(namespaces);
+
+	  var split = (namespaces || '').split(/[\s,]+/);
+	  var len = split.length;
+
+	  for (var i = 0; i < len; i++) {
+	    if (!split[i]) continue; // ignore empty strings
+	    namespaces = split[i].replace(/\*/g, '.*?');
+	    if (namespaces[0] === '-') {
+	      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+	    } else {
+	      exports.names.push(new RegExp('^' + namespaces + '$'));
+	    }
+	  }
+	}
+
+	/**
+	 * Disable debug output.
+	 *
+	 * @api public
+	 */
+
+	function disable() {
+	  exports.enable('');
+	}
+
+	/**
+	 * Returns true if the given mode name is enabled, false otherwise.
+	 *
+	 * @param {String} name
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	function enabled(name) {
+	  var i, len;
+	  for (i = 0, len = exports.skips.length; i < len; i++) {
+	    if (exports.skips[i].test(name)) {
+	      return false;
+	    }
+	  }
+	  for (i = 0, len = exports.names.length; i < len; i++) {
+	    if (exports.names[i].test(name)) {
+	      return true;
+	    }
+	  }
+	  return false;
+	}
+
+	/**
+	 * Coerce `val`.
+	 *
+	 * @param {Mixed} val
+	 * @return {Mixed}
+	 * @api private
+	 */
+
+	function coerce(val) {
+	  if (val instanceof Error) return val.stack || val.message;
+	  return val;
+	}
+
+
+/***/ },
+/* 221 */
+/***/ function(module, exports) {
+
+	/**
+	 * Helpers.
+	 */
+
+	var s = 1000;
+	var m = s * 60;
+	var h = m * 60;
+	var d = h * 24;
+	var y = d * 365.25;
+
+	/**
+	 * Parse or format the given `val`.
+	 *
+	 * Options:
+	 *
+	 *  - `long` verbose formatting [false]
+	 *
+	 * @param {String|Number} val
+	 * @param {Object} options
+	 * @return {String|Number}
+	 * @api public
+	 */
+
+	module.exports = function(val, options){
+	  options = options || {};
+	  if ('string' == typeof val) return parse(val);
+	  return options.long
+	    ? long(val)
+	    : short(val);
+	};
+
+	/**
+	 * Parse the given `str` and return milliseconds.
+	 *
+	 * @param {String} str
+	 * @return {Number}
+	 * @api private
+	 */
+
+	function parse(str) {
+	  str = '' + str;
+	  if (str.length > 10000) return;
+	  var match = /^((?:\d+)?\.?\d+) *(milliseconds?|msecs?|ms|seconds?|secs?|s|minutes?|mins?|m|hours?|hrs?|h|days?|d|years?|yrs?|y)?$/i.exec(str);
+	  if (!match) return;
+	  var n = parseFloat(match[1]);
+	  var type = (match[2] || 'ms').toLowerCase();
+	  switch (type) {
+	    case 'years':
+	    case 'year':
+	    case 'yrs':
+	    case 'yr':
+	    case 'y':
+	      return n * y;
+	    case 'days':
+	    case 'day':
+	    case 'd':
+	      return n * d;
+	    case 'hours':
+	    case 'hour':
+	    case 'hrs':
+	    case 'hr':
+	    case 'h':
+	      return n * h;
+	    case 'minutes':
+	    case 'minute':
+	    case 'mins':
+	    case 'min':
+	    case 'm':
+	      return n * m;
+	    case 'seconds':
+	    case 'second':
+	    case 'secs':
+	    case 'sec':
+	    case 's':
+	      return n * s;
+	    case 'milliseconds':
+	    case 'millisecond':
+	    case 'msecs':
+	    case 'msec':
+	    case 'ms':
+	      return n;
+	  }
+	}
+
+	/**
+	 * Short format for `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {String}
+	 * @api private
+	 */
+
+	function short(ms) {
+	  if (ms >= d) return Math.round(ms / d) + 'd';
+	  if (ms >= h) return Math.round(ms / h) + 'h';
+	  if (ms >= m) return Math.round(ms / m) + 'm';
+	  if (ms >= s) return Math.round(ms / s) + 's';
+	  return ms + 'ms';
+	}
+
+	/**
+	 * Long format for `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {String}
+	 * @api private
+	 */
+
+	function long(ms) {
+	  return plural(ms, d, 'day')
+	    || plural(ms, h, 'hour')
+	    || plural(ms, m, 'minute')
+	    || plural(ms, s, 'second')
+	    || ms + ' ms';
+	}
+
+	/**
+	 * Pluralization helper.
+	 */
+
+	function plural(ms, n, name) {
+	  if (ms < n) return;
+	  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
+	  return Math.ceil(ms / n) + ' ' + name + 's';
+	}
+
+
+/***/ },
+/* 222 */
+/***/ function(module, exports) {
+
+	module.exports = require("fs");
+
+/***/ },
+/* 223 */
+/***/ function(module, exports) {
+
+	module.exports = require("net");
+
+/***/ },
+/* 224 */
+/***/ function(module, exports) {
+
+	module.exports = require("assert");
+
+/***/ },
+/* 225 */
+/***/ function(module, exports) {
+
+	module.exports = function(stream) {
+	    if (stream.readable && typeof stream.resume === 'function') {
+	        var state = stream._readableState;
+	        if (!state || state.pipesCount === 0) {
+	            // Either a classic stream or streams2 that's not piped to another destination
+	            try {
+	                stream.resume();
+	            } catch (err) {
+	                console.error("Got error: " + err);
+	                // If we can't, it's not worth dying over
+	            }
+	        }
+	    }
+	};
+
+
+/***/ },
+/* 226 */
+/***/ function(module, exports) {
+
+	module.exports = {
+		"name": "axios",
+		"version": "0.10.0",
+		"description": "Promise based HTTP client for the browser and node.js",
+		"main": "index.js",
+		"scripts": {
+			"test": "grunt test",
+			"start": "node ./sandbox/server.js",
+			"build": "NODE_ENV=production grunt build",
+			"preversion": "npm test",
+			"version": "npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json",
+			"postversion": "git push && git push --tags",
+			"examples": "node ./examples/server.js",
+			"coveralls": "cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+		},
+		"repository": {
+			"type": "git",
+			"url": "git+https://github.com/mzabriskie/axios.git"
+		},
+		"keywords": [
+			"xhr",
+			"http",
+			"ajax",
+			"promise",
+			"node"
+		],
+		"author": {
+			"name": "Matt Zabriskie"
+		},
+		"license": "MIT",
+		"bugs": {
+			"url": "https://github.com/mzabriskie/axios/issues"
+		},
+		"homepage": "https://github.com/mzabriskie/axios",
+		"devDependencies": {
+			"coveralls": "2.11.8",
+			"es6-promise": "3.1.2",
+			"grunt": "0.4.5",
+			"grunt-banner": "0.6.0",
+			"grunt-cli": "0.1.13",
+			"grunt-contrib-clean": "1.0.0",
+			"grunt-contrib-nodeunit": "1.0.0",
+			"grunt-contrib-watch": "0.6.1",
+			"grunt-eslint": "18.0.0",
+			"grunt-karma": "0.12.1",
+			"grunt-ts": "5.3.2",
+			"grunt-webpack": "1.0.11",
+			"istanbul-instrumenter-loader": "^0.2.0",
+			"jasmine-core": "2.4.1",
+			"karma": "0.13.21",
+			"karma-chrome-launcher": "^0.2.2",
+			"karma-coverage": "0.5.4",
+			"karma-firefox-launcher": "^0.1.7",
+			"karma-jasmine": "0.3.7",
+			"karma-jasmine-ajax": "0.1.13",
+			"karma-opera-launcher": "^0.3.0",
+			"karma-phantomjs-launcher": "1.0.0",
+			"karma-safari-launcher": "^0.1.1",
+			"karma-sauce-launcher": "^0.3.1",
+			"karma-sinon": "1.0.4",
+			"karma-sourcemap-loader": "0.3.7",
+			"karma-webpack": "1.7.0",
+			"load-grunt-tasks": "3.4.1",
+			"minimist": "1.2.0",
+			"phantomjs-prebuilt": "2.1.6",
+			"sinon": "1.17.3",
+			"webpack": "1.12.14",
+			"webpack-dev-server": "1.14.1"
+		},
+		"browser": {
+			"./lib/adapters/http.js": "./lib/adapters/xhr.js"
+		},
+		"typescript": {
+			"definition": "./axios.d.ts"
+		},
+		"dependencies": {
+			"follow-redirects": "0.0.7"
+		},
+		"gitHead": "2797f10ea5d2cd963a8e5c80da319848bad9f499",
+		"_id": "axios@0.10.0",
+		"_shasum": "5b0ec0d5fb53e79b98b7bf84c0e9b1cf902fdfc4",
+		"_from": "axios@*",
+		"_npmVersion": "2.14.3",
+		"_nodeVersion": "3.3.1",
+		"_npmUser": {
+			"name": "mzabriskie",
+			"email": "mzabriskie@gmail.com"
+		},
+		"maintainers": [
+			{
+				"name": "mzabriskie",
+				"email": "mzabriskie@gmail.com"
+			}
+		],
+		"dist": {
+			"shasum": "5b0ec0d5fb53e79b98b7bf84c0e9b1cf902fdfc4",
+			"tarball": "https://registry.npmjs.org/axios/-/axios-0.10.0.tgz"
+		},
+		"_npmOperationalInternal": {
+			"host": "packages-16-east.internal.npmjs.com",
+			"tmp": "tmp/axios-0.10.0.tgz_1461214339472_0.5915569786448032"
+		},
+		"directories": {},
+		"_resolved": "https://registry.npmjs.org/axios/-/axios-0.10.0.tgz"
+	};
+
+/***/ },
+/* 227 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(205);
+
+	function InterceptorManager() {
+	  this.handlers = [];
+	}
+
+	/**
+	 * Add a new interceptor to the stack
+	 *
+	 * @param {Function} fulfilled The function to handle `then` for a `Promise`
+	 * @param {Function} rejected The function to handle `reject` for a `Promise`
+	 *
+	 * @return {Number} An ID used to remove interceptor later
+	 */
+	InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+	  this.handlers.push({
+	    fulfilled: fulfilled,
+	    rejected: rejected
+	  });
+	  return this.handlers.length - 1;
+	};
+
+	/**
+	 * Remove an interceptor from the stack
+	 *
+	 * @param {Number} id The ID that was returned by `use`
+	 */
+	InterceptorManager.prototype.eject = function eject(id) {
+	  if (this.handlers[id]) {
+	    this.handlers[id] = null;
+	  }
+	};
+
+	/**
+	 * Iterate over all the registered interceptors
+	 *
+	 * This method is particularly useful for skipping over any
+	 * interceptors that may have become `null` calling `eject`.
+	 *
+	 * @param {Function} fn The function to call for each interceptor
+	 */
+	InterceptorManager.prototype.forEach = function forEach(fn) {
+	  utils.forEach(this.handlers, function forEachHandler(h) {
+	    if (h !== null) {
+	      fn(h);
+	    }
+	  });
+	};
+
+	module.exports = InterceptorManager;
+
+
+/***/ },
+/* 228 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Determines whether the specified URL is absolute
+	 *
+	 * @param {string} url The URL to test
+	 * @returns {boolean} True if the specified URL is absolute, otherwise false
+	 */
+	module.exports = function isAbsoluteURL(url) {
+	  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+	  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+	  // by any combination of letters, digits, plus, period, or hyphen.
+	  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+	};
+
+
+/***/ },
+/* 229 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Creates a new URL by combining the specified URLs
+	 *
+	 * @param {string} baseURL The base URL
+	 * @param {string} relativeURL The relative URL
+	 * @returns {string} The combined URL
+	 */
+	module.exports = function combineURLs(baseURL, relativeURL) {
+	  return baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '');
+	};
+
+
+/***/ },
+/* 230 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function bind(fn, thisArg) {
+	  return function wrap() {
+	    var args = new Array(arguments.length);
+	    for (var i = 0; i < args.length; i++) {
+	      args[i] = arguments[i];
+	    }
+	    return fn.apply(thisArg, args);
+	  };
+	};
+
+
+/***/ },
+/* 231 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Syntactic sugar for invoking a function and expanding an array for arguments.
+	 *
+	 * Common use case would be to use `Function.prototype.apply`.
+	 *
+	 *  ```js
+	 *  function f(x, y, z) {}
+	 *  var args = [1, 2, 3];
+	 *  f.apply(null, args);
+	 *  ```
+	 *
+	 * With `spread` this example can be re-written.
+	 *
+	 *  ```js
+	 *  spread(function(x, y, z) {})([1, 2, 3]);
+	 *  ```
+	 *
+	 * @param {Function} callback
+	 * @returns {Function}
+	 */
+	module.exports = function spread(callback) {
+	  return function wrap(arr) {
+	    return callback.apply(null, arr);
+	  };
+	};
+
+
+/***/ },
+/* 232 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _promise = __webpack_require__(131);
+
+	var _promise2 = _interopRequireDefault(_promise);
+
+	var _axios = __webpack_require__(202);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _actionTypes = __webpack_require__(161);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getJobs() {
+		console.log('in getJobs actions');
+		return function (dispatch) {
+			return _axios2.default.get('/user/job').then(function (payload) {
+				return dispatch({ type: _actionTypes.FETCH_JOBS, payload: payload });
+			}).catch(function (resp) {
+				return console.log("Error fetching jobs", resp);
+			});
+		};
+	}
+
+	function applyToJob(data) {
+		return new _promise2.default(function (resolve, reject) {
+			$.ajax({
+				type: 'POST',
+				url: '/job',
+				data: data,
+				success: function success(resp) {
+					if (response.status >= 400) {
+						reject("Bad response from server");
+						return;
+					}
+					resolve(resp);
+				}
+			});
+		});
+	}
+
+	module.exports = {
+		getJobs: getJobs
+	};
+
+/***/ },
+/* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21226,7 +23553,7 @@ module.exports =
 	exports.default = _default;
 
 /***/ },
-/* 200 */
+/* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21234,7 +23561,7 @@ module.exports =
 	var _dec, _class, _class2;
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = undefined;
 
@@ -21278,19 +23605,15 @@ module.exports =
 
 	var _footer2 = _interopRequireDefault(_footer);
 
-	var _appheader = __webpack_require__(201);
+	var _appCard = __webpack_require__(235);
 
-	var _appheader2 = _interopRequireDefault(_appheader);
+	var _appCard2 = _interopRequireDefault(_appCard);
 
-	var _appdescription = __webpack_require__(202);
-
-	var _appdescription2 = _interopRequireDefault(_appdescription);
-
-	var _appconfirm = __webpack_require__(203);
-
-	var _appconfirm2 = _interopRequireDefault(_appconfirm);
+	var _index = __webpack_require__(129);
 
 	var _reactRedux = __webpack_require__(112);
+
+	var _redux = __webpack_require__(119);
 
 	var _actions = __webpack_require__(129);
 
@@ -21300,145 +23623,142 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ApplicationContainer = function (_React$Component) {
-		(0, _inherits3.default)(ApplicationContainer, _React$Component);
+	var ApplicationContainer = (_dec = (0, _reactRedux.connect)(function (state) {
+	  return state;
+	}), _dec(_class = function (_React$Component) {
+	  (0, _inherits3.default)(ApplicationContainer, _React$Component);
 
-		function ApplicationContainer() {
-			(0, _classCallCheck3.default)(this, ApplicationContainer);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).apply(this, arguments));
-		}
+	  function ApplicationContainer(props) {
+	    (0, _classCallCheck3.default)(this, ApplicationContainer);
 
-		(0, _createClass3.default)(ApplicationContainer, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'textAlign': 'center'
-				};
-				var textStyle = {
-					textDecoration: this.props.completed ? 'line-through' : ''
-				};
-				var buttonStyle = {
-					height: 25,
-					color: 'red',
-					fontSize: 20,
-					lineHeight: 0,
-					marginTop: -3,
-					border: 'none',
-					background: 'none'
-				};
-				var panelStyle = {
-					'maxWidth': '400px'
-				};
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).call(this, props));
 
-				return React.createElement(
-					Col,
-					{ sm: 12, md: 4, lg: 4 },
-					React.createElement(
-						PanelContainer,
-						{ style: panelStyle },
-						React.createElement(
-							Panel,
-							null,
-							React.createElement(
-								PanelBody,
-								null,
-								React.createElement(
-									Grid,
-									null,
-									React.createElement(
-										Row,
-										null,
-										React.createElement(_appheader2.default, null),
-										React.createElement(_appdescription2.default, null),
-										React.createElement(_appconfirm2.default, null)
-									)
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-		return ApplicationContainer;
-	}(React.Component);
+	    _this.state = {
+	      applicants: []
+	    };
 
-	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
-		return state;
-	}), _dec(_class = function (_React$Component2) {
-		(0, _inherits3.default)(Body, _React$Component2);
+	    // this.onDbLoad = this.onDbLoad.bind(this)
 
-		function Body() {
-			(0, _classCallCheck3.default)(this, Body);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
-		}
+	    return _this;
+	  }
 
-		(0, _createClass3.default)(Body, [{
-			key: 'render',
-			value: function render() {
-				var app = ['Some text', 'More Text', 'Even More Text'];
-				var dispatch = this.props.dispatch;
-				var visibilityFilter = this.props.visibilityFilter;
+	  (0, _createClass3.default)(ApplicationContainer, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.dispatch((0, _index.getApplications)(1));
+	      // this.setState({applicants:this.props.appList.items})
+	      // console.log('appList.items:', this.props.appList.item)
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
 
-				return React.createElement(
-					Container,
-					{ id: 'body' },
-					React.createElement(
-						Grid,
-						null,
-						React.createElement(
-							Row,
-							null,
-							app.map(function (text) {
-								return React.createElement(ApplicationContainer, null);
-							})
-						)
-					)
-				);
-			}
-		}]);
-		return Body;
+	      console.log('in render func props:', this.props);
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5,
+	        'textAlign': 'center'
+	      };
+	      var textStyle = {
+	        textDecoration: this.props.completed ? 'line-through' : ''
+	      };
+	      var buttonStyle = {
+	        height: 25,
+	        color: 'red',
+	        fontSize: 20,
+	        lineHeight: 0,
+	        marginTop: -3,
+	        border: 'none',
+	        background: 'none'
+	      };
+	      var panelStyle = {
+	        'maxWidth': '400px'
+	      };
+
+	      return React.createElement(
+	        Col,
+	        { sm: 12, md: 4, lg: 4 },
+	        React.createElement(
+	          PanelContainer,
+	          { style: panelStyle },
+	          React.createElement(
+	            Panel,
+	            null,
+	            React.createElement(
+	              PanelBody,
+	              null,
+	              React.createElement(
+	                Grid,
+	                null,
+	                React.createElement(
+	                  Row,
+	                  null,
+	                  React.createElement(_appCard2.default, { fuckingApps: this.props.appList })
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return ApplicationContainer;
 	}(React.Component)) || _class);
 
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component3) {
-		(0, _inherits3.default)(_default, _React$Component3);
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+	  (0, _inherits3.default)(_default, _React$Component2);
 
-		function _default() {
-			(0, _classCallCheck3.default)(this, _default);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-		}
+	  function _default() {
+	    (0, _classCallCheck3.default)(this, _default);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+	  }
 
-		(0, _createClass3.default)(_default, [{
-			key: 'render',
-			value: function render() {
-				var classes = (0, _classnames2.default)({
-					'container-open': this.props.open
-				});
-				return React.createElement(
-					Container,
-					{ id: 'container', className: classes },
-					React.createElement(_sidebar2.default, null),
-					React.createElement(_header2.default, null),
-					React.createElement(Body, null),
-					React.createElement(_footer2.default, null)
-				);
-			}
-		}]);
-		return _default;
+	  (0, _createClass3.default)(_default, [{
+	    key: 'render',
+	    value: function render() {
+	      var app = ['Some text', 'More Text', 'Even More Text'];
+
+	      var classes = (0, _classnames2.default)({
+	        'container-open': this.props.open
+	      });
+	      return React.createElement(
+	        Container,
+	        { id: 'container', className: classes },
+	        React.createElement(_sidebar2.default, null),
+	        React.createElement(_header2.default, null),
+	        React.createElement(
+	          Container,
+	          { id: 'body' },
+	          React.createElement(
+	            Grid,
+	            null,
+	            React.createElement(
+	              Row,
+	              null,
+	              app.map(function (item) {
+	                return React.createElement(ApplicationContainer, null);
+	              })
+	            )
+	          )
+	        ),
+	        React.createElement(_footer2.default, null)
+	      );
+	    }
+	  }]);
+	  return _default;
 	}(React.Component)) || _class2;
 
 	exports.default = _default;
 
 /***/ },
-/* 201 */
+/* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = undefined;
 
@@ -21476,218 +23796,91 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var AppHeader = function (_React$Component) {
-		(0, _inherits3.default)(AppHeader, _React$Component);
+	var AppCard = function (_React$Component) {
+	  (0, _inherits3.default)(AppCard, _React$Component);
 
-		function AppHeader() {
-			(0, _classCallCheck3.default)(this, AppHeader);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppHeader).apply(this, arguments));
-		}
+	  function AppCard() {
+	    (0, _classCallCheck3.default)(this, AppCard);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppCard).apply(this, arguments));
+	  }
 
-		(0, _createClass3.default)(AppHeader, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					null,
-					React.createElement(
-						'div',
-						{ style: styles, 'class': 'header' },
-						React.createElement('img', { src: '/imgs/app/logo.png' }),
-						'Name'
-					)
-				);
-			}
-		}]);
-		return AppHeader;
+	  (0, _createClass3.default)(AppCard, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('appCard-apps:', this.props.fuckingApps);
+
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5,
+	        'text-align': 'center'
+	      };
+	      return(
+	        //appCard info
+	        React.createElement(
+	          'div',
+	          null,
+	          React.createElement(
+	            Row,
+	            null,
+	            React.createElement(
+	              'div',
+	              { style: styles, className: 'header' },
+	              React.createElement('img', { src: '/imgs/app/logo.png' }),
+	              'Name'
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'div',
+	              { className: 'skills' },
+	              'Skills'
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'experience' },
+	              'Experience'
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'education' },
+	              'Education'
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'description' },
+	              'Description'
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'button',
+	              {
+	                className: 'btn btn-primary accept' },
+	              'Accept'
+	            ),
+	            React.createElement(
+	              'button',
+	              {
+	                className: 'btn btn-default reject' },
+	              'Reject'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return AppCard;
 	}(React.Component);
 
-	exports.default = AppHeader;
+	exports.default = AppCard;
 
 /***/ },
-/* 202 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(52);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(64);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(65);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(69);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(94);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(101);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _reactRedux = __webpack_require__(112);
-
-	var _actions = __webpack_require__(129);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(161);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AppDescription = function (_React$Component) {
-		(0, _inherits3.default)(AppDescription, _React$Component);
-
-		function AppDescription() {
-			(0, _classCallCheck3.default)(this, AppDescription);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppDescription).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(AppDescription, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					{ style: styles },
-					React.createElement(
-						'div',
-						{ 'class': 'skills' },
-						'Skills'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'experience' },
-						'Experience'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'education' },
-						'Education'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'description' },
-						'Description'
-					)
-				);
-			}
-		}]);
-		return AppDescription;
-	}(React.Component);
-
-	exports.default = AppDescription;
-
-/***/ },
-/* 203 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(52);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(64);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(65);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(69);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(94);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(101);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _reactRedux = __webpack_require__(112);
-
-	var _actions = __webpack_require__(129);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(161);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AppConfirm = function (_React$Component) {
-		(0, _inherits3.default)(AppConfirm, _React$Component);
-
-		function AppConfirm() {
-			(0, _classCallCheck3.default)(this, AppConfirm);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppConfirm).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(AppConfirm, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					{ style: styles },
-					React.createElement(
-						'div',
-						{ 'class': 'accept' },
-						'Accept'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'reject' },
-						'Reject'
-					)
-				);
-			}
-		}]);
-		return AppConfirm;
-	}(React.Component);
-
-	exports.default = AppConfirm;
-
-/***/ },
-/* 204 */
+/* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21697,7 +23890,7 @@ module.exports =
 	// import Confirm from 'routes/components/confirm';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = undefined;
 
@@ -21741,9 +23934,9 @@ module.exports =
 
 	var _footer2 = _interopRequireDefault(_footer);
 
-	var _jobheader = __webpack_require__(205);
+	var _jobCard = __webpack_require__(237);
 
-	var _jobheader2 = _interopRequireDefault(_jobheader);
+	var _jobCard2 = _interopRequireDefault(_jobCard);
 
 	var _reactRedux = __webpack_require__(112);
 
@@ -21755,138 +23948,134 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var JobsContainer = function (_React$Component) {
-		(0, _inherits3.default)(JobsContainer, _React$Component);
+	var JobsContainer = (_dec = (0, _reactRedux.connect)(function (state) {
+	  return state;
+	}), _dec(_class = function (_React$Component) {
+	  (0, _inherits3.default)(JobsContainer, _React$Component);
 
-		function JobsContainer() {
-			(0, _classCallCheck3.default)(this, JobsContainer);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).apply(this, arguments));
-		}
+	  function JobsContainer() {
+	    (0, _classCallCheck3.default)(this, JobsContainer);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).apply(this, arguments));
+	  }
 
-		(0, _createClass3.default)(JobsContainer, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				var textStyle = {
-					textDecoration: this.props.completed ? 'line-through' : ''
-				};
-				var buttonStyle = {
-					height: 25,
-					color: 'red',
-					fontSize: 20,
-					lineHeight: 0,
-					marginTop: -3,
-					border: 'none',
-					background: 'none'
-				};
+	  (0, _createClass3.default)(JobsContainer, [{
+	    key: 'getInitialState',
+	    value: function getInitialState() {
+	      return { showModal: false };
+	    }
+	  }, {
+	    key: 'close',
+	    value: function close() {
+	      return { showModal: false };
+	    }
+	  }, {
+	    key: 'open',
+	    value: function open() {
+	      return { showModal: true };
+	    }
+	  }, {
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.dispatch(_actions2.default.getJobs());
+	      // this.setState({applicants:this.props.appList.items})
+	      // console.log('appList.items:', this.props.appList.item)
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
 
-				var panelStyle = {
-					'max-width': '400px'
-				};
+	      var jobList = this.props.jobList.items;
+	      console.log('JobsContainer', jobList);
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5,
+	        'text-align': 'center'
+	      };
+	      var textStyle = {
+	        textDecoration: this.props.completed ? 'line-through' : ''
+	      };
+	      var buttonStyle = {
+	        height: 25,
+	        color: 'red',
+	        fontSize: 20,
+	        lineHeight: 0,
+	        marginTop: -3,
+	        border: 'none',
+	        background: 'none'
+	      };
 
-				return React.createElement(
-					Col,
-					{ sm: 12, md: 4, lg: 4 },
-					React.createElement(
-						PanelContainer,
-						{ style: panelStyle },
-						React.createElement(
-							Panel,
-							null,
-							React.createElement(
-								PanelBody,
-								null,
-								React.createElement(
-									Grid,
-									null,
-									React.createElement(
-										Row,
-										null,
-										React.createElement(_jobheader2.default, null)
-									)
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-		return JobsContainer;
-	}(React.Component);
+	      var panelStyle = {
+	        'max-width': '400px'
+	      };
 
-	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
-		return state;
-	}), _dec(_class = function (_React$Component2) {
-		(0, _inherits3.default)(Body, _React$Component2);
+	      if (!jobList) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' Loading... '
+	        );
+	      }
 
-		function Body() {
-			(0, _classCallCheck3.default)(this, Body);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(Body, [{
-			key: 'render',
-			value: function render() {
-				var jobs = ['Sr Developer', 'Mid Developer', 'Entry Developer'];
-				var dispatch = this.props.dispatch;
-				var visibilityFilter = this.props.visibilityFilter;
-
-				return React.createElement(
-					Container,
-					{ id: 'body' },
-					React.createElement(
-						Grid,
-						null,
-						React.createElement(
-							Row,
-							null,
-							jobs.map(function (text) {
-								return React.createElement(JobsContainer, null);
-							})
-						)
-					)
-				);
-			}
-		}]);
-		return Body;
+	      return React.createElement(
+	        'div',
+	        null,
+	        jobList.map(function (job) {
+	          return React.createElement(_jobCard2.default, { data: job });
+	        })
+	      );
+	    }
+	  }]);
+	  return JobsContainer;
 	}(React.Component)) || _class);
 
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component3) {
-		(0, _inherits3.default)(_default, _React$Component3);
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+	  (0, _inherits3.default)(_default, _React$Component2);
 
-		function _default() {
-			(0, _classCallCheck3.default)(this, _default);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-		}
+	  function _default() {
+	    (0, _classCallCheck3.default)(this, _default);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+	  }
 
-		(0, _createClass3.default)(_default, [{
-			key: 'render',
-			value: function render() {
-				var classes = (0, _classnames2.default)({
-					'container-open': this.props.open
-				});
-				return React.createElement(
-					Container,
-					{ id: 'container', className: classes },
-					React.createElement(_sidebar2.default, null),
-					React.createElement(_header2.default, null),
-					React.createElement(Body, null),
-					React.createElement(_footer2.default, null)
-				);
-			}
-		}]);
-		return _default;
+	  (0, _createClass3.default)(_default, [{
+	    key: 'render',
+	    value: function render() {
+	      var classes = (0, _classnames2.default)({
+	        'container-open': this.props.open
+	      });
+	      return React.createElement(
+	        Container,
+	        { id: 'container', className: classes },
+	        React.createElement(_sidebar2.default, null),
+	        React.createElement(_header2.default, null),
+	        React.createElement(
+	          Container,
+	          { id: 'body' },
+	          React.createElement(
+	            Grid,
+	            null,
+	            React.createElement(
+	              Row,
+	              null,
+	              React.createElement(
+	                Col,
+	                { md: 12 },
+	                React.createElement(JobsContainer, null)
+	              )
+	            )
+	          )
+	        ),
+	        React.createElement(_footer2.default, null)
+	      );
+	    }
+	  }]);
+	  return _default;
 	}(React.Component)) || _class2;
 
 	exports.default = _default;
 
 /***/ },
-/* 205 */
+/* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21941,45 +24130,144 @@ module.exports =
 	  (0, _createClass3.default)(JobHeader, [{
 	    key: 'render',
 	    value: function render() {
+	      console.log('jobCard', this.props);
 	      var styles = {
 	        margin: '12.5px 0',
 	        borderBottom: '1px dotted #999',
 	        paddingBottom: 12.5,
-	        'textAlign': 'center'
+	        textAlign: 'center'
 	      };
 
 	      var pStyles = {
-	        'fontSize': '10px'
+	        fontSize: '10px'
+	      };
+
+	      var btnStyles = {
+	        textAlign: 'center',
+	        margin: '0 auto'
+	      };
+	      var panelStyle = {
+	        'max-width': '400px',
+	        'padding-top': '0px'
 	      };
 
 	      return React.createElement(
-	        Row,
-	        { style: styles },
+	        Col,
+	        { sm: 12, md: 4, lg: 4, className: 'clearfix' },
 	        React.createElement(
-	          Col,
-	          { md: 6 },
+	          PanelContainer,
+	          { style: panelStyle },
 	          React.createElement(
-	            'div',
-	            { 'class': 'jobtitle' },
+	            Panel,
+	            null,
 	            React.createElement(
-	              'h4',
+	              PanelBody,
 	              null,
-	              'Sr Developer'
-	            ),
-	            React.createElement(
-	              'p',
-	              { style: pStyles },
-	              'Apple Inc. - Cupertino, CA'
+	              React.createElement(
+	                Grid,
+	                null,
+	                React.createElement(
+	                  Row,
+	                  null,
+	                  React.createElement(
+	                    'div',
+	                    { className: 'jobcard' },
+	                    React.createElement(
+	                      Row,
+	                      { style: styles },
+	                      React.createElement(
+	                        Col,
+	                        { md: 6 },
+	                        React.createElement(
+	                          'div',
+	                          { 'class': 'jobtitle' },
+	                          React.createElement(
+	                            'h4',
+	                            null,
+	                            this.props.data.job_title
+	                          ),
+	                          React.createElement(
+	                            'p',
+	                            { style: pStyles },
+	                            'Location: ',
+	                            this.props.data.location
+	                          )
+	                        )
+	                      ),
+	                      React.createElement(
+	                        Col,
+	                        { md: 6 },
+	                        React.createElement(
+	                          'div',
+	                          { 'class': 'jobimg' },
+	                          React.createElement('img', null)
+	                        )
+	                      )
+	                    ),
+	                    React.createElement(
+	                      Row,
+	                      { style: styles },
+	                      React.createElement(
+	                        'div',
+	                        { className: 'description' },
+	                        'Description',
+	                        React.createElement(
+	                          'p',
+	                          { style: pStyles },
+	                          this.props.data.job_description
+	                        )
+	                      )
+	                    ),
+	                    React.createElement(
+	                      Row,
+	                      null,
+	                      React.createElement(
+	                        Col,
+	                        { md: 6 },
+	                        React.createElement(
+	                          'div',
+	                          { className: 'experience' },
+	                          'Exp: placeholder'
+	                        )
+	                      ),
+	                      React.createElement(
+	                        Col,
+	                        { md: 6 },
+	                        React.createElement(
+	                          'div',
+	                          { className: 'Salary' },
+	                          'Salary:',
+	                          React.createElement(
+	                            'p',
+	                            null,
+	                            this.props.data.min_salary,
+	                            '-',
+	                            this.props.data.max_salary
+	                          )
+	                        )
+	                      )
+	                    ),
+	                    React.createElement(
+	                      Row,
+	                      null,
+	                      React.createElement(
+	                        Col,
+	                        { md: 12 },
+	                        React.createElement(
+	                          'div',
+	                          { className: 'btn', style: btnStyles },
+	                          React.createElement(
+	                            'button',
+	                            { className: 'btn btn-primary' },
+	                            ' Apply '
+	                          )
+	                        )
+	                      )
+	                    )
+	                  )
+	                )
+	              )
 	            )
-	          )
-	        ),
-	        React.createElement(
-	          Col,
-	          { md: 6 },
-	          React.createElement(
-	            'div',
-	            { 'class': 'jobimg' },
-	            React.createElement('img', null)
 	          )
 	        )
 	      );
@@ -21991,7 +24279,7 @@ module.exports =
 	exports.default = JobHeader;
 
 /***/ },
-/* 206 */
+/* 238 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22008,15 +24296,15 @@ module.exports =
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createBrowserHistory = __webpack_require__(207);
+	var _createBrowserHistory = __webpack_require__(239);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(119);
 
-	var _reduxSimpleRouter = __webpack_require__(208);
+	var _reduxSimpleRouter = __webpack_require__(240);
 
-	var _reduxThunk = __webpack_require__(209);
+	var _reduxThunk = __webpack_require__(241);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -22024,7 +24312,7 @@ module.exports =
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _reducers = __webpack_require__(210);
+	var _reducers = __webpack_require__(242);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -22138,7 +24426,7 @@ module.exports =
 	};
 
 /***/ },
-/* 207 */
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22321,7 +24609,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 208 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22521,7 +24809,7 @@ module.exports =
 
 
 /***/ },
-/* 209 */
+/* 241 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -22540,7 +24828,7 @@ module.exports =
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 210 */
+/* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22549,16 +24837,24 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _todos = __webpack_require__(211);
+	var _todos = __webpack_require__(243);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
+	var _apps = __webpack_require__(248);
+
+	var _apps2 = _interopRequireDefault(_apps);
+
+	var _jobs = __webpack_require__(249);
+
+	var _jobs2 = _interopRequireDefault(_jobs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = (0, _extends3.default)({}, _todos2.default);
+	module.exports = (0, _extends3.default)({}, _todos2.default, _apps2.default, _jobs2.default);
 
 /***/ },
-/* 211 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22567,7 +24863,7 @@ module.exports =
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-	var _toConsumableArray2 = __webpack_require__(212);
+	var _toConsumableArray2 = __webpack_require__(244);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -22614,12 +24910,12 @@ module.exports =
 	};
 
 /***/ },
-/* 212 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _from = __webpack_require__(213);
+	var _from = __webpack_require__(245);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -22638,21 +24934,21 @@ module.exports =
 	exports.__esModule = true;
 
 /***/ },
-/* 213 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(214), __esModule: true };
+	module.exports = { "default": __webpack_require__(246), __esModule: true };
 
 /***/ },
-/* 214 */
+/* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(133);
-	__webpack_require__(215);
+	__webpack_require__(247);
 	module.exports = __webpack_require__(60).Array.from;
 
 /***/ },
-/* 215 */
+/* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -22692,6 +24988,78 @@ module.exports =
 	  }
 	});
 
+
+/***/ },
+/* 248 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _assign = __webpack_require__(104);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	var _actionTypes = __webpack_require__(161);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function appList() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actionTypes.FETCH_APP:
+	      console.log('action recieved:', action);
+	      var data = action.payload.data;
+	      return (0, _assign2.default)({}, state, {
+	        items: data
+	      });
+
+	  }
+	  return state;
+	}
+
+	module.exports = {
+	  appList: appList
+	};
+
+/***/ },
+/* 249 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _assign = __webpack_require__(104);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	var _axios = __webpack_require__(202);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _actionTypes = __webpack_require__(161);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function jobList() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actionTypes.FETCH_JOBS:
+	      console.log('action recieved:', action.payload.data);
+	      var data = action.payload.data;
+	      return (0, _assign2.default)({}, state, {
+	        items: data
+	      });
+
+	  }
+	  return state;
+	}
+
+	module.exports = {
+	  jobList: jobList
+	};
 
 /***/ }
 /******/ ]);

@@ -1,18 +1,19 @@
-import Promise from 'es6-promise';
-import fetch from 'isomorphic-fetch';
+import axios from 'axios';
+import { ADD_JOB,
+         REMOVE_JOB,
+         APPLY_JOB,
+         FETCH_JOBS,
+         SET_VISIBILITY_FILTER,
+         VisibilityFilters } from './actionTypes';
 
 
-function getJobs(jobID) {
-	return new Promise(function(resolve, reject) {
-		fetch('/job' + jobID)
-			.then(function(response) {
-				if (response.status >= 400) {
-	        throw new Error("Bad response from server");
-	      }
-	      console.log(response);
-	      resolve(response);
-			})
-	})
+function getJobs() {
+	console.log('in getJobs actions');
+	return dispatch => axios.get('/user/job')
+    .then(
+      payload => dispatch({ type: FETCH_JOBS, payload })
+    )
+    .catch(resp => console.log("Error fetching jobs", resp));
 }
 
 function applyToJob(data) {
@@ -34,5 +35,4 @@ function applyToJob(data) {
 
 module.exports = {
 	getJobs: getJobs,
-	applyToJob: applyToJob
 }

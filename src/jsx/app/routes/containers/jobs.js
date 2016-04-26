@@ -4,7 +4,7 @@ import SidebarMixin from 'global/jsx/sidebar_component';
 import Header from 'common/header';
 import Sidebar from 'common/sidebar';
 import Footer from 'common/footer';
-import JobHeader from 'routes/components/jobheader';
+import JobCard from 'routes/components/jobCard';
 // import Description from 'routes/components/description';
 // import Confirm from 'routes/components/confirm';
 
@@ -13,8 +13,27 @@ import { connect } from 'react-redux'
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
+@connect(state => state)
 class JobsContainer extends React.Component {
+	getInitialState() {
+		return {showModal: false}
+	}
+	close() {
+		return {showModal: false}
+	}
+	open() {
+		return {showModal:true}
+	}
+	componentWillMount(){
+    this.props.dispatch(actions.getJobs()); 
+    // this.setState({applicants:this.props.appList.items})
+    // console.log('appList.items:', this.props.appList.item)
+  }
+
 	render() {
+
+		let jobList = this.props.jobList.items;
+		console.log('JobsContainer', jobList);
 		const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
@@ -38,45 +57,18 @@ class JobsContainer extends React.Component {
     	'max-width': '400px'
     }
 
+    if(!jobList) {
+    	return <div> Loading... </div>
+    }
+
 		return (
-			<Col sm={12} md={4} lg={4}>
-			<PanelContainer style={panelStyle}>
-				<Panel>
-					<PanelBody >
-						<Grid>
-							<Row>
-								<JobHeader />
-							</Row>
-					  </Grid>
-					</PanelBody>
-				</Panel>
-			</PanelContainer>
-		</Col>
+			<div>
+			{jobList.map(job => <JobCard data={job}/>)}
+			</div>
 		)
 	}
 }
 
-@connect((state) => state)
-class Body extends React.Component {
-
-
-	render() {
-		const jobs = ['Sr Developer', 'Mid Developer', 'Entry Developer'];
-		const { dispatch } = this.props;
-		const { visibilityFilter } = this.props;
-	return (
-		<Container id='body'>
-			<Grid>
-				<Row>
-					{jobs.map(function(text) {
-						return <JobsContainer />
-					})
-					}
-				</Row>
-			</Grid>
-		</Container>
-	)}
-}
 
 @SidebarMixin
 export default class extends React.Component {
@@ -88,7 +80,15 @@ export default class extends React.Component {
 			<Container id='container' className={classes}>
 				<Sidebar />
 				<Header />
-				<Body />
+        <Container id='body'>
+          <Grid>
+            <Row>
+            	<Col md={12}>
+            		<JobsContainer />
+              </Col>
+            </Row>
+          </Grid>
+        </Container>
 				<Footer />
 			</Container>
 	)}
