@@ -7,6 +7,8 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 export default class AppCard extends React.Component {
   render() {
+      console.log('appCard-apps:', this.props.fuckingApps)
+
     const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
