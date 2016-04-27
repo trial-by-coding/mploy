@@ -5,6 +5,7 @@ import Header from 'common/header';
 import Sidebar from 'common/sidebar';
 import Footer from 'common/footer';
 import JobCard from 'routes/components/jobCard';
+import JobModal from '../components/jobModal';
 // import Description from 'routes/components/description';
 // import Confirm from 'routes/components/confirm';
 
@@ -15,29 +16,32 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
 class JobsContainer extends React.Component {
-
-	constructor(props) {
-		super(props);
-		this.state = {
-			showForm: false
-		}
-    console.log('constructor props', this)
+  componentWillMount() {
     this.props.dispatch(actions.getJobs());
-	}
-  showForm() {
-    console.log('showForm props', this)
-
-    this.setState({showForm:true})
+  }
+  constructor(props){
+    super(props)
+    this.state = {
+      isOpen: false
+    }
   }
 
-  hideForm() {
-    this.setState({showForm: false});
-  }
+  openModal = () => {
+    console.log('openModal working');
+    this.setState({
+      isOpen: true
+    });
+  };
+
+  hideModal = () => {
+    this.setState({
+      isOpen: false
+    });
+  };
 
 	render() {
-		console.log('container props', this.props);
+		console.log('container props', this);
 		let jobList = this.props.jobList.items;
-		console.log('JobsContainer', jobList);
 
 		const styles = {
       margin: '12.5px 0',
@@ -69,8 +73,10 @@ class JobsContainer extends React.Component {
 		return (
 			<div>
 			{jobList.map(job => <JobCard data={job} 
-																	 showForm={this.showForm}
-                                   hideForm={this.hideForm}/>)}
+                                   openModal={this.openModal}/>)}
+      <JobModal isOpen={this.state.isOpen}
+                openModal={this.openModal}
+                hideModal={this.hideModal} />
 			</div>
 		)
 	}

@@ -24004,13 +24004,13 @@ module.exports =
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _createClass2 = __webpack_require__(65);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
 	var _possibleConstructorReturn2 = __webpack_require__(69);
 
 	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _createClass2 = __webpack_require__(65);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
 
 	var _inherits2 = __webpack_require__(94);
 
@@ -24040,6 +24040,10 @@ module.exports =
 
 	var _jobCard2 = _interopRequireDefault(_jobCard);
 
+	var _jobModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../components/jobModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _jobModal2 = _interopRequireDefault(_jobModal);
+
 	var _reactRedux = __webpack_require__(112);
 
 	var _actions = __webpack_require__(129);
@@ -24054,6 +24058,12 @@ module.exports =
 	  return state;
 	}), _dec(_class = function (_React$Component) {
 	  (0, _inherits3.default)(JobsContainer, _React$Component);
+	  (0, _createClass3.default)(JobsContainer, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.dispatch(_actions2.default.getJobs());
+	    }
+	  }]);
 
 	  function JobsContainer(props) {
 	    (0, _classCallCheck3.default)(this, JobsContainer);
@@ -24063,31 +24073,14 @@ module.exports =
 	    _this.state = {
 	      showForm: false
 	    };
-	    console.log('constructor props', _this);
-	    _this.props.dispatch(_actions2.default.getJobs());
 	    return _this;
 	  }
 
 	  (0, _createClass3.default)(JobsContainer, [{
-	    key: 'showForm',
-	    value: function showForm() {
-	      console.log('showForm props', this);
-
-	      this.setState({ showForm: true });
-	    }
-	  }, {
-	    key: 'hideForm',
-	    value: function hideForm() {
-	      this.setState({ showForm: false });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this2 = this;
-
-	      console.log('container props', this.props);
+	      console.log('container props', this.state);
 	      var jobList = this.props.jobList.items;
-	      console.log('JobsContainer', jobList);
 
 	      var styles = {
 	        margin: '12.5px 0',
@@ -24124,9 +24117,7 @@ module.exports =
 	        'div',
 	        null,
 	        jobList.map(function (job) {
-	          return React.createElement(_jobCard2.default, { data: job,
-	            showForm: _this2.showForm,
-	            hideForm: _this2.hideForm });
+	          return React.createElement(_jobCard2.default, { data: job });
 	        })
 	      );
 	    }
@@ -24217,15 +24208,15 @@ module.exports =
 
 	var _reactRedux = __webpack_require__(112);
 
+	var _jobModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./jobModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+	var _jobModal2 = _interopRequireDefault(_jobModal);
+
 	var _actions = __webpack_require__(129);
 
 	var _actions2 = _interopRequireDefault(_actions);
 
 	var _actionTypes = __webpack_require__(161);
-
-	var _jobModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./jobModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _jobModal2 = _interopRequireDefault(_jobModal);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24374,18 +24365,7 @@ module.exports =
 	          React.createElement(
 	            Col,
 	            { md: 12 },
-	            React.createElement(
-	              'div',
-	              { className: 'btn', style: btnStyles },
-	              React.createElement(
-	                'button',
-	                {
-	                  className: 'btn btn-primary' },
-	                ' Apply '
-	              ),
-	              React.createElement(_jobModal2.default, { showForm: this.props.showForm,
-	                hideForm: this.props.hideForm })
-	            )
+	            React.createElement(_jobModal2.default, null)
 	          )
 	        )
 	      );
@@ -24442,9 +24422,7 @@ module.exports =
 	                    { className: 'jobcard' },
 	                    React.createElement(JobHeader, { data: this.props.data }),
 	                    React.createElement(JobBody, { data: this.props.data }),
-	                    React.createElement(JobApply, { data: this.props.data,
-	                      showForm: this.props.showForm,
-	                      hideForm: this.props.hideForm })
+	                    React.createElement(JobApply, { data: this.props.data })
 	                  )
 	                )
 	              )
@@ -25186,7 +25164,7 @@ module.exports =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function appList() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var action = arguments[1];
 
 	  console.log('state in reducer is:', state);

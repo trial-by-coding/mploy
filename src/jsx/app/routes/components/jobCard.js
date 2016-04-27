@@ -1,10 +1,10 @@
 import classNames from 'classnames';
 
 import { connect } from 'react-redux'
+import JobModal from './jobModal'
 
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
-import JobModal from './jobModal';
 
 class JobHeader extends React.Component {
   render() {
@@ -72,10 +72,10 @@ class JobApply extends React.Component {
       <div className="jobapply">
         <Row>
           <Col md={12}>
-            <div className="btn" style={btnStyles}>
-            <button 
-            className="btn btn-primary"> Apply </button>
-            </div>
+            <Button bsStyle="primary"
+                    bsSize="large"
+                    onClick={this.props.openModal}> Apply
+            </Button>
           </Col>
         </Row>
       </div>
@@ -99,8 +99,12 @@ export default class JobCard extends React.Component {
       'padding-top': '0px'
     }
 
+    const colStyle = {
+      zIndex: -100
+    }
+
     return(
-      <Col sm={12} md={4} lg={4} className="clearfix">
+      <Col sm={12} md={4} lg={4}  className="clearfix">
       <PanelContainer style={panelStyle}>
         <Panel>
           <PanelBody >
@@ -110,8 +114,7 @@ export default class JobCard extends React.Component {
               	<JobHeader data={this.props.data} />
                 <JobBody data={this.props.data} />
                 <JobApply data={this.props.data}
-                          showForm={this.props.showForm}
-                          hideForm={this.props.hideForm} />
+                          openModal={this.props.openModal}/>
               </div>
               </Row>
             </Grid>
