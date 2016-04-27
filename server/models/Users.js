@@ -5,7 +5,6 @@ var Users = module.exports;
 //Auth:
 
 Users.verifyId = function(linkedin_id) {
-  console.log('verifyId id == ', linkedin_id);
   return db('users').where({
     linkedin_id: linkedin_id
   }).limit(1);
@@ -13,7 +12,6 @@ Users.verifyId = function(linkedin_id) {
 
 Users.verifyInsert = function(obj) {
   var session = {};
-  console.log('verifyInsert obj:', obj)
 
   session.passid = obj.id;
   session.username = obj.displayName;
@@ -50,11 +48,11 @@ Users.verifyInsert = function(obj) {
         linkedin_url: session.profileUrl
 
       }).limit(1).then(function(array) {
-        console.log('returning sessions!', session);
+        console.log('session: ', session)
         return session;
       });
     } else {
-      console.log('data = ', data);
+      console.log('Data: ', data);
       if (Array.isArray(data)) {
         return data[0];
       } else {

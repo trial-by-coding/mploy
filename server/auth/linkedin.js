@@ -15,11 +15,10 @@ passport.use(new LinkedInStrategy({
     state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('linkedin profile: ', profile);
     User.verifyInsert(profile)
     .then(function(obj) {
-        console.log('inserted by verifyInsert linkedin = ', obj);
-        const send = {
+
+        var send = {
           username: obj.username,
           linkedin_id: obj.passid,
           firstname: obj.givenName,
@@ -34,7 +33,7 @@ passport.use(new LinkedInStrategy({
         return done(null, send);
       })
       .catch(function(err) {
-        console.log('verify insert promise err = ', err);
+        console.log('Verify insert promise err: ', err);
         return done(null, err);
       });
 
