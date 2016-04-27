@@ -14,7 +14,8 @@ export default class AppCard extends React.Component {
 
   deleteTask = (e) => {
     this.props.dispatch(actions.rejectApp(this.props.fuckingApps.appID));
-    // this.props.dispatch(actions.getApplications(1))  
+    this.props.dispatch(actions.getApplications(4))  
+    console.log('appID in deleteTask:', this.props.fuckingApps.appID)
   };
 
   render() {
@@ -31,11 +32,19 @@ export default class AppCard extends React.Component {
       paddingBottom: '10px',
       'text-align': 'left'
     };
+      console.log('props in appCard:',this.props)
+
+    // if(!this.props.appList.items) {
+    //   return <div> Loading... </div>
+    // } 
     return (
+
+
       //appCard info
       <div>
     
         <Row style={styles}>
+          <h4> App ID: {this.props.fuckingApps.appID} </h4>
           <h4> Skills </h4>
           <row className='skills'>
           { skillList.map( skill => <div className="label col-md-3 label-primary"> {skill} </div> ) }

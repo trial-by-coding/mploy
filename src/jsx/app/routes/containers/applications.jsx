@@ -19,7 +19,7 @@ class ApplicationContainer extends React.Component {
   }
 
   componentWillMount(){
-    this.props.dispatch(getApplications(3))  
+    this.props.dispatch(getApplications(4))  
 
   }
 
@@ -27,8 +27,8 @@ class ApplicationContainer extends React.Component {
 
 
 	render() {
-    // const { dispatch } = this.props;
     const { dispatch } = this.props;
+
 
     console.log('in render func props:', this.props)
 
@@ -84,14 +84,6 @@ class ApplicationContainer extends React.Component {
 	)}
 }
 
-
-// function mapDispatchToProps(dispatch) {
-//   let actions = bindActionCreators({ getApplications });
-//   return { ...actions, dispatch };
-// }
-
-// export default connect(null,mapDispatchToProps)(ApplicationContainer);
-
 @SidebarMixin
 export default class extends React.Component {
 
@@ -108,7 +100,7 @@ export default class extends React.Component {
         <Container id='body'>
           <Grid>
             <Row>
-              <ApplicationContainer />
+              {app.map(item => <ApplicationContainer />)}
             </Row>
           </Grid>
         </Container>
@@ -116,8 +108,3 @@ export default class extends React.Component {
 			</Container>
 	)}
 }
-
-
-// {app.map(function(text) {
-//   return <ApplicationContainer />
-// })}
