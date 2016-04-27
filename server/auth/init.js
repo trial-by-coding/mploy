@@ -14,12 +14,12 @@ module.exports = function() {
 
     User.verifyId(user.linkedin_id)
       .then(function(data) {
-        console.log('data in deserialize', data)
+        console.log('Data in deserialize', data)
         Stats.newUserData(data[0].userID)
         done(null, user);
       })
       .catch(function(err) {
-        console.log('deserialize err: ', err);
+        console.log('Deserialize err: ', err);
         done(null, user);
       });
   });
