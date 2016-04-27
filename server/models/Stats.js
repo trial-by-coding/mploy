@@ -7,23 +7,34 @@ var Stats = module.exports;
 //only run when new user created
 Stats.newUserData = function(userID) {
   console.log('userID in stats: ', userID)
+
   return db('stats')
-    .returning('statID')
-    .insert({
-      total_apps: 0,
-      denied: 0,
-      considered: 0,
-      interviewed: 0,
-      additional: 0,
-      offered: 0,
-      user_id: userID
-    })
-    .then(function(statID) {
-      return statID
-    })
-    .catch(function(err) {
-      throw err
-    })
+    .where({user_id: userID})
+  .then(function(record) {
+    console.log('therecord: ',record)
+    if (record[0] === undefined){
+      return db('stats')
+        .returning('statID')
+        .insert({
+          total_apps: 0,
+          denied: 0,
+          considered: 0,
+          interviewed: 0,
+          additional: 0,
+          offered: 0,
+          user_id: userID
+        })
+      .then(function(statID) {
+        console.log('Stats initialized: ', statID)
+        return statID
+      })
+      .catch(function(err) {
+        throw err
+      })
+    } else {
+      console.log('User stats previously initialized')
+    }
+  })
 };
 
 Stats.incrementTotalApps = function(userID) {

@@ -30,6 +30,8 @@ passport.use(new LinkedInStrategy({
           linkedin_url: obj.profileUrl
         };
 
+        console.log('send: ', send)
+
         return done(null, send);
       })
       .catch(function(err) {
