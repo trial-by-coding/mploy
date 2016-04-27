@@ -18,7 +18,7 @@ class JobsContainer extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			showModal: false
+			showForm: false
 		}
 	}
 	componentWillMount(){

@@ -9243,7 +9243,8 @@
 	  ADD_JOB: 'ADD_JOB',
 	  REMOVE_JOB: 'REMOVE_JOB',
 	  APPLY_JOB: 'APPLY_JOB',
-	  SHOW_MODAL: 'SHOW_MODAL',
+	  SHOW_FORM: 'SHOW_FORM',
+	  HIDE_FORM: 'HIDE_FORM',
 	  FETCH_JOBS: 'FETCH_JOBS',
 	  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
 	  VisibilityFilters: {
@@ -10851,10 +10852,17 @@
 		};
 	}
 
-	function showModal() {
-		console.log('showModal');
+	function showForm() {
+		console.log('showForm');
 		return {
-			type: 'SHOW_MODAL'
+			type: _actionTypes.SHOW_FORM
+		};
+	}
+
+	function hideForm() {
+		console.log('hideForm');
+		return {
+			type: _actionTypes.HIDE_FORM
 		};
 	}
 
@@ -11609,7 +11617,7 @@
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).call(this));
 
 	    _this.state = {
-	      showModal: false
+	      showForm: false
 	    };
 	    return _this;
 	  }
@@ -11618,7 +11626,6 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      this.props.dispatch(_actions2.default.getJobs());
-	      this.setState({ showModal: false });
 	    }
 	  }, {
 	    key: 'render',
@@ -12815,24 +12822,30 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var initialState = {
-	  showModal: true
-	};
-
 	function jobList() {
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var action = arguments[1];
 
 	  switch (action.type) {
 	    case _actionTypes.FETCH_JOBS:
-	      console.log('action recieved:', action.payload.data);
+	      console.log('FETCH_JOBS', action.payload.data);
 	      var data = action.payload.data;
 	      return (0, _assign2.default)({}, state, {
 	        items: data
 	      });
-
+	    case _actionTypes.SHOW_FORM:
+	      console.log('SHOW_FORM');
+	      return (0, _assign2.default)({}, state, {
+	        showForm: true
+	      });
+	    case _actionTypes.HIDE_FORM:
+	      console.log('HIDE_FORM');
+	      return (0, _assign2.default)({}, state, {
+	        showForm: false
+	      });
+	    default:
+	      return state;
 	  }
-	  return state;
 	}
 
 	module.exports = {

@@ -22,9 +22,14 @@ function jobList(state = {}, action) {
       return Object.assign({}, state, {
         showForm: true
       });
-    
+    case HIDE_FORM:
+      console.log('HIDE_FORM');
+      return Object.assign({}, state, {
+        showForm: false
+      });
+    default:
+      return state
   }
-  return state;
 }
 
 
