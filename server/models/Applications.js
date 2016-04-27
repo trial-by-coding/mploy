@@ -39,6 +39,7 @@ Applications.submit = function(appObj) {
 Applications.deleteApp = function(appID) {
   
   return db('applications')
+  .returning('*')
   .delete()
   .where('appID', appID)
   .then(function(records) {

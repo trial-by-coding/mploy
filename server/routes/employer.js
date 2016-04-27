@@ -1,6 +1,8 @@
 var JobPosts = require('../models/JobPosts.js');
 var Employers = require('../models/Employers.js');
 var Applications = require('../models/Applications.js');
+var Users = require('../models/Users.js');
+var Stats = require('../models/Stats.js');
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -8,14 +10,25 @@ module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
 
-	//router.use(function(req,res,next) {
-		//check to see if employer
-    //Employers.verify
-		//if employer res.next()
-		// }
+	// router.use(function(req,res,next) {
 
-		// res.redirect('/job')
-	//});
+ //    console.log('req stuff: ', req.user.linkedin_id)
+ //    var linkedin_id = req.user.linkedin_id
+ //    return Users.verifyId(linkedin_id)
+ //    .then(function(userObj) {
+ //      Employers.verify(userObj.userID)
+ //    })
+ //    .then(function(resp) {
+ //      console.log('Resp from Employers.verify:', resp)
+ //    })
+ //    .catch(function(err) {
+ //      console.log('Employer authentication failed: ', err)
+ //    })
+ //    // }
+ //      res.next()
+
+	// 	// res.redirect('/job')
+	// });
 
 	//Routes:
   router.get('/appsbyjob', function(req, res){
@@ -99,6 +112,8 @@ module.exports = function(router) {
     }
   });
 
+
+  //increment denied in stats for user who created app
   router.delete('/deleteapp', function(req, res){
     console.log('---delete app:received DELETE, query='+JSON.stringify(req.query));
     var rq = req.query;
@@ -106,16 +121,23 @@ module.exports = function(router) {
       console.log("request for appId = ",rq.appID);
       Applications.deleteApp(rq.appID) 
       .then(function(data){
-        console.log("returning application data", data);
         res.status(200).send(JSON.stringify(data));
+        console.log("Successfully deleted application: ", data);
+        return Stats.incrementDenied(data[0].user_id)
+        .then(function() {
+          console.log('App denied stat successfully incremented')
+        })
+        .catch(function() {
+          console.log('App denied stat failed to increment')
+        })
       })
       .catch(function(err){
-        console.log("could not get application data for appID "+rq.appID+", err:", err);
+        console.log("Could not get application data for appID "+rq.appID+", err:", err);
         res.status(400).send(err);
       })
     } else {
-      console.log("must supply appID in query string"); 
-      res.status(400).send("must supply appID in query string");       
+      console.log("Must supply appID in query string"); 
+      res.status(400).send("Must supply appID in query string");       
     }
   });
 
