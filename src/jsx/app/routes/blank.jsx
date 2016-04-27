@@ -17,6 +17,7 @@ class Todo extends React.Component {
 
   deleteTask = (e) => {
     this.props.dispatch(actions.removeTodo(this.props.index));
+
   };
 
   render() {

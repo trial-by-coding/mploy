@@ -9,7 +9,6 @@ import { getApplications } from 'redux/actions/index.js';
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
@@ -17,20 +16,11 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 class ApplicationContainer extends React.Component {
     constructor(props){
     super(props)
-
-    this.state = {
-      applicants: []
-    }
-
-
-    // this.onDbLoad = this.onDbLoad.bind(this)
-    
   }
 
   componentWillMount(){
-    this.props.dispatch(getApplications(1))  
-    this.setState({applicants:this.props.appList.items})
-    // console.log('appList.items:', this.props.appList.item)
+    this.props.dispatch(getApplications(3))  
+
   }
 
 
@@ -38,6 +28,7 @@ class ApplicationContainer extends React.Component {
 
 	render() {
     // const { dispatch } = this.props;
+    const { dispatch } = this.props;
 
     console.log('in render func props:', this.props)
 
@@ -62,29 +53,35 @@ class ApplicationContainer extends React.Component {
     const panelStyle = {
     	'maxWidth': '400px'
     }
+    const panelPad = {
+      'padding': '0px 20px'
+    }
 
-  if(!this.state.applicants) {
+  if(!this.props.appList.items) {
     return <div> Loading... </div>
-  } else{
+  } 
 
 	return (
-		<Col sm={12} md={4} lg={4}>
-			<PanelContainer style={panelStyle}>
-				<Panel>
-					<PanelBody >
-						<Grid>
-							<Row>
-              {this.state.applicants.map(function(app){
-                 <AppCard fuckingApps={app} />
-              })}
-							</Row>
-					  </Grid>
-					</PanelBody>
-				</Panel>
-			</PanelContainer>
-		</Col>
+    <Grid>
+  		<Row>
+        {this.props.appList.items.map(function(app){
+          // console.log('inside applist:', app)
+           return (
+              <Col sm={12} md={4} lg={4}>
+                <PanelContainer style={panelStyle}>
+                  <Panel style={ panelPad }>
+                    <PanelBody >
+                        <AppCard dispatch={dispatch} fuckingApps={app} />
+                    </PanelBody>
+                  </Panel>
+                </PanelContainer>
+              </Col>
+            ) 
+          })
+        }
+  		</Row>
+    </Grid>
 	)}
-  }
 }
 
 
