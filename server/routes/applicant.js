@@ -1,6 +1,7 @@
 var Applications = require('../models/Applications.js');
 var Employers = require('../models/Employers.js');
 var Stats = require('../models/Stats.js');
+var Users = require('../models/Users.js');
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -8,13 +9,36 @@ module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
 
-  //router.use(function(req,res,next) {
-    //check to see if applicant
-    //if applicant res.next()
-    // }
-
-    // res.redirect('/job')
-  //});
+  router.use(function(req,res,next) {
+    if (req.user !== undefined){
+      var linkedin_id = req.user.linkedin_id
+      return Users.verifyId(linkedin_id)
+      .catch(function(err) {
+        console.log('Failed to verify user:', err)
+        res.redirect('/')
+      })
+      .then(function(userObj) {
+        console.log('userObj[0].userID: ',userObj[0].userID)
+        return Employers.verify(userObj[0].userID)
+      })
+      .then(function(resp) {
+        console.log('Resp from Employers.verify:', resp)
+        if (resp){
+          console.log('User is not an applicant.')
+          res.redirect('/')
+        } else {
+          return next()
+        }
+      })
+      .catch(function(err) {
+        console.log('Employer authentication failed: ', err)
+        res.redirect('/')
+      }) 
+    } else {
+      console.log('User not logged in')
+      res.redirect('/')
+    }
+  });
 
   router.get('/appsbyuser', function(req, res){
     console.log('---appsbyuser:received GET, query='+JSON.stringify(req.query));
