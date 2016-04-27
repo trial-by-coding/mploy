@@ -53,7 +53,7 @@ module.exports =
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _router = __webpack_require__(238);
+	var _router = __webpack_require__(239);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -9067,7 +9067,7 @@ module.exports =
 
 	var _apps2 = _interopRequireDefault(_apps);
 
-	var _jobs = __webpack_require__(164);
+	var _jobs = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./jobs\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _jobs2 = _interopRequireDefault(_jobs);
 
@@ -9118,26 +9118,7 @@ module.exports =
 	};
 
 /***/ },
-/* 164 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = {
-	  ADD_JOB: 'ADD_JOB',
-	  REMOVE_JOB: 'REMOVE_JOB',
-	  APPLY_JOB: 'APPLY_JOB',
-	  SHOW_FORM: 'SHOW_FORM',
-	  FETCH_JOBS: 'FETCH_JOBS',
-	  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
-	  VisibilityFilters: {
-	    SHOW_ALL: 'SHOW_ALL',
-	    SHOW_COMPLETED: 'SHOW_COMPLETED',
-	    SHOW_ACTIVE: 'SHOW_ACTIVE'
-	  }
-	};
-
-/***/ },
+/* 164 */,
 /* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -23208,6 +23189,13 @@ module.exports =
 		};
 	}
 
+	function showModal() {
+		console.log('showModal');
+		return {
+			type: 'SHOW_MODAL'
+		};
+	}
+
 	function applyToJob(data) {
 		return new _promise2.default(function (resolve, reject) {
 			$.ajax({
@@ -23955,35 +23943,25 @@ module.exports =
 
 	  function JobsContainer() {
 	    (0, _classCallCheck3.default)(this, JobsContainer);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).apply(this, arguments));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).call(this));
+
+	    _this.state = {
+	      showModal: false
+	    };
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(JobsContainer, [{
-	    key: 'getInitialState',
-	    value: function getInitialState() {
-	      return { showModal: false };
-	    }
-	  }, {
-	    key: 'close',
-	    value: function close() {
-	      return { showModal: false };
-	    }
-	  }, {
-	    key: 'open',
-	    value: function open() {
-	      return { showModal: true };
-	    }
-	  }, {
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      this.props.dispatch(_actions2.default.getJobs());
-	      // this.setState({applicants:this.props.appList.items})
-	      // console.log('appList.items:', this.props.appList.item)
+	      this.setState({ showModal: false });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-
+	      console.log('container props', this.props);
 	      var jobList = this.props.jobList.items;
 	      console.log('JobsContainer', jobList);
 	      var styles = {
@@ -24117,6 +24095,10 @@ module.exports =
 
 	var _actionTypes = __webpack_require__(161);
 
+	var _jobModal = __webpack_require__(238);
+
+	var _jobModal2 = _interopRequireDefault(_jobModal);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var JobHeader = function (_React$Component) {
@@ -24130,7 +24112,171 @@ module.exports =
 	  (0, _createClass3.default)(JobHeader, [{
 	    key: 'render',
 	    value: function render() {
+	      var pStyles = {
+	        fontSize: '10px'
+	      };
+	      return React.createElement(
+	        'div',
+	        { className: 'jobheader' },
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            Col,
+	            { md: 6 },
+	            React.createElement(
+	              'div',
+	              { 'class': 'jobtitle' },
+	              React.createElement(
+	                'h4',
+	                null,
+	                this.props.data.job_title
+	              ),
+	              React.createElement(
+	                'p',
+	                { style: pStyles },
+	                'Location: ',
+	                this.props.data.location
+	              )
+	            )
+	          ),
+	          React.createElement(
+	            Col,
+	            { md: 6 },
+	            React.createElement(
+	              'div',
+	              { 'class': 'jobimg' },
+	              React.createElement('img', null)
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobHeader;
+	}(React.Component);
+
+	var JobBody = function (_React$Component2) {
+	  (0, _inherits3.default)(JobBody, _React$Component2);
+
+	  function JobBody() {
+	    (0, _classCallCheck3.default)(this, JobBody);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobBody).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(JobBody, [{
+	    key: 'render',
+	    value: function render() {
+	      var pStyles = {
+	        fontSize: '10px'
+	      };
+	      return React.createElement(
+	        'div',
+	        { className: 'jobbody' },
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            'div',
+	            { className: 'description' },
+	            'Description',
+	            React.createElement(
+	              'p',
+	              { style: pStyles },
+	              this.props.data.job_description
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            Col,
+	            { md: 6 },
+	            React.createElement(
+	              'div',
+	              { className: 'experience' },
+	              'Exp: placeholder'
+	            )
+	          ),
+	          React.createElement(
+	            Col,
+	            { md: 6 },
+	            React.createElement(
+	              'div',
+	              { className: 'Salary' },
+	              'Salary:',
+	              React.createElement(
+	                'p',
+	                null,
+	                this.props.data.min_salary,
+	                '-',
+	                this.props.data.max_salary
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobBody;
+	}(React.Component);
+
+	var JobApply = function (_React$Component3) {
+	  (0, _inherits3.default)(JobApply, _React$Component3);
+
+	  function JobApply() {
+	    (0, _classCallCheck3.default)(this, JobApply);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobApply).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(JobApply, [{
+	    key: 'render',
+	    value: function render() {
+	      var btnStyles = {
+	        textAlign: 'center',
+	        margin: '0 auto'
+	      };
+	      return React.createElement(
+	        'div',
+	        { className: 'jobapply' },
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            Col,
+	            { md: 12 },
+	            React.createElement(
+	              'div',
+	              { className: 'btn', style: btnStyles },
+	              React.createElement(
+	                'button',
+	                { className: 'btn btn-primary' },
+	                ' Apply '
+	              ),
+	              React.createElement(_jobModal2.default, null)
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobApply;
+	}(React.Component);
+
+	var JobCard = function (_React$Component4) {
+	  (0, _inherits3.default)(JobCard, _React$Component4);
+
+	  function JobCard() {
+	    (0, _classCallCheck3.default)(this, JobCard);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobCard).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(JobCard, [{
+	    key: 'render',
+	    value: function render() {
 	      console.log('jobCard', this.props);
+
 	      var styles = {
 	        margin: '12.5px 0',
 	        borderBottom: '1px dotted #999',
@@ -24138,14 +24284,6 @@ module.exports =
 	        textAlign: 'center'
 	      };
 
-	      var pStyles = {
-	        fontSize: '10px'
-	      };
-
-	      var btnStyles = {
-	        textAlign: 'center',
-	        margin: '0 auto'
-	      };
 	      var panelStyle = {
 	        'max-width': '400px',
 	        'padding-top': '0px'
@@ -24168,102 +24306,13 @@ module.exports =
 	                null,
 	                React.createElement(
 	                  Row,
-	                  null,
+	                  { style: styles },
 	                  React.createElement(
 	                    'div',
 	                    { className: 'jobcard' },
-	                    React.createElement(
-	                      Row,
-	                      { style: styles },
-	                      React.createElement(
-	                        Col,
-	                        { md: 6 },
-	                        React.createElement(
-	                          'div',
-	                          { 'class': 'jobtitle' },
-	                          React.createElement(
-	                            'h4',
-	                            null,
-	                            this.props.data.job_title
-	                          ),
-	                          React.createElement(
-	                            'p',
-	                            { style: pStyles },
-	                            'Location: ',
-	                            this.props.data.location
-	                          )
-	                        )
-	                      ),
-	                      React.createElement(
-	                        Col,
-	                        { md: 6 },
-	                        React.createElement(
-	                          'div',
-	                          { 'class': 'jobimg' },
-	                          React.createElement('img', null)
-	                        )
-	                      )
-	                    ),
-	                    React.createElement(
-	                      Row,
-	                      { style: styles },
-	                      React.createElement(
-	                        'div',
-	                        { className: 'description' },
-	                        'Description',
-	                        React.createElement(
-	                          'p',
-	                          { style: pStyles },
-	                          this.props.data.job_description
-	                        )
-	                      )
-	                    ),
-	                    React.createElement(
-	                      Row,
-	                      null,
-	                      React.createElement(
-	                        Col,
-	                        { md: 6 },
-	                        React.createElement(
-	                          'div',
-	                          { className: 'experience' },
-	                          'Exp: placeholder'
-	                        )
-	                      ),
-	                      React.createElement(
-	                        Col,
-	                        { md: 6 },
-	                        React.createElement(
-	                          'div',
-	                          { className: 'Salary' },
-	                          'Salary:',
-	                          React.createElement(
-	                            'p',
-	                            null,
-	                            this.props.data.min_salary,
-	                            '-',
-	                            this.props.data.max_salary
-	                          )
-	                        )
-	                      )
-	                    ),
-	                    React.createElement(
-	                      Row,
-	                      null,
-	                      React.createElement(
-	                        Col,
-	                        { md: 12 },
-	                        React.createElement(
-	                          'div',
-	                          { className: 'btn', style: btnStyles },
-	                          React.createElement(
-	                            'button',
-	                            { className: 'btn btn-primary' },
-	                            ' Apply '
-	                          )
-	                        )
-	                      )
-	                    )
+	                    React.createElement(JobHeader, { data: this.props.data }),
+	                    React.createElement(JobBody, { data: this.props.data }),
+	                    React.createElement(JobApply, { data: this.props.data })
 	                  )
 	                )
 	              )
@@ -24273,13 +24322,74 @@ module.exports =
 	      );
 	    }
 	  }]);
-	  return JobHeader;
+	  return JobCard;
 	}(React.Component);
 
-	exports.default = JobHeader;
+	exports.default = JobCard;
 
 /***/ },
 /* 238 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(52);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(64);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(65);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(69);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(94);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(101);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _actions = __webpack_require__(129);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var JobModal = function (_React$Component) {
+		(0, _inherits3.default)(JobModal, _React$Component);
+
+		function JobModal() {
+			(0, _classCallCheck3.default)(this, JobModal);
+			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobModal).apply(this, arguments));
+		}
+
+		(0, _createClass3.default)(JobModal, [{
+			key: 'render',
+			value: function render() {
+				console.log('JobModal props', this.props);
+				return React.createElement('div', null);
+			}
+		}]);
+		return JobModal;
+	}(React.Component);
+
+	exports.default = JobModal;
+
+/***/ },
+/* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24296,15 +24406,15 @@ module.exports =
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createBrowserHistory = __webpack_require__(239);
+	var _createBrowserHistory = __webpack_require__(240);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(119);
 
-	var _reduxSimpleRouter = __webpack_require__(240);
+	var _reduxSimpleRouter = __webpack_require__(241);
 
-	var _reduxThunk = __webpack_require__(241);
+	var _reduxThunk = __webpack_require__(242);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -24312,7 +24422,7 @@ module.exports =
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _reducers = __webpack_require__(242);
+	var _reducers = __webpack_require__(243);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -24426,7 +24536,7 @@ module.exports =
 	};
 
 /***/ },
-/* 239 */
+/* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24609,7 +24719,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-/* 240 */
+/* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24809,7 +24919,7 @@ module.exports =
 
 
 /***/ },
-/* 241 */
+/* 242 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -24828,7 +24938,7 @@ module.exports =
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 242 */
+/* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24837,15 +24947,15 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _todos = __webpack_require__(243);
+	var _todos = __webpack_require__(244);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
-	var _apps = __webpack_require__(248);
+	var _apps = __webpack_require__(249);
 
 	var _apps2 = _interopRequireDefault(_apps);
 
-	var _jobs = __webpack_require__(249);
+	var _jobs = __webpack_require__(250);
 
 	var _jobs2 = _interopRequireDefault(_jobs);
 
@@ -24854,7 +24964,7 @@ module.exports =
 	module.exports = (0, _extends3.default)({}, _todos2.default, _apps2.default, _jobs2.default);
 
 /***/ },
-/* 243 */
+/* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24863,7 +24973,7 @@ module.exports =
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-	var _toConsumableArray2 = __webpack_require__(244);
+	var _toConsumableArray2 = __webpack_require__(245);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -24910,12 +25020,12 @@ module.exports =
 	};
 
 /***/ },
-/* 244 */
+/* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _from = __webpack_require__(245);
+	var _from = __webpack_require__(246);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -24934,21 +25044,21 @@ module.exports =
 	exports.__esModule = true;
 
 /***/ },
-/* 245 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(246), __esModule: true };
-
-/***/ },
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(133);
-	__webpack_require__(247);
-	module.exports = __webpack_require__(60).Array.from;
+	module.exports = { "default": __webpack_require__(247), __esModule: true };
 
 /***/ },
 /* 247 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(133);
+	__webpack_require__(248);
+	module.exports = __webpack_require__(60).Array.from;
+
+/***/ },
+/* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -24990,7 +25100,7 @@ module.exports =
 
 
 /***/ },
-/* 248 */
+/* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25024,7 +25134,7 @@ module.exports =
 	};
 
 /***/ },
-/* 249 */
+/* 250 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -25041,8 +25151,12 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var initialState = {
+	  showModal: true
+	};
+
 	function jobList() {
-	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var action = arguments[1];
 
 	  switch (action.type) {

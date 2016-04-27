@@ -3,6 +3,8 @@ import { ADD_JOB,
          REMOVE_JOB,
          APPLY_JOB,
          FETCH_JOBS,
+         SHOW_FORM,
+         HIDE_FORM,
          SET_VISIBILITY_FILTER,
          VisibilityFilters } from './actionTypes';
 
@@ -14,6 +16,20 @@ function getJobs() {
       payload => dispatch({ type: FETCH_JOBS, payload })
     )
     .catch(resp => console.log("Error fetching jobs", resp));
+}
+
+function showForm() {
+	console.log('showForm');
+	return {
+		type: SHOW_FORM
+	}
+}
+
+function hideForm() {
+	console.log('hideForm');
+	return {
+		type: HIDE_FORM
+	}
 }
 
 function applyToJob(data) {

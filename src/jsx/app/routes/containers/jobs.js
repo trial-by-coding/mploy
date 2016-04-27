@@ -15,23 +15,18 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
 class JobsContainer extends React.Component {
-	getInitialState() {
-		return {showModal: false}
-	}
-	close() {
-		return {showModal: false}
-	}
-	open() {
-		return {showModal:true}
+	constructor() {
+		super();
+		this.state = {
+			showModal: false
+		}
 	}
 	componentWillMount(){
     this.props.dispatch(actions.getJobs()); 
-    // this.setState({applicants:this.props.appList.items})
-    // console.log('appList.items:', this.props.appList.item)
   }
 
 	render() {
-
+		console.log('container props', this.props);
 		let jobList = this.props.jobList.items;
 		console.log('JobsContainer', jobList);
 		const styles = {
