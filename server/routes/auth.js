@@ -1,7 +1,7 @@
-var express = require('express');
-var Users = require('../models/Users.js');
-var passportGithub = require('../auth/github');
-var passportLinkedIn = require('../auth/linkedin');
+const express = require('express');
+const Users = require('../models/Users.js');
+const passportLinkedIn = require('../auth/linkedin');
+
   //get endpoint for json obj for posts
   //might get used later, otherwise delete
 module.exports = function(router, passport) {
@@ -16,7 +16,7 @@ module.exports = function(router, passport) {
   router.get('/userstate', function(req, res) {
     if (req.user) {
       Users.verifyId(req.user.passid).then(function(resp) {
-        var obj = {};
+        let obj = {};
         console.log(resp);
         if (resp[0]) {
           obj = {
@@ -43,26 +43,18 @@ module.exports = function(router, passport) {
 
   //------Authentication Routes
 
-  // Github
-  router.get('/github',
-  passportGithub.authenticate('github', {
-  }));
-
-  router.get('/github/callback',
-    passportGithub.authenticate('github', {
-      failureRedirect: '/auth/github',
-      successRedirect: '/user/job'
-    }));
-
-  // LinkedIn
+  // LinkedIn - candidate
   router.get('/linkedin',
     passportLinkedIn.authenticate('linkedin'));
 
   router.get('/linkedin/callback',
     passportLinkedIn.authenticate('linkedin', {
       failureRedirect: '/auth/linkedin',
-      successRedirect: '/user/job'
+      // successRedirect: '/jobs',
+      successRedirect: '/applications'
     }));
+
+
 
   // LOGOUT
   router.get('/logout', function(req, res) {
