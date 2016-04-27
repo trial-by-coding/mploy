@@ -11628,11 +11628,22 @@
 	      this.props.dispatch(_actions2.default.getJobs());
 	    }
 	  }, {
+	    key: 'showForm',
+	    value: function showForm() {
+	      this.props.dispatch(_actions2.default.showForm());
+	    }
+	  }, {
+	    key: 'hideForm',
+	    value: function hideForm() {
+	      this.props.dispatch(_actions2.default.hideForm());
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      console.log('container props', this.props);
 	      var jobList = this.props.jobList.items;
 	      console.log('JobsContainer', jobList);
+
 	      var styles = {
 	        margin: '12.5px 0',
 	        borderBottom: '1px dotted #999',
@@ -11668,7 +11679,9 @@
 	        'div',
 	        null,
 	        jobList.map(function (job) {
-	          return React.createElement(_jobCard2.default, { data: job });
+	          return React.createElement(_jobCard2.default, { data: job,
+	            showForm: showForm,
+	            hideForm: hideForm });
 	        })
 	      );
 	    }
@@ -11920,10 +11933,12 @@
 	              { className: 'btn', style: btnStyles },
 	              React.createElement(
 	                'button',
-	                { className: 'btn btn-primary' },
+	                {
+	                  className: 'btn btn-primary' },
 	                ' Apply '
 	              ),
-	              React.createElement(_jobModal2.default, null)
+	              React.createElement(_jobModal2.default, { showForm: this.props.showForm,
+	                hideForm: this.props.hideForm })
 	            )
 	          )
 	        )
@@ -11981,7 +11996,9 @@
 	                    { className: 'jobcard' },
 	                    React.createElement(JobHeader, { data: this.props.data }),
 	                    React.createElement(JobBody, { data: this.props.data }),
-	                    React.createElement(JobApply, { data: this.props.data })
+	                    React.createElement(JobApply, { data: this.props.data,
+	                      showForm: this.props.showForm,
+	                      hideForm: this.props.hideForm })
 	                  )
 	                )
 	              )
@@ -12003,7 +12020,7 @@
 	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = undefined;
 
@@ -12038,21 +12055,151 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var JobModal = function (_React$Component) {
-		(0, _inherits3.default)(JobModal, _React$Component);
+	  (0, _inherits3.default)(JobModal, _React$Component);
 
-		function JobModal() {
-			(0, _classCallCheck3.default)(this, JobModal);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobModal).apply(this, arguments));
-		}
+	  function JobModal() {
+	    (0, _classCallCheck3.default)(this, JobModal);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobModal).apply(this, arguments));
+	  }
 
-		(0, _createClass3.default)(JobModal, [{
-			key: 'render',
-			value: function render() {
-				console.log('JobModal props', this.props);
-				return React.createElement('div', null);
-			}
-		}]);
-		return JobModal;
+	  (0, _createClass3.default)(JobModal, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('JobModal props', this.props);
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          Modal,
+	          { show: this.state.showForm(), onHide: this.props.hideForm() },
+	          React.createElement(
+	            Modal.Header,
+	            { closeButton: true },
+	            React.createElement(
+	              Modal.Title,
+	              null,
+	              'Modal heading'
+	            )
+	          ),
+	          React.createElement(
+	            Modal.Body,
+	            null,
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Text in a modal'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Duis mollis, est non commodo luctus, nisi erat porttitor ligula.'
+	            ),
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Popover in a modal'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'there is a ',
+	              React.createElement(
+	                OverlayTrigger,
+	                { overlay: popover },
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'popover'
+	                )
+	              ),
+	              ' here'
+	            ),
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Tooltips in a modal'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'there is a ',
+	              React.createElement(
+	                OverlayTrigger,
+	                { overlay: tooltip },
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'tooltip'
+	                )
+	              ),
+	              ' here'
+	            ),
+	            React.createElement('hr', null),
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Overflowing text to show scroll behavior'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
+	            )
+	          ),
+	          React.createElement(
+	            Modal.Footer,
+	            null,
+	            React.createElement(
+	              Button,
+	              { onClick: this.props.hideForm() },
+	              'Close'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobModal;
 	}(React.Component);
 
 	exports.default = JobModal;
@@ -12836,12 +12983,12 @@
 	    case _actionTypes.SHOW_FORM:
 	      console.log('SHOW_FORM');
 	      return (0, _assign2.default)({}, state, {
-	        showForm: true
+	        showModal: true
 	      });
 	    case _actionTypes.HIDE_FORM:
 	      console.log('HIDE_FORM');
 	      return (0, _assign2.default)({}, state, {
-	        showForm: false
+	        showModal: false
 	      });
 	    default:
 	      return state;

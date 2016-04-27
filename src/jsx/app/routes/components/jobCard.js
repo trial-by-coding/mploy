@@ -73,8 +73,10 @@ class JobApply extends React.Component {
         <Row>
           <Col md={12}>
             <div className="btn" style={btnStyles}>
-            <button className="btn btn-primary"> Apply </button>
-            <JobModal />
+            <button 
+            className="btn btn-primary"> Apply </button>
+            <JobModal showForm={this.props.showForm}
+                      hideForm={this.props.hideForm}/>
             </div>
           </Col>
         </Row>
@@ -109,7 +111,9 @@ export default class JobCard extends React.Component {
               <div className="jobcard">
               	<JobHeader data={this.props.data} />
                 <JobBody data={this.props.data} />
-                <JobApply data={this.props.data} />
+                <JobApply data={this.props.data}
+                          showForm={this.props.showForm}
+                          hideForm={this.props.hideForm} />
               </div>
               </Row>
             </Grid>

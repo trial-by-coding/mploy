@@ -15,20 +15,28 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
 class JobsContainer extends React.Component {
-	constructor() {
-		super();
+
+	constructor(props) {
+		super(props);
 		this.state = {
 			showForm: false
 		}
+    this.props.dispatch(actions.getJobs());
 	}
-	componentWillMount(){
-    this.props.dispatch(actions.getJobs()); 
+
+  showForm() {
+    this.props.dispatch(actions.showForm());
+  }
+
+  hideForm() {
+    this.props.dispatch(actions.hideForm());
   }
 
 	render() {
 		console.log('container props', this.props);
 		let jobList = this.props.jobList.items;
 		console.log('JobsContainer', jobList);
+
 		const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
@@ -58,7 +66,9 @@ class JobsContainer extends React.Component {
 
 		return (
 			<div>
-			{jobList.map(job => <JobCard data={job}/>)}
+			{jobList.map(job => <JobCard data={job} 
+																	 showForm={showForm}
+                                   hideForm={hideForm}/>)}
 			</div>
 		)
 	}

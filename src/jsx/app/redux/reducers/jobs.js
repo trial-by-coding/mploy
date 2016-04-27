@@ -7,9 +7,9 @@ import  { ADD_JOB,
           FETCH_JOBS,
           SET_VISIBILITY_FILTER } from '../actions/actionTypes';
 
+var initialState = { showForm: false };
 
-
-function jobList(state = {}, action) {
+function jobList(state = initialState, action) {
   switch (action.type) {
     case FETCH_JOBS:
       console.log('FETCH_JOBS', action.payload.data)
