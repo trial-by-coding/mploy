@@ -40,7 +40,7 @@ module.exports = function(router) {
  //      res.redirect('/')
  //    }
 
-	// });
+// });
 
 	//Routes:
   router.get('/appsbyjob', function(req, res){
