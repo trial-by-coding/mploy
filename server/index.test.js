@@ -7,6 +7,7 @@ chai.use(chaiHttp);
 describe('endpoints', function(){
 
 //================testing submitapp endpoint=====================
+
   it('should successfully submit an application with a user id POST', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
     .post('/user/applicant/submitapp')
@@ -31,7 +32,7 @@ describe('endpoints', function(){
     });
   });
 
-  it('should fail if job id does not exist POST', function(done) { // <= Pass in done callback
+  it('should fail submitting application if job id does not exist POST', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
     .post('/user/applicant/submitapp')
     .send({
@@ -54,7 +55,7 @@ describe('endpoints', function(){
       done();                               // <= Call done to signal callback end
     });
   });
-  it('should fail if user id does not exist POST', function(done) { // <= Pass in done callback
+  it('should fail submitting application if user id does not exist POST', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
     .post('/user/applicant/submitapp')
     .send({
@@ -109,7 +110,7 @@ describe('endpoints', function(){
     });
   });
 
-  it('should fail if job id does not exist GET', function(done) { // <= Pass in done callback
+  it('should fail getting applications if job id does not exist GET', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
     .get('/user/employer/appsbyjob')
     .query({jobID: 9999})
@@ -120,51 +121,78 @@ describe('endpoints', function(){
   });
 
 //================testing submitjob endpoint=====================
-  it('should successfully submit a job POST');  //, function(done) {
-//    chai.request('http://localhost:8080')
-//    .post('/user/employer/submitjob')
-//    .send({
-//      'company_name': 'MakerSquare', 
-//      'job_title': 'Instructor', 
-//      'job_description': 'Submitted during chai test', 
-//      'desired_education': 'Bachelors Degree in CS', 
-//      'min_salary': 40000, 
-//      'max_salary': 50000, 
-//      'location': 'Austin', 
-//      'employment_type': 'Full-Time', 
-//      'visa_required': true, 
-//      'skill_1': 'Javascript', 
-//      'skill_2': 'Node.js', 
-//      'skill_3': 'Express', 
-//      'skill_4': 'SQL', 
-//      'skill_5': 'MongoDB', 
-//      'skill_6': 'AngularJS', 
-//      'skill_7': 'React', 
-//      'user_id': 3
-//    })
-//    .end(function(err, res) {
-//      expect(res).to.have.status(200);
-//      done();                               // <= Call done to signal callback end
-//    });
-//  });
+  it('should successfully submit a job POST', function(done) {
+   chai.request('http://localhost:8080')
+   .post('/user/employer/submitjob')
+   .send({
+     'company_name': 'MakerSquare', 
+     'job_title': 'Instructor', 
+     'job_description': 'Submitted during chai test', 
+     'desired_education': 'Bachelors Degree in CS', 
+     'min_salary': 40000, 
+     'max_salary': 50000, 
+     'location': 'Austin', 
+     'employment_type': 'Full-Time', 
+     'visa_required': true, 
+     'skill_1': 'Javascript', 
+     'skill_2': 'Node.js', 
+     'skill_3': 'Express', 
+     'skill_4': 'SQL', 
+     'skill_5': 'MongoDB', 
+     'skill_6': 'AngularJS', 
+     'skill_7': 'React', 
+     'user_id': 3
+   })
+   .end(function(err, res) {
+     expect(res).to.have.status(200);
+     done();                               // <= Call done to signal callback end
+   });
+ });
 
 //================testing job endpoint=====================
-  it('should return all jobs GET'); //, function(done){
-//      it('should successfully retrieve all jobs GET', function(done) { // <= Pass in done callback
-//    chai.request('http://localhost:8080')
-//    .get('/user/job')
-//    .end(function(err, res) {
-//      expect(res).to.have.status(200);
-//      done();                               // <= Call done to signal callback end
-//    });
-//  });
+it('should successfully retrieve all jobs GET', function(done) { // <= Pass in done callback
+   chai.request('http://localhost:8080')
+   .get('/user/job')
+   .end(function(err, res) {
+     expect(res).to.have.status(200);
+     done();                               // <= Call done to signal callback end
+   });
+ });
 
 //================testing job/:id endpoint=====================
-  it('should successfully retrieve job if jobID exists GET');
-  it('should fail if jobID does not exist GET');
+  it('should successfully retrieve job if jobID exists GET', function(done){
+    chai.request('http://localhost:8080')
+   .get('/user/job/3')
+   .end(function(err, res) {
+     expect(res).to.have.status(200);
+     done();                               // <= Call done to signal callback end
+   });
+ });
+
+  it('should fail retrieving job if jobID does not exist GET', function(done){
+    chai.request('http://localhost:8080')
+    .get('/user/job/9999')
+    .end(function(err, res) {
+      expect(res).to.have.status(400);
+      done();                               // <= Call done to signal callback end
+   });
+ });
 
 //================testing newemployer endpoint=====================
-  it('should successfully submit a new employer POST');
+  it('should successfully submit a new employer POST', function(done){
+    chai.request('http://localhost:8080')
+    .post('/user/newemployer')
+    .send({
+      'userID': 3
+    })
+    .end(function(err, res){
+      expect(res).to.have.status(200);
+      done();
+    });
+  });
+
+//================testing submit application=======================
+// should increment statistics on successful application submission
 
 });
 
