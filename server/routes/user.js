@@ -16,14 +16,14 @@ module.exports = function(router) {
 	require('./employer.js')(employer);
 	router.use('/employer', employer)
 
-	// router.use(function(req,res,next) {
-	// 	//check if logged in
-	// 	if (req.isAuthenticated()){
-	// 		console.log('User is authenticated')
-	// 		return next()
-	// 	}
-	// 	res.redirect('/')
-	// });
+	router.use(function(req,res,next) {
+		//check if logged in
+		if (req.isAuthenticated()){
+			console.log('User is authenticated')
+			return next()
+		}
+		res.redirect('/')
+	});
 
 	router.get('/verifyuser', function(req, res) {
 		console.log('req.user.linkedin_id: ', req.user.linkedin_id);

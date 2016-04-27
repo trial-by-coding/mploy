@@ -52,7 +52,7 @@ Users.verifyInsert = function(obj) {
         return session;
       });
     } else {
-        return data[0];
+      return data[0];
     }
   });
 };
