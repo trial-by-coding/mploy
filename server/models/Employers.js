@@ -16,11 +16,13 @@ Employers.insert = function(userID){
 };
 
 Employers.verify = function(userID){
-  return db('employers').select('*').where({
+  return db('employers')
+  .select('*')
+  .where({
     user_id: userID
   })
   .then(function(record) {
-    return record;
+    return record[0];
   })
   .catch(function(err) {
     throw err;

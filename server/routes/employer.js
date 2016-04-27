@@ -10,25 +10,40 @@ module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
 
-	// router.use(function(req,res,next) {
+	router.use(function(req,res,next) {
+    if (req.user !== undefined){
+      var linkedin_id = req.user.linkedin_id
+      return Users.verifyId(linkedin_id)
+      .catch(function(err) {
+        console.log('Failed to verify user:', err)
+        res.redirect('/')
+      })
+      .then(function(userObj) {
+        console.log('userObj[0].userID: ',userObj[0].userID)
+        return Employers.verify(userObj[0].userID)
+      })
 
- //    console.log('req stuff: ', req.user.linkedin_id)
- //    var linkedin_id = req.user.linkedin_id
- //    return Users.verifyId(linkedin_id)
- //    .then(function(userObj) {
- //      Employers.verify(userObj.userID)
- //    })
- //    .then(function(resp) {
- //      console.log('Resp from Employers.verify:', resp)
- //    })
- //    .catch(function(err) {
- //      console.log('Employer authentication failed: ', err)
- //    })
- //    // }
- //      res.next()
 
-	// 	// res.redirect('/job')
-	// });
+      //I am a logged in user but not an employer.
+      .then(function(resp) {
+        console.log('Resp from Employers.verify:', resp)
+        if (resp){
+          return next()
+        } else {
+          console.log('User is not an employer.')
+          res.redirect('/')
+        }
+      })
+      .catch(function(err) {
+        console.log('Employer authentication failed: ', err)
+        res.redirect('/')
+      }) 
+    } else {
+      console.log('User not logged in')
+      res.redirect('/')
+    }
+
+	});
 
 	//Routes:
   router.get('/appsbyjob', function(req, res){
