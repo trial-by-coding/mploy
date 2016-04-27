@@ -811,7 +811,7 @@ gulp.task('base64-css:watch', ['base64-css'], function() {
 /*END: ALIASES*/
 
 gulp.task('startpg', shell.task([
-  'postgres -D /usr/local/var/postgres',
+  'pg_ctl start -D /usr/local/var/postgres',
   'createdb mploy_dev'
 ]));
 

@@ -52,7 +52,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-	var _router = __webpack_require__(173);
+	var _router = __webpack_require__(193);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -113,15 +113,15 @@
 
 	var _landing2 = _interopRequireDefault(_landing);
 
-	var _blank = __webpack_require__(166);
+	var _blank = __webpack_require__(187);
 
 	var _blank2 = _interopRequireDefault(_blank);
 
-	var _applications = __webpack_require__(167);
+	var _applications = __webpack_require__(188);
 
 	var _applications2 = _interopRequireDefault(_applications);
 
-	var _jobs = __webpack_require__(171);
+	var _jobs = __webpack_require__(190);
 
 	var _jobs2 = _interopRequireDefault(_jobs);
 
@@ -4646,6 +4646,15 @@
 	  }
 
 	  (0, _createClass3.default)(Body, [{
+	    key: 'showLogin',
+	    value: function showLogin() {
+	      if (this.props.currentUser) {
+	        return {
+	          display: "none"
+	        };
+	      }
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
@@ -4690,17 +4699,21 @@
 	                        'div',
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
-	                          Button,
-	                          { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
+	                          'a',
+	                          { href: '/auth/linkedin' },
 	                          React.createElement(
-	                            'span',
-	                            null,
-	                            '  Sign in ',
+	                            Button,
+	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
+	                            React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
 	                            React.createElement(
 	                              'span',
-	                              { className: 'hidden-xs' },
-	                              'with linkedin'
+	                              null,
+	                              '  Sign in ',
+	                              React.createElement(
+	                                'span',
+	                                { className: 'hidden-xs' },
+	                                'with linkedin'
+	                              )
 	                            )
 	                          )
 	                        )
@@ -4710,7 +4723,7 @@
 	                        null,
 	                        React.createElement(
 	                          'a',
-	                          { id: 'github-link', href: '#', onClick: this.back },
+	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
 	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
 	                          React.createElement(
 	                            'span',
@@ -4757,17 +4770,21 @@
 	                        'div',
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
-	                          Button,
-	                          { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
+	                          'a',
+	                          { href: '/auth/linkedin' },
 	                          React.createElement(
-	                            'span',
-	                            null,
-	                            '  Sign in ',
+	                            Button,
+	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
+	                            React.createElement(Icon, { glyph: 'icon-fontello-linkedin-6' }),
 	                            React.createElement(
 	                              'span',
-	                              { className: 'hidden-xs' },
-	                              'with linkedin'
+	                              null,
+	                              '  Sign in ',
+	                              React.createElement(
+	                                'span',
+	                                { className: 'hidden-xs' },
+	                                'with linkedin'
+	                              )
 	                            )
 	                          )
 	                        )
@@ -4777,7 +4794,7 @@
 	                        null,
 	                        React.createElement(
 	                          'a',
-	                          { id: 'github-link', href: '#', onClick: this.back },
+	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
 	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
 	                          React.createElement(
 	                            'span',
@@ -8173,9 +8190,17 @@
 
 	var _todos2 = _interopRequireDefault(_todos);
 
+	var _appActions = __webpack_require__(168);
+
+	var _appActions2 = _interopRequireDefault(_appActions);
+
+	var _jobActions = __webpack_require__(186);
+
+	var _jobActions2 = _interopRequireDefault(_jobActions);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = (0, _extends3.default)({}, _todos2.default);
+	module.exports = (0, _extends3.default)({}, _todos2.default, _appActions2.default, _jobActions2.default);
 
 /***/ },
 /* 131 */
@@ -8189,7 +8214,7 @@
 
 	var _actionTypes = __webpack_require__(162);
 
-	var _isomorphicFetch = __webpack_require__(164);
+	var _isomorphicFetch = __webpack_require__(166);
 
 	var _isomorphicFetch2 = _interopRequireDefault(_isomorphicFetch);
 
@@ -9154,9 +9179,17 @@
 
 	var _todos2 = _interopRequireDefault(_todos);
 
+	var _apps = __webpack_require__(164);
+
+	var _apps2 = _interopRequireDefault(_apps);
+
+	var _jobs = __webpack_require__(165);
+
+	var _jobs2 = _interopRequireDefault(_jobs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = (0, _extends3.default)({}, _todos2.default);
+	module.exports = (0, _extends3.default)({}, _todos2.default, _apps2.default, _jobs2.default);
 
 /***/ },
 /* 163 */
@@ -9182,18 +9215,59 @@
 
 /***/ },
 /* 164 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  ADD_APP: 'ADD_APP',
+	  REMOVE_APP: 'REMOVE_APP',
+	  ACCEPT_APP: 'ACCEPT_APP',
+	  REJECT_APP: 'REJECT_APP',
+	  FETCH_APP: 'FETCH_APP',
+	  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
+	  VisibilityFilters: {
+	    SHOW_ALL: 'SHOW_ALL',
+	    SHOW_COMPLETED: 'SHOW_COMPLETED',
+	    SHOW_ACTIVE: 'SHOW_ACTIVE'
+	  }
+	};
+
+/***/ },
+/* 165 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = {
+	  ADD_JOB: 'ADD_JOB',
+	  REMOVE_JOB: 'REMOVE_JOB',
+	  APPLY_JOB: 'APPLY_JOB',
+	  SHOW_FORM: 'SHOW_FORM',
+	  HIDE_FORM: 'HIDE_FORM',
+	  FETCH_JOBS: 'FETCH_JOBS',
+	  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
+	  VisibilityFilters: {
+	    SHOW_ALL: 'SHOW_ALL',
+	    SHOW_COMPLETED: 'SHOW_COMPLETED',
+	    SHOW_ACTIVE: 'SHOW_ACTIVE'
+	  }
+	};
+
+/***/ },
+/* 166 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// the whatwg-fetch polyfill installs the fetch() function
 	// on the global object (window or self)
 	//
 	// Return that as the export for use in Webpack, Browserify etc.
-	__webpack_require__(165);
+	__webpack_require__(167);
 	module.exports = self.fetch.bind(self);
 
 
 /***/ },
-/* 165 */
+/* 167 */
 /***/ function(module, exports) {
 
 	(function(self) {
@@ -9588,7 +9662,1245 @@
 
 
 /***/ },
-/* 166 */
+/* 168 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _axios = __webpack_require__(169);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getApplications(jobID) {
+
+	  return function (dispatch) {
+	    return _axios2.default.get('user/employer/appsbyjob?jobID=' + jobID).then(function (payload) {
+	      return dispatch({ type: _actionTypes.FETCH_APP, payload: payload });
+	    });
+	  };
+	}
+
+	function rejectApp(appID) {
+	  return function (dispatch) {
+	    return _axios2.default.delete('user/employer/deleteapp?appID=' + appID).then(function (payload) {
+	      return dispatch({ type: _actionTypes.REMOVE_APP, payload: payload });
+	    });
+	  };
+	  // return { type: REMOVE_APP, jobID };
+	}
+
+	module.exports = {
+	  getApplications: getApplications,
+	  rejectApp: rejectApp
+	};
+
+/***/ },
+/* 169 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(170);
+
+/***/ },
+/* 170 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var defaults = __webpack_require__(171);
+	var utils = __webpack_require__(172);
+	var dispatchRequest = __webpack_require__(173);
+	var InterceptorManager = __webpack_require__(181);
+	var isAbsoluteURL = __webpack_require__(182);
+	var combineURLs = __webpack_require__(183);
+	var bind = __webpack_require__(184);
+	var transformData = __webpack_require__(177);
+
+	function Axios(defaultConfig) {
+	  this.defaults = utils.merge({}, defaultConfig);
+	  this.interceptors = {
+	    request: new InterceptorManager(),
+	    response: new InterceptorManager()
+	  };
+	}
+
+	Axios.prototype.request = function request(config) {
+	  /*eslint no-param-reassign:0*/
+	  // Allow for axios('example/url'[, config]) a la fetch API
+	  if (typeof config === 'string') {
+	    config = utils.merge({
+	      url: arguments[0]
+	    }, arguments[1]);
+	  }
+
+	  config = utils.merge(defaults, this.defaults, { method: 'get' }, config);
+
+	  // Support baseURL config
+	  if (config.baseURL && !isAbsoluteURL(config.url)) {
+	    config.url = combineURLs(config.baseURL, config.url);
+	  }
+
+	  // Don't allow overriding defaults.withCredentials
+	  config.withCredentials = config.withCredentials || this.defaults.withCredentials;
+
+	  // Transform request data
+	  config.data = transformData(
+	    config.data,
+	    config.headers,
+	    config.transformRequest
+	  );
+
+	  // Flatten headers
+	  config.headers = utils.merge(
+	    config.headers.common || {},
+	    config.headers[config.method] || {},
+	    config.headers || {}
+	  );
+
+	  utils.forEach(
+	    ['delete', 'get', 'head', 'post', 'put', 'patch', 'common'],
+	    function cleanHeaderConfig(method) {
+	      delete config.headers[method];
+	    }
+	  );
+
+	  // Hook up interceptors middleware
+	  var chain = [dispatchRequest, undefined];
+	  var promise = Promise.resolve(config);
+
+	  this.interceptors.request.forEach(function unshiftRequestInterceptors(interceptor) {
+	    chain.unshift(interceptor.fulfilled, interceptor.rejected);
+	  });
+
+	  this.interceptors.response.forEach(function pushResponseInterceptors(interceptor) {
+	    chain.push(interceptor.fulfilled, interceptor.rejected);
+	  });
+
+	  while (chain.length) {
+	    promise = promise.then(chain.shift(), chain.shift());
+	  }
+
+	  return promise;
+	};
+
+	var defaultInstance = new Axios(defaults);
+	var axios = module.exports = bind(Axios.prototype.request, defaultInstance);
+
+	// Expose properties from defaultInstance
+	axios.defaults = defaultInstance.defaults;
+	axios.interceptors = defaultInstance.interceptors;
+
+	// Factory for creating new instances
+	axios.create = function create(defaultConfig) {
+	  return new Axios(defaultConfig);
+	};
+
+	// Expose all/spread
+	axios.all = function all(promises) {
+	  return Promise.all(promises);
+	};
+	axios.spread = __webpack_require__(185);
+
+	// Provide aliases for supported request methods
+	utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url
+	    }));
+	  };
+	  axios[method] = bind(Axios.prototype[method], defaultInstance);
+	});
+
+	utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+	  /*eslint func-names:0*/
+	  Axios.prototype[method] = function(url, data, config) {
+	    return this.request(utils.merge(config || {}, {
+	      method: method,
+	      url: url,
+	      data: data
+	    }));
+	  };
+	  axios[method] = bind(Axios.prototype[method], defaultInstance);
+	});
+
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(172);
+
+	var PROTECTION_PREFIX = /^\)\]\}',?\n/;
+	var DEFAULT_CONTENT_TYPE = {
+	  'Content-Type': 'application/x-www-form-urlencoded'
+	};
+
+	module.exports = {
+	  transformRequest: [function transformRequestJSON(data, headers) {
+	    if (utils.isFormData(data)) {
+	      return data;
+	    }
+	    if (utils.isArrayBuffer(data)) {
+	      return data;
+	    }
+	    if (utils.isArrayBufferView(data)) {
+	      return data.buffer;
+	    }
+	    if (utils.isObject(data) && !utils.isFile(data) && !utils.isBlob(data)) {
+	      // Set application/json if no Content-Type has been specified
+	      if (!utils.isUndefined(headers)) {
+	        utils.forEach(headers, function processContentTypeHeader(val, key) {
+	          if (key.toLowerCase() === 'content-type') {
+	            headers['Content-Type'] = val;
+	          }
+	        });
+
+	        if (utils.isUndefined(headers['Content-Type'])) {
+	          headers['Content-Type'] = 'application/json;charset=utf-8';
+	        }
+	      }
+	      return JSON.stringify(data);
+	    }
+	    return data;
+	  }],
+
+	  transformResponse: [function transformResponseJSON(data) {
+	    /*eslint no-param-reassign:0*/
+	    if (typeof data === 'string') {
+	      data = data.replace(PROTECTION_PREFIX, '');
+	      try {
+	        data = JSON.parse(data);
+	      } catch (e) { /* Ignore */ }
+	    }
+	    return data;
+	  }],
+
+	  headers: {
+	    common: {
+	      'Accept': 'application/json, text/plain, */*'
+	    },
+	    patch: utils.merge(DEFAULT_CONTENT_TYPE),
+	    post: utils.merge(DEFAULT_CONTENT_TYPE),
+	    put: utils.merge(DEFAULT_CONTENT_TYPE)
+	  },
+
+	  timeout: 0,
+
+	  xsrfCookieName: 'XSRF-TOKEN',
+	  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+	  maxContentLength: -1
+	};
+
+
+/***/ },
+/* 172 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/*global toString:true*/
+
+	// utils is a library of generic helper functions non-specific to axios
+
+	var toString = Object.prototype.toString;
+
+	/**
+	 * Determine if a value is an Array
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Array, otherwise false
+	 */
+	function isArray(val) {
+	  return toString.call(val) === '[object Array]';
+	}
+
+	/**
+	 * Determine if a value is an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an ArrayBuffer, otherwise false
+	 */
+	function isArrayBuffer(val) {
+	  return toString.call(val) === '[object ArrayBuffer]';
+	}
+
+	/**
+	 * Determine if a value is a FormData
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an FormData, otherwise false
+	 */
+	function isFormData(val) {
+	  return toString.call(val) === '[object FormData]';
+	}
+
+	/**
+	 * Determine if a value is a view on an ArrayBuffer
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a view on an ArrayBuffer, otherwise false
+	 */
+	function isArrayBufferView(val) {
+	  var result;
+	  if ((typeof ArrayBuffer !== 'undefined') && (ArrayBuffer.isView)) {
+	    result = ArrayBuffer.isView(val);
+	  } else {
+	    result = (val) && (val.buffer) && (val.buffer instanceof ArrayBuffer);
+	  }
+	  return result;
+	}
+
+	/**
+	 * Determine if a value is a String
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a String, otherwise false
+	 */
+	function isString(val) {
+	  return typeof val === 'string';
+	}
+
+	/**
+	 * Determine if a value is a Number
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Number, otherwise false
+	 */
+	function isNumber(val) {
+	  return typeof val === 'number';
+	}
+
+	/**
+	 * Determine if a value is undefined
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if the value is undefined, otherwise false
+	 */
+	function isUndefined(val) {
+	  return typeof val === 'undefined';
+	}
+
+	/**
+	 * Determine if a value is an Object
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is an Object, otherwise false
+	 */
+	function isObject(val) {
+	  return val !== null && typeof val === 'object';
+	}
+
+	/**
+	 * Determine if a value is a Date
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Date, otherwise false
+	 */
+	function isDate(val) {
+	  return toString.call(val) === '[object Date]';
+	}
+
+	/**
+	 * Determine if a value is a File
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a File, otherwise false
+	 */
+	function isFile(val) {
+	  return toString.call(val) === '[object File]';
+	}
+
+	/**
+	 * Determine if a value is a Blob
+	 *
+	 * @param {Object} val The value to test
+	 * @returns {boolean} True if value is a Blob, otherwise false
+	 */
+	function isBlob(val) {
+	  return toString.call(val) === '[object Blob]';
+	}
+
+	/**
+	 * Trim excess whitespace off the beginning and end of a string
+	 *
+	 * @param {String} str The String to trim
+	 * @returns {String} The String freed of excess whitespace
+	 */
+	function trim(str) {
+	  return str.replace(/^\s*/, '').replace(/\s*$/, '');
+	}
+
+	/**
+	 * Determine if we're running in a standard browser environment
+	 *
+	 * This allows axios to run in a web worker, and react-native.
+	 * Both environments support XMLHttpRequest, but not fully standard globals.
+	 *
+	 * web workers:
+	 *  typeof window -> undefined
+	 *  typeof document -> undefined
+	 *
+	 * react-native:
+	 *  typeof document.createElement -> undefined
+	 */
+	function isStandardBrowserEnv() {
+	  return (
+	    typeof window !== 'undefined' &&
+	    typeof document !== 'undefined' &&
+	    typeof document.createElement === 'function'
+	  );
+	}
+
+	/**
+	 * Iterate over an Array or an Object invoking a function for each item.
+	 *
+	 * If `obj` is an Array callback will be called passing
+	 * the value, index, and complete array for each item.
+	 *
+	 * If 'obj' is an Object callback will be called passing
+	 * the value, key, and complete object for each property.
+	 *
+	 * @param {Object|Array} obj The object to iterate
+	 * @param {Function} fn The callback to invoke for each item
+	 */
+	function forEach(obj, fn) {
+	  // Don't bother if no value provided
+	  if (obj === null || typeof obj === 'undefined') {
+	    return;
+	  }
+
+	  // Force an array if not already something iterable
+	  if (typeof obj !== 'object' && !isArray(obj)) {
+	    /*eslint no-param-reassign:0*/
+	    obj = [obj];
+	  }
+
+	  if (isArray(obj)) {
+	    // Iterate over array values
+	    for (var i = 0, l = obj.length; i < l; i++) {
+	      fn.call(null, obj[i], i, obj);
+	    }
+	  } else {
+	    // Iterate over object keys
+	    for (var key in obj) {
+	      if (obj.hasOwnProperty(key)) {
+	        fn.call(null, obj[key], key, obj);
+	      }
+	    }
+	  }
+	}
+
+	/**
+	 * Accepts varargs expecting each argument to be an object, then
+	 * immutably merges the properties of each object and returns result.
+	 *
+	 * When multiple objects contain the same key the later object in
+	 * the arguments list will take precedence.
+	 *
+	 * Example:
+	 *
+	 * ```js
+	 * var result = merge({foo: 123}, {foo: 456});
+	 * console.log(result.foo); // outputs 456
+	 * ```
+	 *
+	 * @param {Object} obj1 Object to merge
+	 * @returns {Object} Result of all merge properties
+	 */
+	function merge(/* obj1, obj2, obj3, ... */) {
+	  var result = {};
+	  function assignValue(val, key) {
+	    if (typeof result[key] === 'object' && typeof val === 'object') {
+	      result[key] = merge(result[key], val);
+	    } else {
+	      result[key] = val;
+	    }
+	  }
+
+	  for (var i = 0, l = arguments.length; i < l; i++) {
+	    forEach(arguments[i], assignValue);
+	  }
+	  return result;
+	}
+
+	module.exports = {
+	  isArray: isArray,
+	  isArrayBuffer: isArrayBuffer,
+	  isFormData: isFormData,
+	  isArrayBufferView: isArrayBufferView,
+	  isString: isString,
+	  isNumber: isNumber,
+	  isObject: isObject,
+	  isUndefined: isUndefined,
+	  isDate: isDate,
+	  isFile: isFile,
+	  isBlob: isBlob,
+	  isStandardBrowserEnv: isStandardBrowserEnv,
+	  forEach: forEach,
+	  merge: merge,
+	  trim: trim
+	};
+
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	/**
+	 * Dispatch a request to the server using whichever adapter
+	 * is supported by the current environment.
+	 *
+	 * @param {object} config The config that is to be used for the request
+	 * @returns {Promise} The Promise to be fulfilled
+	 */
+	module.exports = function dispatchRequest(config) {
+	  return new Promise(function executor(resolve, reject) {
+	    try {
+	      var adapter;
+
+	      if (typeof config.adapter === 'function') {
+	        // For custom adapter support
+	        adapter = config.adapter;
+	      } else if (typeof XMLHttpRequest !== 'undefined') {
+	        // For browsers use XHR adapter
+	        adapter = __webpack_require__(174);
+	      } else if (typeof process !== 'undefined') {
+	        // For node use HTTP adapter
+	        adapter = __webpack_require__(174);
+	      }
+
+	      if (typeof adapter === 'function') {
+	        adapter(resolve, reject, config);
+	      }
+	    } catch (e) {
+	      reject(e);
+	    }
+	  });
+	};
+
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
+
+	var utils = __webpack_require__(172);
+	var buildURL = __webpack_require__(175);
+	var parseHeaders = __webpack_require__(176);
+	var transformData = __webpack_require__(177);
+	var isURLSameOrigin = __webpack_require__(178);
+	var btoa = (typeof window !== 'undefined' && window.btoa) || __webpack_require__(179);
+
+	module.exports = function xhrAdapter(resolve, reject, config) {
+	  var requestData = config.data;
+	  var requestHeaders = config.headers;
+
+	  if (utils.isFormData(requestData)) {
+	    delete requestHeaders['Content-Type']; // Let the browser set it
+	  }
+
+	  var request = new XMLHttpRequest();
+	  var loadEvent = 'onreadystatechange';
+	  var xDomain = false;
+
+	  // For IE 8/9 CORS support
+	  // Only supports POST and GET calls and doesn't returns the response headers.
+	  // DON'T do this for testing b/c XMLHttpRequest is mocked, not XDomainRequest.
+	  if (process.env.NODE_ENV !== 'test' && typeof window !== 'undefined' && window.XDomainRequest && !('withCredentials' in request) && !isURLSameOrigin(config.url)) {
+	    request = new window.XDomainRequest();
+	    loadEvent = 'onload';
+	    xDomain = true;
+	  }
+
+	  // HTTP basic authentication
+	  if (config.auth) {
+	    var username = config.auth.username || '';
+	    var password = config.auth.password || '';
+	    requestHeaders.Authorization = 'Basic ' + btoa(username + ':' + password);
+	  }
+
+	  request.open(config.method.toUpperCase(), buildURL(config.url, config.params, config.paramsSerializer), true);
+
+	  // Set the request timeout in MS
+	  request.timeout = config.timeout;
+
+	  // For IE 9 CORS support.
+	  request.onprogress = function handleProgress() {};
+	  request.ontimeout = function handleTimeout() {};
+
+	  // Listen for ready state
+	  request[loadEvent] = function handleLoad() {
+	    if (!request || (request.readyState !== 4 && !xDomain)) {
+	      return;
+	    }
+
+	    // The request errored out and we didn't get a response, this will be
+	    // handled by onerror instead
+	    if (request.status === 0) {
+	      return;
+	    }
+
+	    // Prepare the response
+	    var responseHeaders = 'getAllResponseHeaders' in request ? parseHeaders(request.getAllResponseHeaders()) : null;
+	    var responseData = !config.responseType || config.responseType === 'text' ? request.responseText : request.response;
+	    var response = {
+	      data: transformData(
+	        responseData,
+	        responseHeaders,
+	        config.transformResponse
+	      ),
+	      // IE sends 1223 instead of 204 (https://github.com/mzabriskie/axios/issues/201)
+	      status: request.status === 1223 ? 204 : request.status,
+	      statusText: request.status === 1223 ? 'No Content' : request.statusText,
+	      headers: responseHeaders,
+	      config: config,
+	      request: request
+	    };
+
+	    // Resolve or reject the Promise based on the status
+	    ((response.status >= 200 && response.status < 300) ||
+	     (!('status' in request) && request.responseText) ?
+	      resolve :
+	      reject)(response);
+
+	    // Clean up request
+	    request = null;
+	  };
+
+	  // Handle low level network errors
+	  request.onerror = function handleError() {
+	    // Real errors are hidden from us by the browser
+	    // onerror should only fire if it's a network error
+	    reject(new Error('Network Error'));
+
+	    // Clean up request
+	    request = null;
+	  };
+
+	  // Handle timeout
+	  request.ontimeout = function handleTimeout() {
+	    var err = new Error('timeout of ' + config.timeout + 'ms exceeded');
+	    err.timeout = config.timeout;
+	    err.code = 'ECONNABORTED';
+	    reject(err);
+
+	    // Clean up request
+	    request = null;
+	  };
+
+	  // Add xsrf header
+	  // This is only done if running in a standard browser environment.
+	  // Specifically not if we're in a web worker, or react-native.
+	  if (utils.isStandardBrowserEnv()) {
+	    var cookies = __webpack_require__(180);
+
+	    // Add xsrf header
+	    var xsrfValue = config.withCredentials || isURLSameOrigin(config.url) ?
+	        cookies.read(config.xsrfCookieName) :
+	        undefined;
+
+	    if (xsrfValue) {
+	      requestHeaders[config.xsrfHeaderName] = xsrfValue;
+	    }
+	  }
+
+	  // Add headers to the request
+	  if ('setRequestHeader' in request) {
+	    utils.forEach(requestHeaders, function setRequestHeader(val, key) {
+	      if (typeof requestData === 'undefined' && key.toLowerCase() === 'content-type') {
+	        // Remove Content-Type if data is undefined
+	        delete requestHeaders[key];
+	      } else {
+	        // Otherwise add header to the request
+	        request.setRequestHeader(key, val);
+	      }
+	    });
+	  }
+
+	  // Add withCredentials to request if needed
+	  if (config.withCredentials) {
+	    request.withCredentials = true;
+	  }
+
+	  // Add responseType to request if needed
+	  if (config.responseType) {
+	    try {
+	      request.responseType = config.responseType;
+	    } catch (e) {
+	      if (request.responseType !== 'json') {
+	        throw e;
+	      }
+	    }
+	  }
+
+	  // Handle progress if needed
+	  if (config.progress) {
+	    if (config.method === 'post' || config.method === 'put') {
+	      request.upload.addEventListener('progress', config.progress);
+	    } else if (config.method === 'get') {
+	      request.addEventListener('progress', config.progress);
+	    }
+	  }
+
+	  // Format request data
+	  if (utils.isArrayBuffer(requestData)) {
+	    requestData = new DataView(requestData);
+	  }
+
+	  if (requestData === undefined) {
+	    requestData = null;
+	  }
+
+	  // Send the request
+	  request.send(requestData);
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 175 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(172);
+
+	function encode(val) {
+	  return encodeURIComponent(val).
+	    replace(/%40/gi, '@').
+	    replace(/%3A/gi, ':').
+	    replace(/%24/g, '$').
+	    replace(/%2C/gi, ',').
+	    replace(/%20/g, '+').
+	    replace(/%5B/gi, '[').
+	    replace(/%5D/gi, ']');
+	}
+
+	/**
+	 * Build a URL by appending params to the end
+	 *
+	 * @param {string} url The base of the url (e.g., http://www.google.com)
+	 * @param {object} [params] The params to be appended
+	 * @returns {string} The formatted url
+	 */
+	module.exports = function buildURL(url, params, paramsSerializer) {
+	  /*eslint no-param-reassign:0*/
+	  if (!params) {
+	    return url;
+	  }
+
+	  var serializedParams;
+	  if (paramsSerializer) {
+	    serializedParams = paramsSerializer(params);
+	  } else {
+	    var parts = [];
+
+	    utils.forEach(params, function serialize(val, key) {
+	      if (val === null || typeof val === 'undefined') {
+	        return;
+	      }
+
+	      if (utils.isArray(val)) {
+	        key = key + '[]';
+	      }
+
+	      if (!utils.isArray(val)) {
+	        val = [val];
+	      }
+
+	      utils.forEach(val, function parseValue(v) {
+	        if (utils.isDate(v)) {
+	          v = v.toISOString();
+	        } else if (utils.isObject(v)) {
+	          v = JSON.stringify(v);
+	        }
+	        parts.push(encode(key) + '=' + encode(v));
+	      });
+	    });
+
+	    serializedParams = parts.join('&');
+	  }
+
+	  if (serializedParams) {
+	    url += (url.indexOf('?') === -1 ? '?' : '&') + serializedParams;
+	  }
+
+	  return url;
+	};
+
+
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(172);
+
+	/**
+	 * Parse headers into an object
+	 *
+	 * ```
+	 * Date: Wed, 27 Aug 2014 08:58:49 GMT
+	 * Content-Type: application/json
+	 * Connection: keep-alive
+	 * Transfer-Encoding: chunked
+	 * ```
+	 *
+	 * @param {String} headers Headers needing to be parsed
+	 * @returns {Object} Headers parsed into an object
+	 */
+	module.exports = function parseHeaders(headers) {
+	  var parsed = {};
+	  var key;
+	  var val;
+	  var i;
+
+	  if (!headers) { return parsed; }
+
+	  utils.forEach(headers.split('\n'), function parser(line) {
+	    i = line.indexOf(':');
+	    key = utils.trim(line.substr(0, i)).toLowerCase();
+	    val = utils.trim(line.substr(i + 1));
+
+	    if (key) {
+	      parsed[key] = parsed[key] ? parsed[key] + ', ' + val : val;
+	    }
+	  });
+
+	  return parsed;
+	};
+
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(172);
+
+	/**
+	 * Transform the data for a request or a response
+	 *
+	 * @param {Object|String} data The data to be transformed
+	 * @param {Array} headers The headers for the request or response
+	 * @param {Array|Function} fns A single function or Array of functions
+	 * @returns {*} The resulting transformed data
+	 */
+	module.exports = function transformData(data, headers, fns) {
+	  /*eslint no-param-reassign:0*/
+	  utils.forEach(fns, function transform(fn) {
+	    data = fn(data, headers);
+	  });
+
+	  return data;
+	};
+
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(172);
+
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+
+	  // Standard browser envs have full support of the APIs needed to test
+	  // whether the request URL is of the same origin as current location.
+	  (function standardBrowserEnv() {
+	    var msie = /(msie|trident)/i.test(navigator.userAgent);
+	    var urlParsingNode = document.createElement('a');
+	    var originURL;
+
+	    /**
+	    * Parse a URL to discover it's components
+	    *
+	    * @param {String} url The URL to be parsed
+	    * @returns {Object}
+	    */
+	    function resolveURL(url) {
+	      var href = url;
+
+	      if (msie) {
+	        // IE needs attribute set twice to normalize properties
+	        urlParsingNode.setAttribute('href', href);
+	        href = urlParsingNode.href;
+	      }
+
+	      urlParsingNode.setAttribute('href', href);
+
+	      // urlParsingNode provides the UrlUtils interface - http://url.spec.whatwg.org/#urlutils
+	      return {
+	        href: urlParsingNode.href,
+	        protocol: urlParsingNode.protocol ? urlParsingNode.protocol.replace(/:$/, '') : '',
+	        host: urlParsingNode.host,
+	        search: urlParsingNode.search ? urlParsingNode.search.replace(/^\?/, '') : '',
+	        hash: urlParsingNode.hash ? urlParsingNode.hash.replace(/^#/, '') : '',
+	        hostname: urlParsingNode.hostname,
+	        port: urlParsingNode.port,
+	        pathname: (urlParsingNode.pathname.charAt(0) === '/') ?
+	                  urlParsingNode.pathname :
+	                  '/' + urlParsingNode.pathname
+	      };
+	    }
+
+	    originURL = resolveURL(window.location.href);
+
+	    /**
+	    * Determine if a URL shares the same origin as the current location
+	    *
+	    * @param {String} requestURL The URL to test
+	    * @returns {boolean} True if URL shares the same origin, otherwise false
+	    */
+	    return function isURLSameOrigin(requestURL) {
+	      var parsed = (utils.isString(requestURL)) ? resolveURL(requestURL) : requestURL;
+	      return (parsed.protocol === originURL.protocol &&
+	            parsed.host === originURL.host);
+	    };
+	  })() :
+
+	  // Non standard browser envs (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return function isURLSameOrigin() {
+	      return true;
+	    };
+	  })()
+	);
+
+
+/***/ },
+/* 179 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	// btoa polyfill for IE<10 courtesy https://github.com/davidchambers/Base64.js
+
+	var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
+	function E() {
+	  this.message = 'String contains an invalid character';
+	}
+	E.prototype = new Error;
+	E.prototype.code = 5;
+	E.prototype.name = 'InvalidCharacterError';
+
+	function btoa(input) {
+	  var str = String(input);
+	  var output = '';
+	  for (
+	    // initialize result and counter
+	    var block, charCode, idx = 0, map = chars;
+	    // if the next str index does not exist:
+	    //   change the mapping table to "="
+	    //   check if d has no fractional digits
+	    str.charAt(idx | 0) || (map = '=', idx % 1);
+	    // "8 - idx % 1 * 8" generates the sequence 2, 4, 6, 8
+	    output += map.charAt(63 & block >> 8 - idx % 1 * 8)
+	  ) {
+	    charCode = str.charCodeAt(idx += 3 / 4);
+	    if (charCode > 0xFF) {
+	      throw new E();
+	    }
+	    block = block << 8 | charCode;
+	  }
+	  return output;
+	}
+
+	module.exports = btoa;
+
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(172);
+
+	module.exports = (
+	  utils.isStandardBrowserEnv() ?
+
+	  // Standard browser envs support document.cookie
+	  (function standardBrowserEnv() {
+	    return {
+	      write: function write(name, value, expires, path, domain, secure) {
+	        var cookie = [];
+	        cookie.push(name + '=' + encodeURIComponent(value));
+
+	        if (utils.isNumber(expires)) {
+	          cookie.push('expires=' + new Date(expires).toGMTString());
+	        }
+
+	        if (utils.isString(path)) {
+	          cookie.push('path=' + path);
+	        }
+
+	        if (utils.isString(domain)) {
+	          cookie.push('domain=' + domain);
+	        }
+
+	        if (secure === true) {
+	          cookie.push('secure');
+	        }
+
+	        document.cookie = cookie.join('; ');
+	      },
+
+	      read: function read(name) {
+	        var match = document.cookie.match(new RegExp('(^|;\\s*)(' + name + ')=([^;]*)'));
+	        return (match ? decodeURIComponent(match[3]) : null);
+	      },
+
+	      remove: function remove(name) {
+	        this.write(name, '', Date.now() - 86400000);
+	      }
+	    };
+	  })() :
+
+	  // Non standard browser env (web workers, react-native) lack needed support.
+	  (function nonStandardBrowserEnv() {
+	    return {
+	      write: function write() {},
+	      read: function read() { return null; },
+	      remove: function remove() {}
+	    };
+	  })()
+	);
+
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var utils = __webpack_require__(172);
+
+	function InterceptorManager() {
+	  this.handlers = [];
+	}
+
+	/**
+	 * Add a new interceptor to the stack
+	 *
+	 * @param {Function} fulfilled The function to handle `then` for a `Promise`
+	 * @param {Function} rejected The function to handle `reject` for a `Promise`
+	 *
+	 * @return {Number} An ID used to remove interceptor later
+	 */
+	InterceptorManager.prototype.use = function use(fulfilled, rejected) {
+	  this.handlers.push({
+	    fulfilled: fulfilled,
+	    rejected: rejected
+	  });
+	  return this.handlers.length - 1;
+	};
+
+	/**
+	 * Remove an interceptor from the stack
+	 *
+	 * @param {Number} id The ID that was returned by `use`
+	 */
+	InterceptorManager.prototype.eject = function eject(id) {
+	  if (this.handlers[id]) {
+	    this.handlers[id] = null;
+	  }
+	};
+
+	/**
+	 * Iterate over all the registered interceptors
+	 *
+	 * This method is particularly useful for skipping over any
+	 * interceptors that may have become `null` calling `eject`.
+	 *
+	 * @param {Function} fn The function to call for each interceptor
+	 */
+	InterceptorManager.prototype.forEach = function forEach(fn) {
+	  utils.forEach(this.handlers, function forEachHandler(h) {
+	    if (h !== null) {
+	      fn(h);
+	    }
+	  });
+	};
+
+	module.exports = InterceptorManager;
+
+
+/***/ },
+/* 182 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Determines whether the specified URL is absolute
+	 *
+	 * @param {string} url The URL to test
+	 * @returns {boolean} True if the specified URL is absolute, otherwise false
+	 */
+	module.exports = function isAbsoluteURL(url) {
+	  // A URL is considered absolute if it begins with "<scheme>://" or "//" (protocol-relative URL).
+	  // RFC 3986 defines scheme name as a sequence of characters beginning with a letter and followed
+	  // by any combination of letters, digits, plus, period, or hyphen.
+	  return /^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url);
+	};
+
+
+/***/ },
+/* 183 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Creates a new URL by combining the specified URLs
+	 *
+	 * @param {string} baseURL The base URL
+	 * @param {string} relativeURL The relative URL
+	 * @returns {string} The combined URL
+	 */
+	module.exports = function combineURLs(baseURL, relativeURL) {
+	  return baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '');
+	};
+
+
+/***/ },
+/* 184 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function bind(fn, thisArg) {
+	  return function wrap() {
+	    var args = new Array(arguments.length);
+	    for (var i = 0; i < args.length; i++) {
+	      args[i] = arguments[i];
+	    }
+	    return fn.apply(thisArg, args);
+	  };
+	};
+
+
+/***/ },
+/* 185 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Syntactic sugar for invoking a function and expanding an array for arguments.
+	 *
+	 * Common use case would be to use `Function.prototype.apply`.
+	 *
+	 *  ```js
+	 *  function f(x, y, z) {}
+	 *  var args = [1, 2, 3];
+	 *  f.apply(null, args);
+	 *  ```
+	 *
+	 * With `spread` this example can be re-written.
+	 *
+	 *  ```js
+	 *  spread(function(x, y, z) {})([1, 2, 3]);
+	 *  ```
+	 *
+	 * @param {Function} callback
+	 * @returns {Function}
+	 */
+	module.exports = function spread(callback) {
+	  return function wrap(arr) {
+	    return callback.apply(null, arr);
+	  };
+	};
+
+
+/***/ },
+/* 186 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _promise = __webpack_require__(132);
+
+	var _promise2 = _interopRequireDefault(_promise);
+
+	var _axios = __webpack_require__(169);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function getJobs() {
+		console.log('in getJobs actions');
+		return function (dispatch) {
+			return _axios2.default.get('/user/job').then(function (payload) {
+				return dispatch({ type: _actionTypes.FETCH_JOBS, payload: payload });
+			}).catch(function (resp) {
+				return console.log("Error fetching jobs", resp);
+			});
+		};
+	}
+
+	function showForm() {
+		console.log('showForm');
+		return {
+			type: _actionTypes.SHOW_FORM
+		};
+	}
+
+	function hideForm() {
+		console.log('hideForm');
+		return {
+			type: _actionTypes.HIDE_FORM
+		};
+	}
+
+	function applyToJob(data) {
+		return new _promise2.default(function (resolve, reject) {
+			$.ajax({
+				type: 'POST',
+				url: '/job',
+				data: data,
+				success: function success(resp) {
+					if (response.status >= 400) {
+						reject("Bad response from server");
+						return;
+					}
+					resolve(resp);
+				}
+			});
+		});
+	}
+
+	module.exports = {
+		getJobs: getJobs,
+		showForm: showForm,
+		hideForm: hideForm
+	};
+
+/***/ },
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9911,7 +11223,7 @@
 	exports.default = _default;
 
 /***/ },
-/* 167 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -9919,7 +11231,7 @@
 	var _dec, _class, _class2;
 
 	Object.defineProperty(exports, "__esModule", {
-		value: true
+	  value: true
 	});
 	exports.default = undefined;
 
@@ -9963,19 +11275,15 @@
 
 	var _footer2 = _interopRequireDefault(_footer);
 
-	var _appheader = __webpack_require__(168);
+	var _appCard = __webpack_require__(189);
 
-	var _appheader2 = _interopRequireDefault(_appheader);
+	var _appCard2 = _interopRequireDefault(_appCard);
 
-	var _appdescription = __webpack_require__(169);
-
-	var _appdescription2 = _interopRequireDefault(_appdescription);
-
-	var _appconfirm = __webpack_require__(170);
-
-	var _appconfirm2 = _interopRequireDefault(_appconfirm);
+	var _index = __webpack_require__(130);
 
 	var _reactRedux = __webpack_require__(113);
+
+	var _redux = __webpack_require__(120);
 
 	var _actions = __webpack_require__(130);
 
@@ -9985,593 +11293,141 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var ApplicationContainer = function (_React$Component) {
-		(0, _inherits3.default)(ApplicationContainer, _React$Component);
+	var ApplicationContainer = (_dec = (0, _reactRedux.connect)(function (state) {
+	  return state;
+	}), _dec(_class = function (_React$Component) {
+	  (0, _inherits3.default)(ApplicationContainer, _React$Component);
 
-		function ApplicationContainer() {
-			(0, _classCallCheck3.default)(this, ApplicationContainer);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).apply(this, arguments));
-		}
+	  function ApplicationContainer(props) {
+	    (0, _classCallCheck3.default)(this, ApplicationContainer);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).call(this, props));
+	  }
 
-		(0, _createClass3.default)(ApplicationContainer, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'textAlign': 'center'
-				};
-				var textStyle = {
-					textDecoration: this.props.completed ? 'line-through' : ''
-				};
-				var buttonStyle = {
-					height: 25,
-					color: 'red',
-					fontSize: 20,
-					lineHeight: 0,
-					marginTop: -3,
-					border: 'none',
-					background: 'none'
-				};
-				var panelStyle = {
-					'maxWidth': '400px'
-				};
+	  (0, _createClass3.default)(ApplicationContainer, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.props.dispatch((0, _index.getApplications)(3));
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var dispatch = this.props.dispatch;
 
-				return React.createElement(
-					Col,
-					{ sm: 12, md: 4, lg: 4 },
-					React.createElement(
-						PanelContainer,
-						{ style: panelStyle },
-						React.createElement(
-							Panel,
-							null,
-							React.createElement(
-								PanelBody,
-								null,
-								React.createElement(
-									Grid,
-									null,
-									React.createElement(
-										Row,
-										null,
-										React.createElement(_appheader2.default, null),
-										React.createElement(_appdescription2.default, null),
-										React.createElement(_appconfirm2.default, null)
-									)
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-		return ApplicationContainer;
-	}(React.Component);
+	      console.log('in render func props:', this.props);
 
-	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
-		return state;
-	}), _dec(_class = function (_React$Component2) {
-		(0, _inherits3.default)(Body, _React$Component2);
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5,
+	        'textAlign': 'center'
+	      };
+	      var textStyle = {
+	        textDecoration: this.props.completed ? 'line-through' : ''
+	      };
+	      var buttonStyle = {
+	        height: 25,
+	        color: 'red',
+	        fontSize: 20,
+	        lineHeight: 0,
+	        marginTop: -3,
+	        border: 'none',
+	        background: 'none'
+	      };
+	      var panelStyle = {
+	        'maxWidth': '400px'
+	      };
+	      var panelPad = {
+	        'padding': '0px 20px'
+	      };
 
-		function Body() {
-			(0, _classCallCheck3.default)(this, Body);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
-		}
+	      if (!this.props.appList.items) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' Loading... '
+	        );
+	      }
 
-		(0, _createClass3.default)(Body, [{
-			key: 'render',
-			value: function render() {
-				var app = ['Some text', 'More Text', 'Even More Text'];
-				var dispatch = this.props.dispatch;
-				var visibilityFilter = this.props.visibilityFilter;
-
-				return React.createElement(
-					Container,
-					{ id: 'body' },
-					React.createElement(
-						Grid,
-						null,
-						React.createElement(
-							Row,
-							null,
-							app.map(function (text) {
-								return React.createElement(ApplicationContainer, null);
-							})
-						)
-					)
-				);
-			}
-		}]);
-		return Body;
+	      return React.createElement(
+	        Grid,
+	        null,
+	        React.createElement(
+	          Row,
+	          null,
+	          this.props.appList.items.map(function (app) {
+	            // console.log('inside applist:', app)
+	            return React.createElement(
+	              Col,
+	              { sm: 12, md: 4, lg: 4 },
+	              React.createElement(
+	                PanelContainer,
+	                { style: panelStyle },
+	                React.createElement(
+	                  Panel,
+	                  { style: panelPad },
+	                  React.createElement(
+	                    PanelBody,
+	                    null,
+	                    React.createElement(_appCard2.default, { dispatch: dispatch, fuckingApps: app })
+	                  )
+	                )
+	              )
+	            );
+	          })
+	        )
+	      );
+	    }
+	  }]);
+	  return ApplicationContainer;
 	}(React.Component)) || _class);
 
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component3) {
-		(0, _inherits3.default)(_default, _React$Component3);
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+	  (0, _inherits3.default)(_default, _React$Component2);
 
-		function _default() {
-			(0, _classCallCheck3.default)(this, _default);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-		}
+	  function _default() {
+	    (0, _classCallCheck3.default)(this, _default);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+	  }
 
-		(0, _createClass3.default)(_default, [{
-			key: 'render',
-			value: function render() {
-				var classes = (0, _classnames2.default)({
-					'container-open': this.props.open
-				});
-				return React.createElement(
-					Container,
-					{ id: 'container', className: classes },
-					React.createElement(_sidebar2.default, null),
-					React.createElement(_header2.default, null),
-					React.createElement(Body, null),
-					React.createElement(_footer2.default, null)
-				);
-			}
-		}]);
-		return _default;
+	  (0, _createClass3.default)(_default, [{
+	    key: 'render',
+	    value: function render() {
+	      var app = ['Some text', 'More Text', 'Even More Text'];
+
+	      var classes = (0, _classnames2.default)({
+	        'container-open': this.props.open
+	      });
+	      return React.createElement(
+	        Container,
+	        { id: 'container', className: classes },
+	        React.createElement(_sidebar2.default, null),
+	        React.createElement(_header2.default, null),
+	        React.createElement(
+	          Container,
+	          { id: 'body' },
+	          React.createElement(
+	            Grid,
+	            null,
+	            React.createElement(
+	              Row,
+	              null,
+	              app.map(function (item) {
+	                return React.createElement(ApplicationContainer, null);
+	              })
+	            )
+	          )
+	        ),
+	        React.createElement(_footer2.default, null)
+	      );
+	    }
+	  }]);
+	  return _default;
 	}(React.Component)) || _class2;
 
 	exports.default = _default;
 
 /***/ },
-/* 168 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(53);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(65);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(66);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(70);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(95);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(102);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _reactRedux = __webpack_require__(113);
-
-	var _actions = __webpack_require__(130);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(162);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AppHeader = function (_React$Component) {
-		(0, _inherits3.default)(AppHeader, _React$Component);
-
-		function AppHeader() {
-			(0, _classCallCheck3.default)(this, AppHeader);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppHeader).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(AppHeader, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					null,
-					React.createElement(
-						'div',
-						{ style: styles, 'class': 'header' },
-						React.createElement('img', { src: '/imgs/app/logo.png' }),
-						'Name'
-					)
-				);
-			}
-		}]);
-		return AppHeader;
-	}(React.Component);
-
-	exports.default = AppHeader;
-
-/***/ },
-/* 169 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(53);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(65);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(66);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(70);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(95);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(102);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _reactRedux = __webpack_require__(113);
-
-	var _actions = __webpack_require__(130);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(162);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AppDescription = function (_React$Component) {
-		(0, _inherits3.default)(AppDescription, _React$Component);
-
-		function AppDescription() {
-			(0, _classCallCheck3.default)(this, AppDescription);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppDescription).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(AppDescription, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					{ style: styles },
-					React.createElement(
-						'div',
-						{ 'class': 'skills' },
-						'Skills'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'experience' },
-						'Experience'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'education' },
-						'Education'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'description' },
-						'Description'
-					)
-				);
-			}
-		}]);
-		return AppDescription;
-	}(React.Component);
-
-	exports.default = AppDescription;
-
-/***/ },
-/* 170 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(53);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(65);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(66);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(70);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(95);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(102);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _reactRedux = __webpack_require__(113);
-
-	var _actions = __webpack_require__(130);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(162);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var AppConfirm = function (_React$Component) {
-		(0, _inherits3.default)(AppConfirm, _React$Component);
-
-		function AppConfirm() {
-			(0, _classCallCheck3.default)(this, AppConfirm);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppConfirm).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(AppConfirm, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				return React.createElement(
-					Row,
-					{ style: styles },
-					React.createElement(
-						'div',
-						{ 'class': 'accept' },
-						'Accept'
-					),
-					React.createElement(
-						'div',
-						{ 'class': 'reject' },
-						'Reject'
-					)
-				);
-			}
-		}]);
-		return AppConfirm;
-	}(React.Component);
-
-	exports.default = AppConfirm;
-
-/***/ },
-/* 171 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _dec, _class, _class2;
-	// import Description from 'routes/components/description';
-	// import Confirm from 'routes/components/confirm';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(53);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(65);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(66);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(70);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(95);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(102);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _sidebar_component = __webpack_require__(103);
-
-	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
-
-	var _header = __webpack_require__(109);
-
-	var _header2 = _interopRequireDefault(_header);
-
-	var _sidebar = __webpack_require__(110);
-
-	var _sidebar2 = _interopRequireDefault(_sidebar);
-
-	var _footer = __webpack_require__(112);
-
-	var _footer2 = _interopRequireDefault(_footer);
-
-	var _jobheader = __webpack_require__(172);
-
-	var _jobheader2 = _interopRequireDefault(_jobheader);
-
-	var _reactRedux = __webpack_require__(113);
-
-	var _actions = __webpack_require__(130);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(162);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var JobsContainer = function (_React$Component) {
-		(0, _inherits3.default)(JobsContainer, _React$Component);
-
-		function JobsContainer() {
-			(0, _classCallCheck3.default)(this, JobsContainer);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(JobsContainer, [{
-			key: 'render',
-			value: function render() {
-				var styles = {
-					margin: '12.5px 0',
-					borderBottom: '1px dotted #999',
-					paddingBottom: 12.5,
-					'text-align': 'center'
-				};
-				var textStyle = {
-					textDecoration: this.props.completed ? 'line-through' : ''
-				};
-				var buttonStyle = {
-					height: 25,
-					color: 'red',
-					fontSize: 20,
-					lineHeight: 0,
-					marginTop: -3,
-					border: 'none',
-					background: 'none'
-				};
-
-				var panelStyle = {
-					'max-width': '400px'
-				};
-
-				return React.createElement(
-					Col,
-					{ sm: 12, md: 4, lg: 4 },
-					React.createElement(
-						PanelContainer,
-						{ style: panelStyle },
-						React.createElement(
-							Panel,
-							null,
-							React.createElement(
-								PanelBody,
-								null,
-								React.createElement(
-									Grid,
-									null,
-									React.createElement(
-										Row,
-										null,
-										React.createElement(_jobheader2.default, null)
-									)
-								)
-							)
-						)
-					)
-				);
-			}
-		}]);
-		return JobsContainer;
-	}(React.Component);
-
-	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
-		return state;
-	}), _dec(_class = function (_React$Component2) {
-		(0, _inherits3.default)(Body, _React$Component2);
-
-		function Body() {
-			(0, _classCallCheck3.default)(this, Body);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(Body, [{
-			key: 'render',
-			value: function render() {
-				var jobs = ['Sr Developer', 'Mid Developer', 'Entry Developer'];
-				var dispatch = this.props.dispatch;
-				var visibilityFilter = this.props.visibilityFilter;
-
-				return React.createElement(
-					Container,
-					{ id: 'body' },
-					React.createElement(
-						Grid,
-						null,
-						React.createElement(
-							Row,
-							null,
-							jobs.map(function (text) {
-								return React.createElement(JobsContainer, null);
-							})
-						)
-					)
-				);
-			}
-		}]);
-		return Body;
-	}(React.Component)) || _class);
-
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component3) {
-		(0, _inherits3.default)(_default, _React$Component3);
-
-		function _default() {
-			(0, _classCallCheck3.default)(this, _default);
-			return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-		}
-
-		(0, _createClass3.default)(_default, [{
-			key: 'render',
-			value: function render() {
-				var classes = (0, _classnames2.default)({
-					'container-open': this.props.open
-				});
-				return React.createElement(
-					Container,
-					{ id: 'container', className: classes },
-					React.createElement(_sidebar2.default, null),
-					React.createElement(_header2.default, null),
-					React.createElement(Body, null),
-					React.createElement(_footer2.default, null)
-				);
-			}
-		}]);
-		return _default;
-	}(React.Component)) || _class2;
-
-	exports.default = _default;
-
-/***/ },
-/* 172 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -10615,6 +11471,407 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// const AppCard = ({app}) => {
+
+	var AppCard = function (_React$Component) {
+	  (0, _inherits3.default)(AppCard, _React$Component);
+
+	  function AppCard(props) {
+	    (0, _classCallCheck3.default)(this, AppCard);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppCard).call(this, props));
+
+	    _this.deleteTask = function (e) {
+	      _this.props.dispatch(_actions2.default.rejectApp(_this.props.fuckingApps.appID));
+	      // this.props.dispatch(actions.getApplications(1))
+	    };
+
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(AppCard, [{
+	    key: 'render',
+	    value: function render() {
+	      // console.log('fuckingApps be:', this.props.fuckingApps)
+	      var skillList = [];
+	      for (var key in this.props.fuckingApps) {
+	        if (key.indexOf('skill') !== -1 && this.props.fuckingApps[key] !== null) {
+	          skillList.push(key);
+	        }
+	      }
+
+	      var styles = {
+	        margin: '12.5px 0',
+	        paddingBottom: '10px',
+	        'text-align': 'left'
+	      };
+	      return(
+	        //appCard info
+	        React.createElement(
+	          'div',
+	          null,
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              ' Skills '
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              skillList.map(function (skill) {
+	                return React.createElement(
+	                  'div',
+	                  { className: 'label col-md-3 label-primary' },
+	                  ' ',
+	                  skill,
+	                  ' '
+	                );
+	              })
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Years Experience'
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              this.props.fuckingApps.years_experience
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Education'
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              this.props.fuckingApps.education
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Visa Required'
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              this.props.fuckingApps.can_work_here === true ? 'No' : 'Yes'
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              'About canidate '
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              this.props.fuckingApps.personal_statement
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              React.createElement(
+	                'h4',
+	                null,
+	                ' Applied on '
+	              ),
+	              this.props.fuckingApps.created_at
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'button',
+	              {
+	                className: 'btn btn-primary accept' },
+	              'Accept'
+	            ),
+	            React.createElement(
+	              'button',
+	              {
+	                onClick: this.deleteTask,
+	                className: 'btn btn-default reject' },
+	              'Reject'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return AppCard;
+	}(React.Component);
+
+	exports.default = AppCard;
+
+/***/ },
+/* 190 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _dec, _class, _class2;
+	// import Description from 'routes/components/description';
+	// import Confirm from 'routes/components/confirm';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _sidebar_component = __webpack_require__(103);
+
+	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
+
+	var _header = __webpack_require__(109);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _sidebar = __webpack_require__(110);
+
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+
+	var _footer = __webpack_require__(112);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	var _jobCard = __webpack_require__(191);
+
+	var _jobCard2 = _interopRequireDefault(_jobCard);
+
+	var _reactRedux = __webpack_require__(113);
+
+	var _actions = __webpack_require__(130);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var JobsContainer = (_dec = (0, _reactRedux.connect)(function (state) {
+	  return state;
+	}), _dec(_class = function (_React$Component) {
+	  (0, _inherits3.default)(JobsContainer, _React$Component);
+
+	  function JobsContainer(props) {
+	    (0, _classCallCheck3.default)(this, JobsContainer);
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).call(this, props));
+
+	    _this.state = {
+	      showForm: false
+	    };
+	    console.log('constructor props', _this);
+	    _this.props.dispatch(_actions2.default.getJobs());
+	    return _this;
+	  }
+
+	  (0, _createClass3.default)(JobsContainer, [{
+	    key: 'showForm',
+	    value: function showForm() {
+	      console.log('showForm props', this);
+
+	      this.setState({ showForm: true });
+	    }
+	  }, {
+	    key: 'hideForm',
+	    value: function hideForm() {
+	      this.setState({ showForm: false });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this2 = this;
+
+	      console.log('container props', this.props);
+	      var jobList = this.props.jobList.items;
+	      console.log('JobsContainer', jobList);
+
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5,
+	        'text-align': 'center'
+	      };
+	      var textStyle = {
+	        textDecoration: this.props.completed ? 'line-through' : ''
+	      };
+	      var buttonStyle = {
+	        height: 25,
+	        color: 'red',
+	        fontSize: 20,
+	        lineHeight: 0,
+	        marginTop: -3,
+	        border: 'none',
+	        background: 'none'
+	      };
+
+	      var panelStyle = {
+	        'max-width': '400px'
+	      };
+
+	      if (!jobList) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' Loading... '
+	        );
+	      }
+
+	      return React.createElement(
+	        'div',
+	        null,
+	        jobList.map(function (job) {
+	          return React.createElement(_jobCard2.default, { data: job,
+	            showForm: _this2.showForm,
+	            hideForm: _this2.hideForm });
+	        })
+	      );
+	    }
+	  }]);
+	  return JobsContainer;
+	}(React.Component)) || _class);
+
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+	  (0, _inherits3.default)(_default, _React$Component2);
+
+	  function _default() {
+	    (0, _classCallCheck3.default)(this, _default);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(_default, [{
+	    key: 'render',
+	    value: function render() {
+	      var dispatch = this.props.dispatch;
+	      var classes = (0, _classnames2.default)({
+	        'container-open': this.props.open
+	      });
+	      return React.createElement(
+	        Container,
+	        { id: 'container', className: classes },
+	        React.createElement(_sidebar2.default, null),
+	        React.createElement(_header2.default, null),
+	        React.createElement(
+	          Container,
+	          { id: 'body' },
+	          React.createElement(
+	            Grid,
+	            null,
+	            React.createElement(
+	              Row,
+	              null,
+	              React.createElement(
+	                Col,
+	                { md: 12 },
+	                React.createElement(JobsContainer, null)
+	              )
+	            )
+	          )
+	        ),
+	        React.createElement(_footer2.default, null)
+	      );
+	    }
+	  }]);
+	  return _default;
+	}(React.Component)) || _class2;
+
+	exports.default = _default;
+
+/***/ },
+/* 191 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _reactRedux = __webpack_require__(113);
+
+	var _actions = __webpack_require__(130);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	var _actionTypes = __webpack_require__(162);
+
+	var _jobModal = __webpack_require__(192);
+
+	var _jobModal2 = _interopRequireDefault(_jobModal);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	var JobHeader = function (_React$Component) {
 	  (0, _inherits3.default)(JobHeader, _React$Component);
 
@@ -10626,45 +11883,42 @@
 	  (0, _createClass3.default)(JobHeader, [{
 	    key: 'render',
 	    value: function render() {
-	      var styles = {
-	        margin: '12.5px 0',
-	        borderBottom: '1px dotted #999',
-	        paddingBottom: 12.5,
-	        'textAlign': 'center'
-	      };
-
 	      var pStyles = {
-	        'fontSize': '10px'
+	        fontSize: '10px'
 	      };
-
 	      return React.createElement(
-	        Row,
-	        { style: styles },
+	        'div',
+	        { className: 'jobheader' },
 	        React.createElement(
-	          Col,
-	          { md: 6 },
+	          Row,
+	          null,
 	          React.createElement(
-	            'div',
-	            { 'class': 'jobtitle' },
+	            Col,
+	            { md: 6 },
 	            React.createElement(
-	              'h4',
-	              null,
-	              'Sr Developer'
-	            ),
-	            React.createElement(
-	              'p',
-	              { style: pStyles },
-	              'Apple Inc. - Cupertino, CA'
+	              'div',
+	              { 'class': 'jobtitle' },
+	              React.createElement(
+	                'h4',
+	                null,
+	                this.props.data.job_title
+	              ),
+	              React.createElement(
+	                'p',
+	                { style: pStyles },
+	                'Location: ',
+	                this.props.data.location
+	              )
 	            )
-	          )
-	        ),
-	        React.createElement(
-	          Col,
-	          { md: 6 },
+	          ),
 	          React.createElement(
-	            'div',
-	            { 'class': 'jobimg' },
-	            React.createElement('img', null)
+	            Col,
+	            { md: 6 },
+	            React.createElement(
+	              'div',
+	              { 'class': 'jobimg' },
+	              React.createElement('img', null)
+	            )
 	          )
 	        )
 	      );
@@ -10673,10 +11927,374 @@
 	  return JobHeader;
 	}(React.Component);
 
-	exports.default = JobHeader;
+	var JobBody = function (_React$Component2) {
+	  (0, _inherits3.default)(JobBody, _React$Component2);
+
+	  function JobBody() {
+	    (0, _classCallCheck3.default)(this, JobBody);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobBody).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(JobBody, [{
+	    key: 'render',
+	    value: function render() {
+	      var pStyles = {
+	        fontSize: '10px'
+	      };
+	      return React.createElement(
+	        'div',
+	        { className: 'jobbody' },
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            'div',
+	            { className: 'description' },
+	            'Description',
+	            React.createElement(
+	              'p',
+	              { style: pStyles },
+	              this.props.data.job_description
+	            )
+	          )
+	        ),
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            Col,
+	            { md: 6 },
+	            React.createElement(
+	              'div',
+	              { className: 'experience' },
+	              'Exp: placeholder'
+	            )
+	          ),
+	          React.createElement(
+	            Col,
+	            { md: 6 },
+	            React.createElement(
+	              'div',
+	              { className: 'Salary' },
+	              'Salary:',
+	              React.createElement(
+	                'p',
+	                null,
+	                this.props.data.min_salary,
+	                '-',
+	                this.props.data.max_salary
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobBody;
+	}(React.Component);
+
+	var JobApply = function (_React$Component3) {
+	  (0, _inherits3.default)(JobApply, _React$Component3);
+
+	  function JobApply() {
+	    (0, _classCallCheck3.default)(this, JobApply);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobApply).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(JobApply, [{
+	    key: 'render',
+	    value: function render() {
+	      var btnStyles = {
+	        textAlign: 'center',
+	        margin: '0 auto'
+	      };
+	      return React.createElement(
+	        'div',
+	        { className: 'jobapply' },
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            Col,
+	            { md: 12 },
+	            React.createElement(
+	              'div',
+	              { className: 'btn', style: btnStyles },
+	              React.createElement(
+	                'button',
+	                {
+	                  className: 'btn btn-primary' },
+	                ' Apply '
+	              ),
+	              React.createElement(_jobModal2.default, { showForm: this.props.showForm,
+	                hideForm: this.props.hideForm })
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobApply;
+	}(React.Component);
+
+	var JobCard = function (_React$Component4) {
+	  (0, _inherits3.default)(JobCard, _React$Component4);
+
+	  function JobCard() {
+	    (0, _classCallCheck3.default)(this, JobCard);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobCard).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(JobCard, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('jobCard', this.props);
+
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5,
+	        textAlign: 'center'
+	      };
+
+	      var panelStyle = {
+	        'max-width': '400px',
+	        'padding-top': '0px'
+	      };
+
+	      return React.createElement(
+	        Col,
+	        { sm: 12, md: 4, lg: 4, className: 'clearfix' },
+	        React.createElement(
+	          PanelContainer,
+	          { style: panelStyle },
+	          React.createElement(
+	            Panel,
+	            null,
+	            React.createElement(
+	              PanelBody,
+	              null,
+	              React.createElement(
+	                Grid,
+	                null,
+	                React.createElement(
+	                  Row,
+	                  { style: styles },
+	                  React.createElement(
+	                    'div',
+	                    { className: 'jobcard' },
+	                    React.createElement(JobHeader, { data: this.props.data }),
+	                    React.createElement(JobBody, { data: this.props.data }),
+	                    React.createElement(JobApply, { data: this.props.data,
+	                      showForm: this.props.showForm,
+	                      hideForm: this.props.hideForm })
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobCard;
+	}(React.Component);
+
+	exports.default = JobCard;
 
 /***/ },
-/* 173 */
+/* 192 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _actions = __webpack_require__(130);
+
+	var _actions2 = _interopRequireDefault(_actions);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var JobModal = function (_React$Component) {
+	  (0, _inherits3.default)(JobModal, _React$Component);
+
+	  function JobModal() {
+	    (0, _classCallCheck3.default)(this, JobModal);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobModal).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(JobModal, [{
+	    key: 'render',
+	    value: function render() {
+	      console.log('JobModal props', this.props);
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          Modal,
+	          { show: this.props.showForm, onHide: this.props.hideForm },
+	          React.createElement(
+	            Modal.Header,
+	            { closeButton: true },
+	            React.createElement(
+	              Modal.Title,
+	              null,
+	              'Modal heading'
+	            )
+	          ),
+	          React.createElement(
+	            Modal.Body,
+	            null,
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Text in a modal'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Duis mollis, est non commodo luctus, nisi erat porttitor ligula.'
+	            ),
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Popover in a modal'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'there is a ',
+	              React.createElement(
+	                OverlayTrigger,
+	                { overlay: popover },
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'popover'
+	                )
+	              ),
+	              ' here'
+	            ),
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Tooltips in a modal'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'there is a ',
+	              React.createElement(
+	                OverlayTrigger,
+	                { overlay: tooltip },
+	                React.createElement(
+	                  'a',
+	                  { href: '#' },
+	                  'tooltip'
+	                )
+	              ),
+	              ' here'
+	            ),
+	            React.createElement('hr', null),
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Overflowing text to show scroll behavior'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
+	            ),
+	            React.createElement(
+	              'p',
+	              null,
+	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
+	            )
+	          ),
+	          React.createElement(
+	            Modal.Footer,
+	            null,
+	            React.createElement(
+	              Button,
+	              { onClick: this.props.hideForm },
+	              'Close'
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return JobModal;
+	}(React.Component);
+
+	exports.default = JobModal;
+
+/***/ },
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
@@ -10693,15 +12311,15 @@
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-	var _createBrowserHistory = __webpack_require__(174);
+	var _createBrowserHistory = __webpack_require__(194);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(120);
 
-	var _reduxSimpleRouter = __webpack_require__(175);
+	var _reduxSimpleRouter = __webpack_require__(195);
 
-	var _reduxThunk = __webpack_require__(176);
+	var _reduxThunk = __webpack_require__(196);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -10709,7 +12327,7 @@
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-	var _reducers = __webpack_require__(177);
+	var _reducers = __webpack_require__(197);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -10824,7 +12442,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-/* 174 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -11008,7 +12626,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-/* 175 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11208,7 +12826,7 @@
 
 
 /***/ },
-/* 176 */
+/* 196 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -11227,7 +12845,7 @@
 	module.exports = thunkMiddleware;
 
 /***/ },
-/* 177 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11236,16 +12854,24 @@
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-	var _todos = __webpack_require__(178);
+	var _todos = __webpack_require__(198);
 
 	var _todos2 = _interopRequireDefault(_todos);
 
+	var _apps = __webpack_require__(203);
+
+	var _apps2 = _interopRequireDefault(_apps);
+
+	var _jobs = __webpack_require__(204);
+
+	var _jobs2 = _interopRequireDefault(_jobs);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	module.exports = (0, _extends3.default)({}, _todos2.default);
+	module.exports = (0, _extends3.default)({}, _todos2.default, _apps2.default, _jobs2.default);
 
 /***/ },
-/* 178 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11254,7 +12880,7 @@
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-	var _toConsumableArray2 = __webpack_require__(179);
+	var _toConsumableArray2 = __webpack_require__(199);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -11301,12 +12927,12 @@
 	};
 
 /***/ },
-/* 179 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-	var _from = __webpack_require__(180);
+	var _from = __webpack_require__(200);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -11325,21 +12951,21 @@
 	exports.__esModule = true;
 
 /***/ },
-/* 180 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = { "default": __webpack_require__(181), __esModule: true };
+	module.exports = { "default": __webpack_require__(201), __esModule: true };
 
 /***/ },
-/* 181 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	__webpack_require__(134);
-	__webpack_require__(182);
+	__webpack_require__(202);
 	module.exports = __webpack_require__(61).Array.from;
 
 /***/ },
-/* 182 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -11379,6 +13005,93 @@
 	  }
 	});
 
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _assign = __webpack_require__(105);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function appList() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
+	  var action = arguments[1];
+
+	  console.log('state in reducer is:', state);
+	  switch (action.type) {
+	    case _actionTypes.FETCH_APP:
+	      console.log('action recieved:', action.payload);
+	      var data = action.payload.data;
+	      return (0, _assign2.default)({}, state, {
+	        items: data
+	      });
+	    case _actionTypes.REMOVE_APP:
+	      return state.items;
+
+	  }
+	  return state;
+	}
+
+	module.exports = {
+	  appList: appList
+	};
+
+/***/ },
+/* 204 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _assign = __webpack_require__(105);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	var _axios = __webpack_require__(169);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _actionTypes = __webpack_require__(162);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var initialState = { showForm: false };
+
+	function jobList() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actionTypes.FETCH_JOBS:
+	      console.log('FETCH_JOBS', action.payload.data);
+	      var data = action.payload.data;
+	      return (0, _assign2.default)({}, state, {
+	        items: data
+	      });
+	    case _actionTypes.SHOW_FORM:
+	      console.log('SHOW_FORM');
+	      return (0, _assign2.default)({}, state, {
+	        showForm: true
+	      });
+	    case _actionTypes.HIDE_FORM:
+	      console.log('HIDE_FORM');
+	      return (0, _assign2.default)({}, state, {
+	        showForm: false
+	      });
+	    default:
+	      return state;
+	  }
+	}
+
+	module.exports = {
+	  jobList: jobList
+	};
 
 /***/ }
 /******/ ]);

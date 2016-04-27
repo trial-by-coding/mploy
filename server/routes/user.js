@@ -44,7 +44,7 @@ module.exports = function(router) {
 		console.log("user:job:request for all job data");
 		JobPosts.getAll()
 		.then(function(data){
-			console.log("responding with all job data:",data);
+			// console.log("responding with all job data:",data);
     	res.status(200).send(data);
 	    })
 	    .catch(function(err){

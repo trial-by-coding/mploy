@@ -4,7 +4,7 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'mploy_dev',
-      user: 'lancespears'
+      user: 'Frankie'
     }
   }
 };
