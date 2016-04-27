@@ -75,8 +75,6 @@ class JobApply extends React.Component {
             <div className="btn" style={btnStyles}>
             <button 
             className="btn btn-primary"> Apply </button>
-            <JobModal showForm={this.props.showForm}
-                      hideForm={this.props.hideForm}/>
             </div>
           </Col>
         </Row>

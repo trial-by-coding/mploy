@@ -20992,15 +20992,25 @@ module.exports =
 
 	function getApplications(jobID) {
 
-	         return function (dispatch) {
-	                  return _axios2.default.get('user/employer/appsbyjob?jobID=' + jobID).then(function (payload) {
-	                           return dispatch({ type: _actionTypes.FETCH_APP, payload: payload });
-	                  });
-	         };
+	  return function (dispatch) {
+	    return _axios2.default.get('user/employer/appsbyjob?jobID=' + jobID).then(function (payload) {
+	      return dispatch({ type: _actionTypes.FETCH_APP, payload: payload });
+	    });
+	  };
+	}
+
+	function rejectApp(appID) {
+	  return function (dispatch) {
+	    return _axios2.default.delete('user/employer/deleteapp?appID=' + appID).then(function (payload) {
+	      return dispatch({ type: _actionTypes.REMOVE_APP, payload: payload });
+	    });
+	  };
+	  // return { type: REMOVE_APP, jobID };
 	}
 
 	module.exports = {
-	         getApplications: getApplications
+	  getApplications: getApplications,
+	  rejectApp: rejectApp
 	};
 
 /***/ },
@@ -23241,7 +23251,9 @@ module.exports =
 	}
 
 	module.exports = {
-		getJobs: getJobs
+		getJobs: getJobs,
+		showForm: showForm,
+		hideForm: hideForm
 	};
 
 /***/ },
@@ -23645,30 +23657,21 @@ module.exports =
 
 	  function ApplicationContainer(props) {
 	    (0, _classCallCheck3.default)(this, ApplicationContainer);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).call(this, props));
-
-	    _this.state = {
-	      applicants: []
-	    };
-
-	    // this.onDbLoad = this.onDbLoad.bind(this)
-
-	    return _this;
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).call(this, props));
 	  }
 
 	  (0, _createClass3.default)(ApplicationContainer, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      this.props.dispatch((0, _index.getApplications)(1));
-	      // this.setState({applicants:this.props.appList.items})
-	      // console.log('appList.items:', this.props.appList.item)
+	      this.props.dispatch((0, _index.getApplications)(3));
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var dispatch = this.props.dispatch;
 
 	      console.log('in render func props:', this.props);
+
 	      var styles = {
 	        margin: '12.5px 0',
 	        borderBottom: '1px dotted #999',
@@ -23690,30 +23693,44 @@ module.exports =
 	      var panelStyle = {
 	        'maxWidth': '400px'
 	      };
+	      var panelPad = {
+	        'padding': '0px 20px'
+	      };
+
+	      if (!this.props.appList.items) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' Loading... '
+	        );
+	      }
 
 	      return React.createElement(
-	        Col,
-	        { sm: 12, md: 4, lg: 4 },
+	        Grid,
+	        null,
 	        React.createElement(
-	          PanelContainer,
-	          { style: panelStyle },
-	          React.createElement(
-	            Panel,
-	            null,
-	            React.createElement(
-	              PanelBody,
-	              null,
+	          Row,
+	          null,
+	          this.props.appList.items.map(function (app) {
+	            // console.log('inside applist:', app)
+	            return React.createElement(
+	              Col,
+	              { sm: 12, md: 4, lg: 4 },
 	              React.createElement(
-	                Grid,
-	                null,
+	                PanelContainer,
+	                { style: panelStyle },
 	                React.createElement(
-	                  Row,
-	                  null,
-	                  React.createElement(_appCard2.default, { fuckingApps: this.props.appList })
+	                  Panel,
+	                  { style: panelPad },
+	                  React.createElement(
+	                    PanelBody,
+	                    null,
+	                    React.createElement(_appCard2.default, { dispatch: dispatch, fuckingApps: app })
+	                  )
 	                )
 	              )
-	            )
-	          )
+	            );
+	          })
 	        )
 	      );
 	    }
@@ -23811,24 +23828,39 @@ module.exports =
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// const AppCard = ({app}) => {
+
 	var AppCard = function (_React$Component) {
 	  (0, _inherits3.default)(AppCard, _React$Component);
 
-	  function AppCard() {
+	  function AppCard(props) {
 	    (0, _classCallCheck3.default)(this, AppCard);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppCard).apply(this, arguments));
+
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppCard).call(this, props));
+
+	    _this.deleteTask = function (e) {
+	      _this.props.dispatch(_actions2.default.rejectApp(_this.props.fuckingApps.appID));
+	      // this.props.dispatch(actions.getApplications(1))
+	    };
+
+	    return _this;
 	  }
 
 	  (0, _createClass3.default)(AppCard, [{
 	    key: 'render',
 	    value: function render() {
-	      console.log('appCard-apps:', this.props.fuckingApps);
+	      // console.log('fuckingApps be:', this.props.fuckingApps)
+	      var skillList = [];
+	      for (var key in this.props.fuckingApps) {
+	        if (key.indexOf('skill') !== -1 && this.props.fuckingApps[key] !== null) {
+	          skillList.push(key);
+	        }
+	      }
 
 	      var styles = {
 	        margin: '12.5px 0',
-	        borderBottom: '1px dotted #999',
-	        paddingBottom: 12.5,
-	        'text-align': 'center'
+	        paddingBottom: '10px',
+	        'text-align': 'left'
 	      };
 	      return(
 	        //appCard info
@@ -23837,36 +23869,90 @@ module.exports =
 	          null,
 	          React.createElement(
 	            Row,
-	            null,
+	            { style: styles },
 	            React.createElement(
-	              'div',
-	              { style: styles, className: 'header' },
-	              React.createElement('img', { src: '/imgs/app/logo.png' }),
-	              'Name'
+	              'h4',
+	              null,
+	              ' Skills '
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              skillList.map(function (skill) {
+	                return React.createElement(
+	                  'div',
+	                  { className: 'label col-md-3 label-primary' },
+	                  ' ',
+	                  skill,
+	                  ' '
+	                );
+	              })
 	            )
 	          ),
 	          React.createElement(
 	            Row,
 	            { style: styles },
 	            React.createElement(
-	              'div',
+	              'h4',
+	              null,
+	              'Years Experience'
+	            ),
+	            React.createElement(
+	              'row',
 	              { className: 'skills' },
-	              'Skills'
-	            ),
+	              this.props.fuckingApps.years_experience
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
 	            React.createElement(
-	              'div',
-	              { className: 'experience' },
-	              'Experience'
-	            ),
-	            React.createElement(
-	              'div',
-	              { className: 'education' },
+	              'h4',
+	              null,
 	              'Education'
 	            ),
 	            React.createElement(
-	              'div',
-	              { className: 'description' },
-	              'Description'
+	              'row',
+	              { className: 'skills' },
+	              this.props.fuckingApps.education
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              'Visa Required'
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              this.props.fuckingApps.can_work_here === true ? 'No' : 'Yes'
+	            )
+	          ),
+	          React.createElement(
+	            Row,
+	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              'About canidate '
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              this.props.fuckingApps.personal_statement
+	            ),
+	            React.createElement(
+	              'row',
+	              { className: 'skills' },
+	              React.createElement(
+	                'h4',
+	                null,
+	                ' Applied on '
+	              ),
+	              this.props.fuckingApps.created_at
 	            )
 	          ),
 	          React.createElement(
@@ -23881,6 +23967,7 @@ module.exports =
 	            React.createElement(
 	              'button',
 	              {
+	                onClick: this.deleteTask,
 	                className: 'btn btn-default reject' },
 	              'Reject'
 	            )
@@ -23968,35 +24055,36 @@ module.exports =
 	}), _dec(_class = function (_React$Component) {
 	  (0, _inherits3.default)(JobsContainer, _React$Component);
 
-	  function JobsContainer() {
+	  function JobsContainer(props) {
 	    (0, _classCallCheck3.default)(this, JobsContainer);
 
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).call(this));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).call(this, props));
 
 	    _this.state = {
 	      showForm: false
 	    };
+	    console.log('constructor props', _this);
+	    _this.props.dispatch(_actions2.default.getJobs());
 	    return _this;
 	  }
 
 	  (0, _createClass3.default)(JobsContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.props.dispatch(_actions2.default.getJobs());
-	    }
-	  }, {
 	    key: 'showForm',
 	    value: function showForm() {
-	      this.props.dispatch(_actions2.default.showForm());
+	      console.log('showForm props', this);
+
+	      this.setState({ showForm: true });
 	    }
 	  }, {
 	    key: 'hideForm',
 	    value: function hideForm() {
-	      this.props.dispatch(_actions2.default.hideForm());
+	      this.setState({ showForm: false });
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var _this2 = this;
+
 	      console.log('container props', this.props);
 	      var jobList = this.props.jobList.items;
 	      console.log('JobsContainer', jobList);
@@ -24037,8 +24125,8 @@ module.exports =
 	        null,
 	        jobList.map(function (job) {
 	          return React.createElement(_jobCard2.default, { data: job,
-	            showForm: showForm,
-	            hideForm: hideForm });
+	            showForm: _this2.showForm,
+	            hideForm: _this2.hideForm });
 	        })
 	      );
 	    }
@@ -24057,6 +24145,7 @@ module.exports =
 	  (0, _createClass3.default)(_default, [{
 	    key: 'render',
 	    value: function render() {
+	      var dispatch = this.props.dispatch;
 	      var classes = (0, _classnames2.default)({
 	        'container-open': this.props.open
 	      });
@@ -24134,7 +24223,7 @@ module.exports =
 
 	var _actionTypes = __webpack_require__(161);
 
-	var _jobModal = __webpack_require__(238);
+	var _jobModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./jobModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
 
 	var _jobModal2 = _interopRequireDefault(_jobModal);
 
@@ -24371,197 +24460,7 @@ module.exports =
 	exports.default = JobCard;
 
 /***/ },
-/* 238 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(52);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(64);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(65);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(69);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(94);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(101);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _actions = __webpack_require__(129);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var JobModal = function (_React$Component) {
-	  (0, _inherits3.default)(JobModal, _React$Component);
-
-	  function JobModal() {
-	    (0, _classCallCheck3.default)(this, JobModal);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobModal).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(JobModal, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log('JobModal props', this.props);
-	      return React.createElement(
-	        'div',
-	        null,
-	        React.createElement(
-	          Modal,
-	          { show: this.state.showForm(), onHide: this.props.hideForm() },
-	          React.createElement(
-	            Modal.Header,
-	            { closeButton: true },
-	            React.createElement(
-	              Modal.Title,
-	              null,
-	              'Modal heading'
-	            )
-	          ),
-	          React.createElement(
-	            Modal.Body,
-	            null,
-	            React.createElement(
-	              'h4',
-	              null,
-	              'Text in a modal'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Duis mollis, est non commodo luctus, nisi erat porttitor ligula.'
-	            ),
-	            React.createElement(
-	              'h4',
-	              null,
-	              'Popover in a modal'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'there is a ',
-	              React.createElement(
-	                OverlayTrigger,
-	                { overlay: popover },
-	                React.createElement(
-	                  'a',
-	                  { href: '#' },
-	                  'popover'
-	                )
-	              ),
-	              ' here'
-	            ),
-	            React.createElement(
-	              'h4',
-	              null,
-	              'Tooltips in a modal'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'there is a ',
-	              React.createElement(
-	                OverlayTrigger,
-	                { overlay: tooltip },
-	                React.createElement(
-	                  'a',
-	                  { href: '#' },
-	                  'tooltip'
-	                )
-	              ),
-	              ' here'
-	            ),
-	            React.createElement('hr', null),
-	            React.createElement(
-	              'h4',
-	              null,
-	              'Overflowing text to show scroll behavior'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.'
-	            ),
-	            React.createElement(
-	              'p',
-	              null,
-	              'Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.'
-	            )
-	          ),
-	          React.createElement(
-	            Modal.Footer,
-	            null,
-	            React.createElement(
-	              Button,
-	              { onClick: this.props.hideForm() },
-	              'Close'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	  return JobModal;
-	}(React.Component);
-
-	exports.default = JobModal;
-
-/***/ },
+/* 238 */,
 /* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -25128,7 +25027,7 @@ module.exports =
 
 	var _apps2 = _interopRequireDefault(_apps);
 
-	var _jobs = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./jobs\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var _jobs = __webpack_require__(250);
 
 	var _jobs2 = _interopRequireDefault(_jobs);
 
@@ -25290,13 +25189,16 @@ module.exports =
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? [] : arguments[0];
 	  var action = arguments[1];
 
+	  console.log('state in reducer is:', state);
 	  switch (action.type) {
 	    case _actionTypes.FETCH_APP:
-	      console.log('action recieved:', action);
+	      console.log('action recieved:', action.payload);
 	      var data = action.payload.data;
 	      return (0, _assign2.default)({}, state, {
 	        items: data
 	      });
+	    case _actionTypes.REMOVE_APP:
+	      return state.items;
 
 	  }
 	  return state;
@@ -25304,6 +25206,56 @@ module.exports =
 
 	module.exports = {
 	  appList: appList
+	};
+
+/***/ },
+/* 250 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _assign = __webpack_require__(104);
+
+	var _assign2 = _interopRequireDefault(_assign);
+
+	var _axios = __webpack_require__(202);
+
+	var _axios2 = _interopRequireDefault(_axios);
+
+	var _actionTypes = __webpack_require__(161);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var initialState = { showForm: false };
+
+	function jobList() {
+	  var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+	  var action = arguments[1];
+
+	  switch (action.type) {
+	    case _actionTypes.FETCH_JOBS:
+	      console.log('FETCH_JOBS', action.payload.data);
+	      var data = action.payload.data;
+	      return (0, _assign2.default)({}, state, {
+	        items: data
+	      });
+	    case _actionTypes.SHOW_FORM:
+	      console.log('SHOW_FORM');
+	      return (0, _assign2.default)({}, state, {
+	        showForm: true
+	      });
+	    case _actionTypes.HIDE_FORM:
+	      console.log('HIDE_FORM');
+	      return (0, _assign2.default)({}, state, {
+	        showForm: false
+	      });
+	    default:
+	      return state;
+	  }
+	}
+
+	module.exports = {
+	  jobList: jobList
 	};
 
 /***/ }

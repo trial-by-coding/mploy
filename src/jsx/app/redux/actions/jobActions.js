@@ -51,4 +51,6 @@ function applyToJob(data) {
 
 module.exports = {
 	getJobs: getJobs,
+	showForm: showForm,
+	hideForm: hideForm
 }

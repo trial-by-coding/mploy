@@ -8,7 +8,7 @@ export default class JobModal extends React.Component {
 		console.log('JobModal props', this.props);
 		return (
 			<div>
-        <Modal show={this.state.showForm()} onHide={this.props.hideForm()}>
+        <Modal show={this.props.showForm} onHide={this.props.hideForm}>
           <Modal.Header closeButton>
             <Modal.Title>Modal heading</Modal.Title>
           </Modal.Header>
@@ -17,10 +17,10 @@ export default class JobModal extends React.Component {
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
 
             <h4>Popover in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={popover}><a href="#">popover</a></OverlayTrigger> here</p>
+            <p>there is a here </p>
 
             <h4>Tooltips in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={tooltip}><a href="#">tooltip</a></OverlayTrigger> here</p>
+            <p>there is a here</p>
 
             <hr />
 
@@ -36,7 +36,7 @@ export default class JobModal extends React.Component {
             <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.props.hideForm()}>Close</Button>
+            <Button onClick={this.props.hideForm}>Close</Button>
           </Modal.Footer>
         </Modal>
 			</div>

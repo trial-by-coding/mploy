@@ -21,15 +21,17 @@ class JobsContainer extends React.Component {
 		this.state = {
 			showForm: false
 		}
+    console.log('constructor props', this)
     this.props.dispatch(actions.getJobs());
 	}
-
   showForm() {
-    this.props.dispatch(actions.showForm());
+    console.log('showForm props', this)
+
+    this.setState({showForm:true})
   }
 
   hideForm() {
-    this.props.dispatch(actions.hideForm());
+    this.setState({showForm: false});
   }
 
 	render() {
@@ -67,8 +69,8 @@ class JobsContainer extends React.Component {
 		return (
 			<div>
 			{jobList.map(job => <JobCard data={job} 
-																	 showForm={showForm}
-                                   hideForm={hideForm}/>)}
+																	 showForm={this.showForm}
+                                   hideForm={this.hideForm}/>)}
 			</div>
 		)
 	}
@@ -78,6 +80,7 @@ class JobsContainer extends React.Component {
 @SidebarMixin
 export default class extends React.Component {
 	render() {
+    const dispatch = this.props.dispatch
 		var classes = classNames({
 			'container-open': this.props.open
 		})
