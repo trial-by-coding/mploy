@@ -22,9 +22,6 @@ module.exports = function(router) {
         console.log('userObj[0].userID: ',userObj[0].userID)
         return Employers.verify(userObj[0].userID)
       })
-
-
-      //I am a logged in user but not an employer.
       .then(function(resp) {
         console.log('Resp from Employers.verify:', resp)
         if (resp){
