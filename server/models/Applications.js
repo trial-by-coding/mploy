@@ -28,7 +28,7 @@ Applications.submit = function(appObj) {
     return recordID
   })
   .catch(function(err) {
-      throw err
+    throw err
   })
 };
 
@@ -81,6 +81,10 @@ Applications.getAppsByJob = function(jobID) {
   
   return db('applications').where('job_id', jobID)
   .then(function(records) {
+    if (records.length === 0){
+      console.log("Applications:getAppsByJob:no records returned");
+      throw ("no records found");
+    }
     return records
   })
   .catch(function(err) {

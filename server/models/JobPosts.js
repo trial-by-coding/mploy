@@ -51,6 +51,10 @@ JobPosts.getJob = function(jobID) {
     
     return db('job_posts').where('jobID', jobID)
     .then(function(record) {
+      if (record.length === 0){
+        err="no records with that jobID found";
+        throw err;
+      }
       return record
     })
     .catch(function(err) {
