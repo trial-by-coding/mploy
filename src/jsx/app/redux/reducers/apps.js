@@ -6,7 +6,7 @@ import { ADD_APP,
          SET_VISIBILITY_FILTER,
          VisibilityFilters } from '../actions/actionTypes';
 
-function appList(state = [], action) {
+function appList(state = {}, action) {
   console.log('state in reducer is:', state)
   switch (action.type) {
     case FETCH_APP:
