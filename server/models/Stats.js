@@ -43,6 +43,7 @@ Stats.incrementTotalApps = function(userID) {
 };
 
 Stats.incrementDenied = function(userID) {
+  console.log('userID in incrementDenied', userID)
   return db('stats')
     .where({
       user_id: userID
