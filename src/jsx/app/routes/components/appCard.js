@@ -13,12 +13,12 @@ export default class AppCard extends React.Component {
   }
 
   deleteTask = (e) => {
-    this.props.dispatch(actions.rejectApp(1));
-    this.props.dispatch(actions.getApplications(1))  
+    this.props.dispatch(actions.rejectApp(this.props.fuckingApps.appID));
+    // this.props.dispatch(actions.getApplications(1))  
   };
 
   render() {
-
+    // console.log('fuckingApps be:', this.props.fuckingApps)
     let skillList = [];
     for (var key in this.props.fuckingApps) {
       if (key.indexOf('skill') !== -1 && this.props.fuckingApps[key] !== null) {

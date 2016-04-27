@@ -18,8 +18,12 @@ function getApplications(jobID) {
 	
 }
 
-function rejectApp(index) {
-  return { type: REMOVE_APP, index };
+function rejectApp(appID) {
+    return dispatch => axios.delete('user/employer/deleteapp?appID=' + appID)
+    .then(
+      payload => dispatch({ type: REMOVE_APP, payload })
+    );
+  // return { type: REMOVE_APP, jobID };
 }
 
 module.exports = {

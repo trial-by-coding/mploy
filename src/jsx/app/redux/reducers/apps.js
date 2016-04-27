@@ -16,10 +16,7 @@ function appList(state = [], action) {
         items: data
       })
     case REMOVE_APP:
-      return [
-        ...state.items.slice(0, action.index),
-        ...state.items.slice(action.index + 1)
-      ];
+      return state.items
     
   }
   return state;
