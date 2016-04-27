@@ -19,7 +19,7 @@ class ApplicationContainer extends React.Component {
   }
 
   componentWillMount(){
-    this.props.dispatch(getApplications(3))  
+    this.props.dispatch(getApplications(4))  
 
   }
 
