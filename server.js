@@ -10,11 +10,8 @@ var cookieParser = require('cookie-parser');
 var passport = require('passport');
 
 var db = require('./server/db/db.js');
-// var session = require('express-session');
-// var KnexSessionStore = require('connect-session-knex')(session);
 var session = require('cookie-session');
 
-var Employers = require('./server/models/Employers.js');
 var JobPosts = require('./server/models/JobPosts.js');
 var Stats = require('./server/models/Stats.js');
 var Applications = require('./server/models/Applications.js');
@@ -35,18 +32,6 @@ app.use(session({
   secure: (!! process.env.SESSION_SECRET),
   signed: true
 }))
-
-// var store = new KnexSessionStore({
-//   knex: db,
-//   tablename: 'sessions' // optional. Defaults to 'sessions'
-// });
-
-// app.use(session({
-//   secret: 'supersecretysecret',
-//   store,
-//   resave: true,
-//   saveUninitialized: true
-// })); // session secret
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

@@ -42,7 +42,11 @@ module.exports = function(router) {
 	router.get('/redirect', function(req, res) {
 		console.log('req.session.employer', req.session.employer)
 		if (req.session.employer === 'true'){
-			Employers.verify
+			var linkedin_id = req.user.linkedin_id
+			return Users.isEmployer(linkedin_id)
+			.then(function(res) {
+				console.log('res in redirect:', res)
+			})
 			res.redirect('/applications')
 		}
 		if (req.session.employer === 'false'){
