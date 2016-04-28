@@ -33,6 +33,7 @@
     "compression": "^1.6.1",
     "connect-session-knex": "https://registry.npmjs.org/connect-session-knex/-/connect-session-knex-1.0.22.tgz",
     "cookie-parser": "^1.4.1",
+    "cookie-session": "^2.0.0-alpha.1",
     "css-flip": "^0.5.0",
     "del": "^2.2.0",
     "enzyme": "^1.4.1",
