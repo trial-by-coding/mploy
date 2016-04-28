@@ -35,28 +35,20 @@ module.exports = function(router) {
         })
     });
 
-    router.get('/redirect', function(req, res) {
-      console.log('req.session.employer: ', req.session.employer)
-      console.log('req.user.linkedin_id: ', req.user.linkedin_id)
-      if (req.session.employer === 'true'){
-        var linkedin_id = req.user.linkedin_id
-        return Users.verifyEmployer(linkedin_id)
-        .then(function(res) {
-          console.log('res in redirect:', res)
-          if (!res){
-            console.log('Designating employer status to user.')
-            return Users.designateAsEmployer(linkedin_id)
-          }
-        })
-        .then(function() {
-          console.log('Verifying employer status and redirecting.')
-          res.redirect('/employer')
-        })
-      }
-      if (req.session.employer === 'false'){
-        res.redirect('/applicant')
-      }
-    });
+	router.get('/redirect', function(req, res) {
+		console.log('req.session.employer', req.session.employer)
+		if (req.session.employer === 'true'){
+			var linkedin_id = req.user.linkedin_id
+			return Users.isEmployer(linkedin_id)
+			.then(function(res) {
+				console.log('res in redirect:', res)
+			})
+			res.redirect('/applications')
+		}
+		if (req.session.employer === 'false'){
+			res.redirect('/jobs')
+		}
+	});
 
     router.get('/job', function(req, res) {
         console.log('req.user: ', req.user)

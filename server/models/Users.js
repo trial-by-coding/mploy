@@ -121,7 +121,6 @@ Users.verifyEmployer = function(linkedin_id){
   })
 };
 
-
 //on page load front end should hit User.verifyID to get all data for current user /verifyuser
 //pass user ID to jobJoin endpoint
 
@@ -140,6 +139,7 @@ Users.jobJoin = function(userID) {
     return multijoin
   })
 };
+
 
 
 
