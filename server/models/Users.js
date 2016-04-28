@@ -89,3 +89,37 @@ Users.updateResume = function(uid, newResume) {
       throw err
     });
 };
+
+//Employer
+
+Users.isEmployer = function(linkedin_id){
+  return db('Users')
+  .returning('employerID')
+  .where({
+    linkedin_id: linkedin_id
+  })
+  .update({
+    employer: true
+  })
+  .then(function(recordID) {
+    return recordID
+  })
+  .catch(function(err) {
+    throw err
+  })
+};
+
+Users.verify = function(linkedin_id){
+  return db('Users')
+  .select('*')
+  .where({
+    linkedin_id: linkedin_id,
+    employer: true
+  })
+  .then(function(record) {
+    return record[0];
+  })
+  .catch(function(err) {
+    throw err;
+  })
+};
