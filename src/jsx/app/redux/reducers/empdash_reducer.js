@@ -19,8 +19,30 @@ function dashboard(state = initialState, action) {
 			return Object.assign({}, state, {
 				items: data
 			})
+		case: GET_CONSIDERED:
+			console.log("considered:", action.payload)
+			const data = action.payload.data;
+			return Object.assign({}, state, {
+				items: data
+			})
+		case: GET_INTERVIEWS:
+			console.log("interviews:", action.payload)
+			const data = action.payload.data;
+			return Object.assign({}, state, {
+				items: data
+			})
+		case: GET_OFFERS:
+			console.log("offers:", action.payload)
+			const data = action.payload.data;
+			return Object.assign({}, state, {
+				items: data
+			})
 		default:
 			return state;
 		}
 	}
+}
+
+module.exports = {
+	dashboard: dashboard
 }
