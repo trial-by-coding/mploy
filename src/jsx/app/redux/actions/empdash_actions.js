@@ -26,7 +26,10 @@ function getInterviews(jobID){
 }
 
 function getOffers(jobID){
-
+	return dispatch => axios.get('user/employer/appbystatus?jobID='+jobID+'&status=offer')
+		.then(
+			payload => dispatch({ type: GET_OFFERS, payload})
+		);
 }
 
 module.exports = {
