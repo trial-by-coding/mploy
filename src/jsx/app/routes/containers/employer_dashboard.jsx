@@ -15,9 +15,9 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 class AppContainer extends React.Component {
 	componentWillMount() {
 		this.props.dispatch(actions.getUnconsidered());
-    this.props.dispatch(actions.getConsidered());
-    this.props.dispatch(actions.getInterviews());
-    this.props.dispatch(actions.getOffers());
+    // this.props.dispatch(actions.getConsidered());
+    // this.props.dispatch(actions.getInterviews());
+    // this.props.dispatch(actions.getOffers());
 	}
 
 	constructor(props) {
@@ -30,6 +30,7 @@ class AppContainer extends React.Component {
     }
 	}
 	render() {
+    console.log("AppContainer props", this.props);
 		return (
 		<Container id='body'>
       <Grid>

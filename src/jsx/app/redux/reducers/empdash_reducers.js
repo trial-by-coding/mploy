@@ -13,33 +13,32 @@ const initialState = {
 function dashboard(state = initialState, action) {
 	console.log("state in dashboard reducer = ", state);
 	switch (action.type) {
-		case: GET_UNCONSIDERED:
+		case GET_UNCONSIDERED:
 			console.log("unconsidered:", action.payload)
-			const data = action.payload.data;
+			const data1 = action.payload.data;
 			return Object.assign({}, state, {
-				items: data
+				unconsidered: data1
 			})
-		case: GET_CONSIDERED:
+		case GET_CONSIDERED:
 			console.log("considered:", action.payload)
-			const data = action.payload.data;
+			const data2 = action.payload.data;
 			return Object.assign({}, state, {
-				items: data
+				considered: data2
 			})
-		case: GET_INTERVIEWS:
+		case GET_INTERVIEWS:
 			console.log("interviews:", action.payload)
-			const data = action.payload.data;
+			const data3 = action.payload.data;
 			return Object.assign({}, state, {
-				items: data
+				interviews: data3
 			})
-		case: GET_OFFERS:
+		case GET_OFFERS:
 			console.log("offers:", action.payload)
-			const data = action.payload.data;
+			const data4 = action.payload.data;
 			return Object.assign({}, state, {
-				items: data
+				offers: data4
 			})
 		default:
 			return state;
-		}
 	}
 }
 
