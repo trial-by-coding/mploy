@@ -19,7 +19,10 @@ function getConsidered(jobID){
 }
 
 function getInterviews(jobID){
-
+	return dispatch => axios.get('user/employer/appbystatus?jobID='+jobID+'&status=interview')
+		.then(
+			payload => dispatch({ type: GET_INTERVIEWS, payload})
+		);
 }
 
 function getOffers(jobID){
