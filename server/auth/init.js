@@ -1,6 +1,6 @@
-const passport = require('passport');
-const User = require('../models/Users');
-const Stats = require('../models/Stats');
+var passport = require('passport');
+var User = require('../models/Users');
+var Stats = require('../models/Stats');
 
 module.exports = function() {
 

@@ -52,7 +52,6 @@ Users.verifyInsert = function(obj) {
         return session;
       });
     } else {
-      console.log('data[0]: ', data[0]);
         return data[0];
     }
   });

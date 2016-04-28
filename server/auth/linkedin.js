@@ -1,10 +1,10 @@
-const passport = require('passport');
-const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+var passport = require('passport');
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
-const User = require('../models/Users');
-const Stats = require('../models/Stats');
-const config = require('./config');
-const init = require('./init');
+var User = require('../models/Users');
+var Stats = require('../models/Stats');
+var config = require('./config');
+var init = require('./init');
 
 
 passport.use(new LinkedInStrategy({
