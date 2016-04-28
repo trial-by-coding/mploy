@@ -14,7 +14,10 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 @connect(state => state)
 class AppContainer extends React.Component {
 	componentWillMount() {
-		this.props.dispatch(actions.getUnconsidered)
+		this.props.dispatch(actions.getUnconsidered());
+    this.props.dispatch(actions.getConsidered());
+    this.props.dispatch(actions.getInterviews());
+    this.props.dispatch(actions.getOffers());
 	}
 
 	constructor(props) {
