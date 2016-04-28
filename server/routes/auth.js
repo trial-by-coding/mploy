@@ -43,15 +43,25 @@ module.exports = function(router, passport) {
 
   //------Authentication Routes
 
-  // LinkedIn - candidate
+  // LinkedIn
   router.get('/linkedin',
+    function (req, res, next) {
+      // req.user.employer = 
+      req.user = req.query;
+      console.log('req.user in mid: ', req.user)
+      console.log('rq: ', rq)
+      next()
+    },
     passportLinkedIn.authenticate('linkedin'));
 
   router.get('/linkedin/callback',
+    function(req, res, next) {
+      console.log('auth req: ', req)
+      next()
+    },
     passportLinkedIn.authenticate('linkedin', {
       failureRedirect: '/auth/linkedin',
-      // successRedirect: '/jobs',
-      successRedirect: '/applications'
+      successRedirect: '/jobs'
     }));
 
 

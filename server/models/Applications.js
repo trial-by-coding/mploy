@@ -68,6 +68,21 @@ Applications.updateStatus = function(appID, status) {
       throw err
   })
 };
+Applications.getByStatus = function(jobID, status) {
+  console.log('in get by status: ', status)
+  return db('applications')
+  .orderBy('created_at', 'desc')
+  .where({
+    job_id: jobID, 
+    status: status
+  })
+  .then(function(records) {
+    return records
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
 
 Applications.getUnconsidered = function(jobID) {
   

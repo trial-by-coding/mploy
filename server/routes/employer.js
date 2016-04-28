@@ -40,24 +40,19 @@ module.exports = function(router) {
  //      res.redirect('/')
  //    }
 
-// });
 
-	//Routes:
-  router.get('/appsbyjob', function(req, res){
-    console.log('---appsbyjob:received GET, query='+JSON.stringify(req.query));
+  //offset to get certain number of jobs at a time
+  //need user information a
+
+  router.get('/appsbystatus', function(req, res){
+    console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
-    if (rq && rq.jobID) {
-      console.log("request for apps for jobId = ",rq.jobID);
-      Applications.getAppsByJob(rq.jobID) 
+    if (rq && rq.jobID && rq.status) {
+      console.log("request for jobId = ",rq.jobID);
+      Applications.getByStatus(rq.jobID, rq.status) 
       .then(function(data){
-        if (data.length === 0){
-          console.log("no data returned from request for apps by jobID");
-          err = "no data returned from request for apps by jobID "+rq.jobID;
-          res.status(400).send(err);
-        } else {
-          console.log("returning applications data", data);
-          res.status(200).send(JSON.stringify(data));
-        }
+        console.log("returning application data", data);
+        res.status(200).send(JSON.stringify(data));
       })
       .catch(function(err){
         console.log("could not get application data for jobID "+rq.jobID+", err:", err);
@@ -69,10 +64,7 @@ module.exports = function(router) {
     }
   });
 
-  //offset to get certain number of jobs at a time
-  //need user information a
-
-    router.get('/unconsideredapps', function(req, res){
+  router.get('/unconsideredapps', function(req, res){
     console.log('---unconsideredapps:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.jobID) {
