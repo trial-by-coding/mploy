@@ -1,10 +1,10 @@
-const passport = require('passport');
-const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+var passport = require('passport');
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
-const User = require('../models/Users');
-const Stats = require('../models/Stats');
-const config = require('./config');
-const init = require('./init');
+var User = require('../models/Users');
+var Stats = require('../models/Stats');
+var config = require('./config');
+var init = require('./init');
 
 
 passport.use(new LinkedInStrategy({
@@ -15,11 +15,10 @@ passport.use(new LinkedInStrategy({
     state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('linkedin profile: ', profile);
     User.verifyInsert(profile)
     .then(function(obj) {
-        console.log('inserted by verifyInsert linkedin = ', obj);
-        const send = {
+
+        var send = {
           username: obj.username,
           linkedin_id: obj.passid,
           firstname: obj.givenName,
@@ -31,10 +30,12 @@ passport.use(new LinkedInStrategy({
           linkedin_url: obj.profileUrl
         };
 
+        console.log('send: ', send)
+
         return done(null, send);
       })
       .catch(function(err) {
-        console.log('verify insert promise err = ', err);
+        console.log('Verify insert promise err: ', err);
         return done(null, err);
       });
 

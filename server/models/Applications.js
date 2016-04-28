@@ -10,7 +10,7 @@ Applications.submit = function(appObj) {
     years_experience: appObj.years_experience,
     education: appObj.education,
     personal_statement: appObj.personal_statement,
-    status: 'Not yet considered',
+    status: 'unconsidered',
     skill_1_met: appObj.skill_1,
     skill_2_met: appObj.skill_2,
     skill_3_met: appObj.skill_3,
@@ -39,6 +39,7 @@ Applications.submit = function(appObj) {
 Applications.deleteApp = function(appID) {
   
   return db('applications')
+  .returning('*')
   .delete()
   .where('appID', appID)
   .then(function(records) {
@@ -62,6 +63,21 @@ Applications.updateStatus = function(appID, status) {
   })
   .then(function(record) {
     return record
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+Applications.getByStatus = function(jobID, status) {
+  console.log('in get by status: ', status)
+  return db('applications')
+  .orderBy('created_at', 'desc')
+  .where({
+    job_id: jobID, 
+    status: status
+  })
+  .then(function(records) {
+    return records
   })
   .catch(function(err) {
       throw err
