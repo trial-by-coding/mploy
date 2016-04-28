@@ -7,17 +7,19 @@ import {
   ModalFooter
 } from 'react-modal-bootstrap';
 
+import { GreenForm } from '../forms/green_form';
+
 
 export default class JobModal extends React.Component {
   render() {
     const modalStyles = {
       zIndex: 10000000,
       position: 'absolute',
-    }
+    };
 
     const pushedDown = {
       'margin-top':'150px;'
-    }
+    };
     return (
       <div style={modalStyles} >
         <Modal  style={pushedDown} isOpen={this.props.isOpen} onRequestHide={this.props.hideModal}>
@@ -26,10 +28,7 @@ export default class JobModal extends React.Component {
             <ModalTitle>Modal title</ModalTitle>
           </ModalHeader>
           <ModalBody>
-            <p>Ab ea ipsam iure perferendis! Ad debitis dolore excepturi
-              explicabo hic incidunt placeat quasi repellendus soluta,
-              vero. Autem delectus est laborum minus modi molestias
-              natus provident, quidem rerum sint, voluptas!</p>
+          <GreenForm />
           </ModalBody>
           <ModalFooter>
             <button className='btn btn-default' onClick={this.props.hideModal}>
@@ -41,6 +40,6 @@ export default class JobModal extends React.Component {
           </ModalFooter>
         </Modal>
       </div>
-    )
+    );
   }
 }

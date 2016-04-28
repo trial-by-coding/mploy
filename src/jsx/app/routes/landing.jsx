@@ -44,7 +44,7 @@ export default class Body extends React.Component {
 													</a>
                           </div>
                         <div>
-                      <a id='github-link' href='/auth/github' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
+                      <a id='github-link' href='/auth/linkedin' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
                    </div>
                  </div>
                 </PanelBody>
@@ -69,7 +69,7 @@ export default class Body extends React.Component {
 													</a>
                           </div>
                         <div>
-                      <a id='github-link' href='/auth/github' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
+                      <a id='github-link' href='/auth/linkedin' onClick={this.back}><Icon glyph='icon-fontello-github' /><span> or with github</span></a>
                    </div>
                  </div>
                 </PanelBody>
