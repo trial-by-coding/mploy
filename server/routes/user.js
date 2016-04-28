@@ -42,21 +42,13 @@ module.exports = function(router) {
 	router.get('/redirect', function(req, res) {
 		console.log('req.session.employer', req.session.employer)
 		if (req.session.employer === 'true'){
+			Employers.verify
 			res.redirect('/applications')
 		}
 		if (req.session.employer === 'false'){
 			res.redirect('/jobs')
 		}
-	})
-	// 	.then(function(data){
-	// 		console.log("responding with user data:",data);
- //    	res.status(200).send(data);
-	//     })
-	//     .catch(function(err){
-	//     	console.log("error retrieving user data, err:",err);
-	//     	res.status(400).send(err);
-	//     })
-	// });
+	});
 
 	router.get('/job', function(req, res) {
 		console.log('req.user: ', req.user)
@@ -101,24 +93,24 @@ module.exports = function(router) {
 		res.redirect('/user/jobs');
 	});
 
-	router.post('/employerverify', function(req, res) {
-		console.log("employerverify:body:",req.body);
-		Employers.verify(req.body.userID)
-		.then(function(record) {
-			console.log('record after verify ID', record)
-			if (record){
-				res.status(200).send("User is a verified employer.");
-			} else {
-				Employers.insert(req.body.userID)
-				.then(function(data){
-					console.log("employerverify:insert successful");
-					res.status(201).send("Employer successfully inserted!");
-				})	
-			}
-		})
-		.catch(function(err){
-			console.log("employerverify:insert failed, err:",err);
-			res.status(400).send(err);
-		})
-	});
+	// router.post('/employerverify', function(req, res) {
+	// 	console.log("employerverify:body:",req.body);
+	// 	Employers.verify(req.body.userID)
+	// 	.then(function(record) {
+	// 		console.log('record after verify ID', record)
+	// 		if (record){
+	// 			res.status(200).send("User is a verified employer.");
+	// 		} else {
+	// 			Employers.insert(req.body.userID)
+	// 			.then(function(data){
+	// 				console.log("employerverify:insert successful");
+	// 				res.status(201).send("Employer successfully inserted!");
+	// 			})	
+	// 		}
+	// 	})
+	// 	.catch(function(err){
+	// 		console.log("employerverify:insert failed, err:",err);
+	// 		res.status(400).send(err);
+	// 	})
+	// });
 }
