@@ -17,7 +17,7 @@ function appList(state = {}, action) {
       })
     case REMOVE_APP:
       return Object.assign({}, state, {
-        items: [...state.slice(0, action.appID), ...state.slice(action.appID + 1)]
+        items: [...state.items.slice(0, action.appID), ...state.items.slice(action.appID + 1)]
       })
     }
     console.log('action in remove_app:', action)
