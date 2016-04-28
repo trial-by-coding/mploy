@@ -18,11 +18,19 @@ function getApplications(jobID) {
 	
 }
 
-function rejectApp(appID) {
-    return dispatch => axios.delete('user/employer/deleteapp?appID=' + appID)
-    .then(
-      payload => dispatch({ type: REMOVE_APP, appID })
-    );
+function rejectApp(jobID, appID) {
+
+    return function (dispatch) {
+
+      return axios.delete('user/employer/deleteapp?appID=' + appID)
+        .then(function () {
+          return axios.get('user/employer/appsbyjob?jobID=' + jobID)
+        })
+        .then(function (payload) {
+          dispatch({ type: REMOVE_APP, appID })
+          dispatch({ type: FETCH_APP, payload })
+        });
+    }
   // return { type: REMOVE_APP, jobID };
 }
 
