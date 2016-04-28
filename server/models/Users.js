@@ -87,8 +87,6 @@ Users.updateResume = function(uid, newResume) {
     });
 };
 
-<<<<<<< 130e242a6a2544750f6305d792a34ac2f3adc2b1
-
 //Employer
 
 Users.designateAsEmployer = function(linkedin_id){
@@ -107,7 +105,6 @@ Users.designateAsEmployer = function(linkedin_id){
     throw err
   })
 };
-
 
 Users.verifyEmployer = function(linkedin_id){
   return db('users')
