@@ -39,10 +39,9 @@ module.exports = function(router) {
  //      console.log('User not logged in')
  //      res.redirect('/')
  //    }
-
+	// });
 
   //offset to get certain number of jobs at a time
-  //need user information a
 
   router.get('/appsbystatus', function(req, res){
     console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
@@ -121,7 +120,6 @@ module.exports = function(router) {
       })
     }
   });
-
 
   //increment denied in stats for user who created app
   router.delete('/deleteapp', function(req, res){
