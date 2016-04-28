@@ -45,23 +45,23 @@ module.exports = function(router, passport) {
 
   // LinkedIn
   router.get('/linkedin',
-    function (req, res, next) {
-      // req.user.employer = 
-      req.user = req.query;
+    function (req, res, next) { 
       console.log('req.user in mid: ', req.user)
-      console.log('rq: ', rq)
+      console.log('req.query: ', req.query)
+      console.log('req.session: ', req.session)
+      req.session = req.query
       next()
     },
     passportLinkedIn.authenticate('linkedin'));
 
   router.get('/linkedin/callback',
     function(req, res, next) {
-      console.log('auth req: ', req)
+      console.log('req.session callback: ', req.session)
       next()
     },
     passportLinkedIn.authenticate('linkedin', {
       failureRedirect: '/auth/linkedin',
-      successRedirect: '/jobs'
+      successRedirect: '/user/redirect'
     }));
 
 
@@ -69,6 +69,7 @@ module.exports = function(router, passport) {
   // LOGOUT
   router.get('/logout', function(req, res) {
     req.logout();
+    req.session = null;
     res.redirect('/');
   });
 };

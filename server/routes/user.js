@@ -39,6 +39,25 @@ module.exports = function(router) {
 	    })
 	});
 
+	router.get('/redirect', function(req, res) {
+		console.log('req.session.employer', req.session.employer)
+		if (req.session.employer === 'true'){
+			res.redirect('/applications')
+		}
+		if (req.session.employer === 'false'){
+			res.redirect('/jobs')
+		}
+	})
+	// 	.then(function(data){
+	// 		console.log("responding with user data:",data);
+ //    	res.status(200).send(data);
+	//     })
+	//     .catch(function(err){
+	//     	console.log("error retrieving user data, err:",err);
+	//     	res.status(400).send(err);
+	//     })
+	// });
+
 	router.get('/job', function(req, res) {
 		console.log('req.user: ', req.user)
 		console.log('req stuff: ', req._passport.session.user)

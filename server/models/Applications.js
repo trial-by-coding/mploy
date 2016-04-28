@@ -10,7 +10,7 @@ Applications.submit = function(appObj) {
     years_experience: appObj.years_experience,
     education: appObj.education,
     personal_statement: appObj.personal_statement,
-    status: 'Not yet considered',
+    status: 'unconsidered',
     skill_1_met: appObj.skill_1,
     skill_2_met: appObj.skill_2,
     skill_3_met: appObj.skill_3,
