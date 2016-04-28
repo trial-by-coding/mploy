@@ -92,26 +92,26 @@ Users.updateResume = function(uid, newResume) {
 
 //Employer
 
-Users.isEmployer = function(linkedin_id){
-  return db('Users')
-  .returning('employerID')
+Users.designateAsEmployer = function(linkedin_id){
+  return db('users')
+  .returning('*')
   .where({
     linkedin_id: linkedin_id
   })
   .update({
     employer: true
   })
-  .then(function(recordID) {
-    return recordID
+  .then(function(record) {
+    return record[0]
   })
   .catch(function(err) {
     throw err
   })
 };
 
-Users.verify = function(linkedin_id){
-  return db('Users')
-  .select('*')
+Users.verifyEmployer = function(linkedin_id){
+  return db('users')
+  .returning('*')
   .where({
     linkedin_id: linkedin_id,
     employer: true
