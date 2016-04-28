@@ -1,5 +1,4 @@
 var JobPosts = require('../models/JobPosts.js');
-var Employers = require('../models/Employers.js');
 var Applications = require('../models/Applications.js');
 var Users = require('../models/Users.js');
 var Stats = require('../models/Stats.js');
