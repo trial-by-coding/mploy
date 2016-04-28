@@ -16,14 +16,14 @@ module.exports = function(router) {
 	require('./employer.js')(employer);
 	router.use('/employer', employer)
 
-	router.use(function(req,res,next) {
-		//check if logged in
-		if (req.isAuthenticated()){
-			console.log('User is authenticated')
-			return next()
-		}
-		res.redirect('/')
-	});
+	// router.use(function(req,res,next) {
+	// 	//check if logged in
+	// 	if (req.isAuthenticated()){
+	// 		console.log('User is authenticated')
+	// 		return next()
+	// 	}
+	// 	res.redirect('/')
+	// });
 
 	router.get('/verifyuser', function(req, res) {
 		console.log('req.user.linkedin_id: ', req.user.linkedin_id);
@@ -40,6 +40,7 @@ module.exports = function(router) {
 	});
 
 	router.get('/job', function(req, res) {
+		console.log('req.user: ', req.user)
 		console.log('req stuff: ', req._passport.session.user)
 		console.log("user:job:request for all job data");
 		JobPosts.getAll()
@@ -81,17 +82,24 @@ module.exports = function(router) {
 		res.redirect('/user/jobs');
 	});
 
-	router.post('/newemployer', function(req, res) {
-		console.log("newemployer:body:",req.body);
-		Employers.insert(req.body.userID)
-		.then(function(data){
-			console.log("newemployer:insert successful");
-			res.status(200).send("success!");
+	router.post('/employerverify', function(req, res) {
+		console.log("employerverify:body:",req.body);
+		Employers.verify(req.body.userID)
+		.then(function(record) {
+			console.log('record after verify ID', record)
+			if (record){
+				res.status(200).send("User is a verified employer.");
+			} else {
+				Employers.insert(req.body.userID)
+				.then(function(data){
+					console.log("employerverify:insert successful");
+					res.status(201).send("Employer successfully inserted!");
+				})	
+			}
 		})
 		.catch(function(err){
-			console.log("newemployer:insert failed, err:",err);
+			console.log("employerverify:insert failed, err:",err);
 			res.status(400).send(err);
 		})
 	});
-
 }

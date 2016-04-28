@@ -10,37 +10,37 @@ module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
 
-	router.use(function(req,res,next) {
-    if (req.user !== undefined){
-      var linkedin_id = req.user.linkedin_id
-      return Users.verifyId(linkedin_id)
-      .catch(function(err) {
-        console.log('Failed to verify user:', err)
-        res.redirect('/')
-      })
-      .then(function(userObj) {
-        console.log('userObj[0].userID: ',userObj[0].userID)
-        return Employers.verify(userObj[0].userID)
-      })
-      .then(function(resp) {
-        console.log('Resp from Employers.verify:', resp)
-        if (resp){
-          return next()
-        } else {
-          console.log('User is not an employer.')
-          res.redirect('/')
-        }
-      })
-      .catch(function(err) {
-        console.log('Employer authentication failed: ', err)
-        res.redirect('/')
-      }) 
-    } else {
-      console.log('User not logged in')
-      res.redirect('/')
-    }
+	// router.use(function(req,res,next) {
+ //    if (req.user !== undefined){
+ //      var linkedin_id = req.user.linkedin_id
+ //      return Users.verifyId(linkedin_id)
+ //      .catch(function(err) {
+ //        console.log('Failed to verify user:', err)
+ //        res.redirect('/')
+ //      })
+ //      .then(function(userObj) {
+ //        console.log('userObj[0].userID: ',userObj[0].userID)
+ //        return Employers.verify(userObj[0].userID)
+ //      })
+ //      .then(function(resp) {
+ //        console.log('Resp from Employers.verify:', resp)
+ //        if (resp){
+ //          return next()
+ //        } else {
+ //          console.log('User is not an employer.')
+ //          res.redirect('/')
+ //        }
+ //      })
+ //      .catch(function(err) {
+ //        console.log('Employer authentication failed: ', err)
+ //        res.redirect('/')
+ //      }) 
+ //    } else {
+ //      console.log('User not logged in')
+ //      res.redirect('/')
+ //    }
 
-	});
+	// });
 
 	//Routes:
   router.get('/appsbyjob', function(req, res){
@@ -72,7 +72,27 @@ module.exports = function(router) {
   //offset to get certain number of jobs at a time
   //need user information a
 
-    router.get('/unconsideredapps', function(req, res){
+  router.get('/appsbystatus', function(req, res){
+    console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.jobID && rq.status) {
+      console.log("request for jobId = ",rq.jobID);
+      Applications.getByStatus(rq.jobID, rq.status) 
+      .then(function(data){
+        console.log("returning application data", data);
+        res.status(200).send(JSON.stringify(data));
+      })
+      .catch(function(err){
+        console.log("could not get application data for jobID "+rq.jobID+", err:", err);
+        res.status(400).send(err);
+      })
+    } else {
+      console.log("must supply jobID in query string"); 
+      res.status(400).send("must supply jobID in query string");       
+    }
+  });
+
+  router.get('/unconsideredapps', function(req, res){
     console.log('---unconsideredapps:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.jobID) {
