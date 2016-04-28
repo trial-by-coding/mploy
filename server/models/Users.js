@@ -87,6 +87,7 @@ Users.updateResume = function(uid, newResume) {
     });
 };
 
+<<<<<<< 130e242a6a2544750f6305d792a34ac2f3adc2b1
 
 //Employer
 
@@ -107,6 +108,7 @@ Users.designateAsEmployer = function(linkedin_id){
   })
 };
 
+
 Users.verifyEmployer = function(linkedin_id){
   return db('users')
   .returning('*')
@@ -121,6 +123,7 @@ Users.verifyEmployer = function(linkedin_id){
     throw err;
   })
 };
+
 
 //on page load front end should hit User.verifyID to get all data for current user /verifyuser
 //pass user ID to jobJoin endpoint
@@ -140,6 +143,7 @@ Users.jobJoin = function(userID) {
     return multijoin
   })
 };
+
 
 
 
