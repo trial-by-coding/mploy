@@ -34,20 +34,6 @@ export default class Body extends React.Component {
                           <h3 style={{margin: 0, padding: 25}}>Candidates</h3>
                         </div>
 								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
-<<<<<<< HEAD
-                       <div>You need to sign in for those awesome features</div>
-                          <div style={{marginTop: 12.5, marginBottom: 12.5}}>
-														<a href="/auth/linkedin">
-														<Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.showLogin.bind(this).call()}>
-                              <Icon glyph='icon-fontello-linkedin-6' />
-                              <span>  Sign in <span className='hidden-xs'>with linkedin</span></span>
-                            </Button>
-													</a>
-                          </div>
-                        <div>
-
-                   </div>
-=======
                      <div>You need to sign in for those awesome features</div>
                         <div style={{marginTop: 12.5, marginBottom: 12.5}}>
 													<a href="/auth/linkedin?employer=false">
@@ -56,8 +42,7 @@ export default class Body extends React.Component {
                             <span>  Sign in <span className='hidden-xs'>with linkedin</span></span>
                           </Button>
 												</a>
-                        </div>
->>>>>>> def40128907b1c9a32e4e46de8936673f15b87b7
+                    </div>
                  </div>
                 </PanelBody>
                 </Panel>
@@ -71,20 +56,6 @@ export default class Body extends React.Component {
                           <h3 style={{margin: 0, padding: 25}}>Employers</h3>
                         </div>
 								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
-<<<<<<< HEAD
-                       <div>You need to sign in for those awesome features</div>
-                          <div style={{marginTop: 12.5, marginBottom: 12.5}}>
-														<a href="/auth/linkedin">
-														<Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.showLogin.bind(this).call()}>
-                              <Icon glyph='icon-fontello-linkedin-6' />
-                              <span>  Sign in <span className='hidden-xs'>with linkedin</span></span>
-                            </Button>
-													</a>
-                          </div>
-                        <div>
-
-                   </div>
-=======
                      <div>You need to sign in for those awesome features</div>
                         <div style={{marginTop: 12.5, marginBottom: 12.5}}>
 													<a href="/auth/linkedin?employer=true">
@@ -94,7 +65,6 @@ export default class Body extends React.Component {
                           </Button>
 												</a>
                         </div>
->>>>>>> def40128907b1c9a32e4e46de8936673f15b87b7
                  </div>
                 </PanelBody>
                 </Panel>
