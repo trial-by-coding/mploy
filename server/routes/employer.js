@@ -9,6 +9,7 @@ module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
 
+<<<<<<< 4a9b2156d27a79b8e4b7d40dc5f9b62483860635
   // router.use(function(req,res,next) {
   //   if (req.user !== undefined){
   //     var linkedin_id = req.user.linkedin_id
