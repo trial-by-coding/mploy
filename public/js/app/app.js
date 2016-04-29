@@ -10933,7 +10933,7 @@
 
 	function getConsidered(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=considered').then(function (payload) {
+			return _axios2.default.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=considered').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_CONSIDERED, payload: payload });
 			});
 		};
@@ -10941,7 +10941,7 @@
 
 	function getInterviews(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=interview').then(function (payload) {
+			return _axios2.default.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=interviews').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_INTERVIEWS, payload: payload });
 			});
 		};
@@ -10949,7 +10949,7 @@
 
 	function getOffers(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=offer').then(function (payload) {
+			return _axios2.default.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=offers').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_OFFERS, payload: payload });
 			});
 		};
@@ -34416,13 +34416,13 @@
 
 	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
 
-	var _possibleConstructorReturn2 = __webpack_require__(70);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
 	var _createClass2 = __webpack_require__(66);
 
 	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
 
 	var _inherits2 = __webpack_require__(95);
 
@@ -34466,15 +34466,6 @@
 	  return state;
 	}), _dec(_class = function (_React$Component) {
 	  (0, _inherits3.default)(AppContainer, _React$Component);
-	  (0, _createClass3.default)(AppContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.props.dispatch(_actions2.default.getUnconsidered(1));
-	      // this.props.dispatch(actions.getConsidered());
-	      // this.props.dispatch(actions.getInterviews());
-	      // this.props.dispatch(actions.getOffers());
-	    }
-	  }]);
 
 	  function AppContainer(props) {
 	    (0, _classCallCheck3.default)(this, AppContainer);
@@ -34482,6 +34473,7 @@
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppContainer).call(this, props));
 
 	    _this.state = {
+	      isFetching: true,
 	      unconsidered: [],
 	      considered: [],
 	      interviews: [],
@@ -34491,9 +34483,18 @@
 	  }
 
 	  (0, _createClass3.default)(AppContainer, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.dispatch(_actions2.default.getUnconsidered(1));
+	      this.props.dispatch(_actions2.default.getConsidered(3));
+	      this.props.dispatch(_actions2.default.getInterviews(4));
+	      this.props.dispatch(_actions2.default.getOffers(2));
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log("AppContainer props", this.props);
+
+	      console.log("AppContainer state", this.state);
 	      return React.createElement(
 	        Container,
 	        { id: 'body' },
@@ -34506,22 +34507,22 @@
 	            React.createElement(
 	              Col,
 	              { md: 3 },
-	              React.createElement(_lists2.default, null)
+	              React.createElement(_lists2.default, { data: this.props.unconsidered })
 	            ),
 	            React.createElement(
 	              Col,
 	              { md: 3 },
-	              React.createElement(_lists2.default, null)
+	              React.createElement(_lists2.default, { data: this.props.considered })
 	            ),
 	            React.createElement(
 	              Col,
 	              { md: 3 },
-	              React.createElement(_lists2.default, null)
+	              React.createElement(_lists2.default, { data: this.props.interviews })
 	            ),
 	            React.createElement(
 	              Col,
 	              { md: 3 },
-	              React.createElement(_lists2.default, null)
+	              React.createElement(_lists2.default, { data: this.props.offers })
 	            )
 	          )
 	        )
@@ -34614,15 +34615,43 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var Body = function (_React$Component) {
-	  (0, _inherits3.default)(Body, _React$Component);
+	var ShortCard = function (_React$Component) {
+	  (0, _inherits3.default)(ShortCard, _React$Component);
 
-	  function Body() {
-	    (0, _classCallCheck3.default)(this, Body);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+	  function ShortCard() {
+	    (0, _classCallCheck3.default)(this, ShortCard);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ShortCard).apply(this, arguments));
 	  }
 
-	  (0, _createClass3.default)(Body, [{
+	  (0, _createClass3.default)(ShortCard, [{
+	    key: 'render',
+	    value: function render() {
+
+	      return React.createElement(
+	        'div',
+	        null,
+	        React.createElement(
+	          'li',
+	          null,
+	          ' ',
+	          this.props.item,
+	          ' '
+	        )
+	      );
+	    }
+	  }]);
+	  return ShortCard;
+	}(React.Component);
+
+	var AppList = function (_React$Component2) {
+	  (0, _inherits3.default)(AppList, _React$Component2);
+
+	  function AppList() {
+	    (0, _classCallCheck3.default)(this, AppList);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppList).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(AppList, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      $('#nestable').nestable({
@@ -34632,17 +34661,27 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
+	      // {list.map(item => <ShortCard data={item}/>)}
+	      var list = this.props.data;
+	      var newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
+	      console.log("AppList data", this.props);
 	      return React.createElement(
 	        'div',
 	        { className: 'shortcard' },
-	        React.createElement('ol', null)
+	        React.createElement(
+	          'ul',
+	          null,
+	          newList.map(function (item) {
+	            return React.createElement(ShortCard, { item: item });
+	          })
+	        )
 	      );
 	    }
 	  }]);
-	  return Body;
+	  return AppList;
 	}(React.Component);
 
-	exports.default = Body;
+	exports.default = AppList;
 
 /***/ },
 /* 368 */
@@ -35383,7 +35422,7 @@
 	  var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	  var action = arguments[1];
 
-	  console.log('state in reducer is:', state);
+	  // console.log('state in reducer is:', state)
 	  switch (action.type) {
 	    case _actionTypes.FETCH_APP:
 	      console.log('action recieved:', action.payload);
@@ -35395,10 +35434,10 @@
 	      return (0, _assign2.default)({}, state, {
 	        items: [].concat((0, _toConsumableArray3.default)(state.items.slice(0, action.appID)), (0, _toConsumableArray3.default)(state.items.slice(action.appID + 1)))
 	      });
+	    default:
+	      return state;
 	  }
-	  console.log('action in remove_app:', action);
-
-	  return state;
+	  // console.log('action in remove_app:', action)
 	}
 
 	module.exports = {
@@ -35477,34 +35516,34 @@
 	};
 
 	function dashboard() {
-		var state = arguments.length <= 0 || arguments[0] === undefined ? initialState : arguments[0];
+		var state = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 		var action = arguments[1];
 
 		console.log("state in dashboard reducer = ", state);
 		switch (action.type) {
 			case _actionTypes.GET_UNCONSIDERED:
 				console.log("unconsidered:", action.payload);
-				var data1 = action.payload.data;
+				var unconsidered = action.payload.data;
 				return (0, _assign2.default)({}, state, {
-					unconsidered: data1
+					unconsidered: unconsidered
 				});
 			case _actionTypes.GET_CONSIDERED:
 				console.log("considered:", action.payload);
-				var data2 = action.payload.data;
+				var considered = action.payload.data;
 				return (0, _assign2.default)({}, state, {
-					considered: data2
+					considered: considered
 				});
 			case _actionTypes.GET_INTERVIEWS:
 				console.log("interviews:", action.payload);
-				var data3 = action.payload.data;
+				var interviews = action.payload.data;
 				return (0, _assign2.default)({}, state, {
-					interviews: data3
+					interviews: interviews
 				});
 			case _actionTypes.GET_OFFERS:
 				console.log("offers:", action.payload);
-				var data4 = action.payload.data;
+				var offers = action.payload.data;
 				return (0, _assign2.default)({}, state, {
-					offers: data4
+					offers: offers
 				});
 			default:
 				return state;

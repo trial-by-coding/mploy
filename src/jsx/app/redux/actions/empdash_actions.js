@@ -14,21 +14,21 @@ function getUnconsidered(jobID){
 }
 
 function getConsidered(jobID){
-	return dispatch => axios.get('user/employer/appsbystatus?jobID='+jobID+'&status=considered')
+	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=considered')
 		.then(
 			payload => dispatch({ type: GET_CONSIDERED, payload})
 		);
 }
 
 function getInterviews(jobID){
-	return dispatch => axios.get('user/employer/appsbystatus?jobID='+jobID+'&status=interview')
+	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=interviews')
 		.then(
 			payload => dispatch({ type: GET_INTERVIEWS, payload})
 		);
 }
 
 function getOffers(jobID){
-	return dispatch => axios.get('user/employer/appsbystatus?jobID='+jobID+'&status=offer')
+	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=offers')
 		.then(
 			payload => dispatch({ type: GET_OFFERS, payload})
 		);

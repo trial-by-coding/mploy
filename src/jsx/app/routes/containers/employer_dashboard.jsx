@@ -13,39 +13,44 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
 class AppContainer extends React.Component {
-	componentWillMount() {
-		this.props.dispatch(actions.getUnconsidered(1));
-    // this.props.dispatch(actions.getConsidered());
-    // this.props.dispatch(actions.getInterviews());
-    // this.props.dispatch(actions.getOffers());
-	}
-
 	constructor(props) {
 		super(props)
 		this.state = {
-      unconsidered: [],
+      isFetching: true,
+      unconsidered:[],
       considered: [],
       interviews: [],
       offers: []
     }
 	}
+  componentDidMount() {
+    this.props.dispatch(actions.getUnconsidered(1));
+    this.props.dispatch(actions.getConsidered(3));
+    this.props.dispatch(actions.getInterviews(4));
+    this.props.dispatch(actions.getOffers(2));
+  }
+
+
+
 	render() {
-    console.log("AppContainer props", this.props);
+
+
+    console.log("AppContainer state", this.state);
 		return (
 		<Container id='body'>
       <Grid>
         <Row>
         	<Col md={3}>
-        		<AppList />
+        		<AppList data={this.props.unconsidered}/>
           </Col>
           <Col md={3}>
-        		<AppList />
+        		<AppList data={this.props.considered} />
           </Col>
           <Col md={3}>
-        		<AppList />
+        		<AppList data={this.props.interviews} />
           </Col>
           <Col md={3}>
-        		<AppList />
+        		<AppList data={this.props.offers} />
           </Col>
         </Row>
       </Grid>
