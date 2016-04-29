@@ -16,7 +16,7 @@ export default class ApplicationContainer extends React.Component {
   }
 
   componentDidMount(){
-    this.props.dispatch(getApplications(1))  
+    this.props.dispatch(getApplications(2))  
   }
 
 

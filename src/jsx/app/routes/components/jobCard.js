@@ -1,7 +1,8 @@
 import classNames from 'classnames';
 
 import { connect } from 'react-redux'
-import JobModal from './jobModal'
+// import JobModal from './jobModal'
+import LoremIpsum from 'global/jsx/loremipsum';
 
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
@@ -63,6 +64,24 @@ class JobBody extends React.Component {
 
 class JobApply extends React.Component {
 
+  getLargeModal() {
+    return (
+      <Modal lg>
+        <ModalHeader>
+          <Button onClick={ModalManager.remove} onTouchEnd={ModalManager.remove} close />
+          <h4 className='modal-title'>Modal title</h4>
+        </ModalHeader>
+        <ModalBody>
+          <p><LoremIpsum query='2s' /></p>
+        </ModalBody>
+        <ModalFooter>
+          <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
+          <Button outlined bsStyle='primary'>Save changes</Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+
   render() {
     const btnStyles = {
       textAlign: 'center',
@@ -74,7 +93,7 @@ class JobApply extends React.Component {
           <Col md={12}>
             <Button bsStyle="primary"
                     bsSize="large"
-                    onClick={this.props.openModal}> Apply
+                    onClick={ModalManager.create.bind(this, this.getLargeModal())}> Apply
             </Button>
           </Col>
         </Row>
@@ -84,6 +103,7 @@ class JobApply extends React.Component {
 }
 
 export default class JobCard extends React.Component {
+
   render() {
     console.log('jobCard', this.props);
 
