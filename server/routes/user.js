@@ -51,7 +51,7 @@ module.exports = function(router) {
       })
       .then(function() {
         console.log('Verifying employer status and redirecting.')
-        res.redirect('/applications')
+        res.redirect('/employer/dashboard')
       })
     }
     if (req.session.employer === 'false'){
