@@ -1,5 +1,4 @@
 var JobPosts = require('../models/JobPosts.js');
-var Employers = require('../models/Employers.js');
 var Applications = require('../models/Applications.js');
 var Users = require('../models/Users.js');
 var Stats = require('../models/Stats.js');
@@ -10,36 +9,32 @@ module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
 
-	// router.use(function(req,res,next) {
- //    if (req.user !== undefined){
- //      var linkedin_id = req.user.linkedin_id
- //      return Users.verifyId(linkedin_id)
- //      .catch(function(err) {
- //        console.log('Failed to verify user:', err)
- //        res.redirect('/')
- //      })
- //      .then(function(userObj) {
- //        console.log('userObj[0].userID: ',userObj[0].userID)
- //        return Employers.verify(userObj[0].userID)
- //      })
- //      .then(function(resp) {
- //        console.log('Resp from Employers.verify:', resp)
- //        if (resp){
- //          return next()
- //        } else {
- //          console.log('User is not an employer.')
- //          res.redirect('/')
- //        }
- //      })
- //      .catch(function(err) {
- //        console.log('Employer authentication failed: ', err)
- //        res.redirect('/')
- //      }) 
- //    } else {
- //      console.log('User not logged in')
- //      res.redirect('/')
- //    }
-	// });
+  // router.use(function(req,res,next) {
+  //   if (req.user !== undefined){
+  //     var linkedin_id = req.user.linkedin_id
+  //     return Users.verifyEmployer(linkedin_id)
+  //     .catch(function(err) {
+  //       console.log('Failed to verify user as employer:', err)
+  //       res.redirect('/jobs')
+  //     })
+  //     .then(function(resp) {
+  //       console.log('Resp from Users.verifyEmployer:', resp)
+  //       if (resp){
+  //         return next()
+  //       } else {
+  //         console.log('User is not an employer.')
+  //         res.redirect('/jobs')
+  //       }
+  //     })
+  //     .catch(function(err) {
+  //       console.log('Employer authentication failed: ', err)
+  //       res.redirect('/jobs')
+  //     }) 
+  //   } else {
+  //     console.log('User not logged in')
+  //     res.redirect('/')
+  //   }
+  // });
 
   //offset to get certain number of jobs at a time
 
