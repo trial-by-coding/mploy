@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux'
 // import JobModal from './jobModal'
 import LoremIpsum from 'global/jsx/loremipsum';
-
+import Controls from '../forms/controls'
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
@@ -23,6 +23,7 @@ class JobHeader extends React.Component {
         </Col>
         <Col md={6}>
           <div class="jobimg">
+          <h4> jobID: {this.props.data.jobID }</h4>
             <img></img>
           </div>
         </Col>
@@ -67,12 +68,8 @@ class JobApply extends React.Component {
   getLargeModal() {
     return (
       <Modal lg>
-        <ModalHeader>
-          <Button onClick={ModalManager.remove} onTouchEnd={ModalManager.remove} close />
-          <h4 className='modal-title'>Modal title</h4>
-        </ModalHeader>
         <ModalBody>
-          <p><LoremIpsum query='2s' /></p>
+        <Controls  data={this.props.data} />
         </ModalBody>
         <ModalFooter>
           <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
