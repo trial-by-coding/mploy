@@ -71,6 +71,7 @@ Applications.updateStatus = function(appID, status) {
 Applications.getByStatus = function(jobID, status) {
   console.log('in get by status: ', status)
   return db('applications')
+  .join('users', 'applications.user_id', '=', 'users.userID')
   .orderBy('created_at', 'desc')
   .where({
     job_id: jobID, 

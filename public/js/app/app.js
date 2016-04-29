@@ -52,11 +52,7 @@
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _router = __webpack_require__(363);
-=======
-	var _router = __webpack_require__(367);
->>>>>>> Normalize missed filenames
+	var _router = __webpack_require__(368);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -117,11 +113,7 @@
 
 	var _landing2 = _interopRequireDefault(_landing);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _blank = __webpack_require__(187);
-=======
-	var _landing = __webpack_require__(189);
->>>>>>> Normalize missed filenames
+	var _blank = __webpack_require__(189);
 
 	var _blank2 = _interopRequireDefault(_blank);
 
@@ -133,13 +125,14 @@
 
 	var _jobs2 = _interopRequireDefault(_jobs);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-=======
-	var _employer_dashboard = __webpack_require__(365);
+	var _controls = __webpack_require__(365);
+
+	var _controls2 = _interopRequireDefault(_controls);
+
+	var _employer_dashboard = __webpack_require__(366);
 
 	var _employer_dashboard2 = _interopRequireDefault(_employer_dashboard);
 
->>>>>>> Normalize missed filenames
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (history, onUpdate) {
@@ -149,7 +142,8 @@
 	    React.createElement(_reactRouter.Route, { path: '/', component: _landing2.default }),
 	    React.createElement(_reactRouter.Route, { path: '/applications', component: _applications2.default }),
 	    React.createElement(_reactRouter.Route, { path: '/jobs', component: _jobs2.default }),
-	    React.createElement(_reactRouter.Route, { path: '/blank', component: _blank2.default })
+	    React.createElement(_reactRouter.Route, { path: '/blank', component: _blank2.default }),
+	    React.createElement(_reactRouter.Route, { path: '/employer/dashboard', component: _employer_dashboard2.default })
 	  );
 	};
 
@@ -4715,7 +4709,7 @@
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
 	                          'a',
-	                          { href: '/auth/linkedin' },
+	                          { href: '/auth/linkedin?employer=false' },
 	                          React.createElement(
 	                            Button,
 	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
@@ -4730,20 +4724,6 @@
 	                                'with linkedin'
 	                              )
 	                            )
-	                          )
-	                        )
-	                      ),
-	                      React.createElement(
-	                        'div',
-	                        null,
-	                        React.createElement(
-	                          'a',
-	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
-	                          React.createElement(
-	                            'span',
-	                            null,
-	                            ' or with github'
 	                          )
 	                        )
 	                      )
@@ -4786,7 +4766,7 @@
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
 	                          'a',
-	                          { href: '/auth/linkedin' },
+	                          { href: '/auth/linkedin?employer=true' },
 	                          React.createElement(
 	                            Button,
 	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
@@ -4801,20 +4781,6 @@
 	                                'with linkedin'
 	                              )
 	                            )
-	                          )
-	                        )
-	                      ),
-	                      React.createElement(
-	                        'div',
-	                        null,
-	                        React.createElement(
-	                          'a',
-	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
-	                          React.createElement(
-	                            'span',
-	                            null,
-	                            ' or with github'
 	                          )
 	                        )
 	                      )
@@ -9284,10 +9250,10 @@
 	'use strict';
 
 	module.exports = {
-	  GET_UNCONSIDERED: 'GET_UNCONSIDERED',
-	  GET_CONSIDERED: 'GET_CONSIDERED',
-	  GET_INTERVIEWS: 'GET_INTERVIEWS',
-	  GET_OFFERS: 'GET_OFFERS'
+		GET_UNCONSIDERED: 'GET_UNCONSIDERED',
+		GET_CONSIDERED: 'GET_CONSIDERED',
+		GET_INTERVIEWS: 'GET_INTERVIEWS',
+		GET_OFFERS: 'GET_OFFERS'
 	};
 
 /***/ },
@@ -9720,10 +9686,15 @@
 	  };
 	}
 
-	function rejectApp(appID) {
+	function rejectApp(jobID, appID) {
+
 	  return function (dispatch) {
-	    return _axios2.default.delete('user/employer/deleteapp?appID=' + appID).then(function (payload) {
-	      return dispatch({ type: _actionTypes.REMOVE_APP, payload: payload });
+
+	    return _axios2.default.delete('user/employer/deleteapp?appID=' + appID).then(function () {
+	      return _axios2.default.get('user/employer/appsbyjob?jobID=' + jobID);
+	    }).then(function (payload) {
+	      dispatch({ type: _actionTypes.REMOVE_APP, appID: appID });
+	      dispatch({ type: _actionTypes.FETCH_APP, payload: payload });
 	    });
 	  };
 	  // return { type: REMOVE_APP, jobID };
@@ -10950,16 +10921,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getUnconsidered(jobID) {
+		console.log('getUnconsidered Actions');
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=unconsidered').then(function (payload) {
+			return _axios2.default.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=unconsidered').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_UNCONSIDERED, payload: payload });
+			}).catch(function (resp) {
+				return console.log("Error fetching unconsidered", resp);
 			});
 		};
 	}
 
 	function getConsidered(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=considered').then(function (payload) {
+			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=considered').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_CONSIDERED, payload: payload });
 			});
 		};
@@ -10967,7 +10941,7 @@
 
 	function getInterviews(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=interview').then(function (payload) {
+			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=interview').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_INTERVIEWS, payload: payload });
 			});
 		};
@@ -10975,7 +10949,7 @@
 
 	function getOffers(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=offer').then(function (payload) {
+			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=offer').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_OFFERS, payload: payload });
 			});
 		};
@@ -11393,9 +11367,9 @@
 	  }
 
 	  (0, _createClass3.default)(ApplicationContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.props.dispatch((0, _index.getApplications)(3));
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.dispatch((0, _index.getApplications)(1));
 	    }
 	  }, {
 	    key: 'render',
@@ -11436,7 +11410,7 @@
 	          ' Loading... '
 	        );
 	      }
-
+	      console.log("applist before render:", this.props.applist);
 	      return React.createElement(
 	        Grid,
 	        null,
@@ -11500,9 +11474,7 @@
 	            React.createElement(
 	              Row,
 	              null,
-	              app.map(function (item) {
-	                return React.createElement(ApplicationContainer, null);
-	              })
+	              React.createElement(ApplicationContainer, null)
 	            )
 	          )
 	        ),
@@ -11571,8 +11543,11 @@
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppCard).call(this, props));
 
 	    _this.deleteTask = function (e) {
-	      _this.props.dispatch(_actions2.default.rejectApp(_this.props.fuckingApps.appID));
-	      // this.props.dispatch(actions.getApplications(1))
+	      // this.props.dispatch(actions.getApplications(3)) 
+	      _this.props.dispatch(_actions2.default.rejectApp(1, _this.props.fuckingApps.appID));
+	      // this.props.dispatch(actions.getApplications(3))
+
+	      console.log('appID in deleteTask:', _this.props.fuckingApps.appID);
 	    };
 
 	    return _this;
@@ -11594,7 +11569,13 @@
 	        paddingBottom: '10px',
 	        'text-align': 'left'
 	      };
+	      console.log('props in appCard:', this.props);
+
+	      // if(!this.props.appList.items) {
+	      //   return <div> Loading... </div>
+	      // }
 	      return(
+
 	        //appCard info
 	        React.createElement(
 	          'div',
@@ -11602,6 +11583,13 @@
 	          React.createElement(
 	            Row,
 	            { style: styles },
+	            React.createElement(
+	              'h4',
+	              null,
+	              ' App ID: ',
+	              this.props.fuckingApps.appID,
+	              ' '
+	            ),
 	            React.createElement(
 	              'h4',
 	              null,
@@ -11719,7 +11707,7 @@
 
 	'use strict';
 
-	var _dec, _class, _class2;
+	var _dec, _class, _class3;
 	// import Description from 'routes/components/description';
 	// import Confirm from 'routes/components/confirm';
 
@@ -11802,30 +11790,31 @@
 
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).call(this, props));
 
-	    _this.state = {
-	      showForm: false
+	    _this.openModal = function () {
+	      console.log('openModal working');
+	      _this.setState({
+	        isOpen: true
+	      });
 	    };
-	    var showForm = _this.showForm.bind(_this);
-	    var hideForm = _this.hideForm.bind(_this);
+
+	    _this.hideModal = function () {
+	      _this.setState({
+	        isOpen: false
+	      });
+	    };
+
+	    _this.state = {
+	      isOpen: false
+	    };
 	    return _this;
 	  }
 
 	  (0, _createClass3.default)(JobsContainer, [{
-	    key: 'showForm',
-	    value: function showForm() {
-	      console.log('showForm props', this);
-
-	      this.setState({ showForm: true });
-	    }
-	  }, {
-	    key: 'hideForm',
-	    value: function hideForm() {
-	      this.setState({ showForm: false });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log('container props', this.state);
+	      var _this2 = this;
+
+	      console.log('container props', this);
 	      var jobList = this.props.jobList.items;
 
 	      var styles = {
@@ -11864,17 +11853,18 @@
 	        null,
 	        jobList.map(function (job) {
 	          return React.createElement(_jobCard2.default, { data: job,
-	            showForm: showForm,
-	            hideForm: hideForm });
+	            openModal: _this2.openModal });
 	        }),
-	        React.createElement(_jobModal2.default, { open: this.state.showForm })
+	        React.createElement(_jobModal2.default, { isOpen: this.state.isOpen,
+	          openModal: this.openModal,
+	          hideModal: this.hideModal })
 	      );
 	    }
 	  }]);
 	  return JobsContainer;
 	}(React.Component)) || _class);
 
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+	var _default = (0, _sidebar_component2.default)(_class3 = function (_React$Component2) {
 	  (0, _inherits3.default)(_default, _React$Component2);
 
 	  function _default() {
@@ -11916,7 +11906,7 @@
 	    }
 	  }]);
 	  return _default;
-	}(React.Component)) || _class2;
+	}(React.Component)) || _class3;
 
 	exports.default = _default;
 
@@ -12114,7 +12104,13 @@
 	          React.createElement(
 	            Col,
 	            { md: 12 },
-	            React.createElement(_jobModal2.default, null)
+	            React.createElement(
+	              Button,
+	              { bsStyle: 'primary',
+	                bsSize: 'large',
+	                onClick: this.props.openModal },
+	              ' Apply'
+	            )
 	          )
 	        )
 	      );
@@ -12148,6 +12144,10 @@
 	        'padding-top': '0px'
 	      };
 
+	      var colStyle = {
+	        zIndex: -100
+	      };
+
 	      return React.createElement(
 	        Col,
 	        { sm: 12, md: 4, lg: 4, className: 'clearfix' },
@@ -12171,7 +12171,8 @@
 	                    { className: 'jobcard' },
 	                    React.createElement(JobHeader, { data: this.props.data }),
 	                    React.createElement(JobBody, { data: this.props.data }),
-	                    React.createElement(JobApply, { data: this.props.data })
+	                    React.createElement(JobApply, { data: this.props.data,
+	                      openModal: this.props.openModal })
 	                  )
 	                )
 	              )
@@ -12190,7 +12191,7 @@
 /* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -12219,81 +12220,64 @@
 
 	var _reactModalBootstrap = __webpack_require__(195);
 
+	var _controls = __webpack_require__(365);
+
+	var _controls2 = _interopRequireDefault(_controls);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var JobModal = function (_React$Component) {
 	  (0, _inherits3.default)(JobModal, _React$Component);
 
-	  function JobModal(props) {
+	  function JobModal() {
 	    (0, _classCallCheck3.default)(this, JobModal);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobModal).call(this, props));
-
-	    _this.openModal = function () {
-	      _this.setState({
-	        isOpen: true
-	      });
-	    };
-
-	    _this.hideModal = function () {
-	      _this.setState({
-	        isOpen: false
-	      });
-	    };
-
-	    _this.state.isOpen = _this.props.open;
-	    return _this;
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobModal).apply(this, arguments));
 	  }
 
 	  (0, _createClass3.default)(JobModal, [{
-	    key: "render",
+	    key: 'render',
 	    value: function render() {
+	      var modalStyles = {
+	        zIndex: 10000000,
+	        position: 'absolute'
+	      };
+
+	      var pushedDown = {
+	        'margin-top': '150px;'
+	      };
 	      return React.createElement(
-	        "div",
-	        null,
-	        React.createElement(
-	          Button,
-	          {
-	            bsStyle: "primary",
-	            bsSize: "large",
-	            onClick: this.openModal
-	          },
-	          "Apply"
-	        ),
+	        'div',
+	        { style: modalStyles },
 	        React.createElement(
 	          _reactModalBootstrap.Modal,
-	          { isOpen: this.state.isOpen, onRequestHide: this.hideModal },
+	          { style: pushedDown, isOpen: this.props.isOpen, onRequestHide: this.props.hideModal },
 	          React.createElement(
 	            _reactModalBootstrap.ModalHeader,
 	            null,
-	            React.createElement(_reactModalBootstrap.ModalClose, { onClick: this.hideModal }),
+	            React.createElement(_reactModalBootstrap.ModalClose, { onClick: this.props.hideModal }),
 	            React.createElement(
 	              _reactModalBootstrap.ModalTitle,
 	              null,
-	              "Modal title"
+	              'Modal title'
 	            )
 	          ),
 	          React.createElement(
 	            _reactModalBootstrap.ModalBody,
 	            null,
-	            React.createElement(
-	              "p",
-	              null,
-	              "Ab ea ipsam iure perferendis! Ad debitis dolore excepturi explicabo hic incidunt placeat quasi repellendus soluta, vero. Autem delectus est laborum minus modi molestias natus provident, quidem rerum sint, voluptas!"
-	            )
+	            React.createElement(_controls2.default, null)
 	          ),
 	          React.createElement(
 	            _reactModalBootstrap.ModalFooter,
 	            null,
 	            React.createElement(
-	              "button",
-	              { className: "btn btn-default", onClick: this.hideModal },
-	              "Close"
+	              'button',
+	              { className: 'btn btn-default', onClick: this.props.hideModal },
+	              'Close'
 	            ),
 	            React.createElement(
-	              "button",
-	              { className: "btn btn-primary" },
-	              "Save changes"
+	              'button',
+	              { className: 'btn btn-primary' },
+	              'Save changes'
 	            )
 	          )
 	        )
@@ -33944,8 +33928,477 @@
 /* 365 */
 /***/ function(module, exports, __webpack_require__) {
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-=======
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(53);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(65);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(66);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(70);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(95);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(102);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _sidebar_component = __webpack_require__(103);
+
+	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
+
+	var _header = __webpack_require__(109);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _sidebar = __webpack_require__(110);
+
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+
+	var _footer = __webpack_require__(112);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Body = function (_React$Component) {
+	  (0, _inherits3.default)(Body, _React$Component);
+
+	  function Body() {
+	    (0, _classCallCheck3.default)(this, Body);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Body, [{
+	    key: 'onChange',
+	    value: function onChange() {
+	      console.log('onChange');
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        Container,
+	        { id: 'body' },
+	        React.createElement(
+	          Grid,
+	          null,
+	          React.createElement(
+	            Row,
+	            null,
+	            React.createElement(
+	              Col,
+	              { sm: 12, collapseRight: true },
+	              React.createElement(
+	                PanelContainer,
+	                { noOverflow: true, controlStyles: 'bg-green fg-white' },
+	                React.createElement(
+	                  Panel,
+	                  null,
+	                  React.createElement(
+	                    PanelHeader,
+	                    { className: 'bg-green fg-white' },
+	                    React.createElement(
+	                      Grid,
+	                      null,
+	                      React.createElement(
+	                        Row,
+	                        null,
+	                        React.createElement(
+	                          Col,
+	                          { xs: 12 },
+	                          React.createElement(
+	                            'h3',
+	                            null,
+	                            'Default form'
+	                          )
+	                        )
+	                      )
+	                    )
+	                  ),
+	                  React.createElement(
+	                    PanelBody,
+	                    null,
+	                    React.createElement(
+	                      Grid,
+	                      null,
+	                      React.createElement(
+	                        Row,
+	                        null,
+	                        React.createElement(
+	                          Col,
+	                          { xs: 12 },
+	                          React.createElement(
+	                            Form,
+	                            null,
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'emailaddress' },
+	                                'Email address'
+	                              ),
+	                              React.createElement(
+	                                InputGroup,
+	                                null,
+	                                React.createElement(
+	                                  InputGroupAddon,
+	                                  null,
+	                                  React.createElement(Icon, { glyph: 'icon-fontello-mail' })
+	                                ),
+	                                React.createElement(Input, { autoFocus: true, type: 'email', id: 'emailaddress', placeholder: 'Email address' })
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'password' },
+	                                'Password'
+	                              ),
+	                              React.createElement(
+	                                InputGroup,
+	                                null,
+	                                React.createElement(Input, { type: 'password', id: 'password', placeholder: 'Password' }),
+	                                React.createElement(
+	                                  InputGroupAddon,
+	                                  null,
+	                                  React.createElement(Icon, { glyph: 'icon-fontello-key' })
+	                                )
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              { feedback: true },
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'withicon', control: true },
+	                                'With icon'
+	                              ),
+	                              React.createElement(Input, { type: 'text', id: 'withicon', placeholder: 'Search' }),
+	                              React.createElement(Icon, { bundle: 'fontello', glyph: 'search', feedback: true })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              { feedback: true },
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'inputwithicon', control: true },
+	                                'Input with icon'
+	                              ),
+	                              React.createElement(
+	                                InputGroup,
+	                                null,
+	                                React.createElement(
+	                                  InputGroupAddon,
+	                                  null,
+	                                  React.createElement(Icon, { glyph: 'icon-fontello-alert' })
+	                                ),
+	                                React.createElement(Input, { type: 'text', id: 'inputwithicon', placeholder: 'Search' }),
+	                                React.createElement(Icon, { bundle: 'fontello', glyph: 'search', feedback: true })
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'disabled' },
+	                                'Disabled'
+	                              ),
+	                              React.createElement(Input, { disabled: true, type: 'text', id: 'disabled', placeholder: 'Disabled' })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'readonly' },
+	                                'Read only'
+	                              ),
+	                              React.createElement(Input, { readOnly: true, type: 'text', id: 'readonly', placeholder: 'Read only' })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'dropdownselect' },
+	                                'Dropdown Select'
+	                              ),
+	                              React.createElement(
+	                                Select,
+	                                { id: 'dropdownselect', defaultValue: '1' },
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '1' },
+	                                  'Option 1'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '2' },
+	                                  'Option 2'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '3' },
+	                                  'Option 3'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '4' },
+	                                  'Option 4'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '5' },
+	                                  'Option 5'
+	                                )
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'multiselect' },
+	                                'Multiple Select'
+	                              ),
+	                              React.createElement(
+	                                Select,
+	                                { id: 'multiselect', multiple: true },
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '1' },
+	                                  'Option 1'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '2' },
+	                                  'Option 2'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '3' },
+	                                  'Option 3'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '4' },
+	                                  'Option 4'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '5' },
+	                                  'Option 5'
+	                                )
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'textarea' },
+	                                'Textarea'
+	                              ),
+	                              React.createElement(Textarea, { id: 'textarea', rows: '3', placeholder: 'Some text here...' })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'fileinput' },
+	                                'File input'
+	                              ),
+	                              React.createElement(Input, { id: 'fileinput', type: 'file' }),
+	                              React.createElement(
+	                                HelpBlock,
+	                                null,
+	                                'some help text here.'
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Checkboxes'
+	                              ),
+	                              React.createElement(
+	                                Checkbox,
+	                                { value: 'option1', name: 'checkbox-options' },
+	                                'Option one is great'
+	                              ),
+	                              React.createElement(
+	                                Checkbox,
+	                                { value: 'option2', defaultChecked: true, name: 'checkbox-options' },
+	                                'Option two is checked'
+	                              ),
+	                              React.createElement(
+	                                Checkbox,
+	                                { value: 'option3', disabled: true, name: 'checkbox-options' },
+	                                'Option three is disabled'
+	                              ),
+	                              React.createElement('hr', null)
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Inline checkboxes'
+	                              ),
+	                              React.createElement(
+	                                'div',
+	                                null,
+	                                React.createElement(
+	                                  Checkbox,
+	                                  { inline: true, value: 'option1', name: 'inline-checkbox-options', onChange: this.onChange },
+	                                  'Option one'
+	                                ),
+	                                React.createElement(
+	                                  Checkbox,
+	                                  { inline: true, value: 'option2', defaultChecked: true, name: 'inline-checkbox-options' },
+	                                  'Option two'
+	                                ),
+	                                React.createElement(
+	                                  Checkbox,
+	                                  { inline: true, value: 'option3', disabled: true, name: 'inline-checkbox-options' },
+	                                  'Option disabled'
+	                                )
+	                              ),
+	                              React.createElement('hr', null)
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Radios'
+	                              ),
+	                              React.createElement(
+	                                Radio,
+	                                { value: 'option1', defaultChecked: true, name: 'radio-options' },
+	                                'Option 1'
+	                              ),
+	                              React.createElement(
+	                                Radio,
+	                                { value: 'option2', name: 'radio-options' },
+	                                'Option 2'
+	                              ),
+	                              React.createElement(
+	                                Radio,
+	                                { value: 'option3', disabled: true, name: 'radio-options' },
+	                                'Option disabled'
+	                              ),
+	                              React.createElement('hr', null)
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Inline radios'
+	                              ),
+	                              React.createElement(
+	                                'div',
+	                                null,
+	                                React.createElement(
+	                                  Radio,
+	                                  { inline: true, value: 'option1', name: 'inline-radio-options' },
+	                                  'Option one'
+	                                ),
+	                                React.createElement(
+	                                  Radio,
+	                                  { inline: true, value: 'option2', defaultChecked: true, name: 'inline-radio-options' },
+	                                  'Option two'
+	                                ),
+	                                React.createElement(
+	                                  Radio,
+	                                  { inline: true, value: 'option3', disabled: true, name: 'inline-radio-options' },
+	                                  'Option disabled'
+	                                )
+	                              )
+	                            )
+	                          )
+	                        )
+	                      )
+	                    )
+	                  ),
+	                  React.createElement(
+	                    PanelFooter,
+	                    { className: 'bg-darkgreen45 text-right' },
+	                    React.createElement(
+	                      Grid,
+	                      null,
+	                      React.createElement(
+	                        Row,
+	                        null,
+	                        React.createElement(
+	                          Col,
+	                          { xs: 12 },
+	                          React.createElement('br', null),
+	                          React.createElement(
+	                            'div',
+	                            null,
+	                            React.createElement(
+	                              Button,
+	                              { outlined: true, bsStyle: 'lightgreen' },
+	                              'cancel'
+	                            ),
+	                            ' ',
+	                            React.createElement(
+	                              Button,
+	                              { outlined: true, bsStyle: 'lightgreen' },
+	                              'submit'
+	                            )
+	                          ),
+	                          React.createElement('br', null)
+	                        )
+	                      )
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return Body;
+	}(React.Component);
+
+	exports.default = Body;
+
+/***/ },
+/* 366 */
+/***/ function(module, exports, __webpack_require__) {
+
 	'use strict';
 
 	var _dec, _class, _class2;
@@ -33995,7 +34448,7 @@
 
 	var _footer2 = _interopRequireDefault(_footer);
 
-	var _lists = __webpack_require__(366);
+	var _lists = __webpack_require__(367);
 
 	var _lists2 = _interopRequireDefault(_lists);
 
@@ -34016,7 +34469,7 @@
 	  (0, _createClass3.default)(AppContainer, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      this.props.dispatch(_actions2.default.getUnconsidered());
+	      this.props.dispatch(_actions2.default.getUnconsidered(1));
 	      // this.props.dispatch(actions.getConsidered());
 	      // this.props.dispatch(actions.getInterviews());
 	      // this.props.dispatch(actions.getOffers());
@@ -34109,7 +34562,7 @@
 	exports.default = _default;
 
 /***/ },
-/* 366 */
+/* 367 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34180,114 +34633,9 @@
 	    key: 'render',
 	    value: function render() {
 	      return React.createElement(
-	        Container,
-	        { id: 'body' },
-	        React.createElement(
-	          Grid,
-	          null,
-	          React.createElement(
-	            Row,
-	            null,
-	            React.createElement(
-	              Col,
-	              { sm: 12 },
-	              React.createElement(
-	                PanelContainer,
-	                { controlStyles: 'bg-darkgreen45 fg-white' },
-	                React.createElement(
-	                  Panel,
-	                  null,
-	                  React.createElement(
-	                    PanelHeader,
-	                    { className: 'bg-darkgreen45 fg-white', style: { margin: 0 } },
-	                    React.createElement(
-	                      Grid,
-	                      null,
-	                      React.createElement(
-	                        Row,
-	                        null,
-	                        React.createElement(
-	                          Col,
-	                          { xs: 12 },
-	                          React.createElement(
-	                            'h3',
-	                            null,
-	                            'Nestable List'
-	                          )
-	                        )
-	                      )
-	                    )
-	                  ),
-	                  React.createElement(
-	                    PanelBody,
-	                    null,
-	                    React.createElement(
-	                      'div',
-	                      { className: 'dd nestable', id: 'nestable', style: { width: '100%' } },
-	                      React.createElement(
-	                        'ol',
-	                        { className: 'dd-list' },
-	                        React.createElement(
-	                          'li',
-	                          { className: 'dd-item', 'data-id': '1' },
-	                          React.createElement(
-	                            Row,
-	                            null,
-	                            React.createElement(
-	                              Col,
-	                              { md: 10 },
-	                              React.createElement(
-	                                'div',
-	                                { className: 'dd-handle' },
-	                                'Item 1'
-	                              )
-	                            ),
-	                            React.createElement(
-	                              Col,
-	                              { md: 2 },
-	                              React.createElement(
-	                                Button,
-	                                null,
-	                                ' > '
-	                              )
-	                            )
-	                          )
-	                        ),
-	                        React.createElement(
-	                          'li',
-	                          { className: 'dd-item', 'data-id': '2' },
-	                          React.createElement(
-	                            'div',
-	                            { className: 'dd-handle' },
-	                            'Item 2'
-	                          )
-	                        ),
-	                        React.createElement(
-	                          'li',
-	                          { className: 'dd-item', 'data-id': '11' },
-	                          React.createElement(
-	                            'div',
-	                            { className: 'dd-handle' },
-	                            'Item 11'
-	                          )
-	                        ),
-	                        React.createElement(
-	                          'li',
-	                          { className: 'dd-item', 'data-id': '12' },
-	                          React.createElement(
-	                            'div',
-	                            { className: 'dd-handle' },
-	                            'Item 12'
-	                          )
-	                        )
-	                      )
-	                    )
-	                  )
-	                )
-	              )
-	            )
-	          )
-	        )
+	        'div',
+	        { className: 'shortcard' },
+	        React.createElement('ol', null)
 	      );
 	    }
 	  }]);
@@ -34297,10 +34645,9 @@
 	exports.default = Body;
 
 /***/ },
-/* 367 */
+/* 368 */
 /***/ function(module, exports, __webpack_require__) {
 
->>>>>>> Normalize missed filenames
 	/* WEBPACK VAR INJECTION */(function(global) {'use strict';
 
 	var _extends2 = __webpack_require__(104);
@@ -34315,25 +34662,15 @@
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _createBrowserHistory = __webpack_require__(364);
-=======
-	var _createBrowserHistory = __webpack_require__(368);
->>>>>>> Normalize missed filenames
+	var _createBrowserHistory = __webpack_require__(369);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(120);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _reduxSimpleRouter = __webpack_require__(365);
+	var _reduxSimpleRouter = __webpack_require__(370);
 
-	var _reduxThunk = __webpack_require__(366);
-=======
-	var _reduxSimpleRouter = __webpack_require__(369);
-
-	var _reduxThunk = __webpack_require__(370);
->>>>>>> Normalize missed filenames
+	var _reduxThunk = __webpack_require__(371);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -34341,11 +34678,7 @@
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _reducers = __webpack_require__(367);
-=======
-	var _reducers = __webpack_require__(371);
->>>>>>> Normalize missed filenames
+	var _reducers = __webpack_require__(372);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -34460,11 +34793,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 364 */
-=======
-/* 368 */
->>>>>>> Normalize missed filenames
+/* 369 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {'use strict';
@@ -34648,11 +34977,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 365 */
-=======
-/* 369 */
->>>>>>> Normalize missed filenames
+/* 370 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34852,11 +35177,7 @@
 
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 366 */
-=======
-/* 370 */
->>>>>>> Normalize missed filenames
+/* 371 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -34875,11 +35196,7 @@
 	module.exports = thunkMiddleware;
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 367 */
-=======
-/* 371 */
->>>>>>> Normalize missed filenames
+/* 372 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34888,31 +35205,19 @@
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _todos = __webpack_require__(368);
-=======
-	var _todo_reducers = __webpack_require__(372);
->>>>>>> Normalize missed filenames
+	var _todo_reducers = __webpack_require__(373);
 
 	var _todo_reducers2 = _interopRequireDefault(_todo_reducers);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _apps = __webpack_require__(373);
-=======
-	var _app_reducers = __webpack_require__(377);
->>>>>>> Normalize missed filenames
+	var _app_reducers = __webpack_require__(378);
 
 	var _app_reducers2 = _interopRequireDefault(_app_reducers);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _jobs = __webpack_require__(374);
-=======
-	var _job_reducers = __webpack_require__(378);
->>>>>>> Normalize missed filenames
+	var _job_reducers = __webpack_require__(379);
 
 	var _job_reducers2 = _interopRequireDefault(_job_reducers);
 
-	var _empdash_reducers = __webpack_require__(379);
+	var _empdash_reducers = __webpack_require__(380);
 
 	var _empdash_reducers2 = _interopRequireDefault(_empdash_reducers);
 
@@ -34921,11 +35226,7 @@
 	module.exports = (0, _extends3.default)({}, _todo_reducers2.default, _app_reducers2.default, _job_reducers2.default, _empdash_reducers2.default);
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 368 */
-=======
-/* 372 */
->>>>>>> Normalize missed filenames
+/* 373 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -34934,11 +35235,7 @@
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _toConsumableArray2 = __webpack_require__(369);
-=======
-	var _toConsumableArray2 = __webpack_require__(373);
->>>>>>> Normalize missed filenames
+	var _toConsumableArray2 = __webpack_require__(374);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -34985,20 +35282,12 @@
 	};
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 369 */
-=======
-/* 373 */
->>>>>>> Normalize missed filenames
+/* 374 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _from = __webpack_require__(370);
-=======
-	var _from = __webpack_require__(374);
->>>>>>> Normalize missed filenames
+	var _from = __webpack_require__(375);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -35017,39 +35306,21 @@
 	exports.__esModule = true;
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 370 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(371), __esModule: true };
-
-/***/ },
-/* 371 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(134);
-	__webpack_require__(372);
-	module.exports = __webpack_require__(61).Array.from;
-
-/***/ },
-/* 372 */
-=======
-/* 374 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(375), __esModule: true };
-
-/***/ },
 /* 375 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(134);
-	__webpack_require__(376);
-	module.exports = __webpack_require__(61).Array.from;
+	module.exports = { "default": __webpack_require__(376), __esModule: true };
 
 /***/ },
 /* 376 */
->>>>>>> Normalize missed filenames
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(134);
+	__webpack_require__(377);
+	module.exports = __webpack_require__(61).Array.from;
+
+/***/ },
+/* 377 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35091,22 +35362,15 @@
 
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 373 */
-=======
-/* 377 */
->>>>>>> Normalize missed filenames
+/* 378 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-=======
-	var _toConsumableArray2 = __webpack_require__(373);
+	var _toConsumableArray2 = __webpack_require__(374);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
->>>>>>> Normalize missed filenames
 	var _assign = __webpack_require__(105);
 
 	var _assign2 = _interopRequireDefault(_assign);
@@ -35128,9 +35392,12 @@
 	        items: data
 	      });
 	    case _actionTypes.REMOVE_APP:
-	      return state.items;
-
+	      return (0, _assign2.default)({}, state, {
+	        items: [].concat((0, _toConsumableArray3.default)(state.items.slice(0, action.appID)), (0, _toConsumableArray3.default)(state.items.slice(action.appID + 1)))
+	      });
 	  }
+	  console.log('action in remove_app:', action);
+
 	  return state;
 	}
 
@@ -35139,11 +35406,7 @@
 	};
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 374 */
-=======
-/* 378 */
->>>>>>> Normalize missed filenames
+/* 379 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -35193,7 +35456,7 @@
 	};
 
 /***/ },
-/* 379 */
+/* 380 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";

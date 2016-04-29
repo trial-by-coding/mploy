@@ -53,11 +53,7 @@ module.exports =
 
 	var _routes2 = _interopRequireDefault(_routes);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _router = __webpack_require__(239);
-=======
-	var _router = __webpack_require__(413);
->>>>>>> Normalize missed filenames
+	var _router = __webpack_require__(414);
 
 	var _router2 = _interopRequireDefault(_router);
 
@@ -118,11 +114,7 @@ module.exports =
 
 	var _landing2 = _interopRequireDefault(_landing);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _blank = __webpack_require__(233);
-=======
-	var _landing = __webpack_require__(235);
->>>>>>> Normalize missed filenames
+	var _blank = __webpack_require__(235);
 
 	var _blank2 = _interopRequireDefault(_blank);
 
@@ -134,13 +126,14 @@ module.exports =
 
 	var _jobs2 = _interopRequireDefault(_jobs);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-=======
-	var _employer_dashboard = __webpack_require__(411);
+	var _controls = __webpack_require__(411);
+
+	var _controls2 = _interopRequireDefault(_controls);
+
+	var _employer_dashboard = __webpack_require__(412);
 
 	var _employer_dashboard2 = _interopRequireDefault(_employer_dashboard);
 
->>>>>>> Normalize missed filenames
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	exports.default = function (history, onUpdate) {
@@ -150,7 +143,8 @@ module.exports =
 	    React.createElement(_reactRouter.Route, { path: '/', component: _landing2.default }),
 	    React.createElement(_reactRouter.Route, { path: '/applications', component: _applications2.default }),
 	    React.createElement(_reactRouter.Route, { path: '/jobs', component: _jobs2.default }),
-	    React.createElement(_reactRouter.Route, { path: '/blank', component: _blank2.default })
+	    React.createElement(_reactRouter.Route, { path: '/blank', component: _blank2.default }),
+	    React.createElement(_reactRouter.Route, { path: '/employer/dashboard', component: _employer_dashboard2.default })
 	  );
 	};
 
@@ -4602,7 +4596,7 @@ module.exports =
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
 	                          'a',
-	                          { href: '/auth/linkedin' },
+	                          { href: '/auth/linkedin?employer=false' },
 	                          React.createElement(
 	                            Button,
 	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
@@ -4617,20 +4611,6 @@ module.exports =
 	                                'with linkedin'
 	                              )
 	                            )
-	                          )
-	                        )
-	                      ),
-	                      React.createElement(
-	                        'div',
-	                        null,
-	                        React.createElement(
-	                          'a',
-	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
-	                          React.createElement(
-	                            'span',
-	                            null,
-	                            ' or with github'
 	                          )
 	                        )
 	                      )
@@ -4673,7 +4653,7 @@ module.exports =
 	                        { style: { marginTop: 12.5, marginBottom: 12.5 } },
 	                        React.createElement(
 	                          'a',
-	                          { href: '/auth/linkedin' },
+	                          { href: '/auth/linkedin?employer=true' },
 	                          React.createElement(
 	                            Button,
 	                            { id: 'linkedin-btn', lg: true, bsStyle: 'darkblue', type: 'submit', onClick: this.showLogin.bind(this).call() },
@@ -4688,20 +4668,6 @@ module.exports =
 	                                'with linkedin'
 	                              )
 	                            )
-	                          )
-	                        )
-	                      ),
-	                      React.createElement(
-	                        'div',
-	                        null,
-	                        React.createElement(
-	                          'a',
-	                          { id: 'github-link', href: '/auth/github', onClick: this.back },
-	                          React.createElement(Icon, { glyph: 'icon-fontello-github' }),
-	                          React.createElement(
-	                            'span',
-	                            null,
-	                            ' or with github'
 	                          )
 	                        )
 	                      )
@@ -9168,10 +9134,10 @@ module.exports =
 	'use strict';
 
 	module.exports = {
-	  GET_UNCONSIDERED: 'GET_UNCONSIDERED',
-	  GET_CONSIDERED: 'GET_CONSIDERED',
-	  GET_INTERVIEWS: 'GET_INTERVIEWS',
-	  GET_OFFERS: 'GET_OFFERS'
+		GET_UNCONSIDERED: 'GET_UNCONSIDERED',
+		GET_CONSIDERED: 'GET_CONSIDERED',
+		GET_INTERVIEWS: 'GET_INTERVIEWS',
+		GET_OFFERS: 'GET_OFFERS'
 	};
 
 /***/ },
@@ -21035,10 +21001,15 @@ module.exports =
 	  };
 	}
 
-	function rejectApp(appID) {
+	function rejectApp(jobID, appID) {
+
 	  return function (dispatch) {
-	    return _axios2.default.delete('user/employer/deleteapp?appID=' + appID).then(function (payload) {
-	      return dispatch({ type: _actionTypes.REMOVE_APP, payload: payload });
+
+	    return _axios2.default.delete('user/employer/deleteapp?appID=' + appID).then(function () {
+	      return _axios2.default.get('user/employer/appsbyjob?jobID=' + jobID);
+	    }).then(function (payload) {
+	      dispatch({ type: _actionTypes.REMOVE_APP, appID: appID });
+	      dispatch({ type: _actionTypes.FETCH_APP, payload: payload });
 	    });
 	  };
 	  // return { type: REMOVE_APP, jobID };
@@ -23307,16 +23278,19 @@ module.exports =
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getUnconsidered(jobID) {
+		console.log('getUnconsidered Actions');
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=unconsidered').then(function (payload) {
+			return _axios2.default.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=unconsidered').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_UNCONSIDERED, payload: payload });
+			}).catch(function (resp) {
+				return console.log("Error fetching unconsidered", resp);
 			});
 		};
 	}
 
 	function getConsidered(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=considered').then(function (payload) {
+			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=considered').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_CONSIDERED, payload: payload });
 			});
 		};
@@ -23324,7 +23298,7 @@ module.exports =
 
 	function getInterviews(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=interview').then(function (payload) {
+			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=interview').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_INTERVIEWS, payload: payload });
 			});
 		};
@@ -23332,7 +23306,7 @@ module.exports =
 
 	function getOffers(jobID) {
 		return function (dispatch) {
-			return _axios2.default.get('user/employer/appbystatus?jobID=' + jobID + '&status=offer').then(function (payload) {
+			return _axios2.default.get('user/employer/appsbystatus?jobID=' + jobID + '&status=offer').then(function (payload) {
 				return dispatch({ type: _actionTypes.GET_OFFERS, payload: payload });
 			});
 		};
@@ -23479,11 +23453,194 @@ module.exports =
 	  return Todo;
 	}(React.Component);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
 	var TodoForm = function (_React$Component2) {
 	  (0, _inherits3.default)(TodoForm, _React$Component2);
-=======
-	exports.default = Body;
+
+	  function TodoForm() {
+	    var _Object$getPrototypeO2;
+
+	    var _temp2, _this2, _ret2;
+
+	    (0, _classCallCheck3.default)(this, TodoForm);
+
+	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	      args[_key2] = arguments[_key2];
+	    }
+
+	    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO2 = (0, _getPrototypeOf2.default)(TodoForm)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.createTodo = function (e) {
+	      e.preventDefault();
+
+	      // Fetch the value
+	      var text = _this2.refs.textInput.value.trim();
+
+	      // dispatch action
+	      _this2.props.dispatch(_actions2.default.addTodo(text));
+
+	      // Clear form
+	      _this2.refs.textInput.value = '';
+	    }, _this2.setVisibility = function (e) {
+	      e.preventDefault();
+
+	      _this2.props.dispatch(_actions2.default.setVisibilityFilter(_actionTypes.VisibilityFilters[e.target.value]));
+	    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
+	  }
+
+	  (0, _createClass3.default)(TodoForm, [{
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        Grid,
+	        null,
+	        React.createElement(
+	          Row,
+	          null,
+	          React.createElement(
+	            Col,
+	            { xs: 10, collapseRight: true },
+	            React.createElement(
+	              Form,
+	              { onSubmit: this.createTodo, style: { margin: '0 12.5px 0 0' } },
+	              React.createElement(Input, { type: 'text', ref: 'textInput', placeholder: 'Add New Tasks' })
+	            )
+	          ),
+	          React.createElement(
+	            Col,
+	            { xs: 2, collapseLeft: true, className: 'text-right' },
+	            React.createElement(
+	              Select,
+	              { onChange: this.setVisibility },
+	              React.createElement(
+	                'option',
+	                { value: 'SHOW_ALL' },
+	                'Show All'
+	              ),
+	              React.createElement(
+	                'option',
+	                { value: 'SHOW_COMPLETED' },
+	                'Show Completed'
+	              ),
+	              React.createElement(
+	                'option',
+	                { value: 'SHOW_ACTIVE' },
+	                'Show Active'
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return TodoForm;
+	}(React.Component);
+
+	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
+	  return state;
+	}), _dec(_class3 = function (_React$Component3) {
+	  (0, _inherits3.default)(Body, _React$Component3);
+
+	  function Body() {
+	    (0, _classCallCheck3.default)(this, Body);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Body, [{
+	    key: 'renderTodo',
+	    value: function renderTodo(index, text, completed) {
+	      return React.createElement(Todo, { key: index,
+	        text: text,
+	        index: index,
+	        completed: completed,
+	        dispatch: this.props.dispatch });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var _this4 = this;
+
+	      var dispatch = this.props.dispatch;
+	      var visibilityFilter = this.props.visibilityFilter;
+
+	      return React.createElement(
+	        Container,
+	        { id: 'body' },
+	        React.createElement(
+	          Grid,
+	          null,
+	          React.createElement(
+	            Row,
+	            null,
+	            React.createElement(
+	              Col,
+	              { sm: 12 },
+	              React.createElement(
+	                PanelContainer,
+	                null,
+	                React.createElement(
+	                  Panel,
+	                  null,
+	                  React.createElement(
+	                    PanelBody,
+	                    { style: { paddingBottom: 12.5 } },
+	                    React.createElement(TodoForm, { dispatch: dispatch }),
+	                    React.createElement(
+	                      Grid,
+	                      null,
+	                      this.props.todos.map(function (_ref, i) {
+	                        var text = _ref.text;
+	                        var completed = _ref.completed;
+
+	                        switch (visibilityFilter) {
+	                          case 'SHOW_COMPLETED':
+	                            if (!completed) return null;
+	                            return _this4.renderTodo(i, text, completed);
+	                          case 'SHOW_ACTIVE':
+	                            if (completed) return null;
+	                          default:
+	                            return _this4.renderTodo(i, text, completed);
+	                        }
+	                      })
+	                    )
+	                  )
+	                )
+	              )
+	            )
+	          )
+	        )
+	      );
+	    }
+	  }]);
+	  return Body;
+	}(React.Component)) || _class3);
+
+	var _default = (0, _sidebar_component2.default)(_class4 = function (_React$Component4) {
+	  (0, _inherits3.default)(_default, _React$Component4);
+
+	  function _default() {
+	    (0, _classCallCheck3.default)(this, _default);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(_default, [{
+	    key: 'render',
+	    value: function render() {
+	      var classes = (0, _classnames2.default)({
+	        'container-open': this.props.open
+	      });
+
+	      return React.createElement(
+	        Container,
+	        { id: 'container', className: classes },
+	        React.createElement(_sidebar2.default, null),
+	        React.createElement(_header2.default, null),
+	        React.createElement(Body, null),
+	        React.createElement(_footer2.default, null)
+	      );
+	    }
+	  }]);
+	  return _default;
+	}(React.Component)) || _class4;
+
+	exports.default = _default;
 
 /***/ },
 /* 236 */
@@ -23567,9 +23724,9 @@ module.exports =
 	  }
 
 	  (0, _createClass3.default)(ApplicationContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.props.dispatch((0, _index.getApplications)(4));
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.props.dispatch((0, _index.getApplications)(1));
 	    }
 	  }, {
 	    key: 'render',
@@ -23577,16 +23734,40 @@ module.exports =
 	      var dispatch = this.props.dispatch;
 
 	      console.log('in render func props:', this.props);
->>>>>>> Normalize missed filenames
 
-	  function TodoForm() {
-	    var _Object$getPrototypeO2;
+	      var styles = {
+	        margin: '12.5px 0',
+	        borderBottom: '1px dotted #999',
+	        paddingBottom: 12.5,
+	        'textAlign': 'center'
+	      };
+	      var textStyle = {
+	        textDecoration: this.props.completed ? 'line-through' : ''
+	      };
+	      var buttonStyle = {
+	        height: 25,
+	        color: 'red',
+	        fontSize: 20,
+	        lineHeight: 0,
+	        marginTop: -3,
+	        border: 'none',
+	        background: 'none'
+	      };
+	      var panelStyle = {
+	        'maxWidth': '400px'
+	      };
+	      var panelPad = {
+	        'padding': '0px 20px'
+	      };
 
-	    var _temp2, _this2, _ret2;
-
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	    (0, _classCallCheck3.default)(this, TodoForm);
-=======
+	      if (!this.props.appList.items) {
+	        return React.createElement(
+	          'div',
+	          null,
+	          ' Loading... '
+	        );
+	      }
+	      console.log("applist before render:", this.props.applist);
 	      return React.createElement(
 	        Grid,
 	        null,
@@ -23650,9 +23831,7 @@ module.exports =
 	            React.createElement(
 	              Row,
 	              null,
-	              app.map(function (item) {
-	                return React.createElement(ApplicationContainer, null);
-	              })
+	              React.createElement(ApplicationContainer, null)
 	            )
 	          )
 	        ),
@@ -23721,8 +23900,10 @@ module.exports =
 	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppCard).call(this, props));
 
 	    _this.deleteTask = function (e) {
-	      _this.props.dispatch(_actions2.default.rejectApp(_this.props.fuckingApps.appID));
-	      _this.props.dispatch(_actions2.default.getApplications(4));
+	      // this.props.dispatch(actions.getApplications(3)) 
+	      _this.props.dispatch(_actions2.default.rejectApp(1, _this.props.fuckingApps.appID));
+	      // this.props.dispatch(actions.getApplications(3))
+
 	      console.log('appID in deleteTask:', _this.props.fuckingApps.appID);
 	    };
 
@@ -24396,6 +24577,10 @@ module.exports =
 
 	var _reactModalBootstrap = __webpack_require__(241);
 
+	var _controls = __webpack_require__(411);
+
+	var _controls2 = _interopRequireDefault(_controls);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var JobModal = function (_React$Component) {
@@ -24436,11 +24621,7 @@ module.exports =
 	          React.createElement(
 	            _reactModalBootstrap.ModalBody,
 	            null,
-	            React.createElement(
-	              'p',
-	              null,
-	              'Ab ea ipsam iure perferendis! Ad debitis dolore excepturi explicabo hic incidunt placeat quasi repellendus soluta, vero. Autem delectus est laborum minus modi molestias natus provident, quidem rerum sint, voluptas!'
-	            )
+	            React.createElement(_controls2.default, null)
 	          ),
 	          React.createElement(
 	            _reactModalBootstrap.ModalFooter,
@@ -44947,88 +45128,1155 @@ module.exports =
 	    }
 	  }
 	});
->>>>>>> Normalize missed filenames
 
-	    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-	      args[_key2] = arguments[_key2];
-	    }
+	module.exports = assign;
 
-	    return _ret2 = (_temp2 = (_this2 = (0, _possibleConstructorReturn3.default)(this, (_Object$getPrototypeO2 = (0, _getPrototypeOf2.default)(TodoForm)).call.apply(_Object$getPrototypeO2, [this].concat(args))), _this2), _this2.createTodo = function (e) {
-	      e.preventDefault();
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	      // Fetch the value
-	      var text = _this2.refs.textInput.value.trim();
-=======
 /***/ },
 /* 404 */
 /***/ function(module, exports) {
->>>>>>> Normalize missed filenames
 
-	      // dispatch action
-	      _this2.props.dispatch(_actions2.default.addTodo(text));
+	/**
+	 * lodash 4.0.6 (Custom Build) <https://lodash.com/>
+	 * Build: `lodash modularize exports="npm" -o ./`
+	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+	 * Released under MIT license <https://lodash.com/license>
+	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 */
 
-	      // Clear form
-	      _this2.refs.textInput.value = '';
-	    }, _this2.setVisibility = function (e) {
-	      e.preventDefault();
+	/** Used as references for various `Number` constants. */
+	var MAX_SAFE_INTEGER = 9007199254740991;
 
-	      _this2.props.dispatch(_actions2.default.setVisibilityFilter(_actionTypes.VisibilityFilters[e.target.value]));
-	    }, _temp2), (0, _possibleConstructorReturn3.default)(_this2, _ret2);
+	/** `Object#toString` result references. */
+	var argsTag = '[object Arguments]',
+	    funcTag = '[object Function]',
+	    genTag = '[object GeneratorFunction]',
+	    stringTag = '[object String]';
+
+	/** Used to detect unsigned integer values. */
+	var reIsUint = /^(?:0|[1-9]\d*)$/;
+
+	/**
+	 * The base implementation of `_.times` without support for iteratee shorthands
+	 * or max array length checks.
+	 *
+	 * @private
+	 * @param {number} n The number of times to invoke `iteratee`.
+	 * @param {Function} iteratee The function invoked per iteration.
+	 * @returns {Array} Returns the array of results.
+	 */
+	function baseTimes(n, iteratee) {
+	  var index = -1,
+	      result = Array(n);
+
+	  while (++index < n) {
+	    result[index] = iteratee(index);
+	  }
+	  return result;
+	}
+
+	/**
+	 * Checks if `value` is a valid array-like index.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @param {number} [length=MAX_SAFE_INTEGER] The upper bounds of a valid index.
+	 * @returns {boolean} Returns `true` if `value` is a valid index, else `false`.
+	 */
+	function isIndex(value, length) {
+	  value = (typeof value == 'number' || reIsUint.test(value)) ? +value : -1;
+	  length = length == null ? MAX_SAFE_INTEGER : length;
+	  return value > -1 && value % 1 == 0 && value < length;
+	}
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/** Used to check objects for own properties. */
+	var hasOwnProperty = objectProto.hasOwnProperty;
+
+	/**
+	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+
+	/** Built-in value references. */
+	var propertyIsEnumerable = objectProto.propertyIsEnumerable;
+
+	/* Built-in method references for those with the same name as other `lodash` methods. */
+	var nativeGetPrototype = Object.getPrototypeOf,
+	    nativeKeys = Object.keys;
+
+	/**
+	 * The base implementation of `_.has` without support for deep paths.
+	 *
+	 * @private
+	 * @param {Object} object The object to query.
+	 * @param {Array|string} key The key to check.
+	 * @returns {boolean} Returns `true` if `key` exists, else `false`.
+	 */
+	function baseHas(object, key) {
+	  // Avoid a bug in IE 10-11 where objects with a [[Prototype]] of `null`,
+	  // that are composed entirely of index properties, return `false` for
+	  // `hasOwnProperty` checks of them.
+	  return hasOwnProperty.call(object, key) ||
+	    (typeof object == 'object' && key in object && getPrototype(object) === null);
+	}
+
+	/**
+	 * The base implementation of `_.keys` which doesn't skip the constructor
+	 * property of prototypes or treat sparse arrays as dense.
+	 *
+	 * @private
+	 * @param {Object} object The object to query.
+	 * @returns {Array} Returns the array of property names.
+	 */
+	function baseKeys(object) {
+	  return nativeKeys(Object(object));
+	}
+
+	/**
+	 * The base implementation of `_.property` without support for deep paths.
+	 *
+	 * @private
+	 * @param {string} key The key of the property to get.
+	 * @returns {Function} Returns the new function.
+	 */
+	function baseProperty(key) {
+	  return function(object) {
+	    return object == null ? undefined : object[key];
+	  };
+	}
+
+	/**
+	 * Gets the "length" property value of `object`.
+	 *
+	 * **Note:** This function is used to avoid a
+	 * [JIT bug](https://bugs.webkit.org/show_bug.cgi?id=142792) that affects
+	 * Safari on at least iOS 8.1-8.3 ARM64.
+	 *
+	 * @private
+	 * @param {Object} object The object to query.
+	 * @returns {*} Returns the "length" value.
+	 */
+	var getLength = baseProperty('length');
+
+	/**
+	 * Gets the `[[Prototype]]` of `value`.
+	 *
+	 * @private
+	 * @param {*} value The value to query.
+	 * @returns {null|Object} Returns the `[[Prototype]]`.
+	 */
+	function getPrototype(value) {
+	  return nativeGetPrototype(Object(value));
+	}
+
+	/**
+	 * Creates an array of index keys for `object` values of arrays,
+	 * `arguments` objects, and strings, otherwise `null` is returned.
+	 *
+	 * @private
+	 * @param {Object} object The object to query.
+	 * @returns {Array|null} Returns index keys, else `null`.
+	 */
+	function indexKeys(object) {
+	  var length = object ? object.length : undefined;
+	  if (isLength(length) &&
+	      (isArray(object) || isString(object) || isArguments(object))) {
+	    return baseTimes(length, String);
+	  }
+	  return null;
+	}
+
+	/**
+	 * Checks if `value` is likely a prototype object.
+	 *
+	 * @private
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a prototype, else `false`.
+	 */
+	function isPrototype(value) {
+	  var Ctor = value && value.constructor,
+	      proto = (typeof Ctor == 'function' && Ctor.prototype) || objectProto;
+
+	  return value === proto;
+	}
+
+	/**
+	 * Checks if `value` is likely an `arguments` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isArguments(function() { return arguments; }());
+	 * // => true
+	 *
+	 * _.isArguments([1, 2, 3]);
+	 * // => false
+	 */
+	function isArguments(value) {
+	  // Safari 8.1 incorrectly makes `arguments.callee` enumerable in strict mode.
+	  return isArrayLikeObject(value) && hasOwnProperty.call(value, 'callee') &&
+	    (!propertyIsEnumerable.call(value, 'callee') || objectToString.call(value) == argsTag);
+	}
+
+	/**
+	 * Checks if `value` is classified as an `Array` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @type {Function}
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isArray([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isArray(document.body.children);
+	 * // => false
+	 *
+	 * _.isArray('abc');
+	 * // => false
+	 *
+	 * _.isArray(_.noop);
+	 * // => false
+	 */
+	var isArray = Array.isArray;
+
+	/**
+	 * Checks if `value` is array-like. A value is considered array-like if it's
+	 * not a function and has a `value.length` that's an integer greater than or
+	 * equal to `0` and less than or equal to `Number.MAX_SAFE_INTEGER`.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is array-like, else `false`.
+	 * @example
+	 *
+	 * _.isArrayLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isArrayLike(document.body.children);
+	 * // => true
+	 *
+	 * _.isArrayLike('abc');
+	 * // => true
+	 *
+	 * _.isArrayLike(_.noop);
+	 * // => false
+	 */
+	function isArrayLike(value) {
+	  return value != null && isLength(getLength(value)) && !isFunction(value);
+	}
+
+	/**
+	 * This method is like `_.isArrayLike` except that it also checks if `value`
+	 * is an object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an array-like object,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isArrayLikeObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isArrayLikeObject(document.body.children);
+	 * // => true
+	 *
+	 * _.isArrayLikeObject('abc');
+	 * // => false
+	 *
+	 * _.isArrayLikeObject(_.noop);
+	 * // => false
+	 */
+	function isArrayLikeObject(value) {
+	  return isObjectLike(value) && isArrayLike(value);
+	}
+
+	/**
+	 * Checks if `value` is classified as a `Function` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isFunction(_);
+	 * // => true
+	 *
+	 * _.isFunction(/abc/);
+	 * // => false
+	 */
+	function isFunction(value) {
+	  // The use of `Object#toString` avoids issues with the `typeof` operator
+	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
+	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+	  var tag = isObject(value) ? objectToString.call(value) : '';
+	  return tag == funcTag || tag == genTag;
+	}
+
+	/**
+	 * Checks if `value` is a valid array-like length.
+	 *
+	 * **Note:** This function is loosely based on
+	 * [`ToLength`](http://ecma-international.org/ecma-262/6.0/#sec-tolength).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is a valid length,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isLength(3);
+	 * // => true
+	 *
+	 * _.isLength(Number.MIN_VALUE);
+	 * // => false
+	 *
+	 * _.isLength(Infinity);
+	 * // => false
+	 *
+	 * _.isLength('3');
+	 * // => false
+	 */
+	function isLength(value) {
+	  return typeof value == 'number' &&
+	    value > -1 && value % 1 == 0 && value <= MAX_SAFE_INTEGER;
+	}
+
+	/**
+	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+	 * @example
+	 *
+	 * _.isObject({});
+	 * // => true
+	 *
+	 * _.isObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObject(_.noop);
+	 * // => true
+	 *
+	 * _.isObject(null);
+	 * // => false
+	 */
+	function isObject(value) {
+	  var type = typeof value;
+	  return !!value && (type == 'object' || type == 'function');
+	}
+
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return !!value && typeof value == 'object';
+	}
+
+	/**
+	 * Checks if `value` is classified as a `String` primitive or object.
+	 *
+	 * @static
+	 * @since 0.1.0
+	 * @memberOf _
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isString('abc');
+	 * // => true
+	 *
+	 * _.isString(1);
+	 * // => false
+	 */
+	function isString(value) {
+	  return typeof value == 'string' ||
+	    (!isArray(value) && isObjectLike(value) && objectToString.call(value) == stringTag);
+	}
+
+	/**
+	 * Creates an array of the own enumerable property names of `object`.
+	 *
+	 * **Note:** Non-object values are coerced to objects. See the
+	 * [ES spec](http://ecma-international.org/ecma-262/6.0/#sec-object.keys)
+	 * for more details.
+	 *
+	 * @static
+	 * @since 0.1.0
+	 * @memberOf _
+	 * @category Object
+	 * @param {Object} object The object to query.
+	 * @returns {Array} Returns the array of property names.
+	 * @example
+	 *
+	 * function Foo() {
+	 *   this.a = 1;
+	 *   this.b = 2;
+	 * }
+	 *
+	 * Foo.prototype.c = 3;
+	 *
+	 * _.keys(new Foo);
+	 * // => ['a', 'b'] (iteration order is not guaranteed)
+	 *
+	 * _.keys('hi');
+	 * // => ['0', '1']
+	 */
+	function keys(object) {
+	  var isProto = isPrototype(object);
+	  if (!(isProto || isArrayLike(object))) {
+	    return baseKeys(object);
+	  }
+	  var indexes = indexKeys(object),
+	      skipIndexes = !!indexes,
+	      result = indexes || [],
+	      length = result.length;
+
+	  for (var key in object) {
+	    if (baseHas(object, key) &&
+	        !(skipIndexes && (key == 'length' || isIndex(key, length))) &&
+	        !(isProto && key == 'constructor')) {
+	      result.push(key);
+	    }
+	  }
+	  return result;
+	}
+
+	module.exports = keys;
+
+
+/***/ },
+/* 405 */
+/***/ function(module, exports) {
+
+	/**
+	 * lodash 4.0.2 (Custom Build) <https://lodash.com/>
+	 * Build: `lodash modularize exports="npm" -o ./`
+	 * Copyright jQuery Foundation and other contributors <https://jquery.org/>
+	 * Released under MIT license <https://lodash.com/license>
+	 * Based on Underscore.js 1.8.3 <http://underscorejs.org/LICENSE>
+	 * Copyright Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
+	 */
+
+	/** Used as the `TypeError` message for "Functions" methods. */
+	var FUNC_ERROR_TEXT = 'Expected a function';
+
+	/** Used as references for various `Number` constants. */
+	var INFINITY = 1 / 0,
+	    MAX_INTEGER = 1.7976931348623157e+308,
+	    NAN = 0 / 0;
+
+	/** `Object#toString` result references. */
+	var funcTag = '[object Function]',
+	    genTag = '[object GeneratorFunction]',
+	    symbolTag = '[object Symbol]';
+
+	/** Used to match leading and trailing whitespace. */
+	var reTrim = /^\s+|\s+$/g;
+
+	/** Used to detect bad signed hexadecimal string values. */
+	var reIsBadHex = /^[-+]0x[0-9a-f]+$/i;
+
+	/** Used to detect binary string values. */
+	var reIsBinary = /^0b[01]+$/i;
+
+	/** Used to detect octal string values. */
+	var reIsOctal = /^0o[0-7]+$/i;
+
+	/** Built-in method references without a dependency on `root`. */
+	var freeParseInt = parseInt;
+
+	/**
+	 * A faster alternative to `Function#apply`, this function invokes `func`
+	 * with the `this` binding of `thisArg` and the arguments of `args`.
+	 *
+	 * @private
+	 * @param {Function} func The function to invoke.
+	 * @param {*} thisArg The `this` binding of `func`.
+	 * @param {...*} args The arguments to invoke `func` with.
+	 * @returns {*} Returns the result of `func`.
+	 */
+	function apply(func, thisArg, args) {
+	  var length = args.length;
+	  switch (length) {
+	    case 0: return func.call(thisArg);
+	    case 1: return func.call(thisArg, args[0]);
+	    case 2: return func.call(thisArg, args[0], args[1]);
+	    case 3: return func.call(thisArg, args[0], args[1], args[2]);
+	  }
+	  return func.apply(thisArg, args);
+	}
+
+	/** Used for built-in method references. */
+	var objectProto = Object.prototype;
+
+	/**
+	 * Used to resolve the [`toStringTag`](http://ecma-international.org/ecma-262/6.0/#sec-object.prototype.tostring)
+	 * of values.
+	 */
+	var objectToString = objectProto.toString;
+
+	/* Built-in method references for those with the same name as other `lodash` methods. */
+	var nativeMax = Math.max;
+
+	/**
+	 * Creates a function that invokes `func` with the `this` binding of the
+	 * created function and arguments from `start` and beyond provided as
+	 * an array.
+	 *
+	 * **Note:** This method is based on the
+	 * [rest parameter](https://mdn.io/rest_parameters).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Function
+	 * @param {Function} func The function to apply a rest parameter to.
+	 * @param {number} [start=func.length-1] The start position of the rest parameter.
+	 * @returns {Function} Returns the new function.
+	 * @example
+	 *
+	 * var say = _.rest(function(what, names) {
+	 *   return what + ' ' + _.initial(names).join(', ') +
+	 *     (_.size(names) > 1 ? ', & ' : '') + _.last(names);
+	 * });
+	 *
+	 * say('hello', 'fred', 'barney', 'pebbles');
+	 * // => 'hello fred, barney, & pebbles'
+	 */
+	function rest(func, start) {
+	  if (typeof func != 'function') {
+	    throw new TypeError(FUNC_ERROR_TEXT);
+	  }
+	  start = nativeMax(start === undefined ? (func.length - 1) : toInteger(start), 0);
+	  return function() {
+	    var args = arguments,
+	        index = -1,
+	        length = nativeMax(args.length - start, 0),
+	        array = Array(length);
+
+	    while (++index < length) {
+	      array[index] = args[start + index];
+	    }
+	    switch (start) {
+	      case 0: return func.call(this, array);
+	      case 1: return func.call(this, args[0], array);
+	      case 2: return func.call(this, args[0], args[1], array);
+	    }
+	    var otherArgs = Array(start + 1);
+	    index = -1;
+	    while (++index < start) {
+	      otherArgs[index] = args[index];
+	    }
+	    otherArgs[start] = array;
+	    return apply(func, this, otherArgs);
+	  };
+	}
+
+	/**
+	 * Checks if `value` is classified as a `Function` object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isFunction(_);
+	 * // => true
+	 *
+	 * _.isFunction(/abc/);
+	 * // => false
+	 */
+	function isFunction(value) {
+	  // The use of `Object#toString` avoids issues with the `typeof` operator
+	  // in Safari 8 which returns 'object' for typed array and weak map constructors,
+	  // and PhantomJS 1.9 which returns 'function' for `NodeList` instances.
+	  var tag = isObject(value) ? objectToString.call(value) : '';
+	  return tag == funcTag || tag == genTag;
+	}
+
+	/**
+	 * Checks if `value` is the [language type](https://es5.github.io/#x8) of `Object`.
+	 * (e.g. arrays, functions, objects, regexes, `new Number(0)`, and `new String('')`)
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 0.1.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is an object, else `false`.
+	 * @example
+	 *
+	 * _.isObject({});
+	 * // => true
+	 *
+	 * _.isObject([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObject(_.noop);
+	 * // => true
+	 *
+	 * _.isObject(null);
+	 * // => false
+	 */
+	function isObject(value) {
+	  var type = typeof value;
+	  return !!value && (type == 'object' || type == 'function');
+	}
+
+	/**
+	 * Checks if `value` is object-like. A value is object-like if it's not `null`
+	 * and has a `typeof` result of "object".
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is object-like, else `false`.
+	 * @example
+	 *
+	 * _.isObjectLike({});
+	 * // => true
+	 *
+	 * _.isObjectLike([1, 2, 3]);
+	 * // => true
+	 *
+	 * _.isObjectLike(_.noop);
+	 * // => false
+	 *
+	 * _.isObjectLike(null);
+	 * // => false
+	 */
+	function isObjectLike(value) {
+	  return !!value && typeof value == 'object';
+	}
+
+	/**
+	 * Checks if `value` is classified as a `Symbol` primitive or object.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to check.
+	 * @returns {boolean} Returns `true` if `value` is correctly classified,
+	 *  else `false`.
+	 * @example
+	 *
+	 * _.isSymbol(Symbol.iterator);
+	 * // => true
+	 *
+	 * _.isSymbol('abc');
+	 * // => false
+	 */
+	function isSymbol(value) {
+	  return typeof value == 'symbol' ||
+	    (isObjectLike(value) && objectToString.call(value) == symbolTag);
+	}
+
+	/**
+	 * Converts `value` to an integer.
+	 *
+	 * **Note:** This function is loosely based on
+	 * [`ToInteger`](http://www.ecma-international.org/ecma-262/6.0/#sec-tointeger).
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to convert.
+	 * @returns {number} Returns the converted integer.
+	 * @example
+	 *
+	 * _.toInteger(3);
+	 * // => 3
+	 *
+	 * _.toInteger(Number.MIN_VALUE);
+	 * // => 0
+	 *
+	 * _.toInteger(Infinity);
+	 * // => 1.7976931348623157e+308
+	 *
+	 * _.toInteger('3');
+	 * // => 3
+	 */
+	function toInteger(value) {
+	  if (!value) {
+	    return value === 0 ? value : 0;
+	  }
+	  value = toNumber(value);
+	  if (value === INFINITY || value === -INFINITY) {
+	    var sign = (value < 0 ? -1 : 1);
+	    return sign * MAX_INTEGER;
+	  }
+	  var remainder = value % 1;
+	  return value === value ? (remainder ? value - remainder : value) : 0;
+	}
+
+	/**
+	 * Converts `value` to a number.
+	 *
+	 * @static
+	 * @memberOf _
+	 * @since 4.0.0
+	 * @category Lang
+	 * @param {*} value The value to process.
+	 * @returns {number} Returns the number.
+	 * @example
+	 *
+	 * _.toNumber(3);
+	 * // => 3
+	 *
+	 * _.toNumber(Number.MIN_VALUE);
+	 * // => 5e-324
+	 *
+	 * _.toNumber(Infinity);
+	 * // => Infinity
+	 *
+	 * _.toNumber('3');
+	 * // => 3
+	 */
+	function toNumber(value) {
+	  if (typeof value == 'number') {
+	    return value;
+	  }
+	  if (isSymbol(value)) {
+	    return NAN;
+	  }
+	  if (isObject(value)) {
+	    var other = isFunction(value.valueOf) ? value.valueOf() : value;
+	    value = isObject(other) ? (other + '') : other;
+	  }
+	  if (typeof value != 'string') {
+	    return value === 0 ? value : +value;
+	  }
+	  value = value.replace(reTrim, '');
+	  var isBinary = reIsBinary.test(value);
+	  return (isBinary || reIsOctal.test(value))
+	    ? freeParseInt(value.slice(2), isBinary ? 2 : 8)
+	    : (reIsBadHex.test(value) ? NAN : +value);
+	}
+
+	module.exports = rest;
+
+
+/***/ },
+/* 406 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var ModalHeader = (function (_React$Component) {
+	  _inherits(ModalHeader, _React$Component);
+
+	  function ModalHeader() {
+	    _classCallCheck(this, ModalHeader);
+
+	    _get(Object.getPrototypeOf(ModalHeader.prototype), "constructor", this).apply(this, arguments);
 	  }
 
-	  (0, _createClass3.default)(TodoForm, [{
-	    key: 'render',
+	  _createClass(ModalHeader, [{
+	    key: "render",
 	    value: function render() {
-	      return React.createElement(
-	        Grid,
-	        null,
-	        React.createElement(
-	          Row,
-	          null,
-	          React.createElement(
-	            Col,
-	            { xs: 10, collapseRight: true },
-	            React.createElement(
-	              Form,
-	              { onSubmit: this.createTodo, style: { margin: '0 12.5px 0 0' } },
-	              React.createElement(Input, { type: 'text', ref: 'textInput', placeholder: 'Add New Tasks' })
-	            )
-	          ),
-	          React.createElement(
-	            Col,
-	            { xs: 2, collapseLeft: true, className: 'text-right' },
-	            React.createElement(
-	              Select,
-	              { onChange: this.setVisibility },
-	              React.createElement(
-	                'option',
-	                { value: 'SHOW_ALL' },
-	                'Show All'
-	              ),
-	              React.createElement(
-	                'option',
-	                { value: 'SHOW_COMPLETED' },
-	                'Show Completed'
-	              ),
-	              React.createElement(
-	                'option',
-	                { value: 'SHOW_ACTIVE' },
-	                'Show Active'
-	              )
-	            )
-	          )
+	      var children = this.props.children;
+
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "modal-header" },
+	        children
+	      );
+	    }
+	  }], [{
+	    key: "propTypes",
+	    value: {
+	      children: _react2["default"].PropTypes.node
+	    },
+	    enumerable: true
+	  }]);
+
+	  return ModalHeader;
+	})(_react2["default"].Component);
+
+	exports["default"] = ModalHeader;
+	module.exports = exports["default"];
+
+/***/ },
+/* 407 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var ModalClose = (function (_React$Component) {
+	  _inherits(ModalClose, _React$Component);
+
+	  function ModalClose() {
+	    _classCallCheck(this, ModalClose);
+
+	    _get(Object.getPrototypeOf(ModalClose.prototype), "constructor", this).apply(this, arguments);
+	  }
+
+	  _createClass(ModalClose, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2["default"].createElement(
+	        "button",
+	        { type: "button", className: "close", "aria-label": "Close",
+	          onClick: this.props.onClick },
+	        _react2["default"].createElement(
+	          "span",
+	          { "aria-hidden": "true" },
+	          "×"
 	        )
 	      );
 	    }
+	  }], [{
+	    key: "propTypes",
+	    value: {
+	      onClick: _react2["default"].PropTypes.func
+	    },
+	    enumerable: true
+	  }, {
+	    key: "defaultProps",
+	    value: {
+	      onClick: function onClick() {}
+	    },
+	    enumerable: true
 	  }]);
-	  return TodoForm;
-	}(React.Component);
 
-	var Body = (_dec = (0, _reactRedux.connect)(function (state) {
-	  return state;
-	}), _dec(_class3 = function (_React$Component3) {
-	  (0, _inherits3.default)(Body, _React$Component3);
+	  return ModalClose;
+	})(_react2["default"].Component);
+
+	exports["default"] = ModalClose;
+	module.exports = exports["default"];
+
+/***/ },
+/* 408 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var ModalTitle = (function (_React$Component) {
+	  _inherits(ModalTitle, _React$Component);
+
+	  function ModalTitle() {
+	    _classCallCheck(this, ModalTitle);
+
+	    _get(Object.getPrototypeOf(ModalTitle.prototype), "constructor", this).apply(this, arguments);
+	  }
+
+	  _createClass(ModalTitle, [{
+	    key: "render",
+	    value: function render() {
+	      var children = this.props.children;
+
+	      return _react2["default"].createElement(
+	        "h4",
+	        { className: "modal-title" },
+	        children
+	      );
+	    }
+	  }], [{
+	    key: "propTypes",
+	    value: {
+	      children: _react2["default"].PropTypes.node
+	    },
+	    enumerable: true
+	  }]);
+
+	  return ModalTitle;
+	})(_react2["default"].Component);
+
+	exports["default"] = ModalTitle;
+	module.exports = exports["default"];
+
+/***/ },
+/* 409 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var ModalBody = (function (_React$Component) {
+	  _inherits(ModalBody, _React$Component);
+
+	  function ModalBody() {
+	    _classCallCheck(this, ModalBody);
+
+	    _get(Object.getPrototypeOf(ModalBody.prototype), "constructor", this).apply(this, arguments);
+	  }
+
+	  _createClass(ModalBody, [{
+	    key: "render",
+	    value: function render() {
+	      var children = this.props.children;
+
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "modal-body" },
+	        children
+	      );
+	    }
+	  }], [{
+	    key: "propTypes",
+	    value: {
+	      children: _react2["default"].PropTypes.node
+	    },
+	    enumerable: true
+	  }]);
+
+	  return ModalBody;
+	})(_react2["default"].Component);
+
+	exports["default"] = ModalBody;
+	module.exports = exports["default"];
+
+/***/ },
+/* 410 */
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(6);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var ModalFooter = (function (_React$Component) {
+	  _inherits(ModalFooter, _React$Component);
+
+	  function ModalFooter() {
+	    _classCallCheck(this, ModalFooter);
+
+	    _get(Object.getPrototypeOf(ModalFooter.prototype), "constructor", this).apply(this, arguments);
+	  }
+
+	  _createClass(ModalFooter, [{
+	    key: "render",
+	    value: function render() {
+	      var children = this.props.children;
+
+	      return _react2["default"].createElement(
+	        "div",
+	        { className: "modal-footer" },
+	        children
+	      );
+	    }
+	  }], [{
+	    key: "propTypes",
+	    value: {
+	      children: _react2["default"].PropTypes.node
+	    },
+	    enumerable: true
+	  }]);
+
+	  return ModalFooter;
+	})(_react2["default"].Component);
+
+	exports["default"] = ModalFooter;
+	module.exports = exports["default"];
+
+/***/ },
+/* 411 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(52);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(64);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(65);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(69);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(94);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(101);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _sidebar_component = __webpack_require__(102);
+
+	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
+
+	var _header = __webpack_require__(108);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _sidebar = __webpack_require__(109);
+
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+
+	var _footer = __webpack_require__(111);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Body = function (_React$Component) {
+	  (0, _inherits3.default)(Body, _React$Component);
 
 	  function Body() {
 	    (0, _classCallCheck3.default)(this, Body);
@@ -45036,22 +46284,13 @@ module.exports =
 	  }
 
 	  (0, _createClass3.default)(Body, [{
-	    key: 'renderTodo',
-	    value: function renderTodo(index, text, completed) {
-	      return React.createElement(Todo, { key: index,
-	        text: text,
-	        index: index,
-	        completed: completed,
-	        dispatch: this.props.dispatch });
+	    key: 'onChange',
+	    value: function onChange() {
+	      console.log('onChange');
 	    }
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var _this4 = this;
-
-	      var dispatch = this.props.dispatch;
-	      var visibilityFilter = this.props.visibilityFilter;
-
 	      return React.createElement(
 	        Container,
 	        { id: 'body' },
@@ -45063,34 +46302,382 @@ module.exports =
 	            null,
 	            React.createElement(
 	              Col,
-	              { sm: 12 },
+	              { sm: 12, collapseRight: true },
 	              React.createElement(
 	                PanelContainer,
-	                null,
+	                { noOverflow: true, controlStyles: 'bg-green fg-white' },
 	                React.createElement(
 	                  Panel,
 	                  null,
 	                  React.createElement(
-	                    PanelBody,
-	                    { style: { paddingBottom: 12.5 } },
-	                    React.createElement(TodoForm, { dispatch: dispatch }),
+	                    PanelHeader,
+	                    { className: 'bg-green fg-white' },
 	                    React.createElement(
 	                      Grid,
 	                      null,
-	                      this.props.todos.map(function (_ref, i) {
-	                        var text = _ref.text;
-	                        var completed = _ref.completed;
-
-	                        switch (visibilityFilter) {
-	                          case 'SHOW_COMPLETED':
-	                            if (!completed) return null;
-	                            return _this4.renderTodo(i, text, completed);
-	                          case 'SHOW_ACTIVE':
-	                            if (completed) return null;
-	                          default:
-	                            return _this4.renderTodo(i, text, completed);
-	                        }
-	                      })
+	                      React.createElement(
+	                        Row,
+	                        null,
+	                        React.createElement(
+	                          Col,
+	                          { xs: 12 },
+	                          React.createElement(
+	                            'h3',
+	                            null,
+	                            'Default form'
+	                          )
+	                        )
+	                      )
+	                    )
+	                  ),
+	                  React.createElement(
+	                    PanelBody,
+	                    null,
+	                    React.createElement(
+	                      Grid,
+	                      null,
+	                      React.createElement(
+	                        Row,
+	                        null,
+	                        React.createElement(
+	                          Col,
+	                          { xs: 12 },
+	                          React.createElement(
+	                            Form,
+	                            null,
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'emailaddress' },
+	                                'Email address'
+	                              ),
+	                              React.createElement(
+	                                InputGroup,
+	                                null,
+	                                React.createElement(
+	                                  InputGroupAddon,
+	                                  null,
+	                                  React.createElement(Icon, { glyph: 'icon-fontello-mail' })
+	                                ),
+	                                React.createElement(Input, { autoFocus: true, type: 'email', id: 'emailaddress', placeholder: 'Email address' })
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'password' },
+	                                'Password'
+	                              ),
+	                              React.createElement(
+	                                InputGroup,
+	                                null,
+	                                React.createElement(Input, { type: 'password', id: 'password', placeholder: 'Password' }),
+	                                React.createElement(
+	                                  InputGroupAddon,
+	                                  null,
+	                                  React.createElement(Icon, { glyph: 'icon-fontello-key' })
+	                                )
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              { feedback: true },
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'withicon', control: true },
+	                                'With icon'
+	                              ),
+	                              React.createElement(Input, { type: 'text', id: 'withicon', placeholder: 'Search' }),
+	                              React.createElement(Icon, { bundle: 'fontello', glyph: 'search', feedback: true })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              { feedback: true },
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'inputwithicon', control: true },
+	                                'Input with icon'
+	                              ),
+	                              React.createElement(
+	                                InputGroup,
+	                                null,
+	                                React.createElement(
+	                                  InputGroupAddon,
+	                                  null,
+	                                  React.createElement(Icon, { glyph: 'icon-fontello-alert' })
+	                                ),
+	                                React.createElement(Input, { type: 'text', id: 'inputwithicon', placeholder: 'Search' }),
+	                                React.createElement(Icon, { bundle: 'fontello', glyph: 'search', feedback: true })
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'disabled' },
+	                                'Disabled'
+	                              ),
+	                              React.createElement(Input, { disabled: true, type: 'text', id: 'disabled', placeholder: 'Disabled' })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'readonly' },
+	                                'Read only'
+	                              ),
+	                              React.createElement(Input, { readOnly: true, type: 'text', id: 'readonly', placeholder: 'Read only' })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'dropdownselect' },
+	                                'Dropdown Select'
+	                              ),
+	                              React.createElement(
+	                                Select,
+	                                { id: 'dropdownselect', defaultValue: '1' },
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '1' },
+	                                  'Option 1'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '2' },
+	                                  'Option 2'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '3' },
+	                                  'Option 3'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '4' },
+	                                  'Option 4'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '5' },
+	                                  'Option 5'
+	                                )
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'multiselect' },
+	                                'Multiple Select'
+	                              ),
+	                              React.createElement(
+	                                Select,
+	                                { id: 'multiselect', multiple: true },
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '1' },
+	                                  'Option 1'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '2' },
+	                                  'Option 2'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '3' },
+	                                  'Option 3'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '4' },
+	                                  'Option 4'
+	                                ),
+	                                React.createElement(
+	                                  'option',
+	                                  { value: '5' },
+	                                  'Option 5'
+	                                )
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'textarea' },
+	                                'Textarea'
+	                              ),
+	                              React.createElement(Textarea, { id: 'textarea', rows: '3', placeholder: 'Some text here...' })
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                { htmlFor: 'fileinput' },
+	                                'File input'
+	                              ),
+	                              React.createElement(Input, { id: 'fileinput', type: 'file' }),
+	                              React.createElement(
+	                                HelpBlock,
+	                                null,
+	                                'some help text here.'
+	                              )
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Checkboxes'
+	                              ),
+	                              React.createElement(
+	                                Checkbox,
+	                                { value: 'option1', name: 'checkbox-options' },
+	                                'Option one is great'
+	                              ),
+	                              React.createElement(
+	                                Checkbox,
+	                                { value: 'option2', defaultChecked: true, name: 'checkbox-options' },
+	                                'Option two is checked'
+	                              ),
+	                              React.createElement(
+	                                Checkbox,
+	                                { value: 'option3', disabled: true, name: 'checkbox-options' },
+	                                'Option three is disabled'
+	                              ),
+	                              React.createElement('hr', null)
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Inline checkboxes'
+	                              ),
+	                              React.createElement(
+	                                'div',
+	                                null,
+	                                React.createElement(
+	                                  Checkbox,
+	                                  { inline: true, value: 'option1', name: 'inline-checkbox-options', onChange: this.onChange },
+	                                  'Option one'
+	                                ),
+	                                React.createElement(
+	                                  Checkbox,
+	                                  { inline: true, value: 'option2', defaultChecked: true, name: 'inline-checkbox-options' },
+	                                  'Option two'
+	                                ),
+	                                React.createElement(
+	                                  Checkbox,
+	                                  { inline: true, value: 'option3', disabled: true, name: 'inline-checkbox-options' },
+	                                  'Option disabled'
+	                                )
+	                              ),
+	                              React.createElement('hr', null)
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Radios'
+	                              ),
+	                              React.createElement(
+	                                Radio,
+	                                { value: 'option1', defaultChecked: true, name: 'radio-options' },
+	                                'Option 1'
+	                              ),
+	                              React.createElement(
+	                                Radio,
+	                                { value: 'option2', name: 'radio-options' },
+	                                'Option 2'
+	                              ),
+	                              React.createElement(
+	                                Radio,
+	                                { value: 'option3', disabled: true, name: 'radio-options' },
+	                                'Option disabled'
+	                              ),
+	                              React.createElement('hr', null)
+	                            ),
+	                            React.createElement(
+	                              FormGroup,
+	                              null,
+	                              React.createElement(
+	                                Label,
+	                                null,
+	                                'Inline radios'
+	                              ),
+	                              React.createElement(
+	                                'div',
+	                                null,
+	                                React.createElement(
+	                                  Radio,
+	                                  { inline: true, value: 'option1', name: 'inline-radio-options' },
+	                                  'Option one'
+	                                ),
+	                                React.createElement(
+	                                  Radio,
+	                                  { inline: true, value: 'option2', defaultChecked: true, name: 'inline-radio-options' },
+	                                  'Option two'
+	                                ),
+	                                React.createElement(
+	                                  Radio,
+	                                  { inline: true, value: 'option3', disabled: true, name: 'inline-radio-options' },
+	                                  'Option disabled'
+	                                )
+	                              )
+	                            )
+	                          )
+	                        )
+	                      )
+	                    )
+	                  ),
+	                  React.createElement(
+	                    PanelFooter,
+	                    { className: 'bg-darkgreen45 text-right' },
+	                    React.createElement(
+	                      Grid,
+	                      null,
+	                      React.createElement(
+	                        Row,
+	                        null,
+	                        React.createElement(
+	                          Col,
+	                          { xs: 12 },
+	                          React.createElement('br', null),
+	                          React.createElement(
+	                            'div',
+	                            null,
+	                            React.createElement(
+	                              Button,
+	                              { outlined: true, bsStyle: 'lightgreen' },
+	                              'cancel'
+	                            ),
+	                            ' ',
+	                            React.createElement(
+	                              Button,
+	                              { outlined: true, bsStyle: 'lightgreen' },
+	                              'submit'
+	                            )
+	                          ),
+	                          React.createElement('br', null)
+	                        )
+	                      )
 	                    )
 	                  )
 	                )
@@ -45102,469 +46689,17 @@ module.exports =
 	    }
 	  }]);
 	  return Body;
-	}(React.Component)) || _class3);
-
-	var _default = (0, _sidebar_component2.default)(_class4 = function (_React$Component4) {
-	  (0, _inherits3.default)(_default, _React$Component4);
-
-	  function _default() {
-	    (0, _classCallCheck3.default)(this, _default);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var classes = (0, _classnames2.default)({
-	        'container-open': this.props.open
-	      });
-
-	      return React.createElement(
-	        Container,
-	        { id: 'container', className: classes },
-	        React.createElement(_sidebar2.default, null),
-	        React.createElement(_header2.default, null),
-	        React.createElement(Body, null),
-	        React.createElement(_footer2.default, null)
-	      );
-	    }
-	  }]);
-	  return _default;
-	}(React.Component)) || _class4;
-
-	exports.default = _default;
-
-/***/ },
-/* 234 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var _dec, _class, _class2;
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(52);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(64);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(65);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(69);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(94);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(101);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _sidebar_component = __webpack_require__(102);
-
-	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
-
-	var _header = __webpack_require__(108);
-
-	var _header2 = _interopRequireDefault(_header);
-
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _sidebar = __webpack_require__(109);
-=======
-/***/ },
-/* 405 */
-/***/ function(module, exports) {
->>>>>>> Normalize missed filenames
-
-	var _sidebar2 = _interopRequireDefault(_sidebar);
-
-	var _footer = __webpack_require__(111);
-
-	var _footer2 = _interopRequireDefault(_footer);
-
-	var _appCard = __webpack_require__(235);
-
-	var _appCard2 = _interopRequireDefault(_appCard);
-
-	var _index = __webpack_require__(129);
-
-	var _reactRedux = __webpack_require__(112);
-
-	var _redux = __webpack_require__(119);
-
-	var _actions = __webpack_require__(129);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(161);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var ApplicationContainer = (_dec = (0, _reactRedux.connect)(function (state) {
-	  return state;
-	}), _dec(_class = function (_React$Component) {
-	  (0, _inherits3.default)(ApplicationContainer, _React$Component);
-
-	  function ApplicationContainer(props) {
-	    (0, _classCallCheck3.default)(this, ApplicationContainer);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(ApplicationContainer).call(this, props));
-	  }
-
-	  (0, _createClass3.default)(ApplicationContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.props.dispatch((0, _index.getApplications)(3));
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var dispatch = this.props.dispatch;
-
-	      console.log('in render func props:', this.props);
-
-	      var styles = {
-	        margin: '12.5px 0',
-	        borderBottom: '1px dotted #999',
-	        paddingBottom: 12.5,
-	        'textAlign': 'center'
-	      };
-	      var textStyle = {
-	        textDecoration: this.props.completed ? 'line-through' : ''
-	      };
-	      var buttonStyle = {
-	        height: 25,
-	        color: 'red',
-	        fontSize: 20,
-	        lineHeight: 0,
-	        marginTop: -3,
-	        border: 'none',
-	        background: 'none'
-	      };
-	      var panelStyle = {
-	        'maxWidth': '400px'
-	      };
-	      var panelPad = {
-	        'padding': '0px 20px'
-	      };
-
-	      if (!this.props.appList.items) {
-	        return React.createElement(
-	          'div',
-	          null,
-	          ' Loading... '
-	        );
-	      }
-
-	      return React.createElement(
-	        Grid,
-	        null,
-	        React.createElement(
-	          Row,
-	          null,
-	          this.props.appList.items.map(function (app) {
-	            // console.log('inside applist:', app)
-	            return React.createElement(
-	              Col,
-	              { sm: 12, md: 4, lg: 4 },
-	              React.createElement(
-	                PanelContainer,
-	                { style: panelStyle },
-	                React.createElement(
-	                  Panel,
-	                  { style: panelPad },
-	                  React.createElement(
-	                    PanelBody,
-	                    null,
-	                    React.createElement(_appCard2.default, { dispatch: dispatch, fuckingApps: app })
-	                  )
-	                )
-	              )
-	            );
-	          })
-	        )
-	      );
-	    }
-	  }]);
-	  return ApplicationContainer;
-	}(React.Component)) || _class);
-
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
-	  (0, _inherits3.default)(_default, _React$Component2);
-
-	  function _default() {
-	    (0, _classCallCheck3.default)(this, _default);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var app = ['Some text', 'More Text', 'Even More Text'];
-
-	      var classes = (0, _classnames2.default)({
-	        'container-open': this.props.open
-	      });
-	      return React.createElement(
-	        Container,
-	        { id: 'container', className: classes },
-	        React.createElement(_sidebar2.default, null),
-	        React.createElement(_header2.default, null),
-	        React.createElement(
-	          Container,
-	          { id: 'body' },
-	          React.createElement(
-	            Grid,
-	            null,
-	            React.createElement(
-	              Row,
-	              null,
-	              app.map(function (item) {
-	                return React.createElement(ApplicationContainer, null);
-	              })
-	            )
-	          )
-	        ),
-	        React.createElement(_footer2.default, null)
-	      );
-	    }
-	  }]);
-	  return _default;
-	}(React.Component)) || _class2;
-
-	exports.default = _default;
-
-/***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 235 */
-=======
-/* 406 */
->>>>>>> Normalize missed filenames
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(52);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(64);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(65);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(69);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(94);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _classnames = __webpack_require__(101);
-=======
-/***/ },
-/* 407 */
-/***/ function(module, exports, __webpack_require__) {
->>>>>>> Normalize missed filenames
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _reactRedux = __webpack_require__(112);
-
-	var _actions = __webpack_require__(129);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-	var _actionTypes = __webpack_require__(161);
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	// const AppCard = ({app}) => {
-
-	var AppCard = function (_React$Component) {
-	  (0, _inherits3.default)(AppCard, _React$Component);
-
-	  function AppCard(props) {
-	    (0, _classCallCheck3.default)(this, AppCard);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppCard).call(this, props));
-
-	    _this.deleteTask = function (e) {
-	      _this.props.dispatch(_actions2.default.rejectApp(_this.props.fuckingApps.appID));
-	      // this.props.dispatch(actions.getApplications(1))
-	    };
-
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(AppCard, [{
-	    key: 'render',
-	    value: function render() {
-	      // console.log('fuckingApps be:', this.props.fuckingApps)
-	      var skillList = [];
-	      for (var key in this.props.fuckingApps) {
-	        if (key.indexOf('skill') !== -1 && this.props.fuckingApps[key] !== null) {
-	          skillList.push(key);
-	        }
-	      }
-
-	      var styles = {
-	        margin: '12.5px 0',
-	        paddingBottom: '10px',
-	        'text-align': 'left'
-	      };
-	      return(
-	        //appCard info
-	        React.createElement(
-	          'div',
-	          null,
-	          React.createElement(
-	            Row,
-	            { style: styles },
-	            React.createElement(
-	              'h4',
-	              null,
-	              ' Skills '
-	            ),
-	            React.createElement(
-	              'row',
-	              { className: 'skills' },
-	              skillList.map(function (skill) {
-	                return React.createElement(
-	                  'div',
-	                  { className: 'label col-md-3 label-primary' },
-	                  ' ',
-	                  skill,
-	                  ' '
-	                );
-	              })
-	            )
-	          ),
-	          React.createElement(
-	            Row,
-	            { style: styles },
-	            React.createElement(
-	              'h4',
-	              null,
-	              'Years Experience'
-	            ),
-	            React.createElement(
-	              'row',
-	              { className: 'skills' },
-	              this.props.fuckingApps.years_experience
-	            )
-	          ),
-	          React.createElement(
-	            Row,
-	            { style: styles },
-	            React.createElement(
-	              'h4',
-	              null,
-	              'Education'
-	            ),
-	            React.createElement(
-	              'row',
-	              { className: 'skills' },
-	              this.props.fuckingApps.education
-	            )
-	          ),
-	          React.createElement(
-	            Row,
-	            { style: styles },
-	            React.createElement(
-	              'h4',
-	              null,
-	              'Visa Required'
-	            ),
-	            React.createElement(
-	              'row',
-	              { className: 'skills' },
-	              this.props.fuckingApps.can_work_here === true ? 'No' : 'Yes'
-	            )
-	          ),
-	          React.createElement(
-	            Row,
-	            { style: styles },
-	            React.createElement(
-	              'h4',
-	              null,
-	              'About canidate '
-	            ),
-	            React.createElement(
-	              'row',
-	              { className: 'skills' },
-	              this.props.fuckingApps.personal_statement
-	            ),
-	            React.createElement(
-	              'row',
-	              { className: 'skills' },
-	              React.createElement(
-	                'h4',
-	                null,
-	                ' Applied on '
-	              ),
-	              this.props.fuckingApps.created_at
-	            )
-	          ),
-	          React.createElement(
-	            Row,
-	            { style: styles },
-	            React.createElement(
-	              'button',
-	              {
-	                className: 'btn btn-primary accept' },
-	              'Accept'
-	            ),
-	            React.createElement(
-	              'button',
-	              {
-	                onClick: this.deleteTask,
-	                className: 'btn btn-default reject' },
-	              'Reject'
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	  return AppCard;
 	}(React.Component);
 
-	exports.default = AppCard;
+	exports.default = Body;
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 236 */
-=======
-/* 408 */
->>>>>>> Normalize missed filenames
+/* 412 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var _dec, _class, _class2;
-	// import Description from 'routes/components/description';
-	// import Confirm from 'routes/components/confirm';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -45589,13 +46724,7 @@ module.exports =
 
 	var _inherits2 = __webpack_require__(94);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
 	var _inherits3 = _interopRequireDefault(_inherits2);
-=======
-/***/ },
-/* 409 */
-/***/ function(module, exports, __webpack_require__) {
->>>>>>> Normalize missed filenames
 
 	var _classnames = __webpack_require__(101);
 
@@ -45617,322 +46746,20 @@ module.exports =
 
 	var _footer2 = _interopRequireDefault(_footer);
 
-	var _jobCard = __webpack_require__(237);
+	var _lists = __webpack_require__(413);
 
-	var _jobCard2 = _interopRequireDefault(_jobCard);
-
-	var _jobModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../components/jobModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _jobModal2 = _interopRequireDefault(_jobModal);
+	var _lists2 = _interopRequireDefault(_lists);
 
 	var _reactRedux = __webpack_require__(112);
 
 	var _actions = __webpack_require__(129);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
 	var _actions2 = _interopRequireDefault(_actions);
-=======
-/***/ },
-/* 410 */
-/***/ function(module, exports, __webpack_require__) {
->>>>>>> Normalize missed filenames
 
 	var _actionTypes = __webpack_require__(161);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var JobsContainer = (_dec = (0, _reactRedux.connect)(function (state) {
-	  return state;
-	}), _dec(_class = function (_React$Component) {
-	  (0, _inherits3.default)(JobsContainer, _React$Component);
-	  (0, _createClass3.default)(JobsContainer, [{
-	    key: 'componentWillMount',
-	    value: function componentWillMount() {
-	      this.props.dispatch(_actions2.default.getJobs());
-	    }
-	  }]);
-
-	  function JobsContainer(props) {
-	    (0, _classCallCheck3.default)(this, JobsContainer);
-
-	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobsContainer).call(this, props));
-
-	    _this.state = {
-	      showForm: false
-	    };
-	    return _this;
-	  }
-
-	  (0, _createClass3.default)(JobsContainer, [{
-	    key: 'render',
-	    value: function render() {
-	      console.log('container props', this.state);
-	      var jobList = this.props.jobList.items;
-
-	      var styles = {
-	        margin: '12.5px 0',
-	        borderBottom: '1px dotted #999',
-	        paddingBottom: 12.5,
-	        'text-align': 'center'
-	      };
-	      var textStyle = {
-	        textDecoration: this.props.completed ? 'line-through' : ''
-	      };
-	      var buttonStyle = {
-	        height: 25,
-	        color: 'red',
-	        fontSize: 20,
-	        lineHeight: 0,
-	        marginTop: -3,
-	        border: 'none',
-	        background: 'none'
-	      };
-
-	      var panelStyle = {
-	        'max-width': '400px'
-	      };
-
-	      if (!jobList) {
-	        return React.createElement(
-	          'div',
-	          null,
-	          ' Loading... '
-	        );
-	      }
-
-	      return React.createElement(
-	        'div',
-	        null,
-	        jobList.map(function (job) {
-	          return React.createElement(_jobCard2.default, { data: job });
-	        })
-	      );
-	    }
-	  }]);
-	  return JobsContainer;
-	}(React.Component)) || _class);
-
-	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
-	  (0, _inherits3.default)(_default, _React$Component2);
-
-	  function _default() {
-	    (0, _classCallCheck3.default)(this, _default);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(_default, [{
-	    key: 'render',
-	    value: function render() {
-	      var dispatch = this.props.dispatch;
-	      var classes = (0, _classnames2.default)({
-	        'container-open': this.props.open
-	      });
-	      return React.createElement(
-	        Container,
-	        { id: 'container', className: classes },
-	        React.createElement(_sidebar2.default, null),
-	        React.createElement(_header2.default, null),
-	        React.createElement(
-	          Container,
-	          { id: 'body' },
-	          React.createElement(
-	            Grid,
-	            null,
-	            React.createElement(
-	              Row,
-	              null,
-	              React.createElement(
-	                Col,
-	                { md: 12 },
-	                React.createElement(JobsContainer, null)
-	              )
-	            )
-	          )
-	        ),
-	        React.createElement(_footer2.default, null)
-	      );
-	    }
-	  }]);
-	  return _default;
-	}(React.Component)) || _class2;
-
-	exports.default = _default;
-
-/***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 237 */
-=======
-/* 411 */
->>>>>>> Normalize missed filenames
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.default = undefined;
-
-	var _getPrototypeOf = __webpack_require__(52);
-
-	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
-
-	var _classCallCheck2 = __webpack_require__(64);
-
-	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
-
-	var _createClass2 = __webpack_require__(65);
-
-	var _createClass3 = _interopRequireDefault(_createClass2);
-
-	var _possibleConstructorReturn2 = __webpack_require__(69);
-
-	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
-
-	var _inherits2 = __webpack_require__(94);
-
-	var _inherits3 = _interopRequireDefault(_inherits2);
-
-	var _classnames = __webpack_require__(101);
-
-	var _classnames2 = _interopRequireDefault(_classnames);
-
-	var _reactRedux = __webpack_require__(112);
-
-	var _jobModal = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./jobModal\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-	var _jobModal2 = _interopRequireDefault(_jobModal);
-
-	var _actions = __webpack_require__(129);
-
-	var _actions2 = _interopRequireDefault(_actions);
-
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _actionTypes = __webpack_require__(161);
-=======
-	var _lists = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../components/lists\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
->>>>>>> Normalize missed filenames
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-	var JobHeader = function (_React$Component) {
-	  (0, _inherits3.default)(JobHeader, _React$Component);
-
-	  function JobHeader() {
-	    (0, _classCallCheck3.default)(this, JobHeader);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobHeader).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(JobHeader, [{
-	    key: 'render',
-	    value: function render() {
-	      var pStyles = {
-	        fontSize: '10px'
-	      };
-	      return React.createElement(
-	        'div',
-	        { className: 'jobheader' },
-	        React.createElement(
-	          Row,
-	          null,
-	          React.createElement(
-	            Col,
-	            { md: 6 },
-	            React.createElement(
-	              'div',
-	              { 'class': 'jobtitle' },
-	              React.createElement(
-	                'h4',
-	                null,
-	                this.props.data.job_title
-	              ),
-	              React.createElement(
-	                'p',
-	                { style: pStyles },
-	                'Location: ',
-	                this.props.data.location
-	              )
-	            )
-	          ),
-	          React.createElement(
-	            Col,
-	            { md: 6 },
-	            React.createElement(
-	              'div',
-	              { 'class': 'jobimg' },
-	              React.createElement('img', null)
-	            )
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	  return JobHeader;
-	}(React.Component);
-
-	var JobBody = function (_React$Component2) {
-	  (0, _inherits3.default)(JobBody, _React$Component2);
-
-	  function JobBody() {
-	    (0, _classCallCheck3.default)(this, JobBody);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobBody).apply(this, arguments));
-	  }
-
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	  (0, _createClass3.default)(JobBody, [{
-	    key: 'render',
-	    value: function render() {
-	      var pStyles = {
-	        fontSize: '10px'
-	      };
-	      return React.createElement(
-	        'div',
-	        { className: 'jobbody' },
-	        React.createElement(
-	          Row,
-	          null,
-	          React.createElement(
-	            'div',
-	            { className: 'description' },
-	            'Description',
-	            React.createElement(
-	              'p',
-	              { style: pStyles },
-	              this.props.data.job_description
-	            )
-	          )
-	        ),
-	        React.createElement(
-	          Row,
-	          null,
-	          React.createElement(
-	            Col,
-	            { md: 6 },
-	            React.createElement(
-	              'div',
-	              { className: 'experience' },
-	              'Exp: placeholder'
-	            )
-	          ),
-	          React.createElement(
-	            Col,
-	            { md: 6 },
-	            React.createElement(
-	              'div',
-	              { className: 'Salary' },
-	              'Salary:',
-	              React.createElement(
-	                'p',
-	                null,
-	                this.props.data.min_salary,
-	                '-',
-	                this.props.data.max_salary
-	              )
-	            )
-	          )
-	        )
-	      );
-=======
 	var AppContainer = (_dec = (0, _reactRedux.connect)(function (state) {
 	  return state;
 	}), _dec(_class = function (_React$Component) {
@@ -45940,121 +46767,79 @@ module.exports =
 	  (0, _createClass3.default)(AppContainer, [{
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
-	      this.props.dispatch(_actions2.default.getUnconsidered());
+	      this.props.dispatch(_actions2.default.getUnconsidered(1));
 	      // this.props.dispatch(actions.getConsidered());
 	      // this.props.dispatch(actions.getInterviews());
 	      // this.props.dispatch(actions.getOffers());
->>>>>>> Normalize missed filenames
 	    }
 	  }]);
-	  return JobBody;
-	}(React.Component);
 
-	var JobApply = function (_React$Component3) {
-	  (0, _inherits3.default)(JobApply, _React$Component3);
+	  function AppContainer(props) {
+	    (0, _classCallCheck3.default)(this, AppContainer);
 
-	  function JobApply() {
-	    (0, _classCallCheck3.default)(this, JobApply);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobApply).apply(this, arguments));
+	    var _this = (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(AppContainer).call(this, props));
+
+	    _this.state = {
+	      unconsidered: [],
+	      considered: [],
+	      interviews: [],
+	      offers: []
+	    };
+	    return _this;
 	  }
 
-	  (0, _createClass3.default)(JobApply, [{
+	  (0, _createClass3.default)(AppContainer, [{
 	    key: 'render',
 	    value: function render() {
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	      var btnStyles = {
-	        textAlign: 'center',
-	        margin: '0 auto'
-	      };
-=======
 	      console.log("AppContainer props", this.props);
->>>>>>> Normalize missed filenames
 	      return React.createElement(
-	        'div',
-	        { className: 'jobapply' },
+	        Container,
+	        { id: 'body' },
 	        React.createElement(
-	          Row,
+	          Grid,
 	          null,
 	          React.createElement(
-	            Col,
-	            { md: 12 },
-	            React.createElement(_jobModal2.default, null)
-	          )
-	        )
-	      );
-	    }
-	  }]);
-	  return JobApply;
-	}(React.Component);
-
-	var JobCard = function (_React$Component4) {
-	  (0, _inherits3.default)(JobCard, _React$Component4);
-
-	  function JobCard() {
-	    (0, _classCallCheck3.default)(this, JobCard);
-	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(JobCard).apply(this, arguments));
-	  }
-
-	  (0, _createClass3.default)(JobCard, [{
-	    key: 'render',
-	    value: function render() {
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	      console.log('jobCard', this.props);
-
-	      var styles = {
-	        margin: '12.5px 0',
-	        borderBottom: '1px dotted #999',
-	        paddingBottom: 12.5,
-	        textAlign: 'center'
-	      };
-
-	      var panelStyle = {
-	        'max-width': '400px',
-	        'padding-top': '0px'
-	      };
-
-	      return React.createElement(
-	        Col,
-	        { sm: 12, md: 4, lg: 4, className: 'clearfix' },
-	        React.createElement(
-	          PanelContainer,
-	          { style: panelStyle },
-	          React.createElement(
-	            Panel,
+	            Row,
 	            null,
 	            React.createElement(
-	              PanelBody,
-	              null,
-	              React.createElement(
-	                Grid,
-	                null,
-	                React.createElement(
-	                  Row,
-	                  { style: styles },
-	                  React.createElement(
-	                    'div',
-	                    { className: 'jobcard' },
-	                    React.createElement(JobHeader, { data: this.props.data }),
-	                    React.createElement(JobBody, { data: this.props.data }),
-	                    React.createElement(JobApply, { data: this.props.data })
-	                  )
-	                )
-	              )
+	              Col,
+	              { md: 3 },
+	              React.createElement(_lists2.default, null)
+	            ),
+	            React.createElement(
+	              Col,
+	              { md: 3 },
+	              React.createElement(_lists2.default, null)
+	            ),
+	            React.createElement(
+	              Col,
+	              { md: 3 },
+	              React.createElement(_lists2.default, null)
+	            ),
+	            React.createElement(
+	              Col,
+	              { md: 3 },
+	              React.createElement(_lists2.default, null)
 	            )
 	          )
 	        )
 	      );
 	    }
 	  }]);
-	  return JobCard;
-	}(React.Component);
+	  return AppContainer;
+	}(React.Component)) || _class);
 
-	exports.default = JobCard;
+	var _default = (0, _sidebar_component2.default)(_class2 = function (_React$Component2) {
+	  (0, _inherits3.default)(_default, _React$Component2);
 
-/***/ },
-/* 238 */,
-/* 239 */
-=======
+	  function _default() {
+	    (0, _classCallCheck3.default)(this, _default);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(_default).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(_default, [{
+	    key: 'render',
+	    value: function render() {
 	      var dispatch = this.props.dispatch;
 	      var classes = (0, _classnames2.default)({
 	        'container-open': this.props.open
@@ -46075,9 +46860,90 @@ module.exports =
 	exports.default = _default;
 
 /***/ },
-/* 412 */,
 /* 413 */
->>>>>>> Normalize missed filenames
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
+	var _getPrototypeOf = __webpack_require__(52);
+
+	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
+
+	var _classCallCheck2 = __webpack_require__(64);
+
+	var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+	var _createClass2 = __webpack_require__(65);
+
+	var _createClass3 = _interopRequireDefault(_createClass2);
+
+	var _possibleConstructorReturn2 = __webpack_require__(69);
+
+	var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+	var _inherits2 = __webpack_require__(94);
+
+	var _inherits3 = _interopRequireDefault(_inherits2);
+
+	var _classnames = __webpack_require__(101);
+
+	var _classnames2 = _interopRequireDefault(_classnames);
+
+	var _sidebar_component = __webpack_require__(102);
+
+	var _sidebar_component2 = _interopRequireDefault(_sidebar_component);
+
+	var _header = __webpack_require__(108);
+
+	var _header2 = _interopRequireDefault(_header);
+
+	var _sidebar = __webpack_require__(109);
+
+	var _sidebar2 = _interopRequireDefault(_sidebar);
+
+	var _footer = __webpack_require__(111);
+
+	var _footer2 = _interopRequireDefault(_footer);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Body = function (_React$Component) {
+	  (0, _inherits3.default)(Body, _React$Component);
+
+	  function Body() {
+	    (0, _classCallCheck3.default)(this, Body);
+	    return (0, _possibleConstructorReturn3.default)(this, (0, _getPrototypeOf2.default)(Body).apply(this, arguments));
+	  }
+
+	  (0, _createClass3.default)(Body, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      $('#nestable').nestable({
+	        group: 1
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return React.createElement(
+	        'div',
+	        { className: 'shortcard' },
+	        React.createElement('ol', null)
+	      );
+	    }
+	  }]);
+	  return Body;
+	}(React.Component);
+
+	exports.default = Body;
+
+/***/ },
+/* 414 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46094,25 +46960,15 @@ module.exports =
 
 	var _createHashHistory2 = _interopRequireDefault(_createHashHistory);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _createBrowserHistory = __webpack_require__(240);
-=======
-	var _createBrowserHistory = __webpack_require__(414);
->>>>>>> Normalize missed filenames
+	var _createBrowserHistory = __webpack_require__(415);
 
 	var _createBrowserHistory2 = _interopRequireDefault(_createBrowserHistory);
 
 	var _redux = __webpack_require__(119);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _reduxSimpleRouter = __webpack_require__(241);
+	var _reduxSimpleRouter = __webpack_require__(416);
 
-	var _reduxThunk = __webpack_require__(242);
-=======
-	var _reduxSimpleRouter = __webpack_require__(415);
-
-	var _reduxThunk = __webpack_require__(416);
->>>>>>> Normalize missed filenames
+	var _reduxThunk = __webpack_require__(417);
 
 	var _reduxThunk2 = _interopRequireDefault(_reduxThunk);
 
@@ -46120,11 +46976,7 @@ module.exports =
 
 	var _actions2 = _interopRequireDefault(_actions);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _reducers = __webpack_require__(243);
-=======
-	var _reducers = __webpack_require__(417);
->>>>>>> Normalize missed filenames
+	var _reducers = __webpack_require__(418);
 
 	var _reducers2 = _interopRequireDefault(_reducers);
 
@@ -46238,11 +47090,7 @@ module.exports =
 	};
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 240 */
-=======
-/* 414 */
->>>>>>> Normalize missed filenames
+/* 415 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46425,11 +47273,7 @@ module.exports =
 	module.exports = exports['default'];
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 241 */
-=======
-/* 415 */
->>>>>>> Normalize missed filenames
+/* 416 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46629,11 +47473,7 @@ module.exports =
 
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 242 */
-=======
-/* 416 */
->>>>>>> Normalize missed filenames
+/* 417 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -46652,11 +47492,7 @@ module.exports =
 	module.exports = thunkMiddleware;
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 243 */
-=======
-/* 417 */
->>>>>>> Normalize missed filenames
+/* 418 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46665,31 +47501,19 @@ module.exports =
 
 	var _extends3 = _interopRequireDefault(_extends2);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _todos = __webpack_require__(244);
-=======
-	var _todo_reducers = __webpack_require__(418);
->>>>>>> Normalize missed filenames
+	var _todo_reducers = __webpack_require__(419);
 
 	var _todo_reducers2 = _interopRequireDefault(_todo_reducers);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _apps = __webpack_require__(249);
-=======
-	var _app_reducers = __webpack_require__(423);
->>>>>>> Normalize missed filenames
+	var _app_reducers = __webpack_require__(424);
 
 	var _app_reducers2 = _interopRequireDefault(_app_reducers);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _jobs = __webpack_require__(250);
-=======
-	var _job_reducers = __webpack_require__(424);
->>>>>>> Normalize missed filenames
+	var _job_reducers = __webpack_require__(425);
 
 	var _job_reducers2 = _interopRequireDefault(_job_reducers);
 
-	var _empdash_reducers = __webpack_require__(425);
+	var _empdash_reducers = __webpack_require__(426);
 
 	var _empdash_reducers2 = _interopRequireDefault(_empdash_reducers);
 
@@ -46698,11 +47522,7 @@ module.exports =
 	module.exports = (0, _extends3.default)({}, _todo_reducers2.default, _app_reducers2.default, _job_reducers2.default, _empdash_reducers2.default);
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 244 */
-=======
-/* 418 */
->>>>>>> Normalize missed filenames
+/* 419 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46711,11 +47531,7 @@ module.exports =
 
 	var _assign2 = _interopRequireDefault(_assign);
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _toConsumableArray2 = __webpack_require__(245);
-=======
-	var _toConsumableArray2 = __webpack_require__(419);
->>>>>>> Normalize missed filenames
+	var _toConsumableArray2 = __webpack_require__(420);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
@@ -46762,20 +47578,12 @@ module.exports =
 	};
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 245 */
-=======
-/* 419 */
->>>>>>> Normalize missed filenames
+/* 420 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-	var _from = __webpack_require__(246);
-=======
-	var _from = __webpack_require__(420);
->>>>>>> Normalize missed filenames
+	var _from = __webpack_require__(421);
 
 	var _from2 = _interopRequireDefault(_from);
 
@@ -46794,39 +47602,21 @@ module.exports =
 	exports.__esModule = true;
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 246 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(247), __esModule: true };
-
-/***/ },
-/* 247 */
-/***/ function(module, exports, __webpack_require__) {
-
-	__webpack_require__(133);
-	__webpack_require__(248);
-	module.exports = __webpack_require__(60).Array.from;
-
-/***/ },
-/* 248 */
-=======
-/* 420 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = { "default": __webpack_require__(421), __esModule: true };
-
-/***/ },
 /* 421 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(133);
-	__webpack_require__(422);
-	module.exports = __webpack_require__(60).Array.from;
+	module.exports = { "default": __webpack_require__(422), __esModule: true };
 
 /***/ },
 /* 422 */
->>>>>>> Normalize missed filenames
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(133);
+	__webpack_require__(423);
+	module.exports = __webpack_require__(60).Array.from;
+
+/***/ },
+/* 423 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46868,22 +47658,15 @@ module.exports =
 
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 249 */
-=======
-/* 423 */
->>>>>>> Normalize missed filenames
+/* 424 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-=======
-	var _toConsumableArray2 = __webpack_require__(419);
+	var _toConsumableArray2 = __webpack_require__(420);
 
 	var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
 
->>>>>>> Normalize missed filenames
 	var _assign = __webpack_require__(104);
 
 	var _assign2 = _interopRequireDefault(_assign);
@@ -46905,9 +47688,12 @@ module.exports =
 	        items: data
 	      });
 	    case _actionTypes.REMOVE_APP:
-	      return state.items;
-
+	      return (0, _assign2.default)({}, state, {
+	        items: [].concat((0, _toConsumableArray3.default)(state.items.slice(0, action.appID)), (0, _toConsumableArray3.default)(state.items.slice(action.appID + 1)))
+	      });
 	  }
+	  console.log('action in remove_app:', action);
+
 	  return state;
 	}
 
@@ -46916,11 +47702,7 @@ module.exports =
 	};
 
 /***/ },
-<<<<<<< 3f111aceb7d711a8f23fce9c5dfc74f4c68de80e
-/* 250 */
-=======
-/* 424 */
->>>>>>> Normalize missed filenames
+/* 425 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -46970,7 +47752,7 @@ module.exports =
 	};
 
 /***/ },
-/* 425 */
+/* 426 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
