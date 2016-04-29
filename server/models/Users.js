@@ -47,8 +47,9 @@ Users.verifyInsert = function(obj) {
         location: session.location,
         linkedin_url: session.profileUrl
 
-      }).limit(1).then(function(array) {
-        console.log('session: ', session)
+      }).limit(1)
+      .then(function(array) {
+        console.log('session obj: ', session)
         return session;
       });
     } else {

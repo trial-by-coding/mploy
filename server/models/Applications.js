@@ -4,7 +4,8 @@ var Applications = module.exports;
 
 //Will cover letter have to be added separately?
 Applications.submit = function(appObj) {
-  return db('applications').returning('appID')
+  return db('applications')
+  .returning('appID')
   .insert({
     cover_letter: appObj.cover_letter,
     years_experience: appObj.years_experience,
