@@ -15,6 +15,8 @@ passport.use(new LinkedInStrategy({
     state: true
   },
   function(accessToken, refreshToken, profile, done) {
+    console.log('profile: ', profile)
+
     User.verifyInsert(profile)
     .then(function(obj) {
 

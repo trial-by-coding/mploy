@@ -1,5 +1,4 @@
 var Applications = require('../models/Applications.js');
-var Employers = require('../models/Employers.js');
 var Stats = require('../models/Stats.js');
 var Users = require('../models/Users.js');
 var express = require('express');

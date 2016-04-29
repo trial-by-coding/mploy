@@ -47,8 +47,9 @@ Users.verifyInsert = function(obj) {
         location: session.location,
         linkedin_url: session.profileUrl
 
-      }).limit(1).then(function(array) {
-        console.log('session: ', session)
+      }).limit(1)
+      .then(function(array) {
+        console.log('session obj: ', session)
         return session;
       });
     } else {
@@ -88,4 +89,38 @@ Users.updateResume = function(uid, newResume) {
     .catch(function(err) {
       throw err
     });
+};
+
+//Employer
+
+Users.designateAsEmployer = function(linkedin_id){
+  return db('users')
+  .returning('*')
+  .where({
+    linkedin_id: linkedin_id
+  })
+  .update({
+    employer: true
+  })
+  .then(function(record) {
+    return record[0]
+  })
+  .catch(function(err) {
+    throw err
+  })
+};
+
+Users.verifyEmployer = function(linkedin_id){
+  return db('users')
+  .returning('*')
+  .where({
+    linkedin_id: linkedin_id,
+    employer: true
+  })
+  .then(function(record) {
+    return record[0];
+  })
+  .catch(function(err) {
+    throw err;
+  })
 };
