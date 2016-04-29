@@ -36,7 +36,7 @@ module.exports = function(router) {
   //   }
   // });
 
-  //offset to get certain number of jobs at a time
+  //Could offset to get certain number of jobs at a time
 
   router.get('/appsbystatus', function(req, res){
     console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
@@ -187,7 +187,7 @@ module.exports = function(router) {
       .then(function(data){
         res.status(200).send(JSON.stringify(data));
         console.log("Successfully deleted application: ", data);
-        return Stats.incrementDenied(data[0].user_id)
+        return Stats.incrementDenied(data.user_id)
         .then(function() {
           console.log('App denied stat successfully incremented')
         })

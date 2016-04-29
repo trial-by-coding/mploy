@@ -26,7 +26,7 @@ Applications.submit = function(appObj) {
     user_id: appObj.user_id
   })
   .then(function(recordID) {
-    return recordID
+    return recordID[0]
   })
   .catch(function(err) {
     throw err
@@ -44,7 +44,7 @@ Applications.deleteApp = function(appID) {
   .delete()
   .where('appID', appID)
   .then(function(records) {
-    return records
+    return records[0]
   })
   .catch(function(err) {
       throw err
@@ -63,7 +63,7 @@ Applications.updateStatus = function(appID, status) {
     status: status
   })
   .then(function(record) {
-    return record
+    return record[0]
   })
   .catch(function(err) {
       throw err
@@ -103,7 +103,7 @@ Applications.getUnconsidered = function(jobID) {
   .orderBy('created_at', 'desc')
   .where({
     job_id: jobID, 
-    status: 'Not yet considered'
+    status: 'unconsidered'
   })
   .then(function(records) {
     return records

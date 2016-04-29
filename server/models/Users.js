@@ -67,6 +67,9 @@ Users.insertResume = function(uid, resume) {
       console.log('Record for userID', uid);
       return userID;
     })
+    .then(function(record) {
+      return record[0]
+    })
     .catch(function(err) {
       throw err
     });
@@ -81,6 +84,9 @@ Users.updateResume = function(uid, newResume) {
     .then(function(userID) {
       console.log('Record for userID', uid);
       return userID;
+    })
+    .then(function(record) {
+      return record[0]
     })
     .catch(function(err) {
       throw err
