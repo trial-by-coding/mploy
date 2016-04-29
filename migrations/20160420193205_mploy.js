@@ -15,14 +15,7 @@ exports.up = function(knex, Promise) {
       table.string('location');
       table.string('linkedin_url');
       table.binary('resume');
-    }),
-
-    //companies table
-    knex.schema.createTable('employers', function(table) {
-      table.increments('employerID').primary();
-      table.integer('user_id')
-        .references('userID')
-        .inTable('users');
+      table.boolean('employer');
     }),
 
     // //job posts table
@@ -101,7 +94,6 @@ exports.down = function(knex, Promise) {
 
   return Promise.all([
     knex.schema.dropTable('users'),
-    knex.schema.dropTable('companies'),
     knex.schema.dropTable('job_posts'),
     knex.schema.dropTable('applications'),
     knex.schema.dropTable('stats'),
