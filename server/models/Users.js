@@ -5,63 +5,53 @@ var Users = module.exports;
 //Auth:
 
 Users.verifyId = function(linkedin_id) {
-  console.log('verifyId id == ', linkedin_id);
-  return db('users').where({
+  return db('users')
+  .where({
     linkedin_id: linkedin_id
-  }).limit(1);
+  })
+  .limit(1)
+  .then(function(record) {
+    return record[0]
+  })
 };
 
-Users.verifyInsert = function(obj) {
-  var session = {};
-  console.log('verifyInsert obj:', obj)
+Users.insert = function(obj) {
+  var userObj = {};
 
-  session.passid = obj.id;
-  session.username = obj.displayName;
-  session.givenName = obj.name.givenName;
-  session.familyName = obj.name.familyName;
+  userObj.linkedin_id = obj.id;
+  userObj.username = obj.displayName;
+  userObj.firstName = obj.name.givenName;
+  userObj.lastName = obj.name.familyName;
   if (obj._json.pictureUrls.values){
-    session.profile_picture = obj._json.pictureUrls.values[0]; 
+    userObj.profile_picture = obj._json.pictureUrls.values[0]; 
   } else {
-    session.profile_picture = 'https://5481cf3ac956b3637572-6a158f98e8017b9014d6ed26285e201d.ssl.cf2.rackcdn.com/static/images/anonymousUser.jpg'
+    userObj.profile_picture = 'https://5481cf3ac956b3637572-6a158f98e8017b9014d6ed26285e201d.ssl.cf2.rackcdn.com/static/images/anonymousUser.jpg'
   }
-  session.email = obj._json.emailAddress;
-  session.industry = obj._json.industry;
-  session.headline = obj._json.headline;
-  session.location = obj._json.location.name;
-  session.profileUrl = obj._json.publicProfileUrl;
+  userObj.email = obj._json.emailAddress;
+  userObj.industry = obj._json.industry;
+  userObj.headline = obj._json.headline;
+  userObj.location = obj._json.location.name;
+  userObj.profileUrl = obj._json.publicProfileUrl;
 
-  return db('users').where({
-    linkedin_id: session.passid
+  return db('users')
+  .returning('*')
+  .insert({
+    
+    linkedin_id: userObj.linkedin_id,
+    username: userObj.username,
+    firstname: userObj.firstName,
+    lastname: userObj.lastName,
+    profile_picture: userObj.profile_picture,
+    email: userObj.email,
+    industry: userObj.industry,
+    linkedin_headline: userObj.headline,
+    location: userObj.location,
+    linkedin_url: userObj.profileUrl,
+    employer: false
   })
-
-  .then(function(data) {
-    if (data.length === 0) {
-      return db('users').insert({
-        
-        linkedin_id: session.passid,
-        username: session.username,
-        firstname: session.givenName,
-        lastname: session.familyName,
-        profile_picture: session.profile_picture,
-        email: session.email,
-        industry: session.industry,
-        linkedin_headline: session.headline,
-        location: session.location,
-        linkedin_url: session.profileUrl
-
-      }).limit(1).then(function(array) {
-        console.log('returning sessions!', session);
-        return session;
-      });
-    } else {
-      console.log('data = ', data);
-      if (Array.isArray(data)) {
-        return data[0];
-      } else {
-        return data;
-      }
-    }
-  });
+  .then(function(record) {
+    return record[0]
+  })
 };
 
 //Resume handling:
@@ -76,6 +66,9 @@ Users.insertResume = function(uid, resume) {
     .then(function(userID) {
       console.log('Record for userID', uid);
       return userID;
+    })
+    .then(function(record) {
+      return record[0]
     })
     .catch(function(err) {
       throw err
@@ -92,7 +85,44 @@ Users.updateResume = function(uid, newResume) {
       console.log('Record for userID', uid);
       return userID;
     })
+    .then(function(record) {
+      return record[0]
+    })
     .catch(function(err) {
       throw err
     });
+};
+
+//Employer
+
+Users.designateAsEmployer = function(linkedin_id){
+  return db('users')
+  .returning('*')
+  .where({
+    linkedin_id: linkedin_id
+  })
+  .update({
+    employer: true
+  })
+  .then(function(record) {
+    return record[0]
+  })
+  .catch(function(err) {
+    throw err
+  })
+};
+
+Users.verifyEmployer = function(linkedin_id){
+  return db('users')
+  .returning('*')
+  .where({
+    linkedin_id: linkedin_id,
+    employer: true
+  })
+  .then(function(record) {
+    return record[0];
+  })
+  .catch(function(err) {
+    throw err;
+  })
 };

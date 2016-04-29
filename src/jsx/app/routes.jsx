@@ -3,8 +3,15 @@ import { Route, Router } from 'react-router';
 import Landing from 'routes/landing';
 import Blank from 'routes/blank';
 import Applications from 'routes/containers/applications';
+<<<<<<< HEAD
 import Jobs from 'routes/containers/jobs';
 import Social from 'routes/containers/social';
+=======
+import Jobs from 'routes/containers/jobs'
+import Controls from 'routes/forms/controls';
+import EmployerDashboard from 'routes/containers/employer_dashboard';
+
+>>>>>>> def40128907b1c9a32e4e46de8936673f15b87b7
 
 import Lists from 'routes/lists';
 import TimelineJSX from 'routes/timeline';
@@ -17,6 +24,7 @@ export default (history, onUpdate) => {
       <Route path='/applications' component={Applications} />
       <Route path='/jobs' component={Jobs} />
       <Route path='/blank' component={Blank} />
+<<<<<<< HEAD
       <Route path='/social' component={Social} />
 
       <Route path='/lists' component={Lists} />
@@ -24,6 +32,9 @@ export default (history, onUpdate) => {
       <Route path='/interactive-timeline' component={InteractiveTimeline} />
 
 
+=======
+      <Route path='/employer/dashboard' component={EmployerDashboard} />
+>>>>>>> def40128907b1c9a32e4e46de8936673f15b87b7
     </Router>
   );
 };

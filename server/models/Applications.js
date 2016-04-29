@@ -4,13 +4,14 @@ var Applications = module.exports;
 
 //Will cover letter have to be added separately?
 Applications.submit = function(appObj) {
-  return db('applications').returning('appID')
+  return db('applications')
+  .returning('appID')
   .insert({
     cover_letter: appObj.cover_letter,
     years_experience: appObj.years_experience,
     education: appObj.education,
     personal_statement: appObj.personal_statement,
-    status: 'Not yet considered',
+    status: 'unconsidered',
     skill_1_met: appObj.skill_1,
     skill_2_met: appObj.skill_2,
     skill_3_met: appObj.skill_3,
@@ -25,7 +26,7 @@ Applications.submit = function(appObj) {
     user_id: appObj.user_id
   })
   .then(function(recordID) {
-    return recordID
+    return recordID[0]
   })
   .catch(function(err) {
     throw err
@@ -39,10 +40,11 @@ Applications.submit = function(appObj) {
 Applications.deleteApp = function(appID) {
   
   return db('applications')
+  .returning('*')
   .delete()
   .where('appID', appID)
   .then(function(records) {
-    return records
+    return records[0]
   })
   .catch(function(err) {
       throw err
@@ -61,7 +63,23 @@ Applications.updateStatus = function(appID, status) {
     status: status
   })
   .then(function(record) {
-    return record
+    return record[0]
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+Applications.getByStatus = function(jobID, status) {
+  console.log('in get by status: ', status)
+  return db('applications')
+  .join('users', 'applications.user_id', '=', 'users.userID')
+  .orderBy('created_at', 'desc')
+  .where({
+    job_id: jobID, 
+    status: status
+  })
+  .then(function(records) {
+    return records
   })
   .catch(function(err) {
       throw err
@@ -74,7 +92,7 @@ Applications.getUnconsidered = function(jobID) {
   .orderBy('created_at', 'desc')
   .where({
     job_id: jobID, 
-    status: 'Not yet considered'
+    status: 'unconsidered'
   })
   .then(function(records) {
     return records

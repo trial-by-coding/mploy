@@ -18,9 +18,8 @@ class ApplicationContainer extends React.Component {
     super(props)
   }
 
-  componentWillMount(){
-    this.props.dispatch(getApplications(4))  
-
+  componentDidMount(){
+    this.props.dispatch(getApplications(1))  
   }
 
 
@@ -60,7 +59,7 @@ class ApplicationContainer extends React.Component {
   if(!this.props.appList.items) {
     return <div> Loading... </div>
   } 
-
+console.log("applist before render:", this.props.applist)
 	return (
     <Grid>
   		<Row>
@@ -100,7 +99,7 @@ export default class extends React.Component {
         <Container id='body'>
           <Grid>
             <Row>
-              {app.map(item => <ApplicationContainer />)}
+              <ApplicationContainer />
             </Row>
           </Grid>
         </Container>

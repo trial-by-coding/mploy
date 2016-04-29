@@ -7,6 +7,11 @@ import {
   ModalFooter
 } from 'react-modal-bootstrap';
 
+<<<<<<< HEAD
+=======
+import  Controls  from '../forms/controls';
+
+>>>>>>> def40128907b1c9a32e4e46de8936673f15b87b7
 
 export default class JobModal extends React.Component {
   render() {
@@ -26,6 +31,10 @@ export default class JobModal extends React.Component {
             <ModalTitle>Modal title</ModalTitle>
           </ModalHeader>
           <ModalBody>
+<<<<<<< HEAD
+=======
+          <Controls />
+>>>>>>> def40128907b1c9a32e4e46de8936673f15b87b7
 
           </ModalBody>
           <ModalFooter>

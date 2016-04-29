@@ -1,13 +1,13 @@
-var expect = require('chai').expect,
-      chai = require('chai'),
-  chaiHttp = require('chai-http');
+var     expect = require('chai').expect,
+          chai = require('chai'),
+      chaiHttp = require('chai-http');
 
-chai.use(chaiHttp);
+      chai.use(chaiHttp);
+
 
 describe('endpoints', function(){
 
 //================testing submitapp endpoint=====================
-
   it('should successfully submit an application with a user id POST', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
     .post('/user/applicant/submitapp')
@@ -31,6 +31,7 @@ describe('endpoints', function(){
       done();                               // <= Call done to signal callback end
     });
   });
+
 
   it('should fail submitting application if job id does not exist POST', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
@@ -79,7 +80,7 @@ describe('endpoints', function(){
     });
   });
 
-//================testing appsbyuser endpoint====================
+// //================testing appsbyuser endpoint====================
   it('should successfully retrieve applications associated with a user id GET', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
     .get('/user/applicant/appsbyuser')
@@ -99,7 +100,7 @@ describe('endpoints', function(){
     });
   });
 
-//================testing appsbyjob endpoint=====================
+// //================testing appsbyjob endpoint=====================
   it('should successfully retrieve applications associated with a job id GET', function(done) { // <= Pass in done callback
     chai.request('http://localhost:8080')
     .get('/user/employer/appsbyjob')
@@ -120,7 +121,7 @@ describe('endpoints', function(){
     });
   });
 
-//================testing submitjob endpoint=====================
+// //================testing submitjob endpoint=====================
   it('should successfully submit a job POST', function(done) {
    chai.request('http://localhost:8080')
    .post('/user/employer/submitjob')
@@ -149,7 +150,7 @@ describe('endpoints', function(){
    });
  });
 
-//================testing job endpoint=====================
+// //================testing job endpoint=====================
 it('should successfully retrieve all jobs GET', function(done) { // <= Pass in done callback
    chai.request('http://localhost:8080')
    .get('/user/job')

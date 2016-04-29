@@ -1,10 +1,10 @@
-const passport = require('passport');
-const LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
+var passport = require('passport');
+var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
-const User = require('../models/Users');
-const Stats = require('../models/Stats');
-const config = require('./config');
-const init = require('./init');
+var Users = require('../models/Users');
+var Stats = require('../models/Stats');
+var config = require('./config');
+var init = require('./init');
 
 
 passport.use(new LinkedInStrategy({
@@ -15,26 +15,29 @@ passport.use(new LinkedInStrategy({
     state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('linkedin profile: ', profile);
-    User.verifyInsert(profile)
-    .then(function(obj) {
-        console.log('inserted by verifyInsert linkedin = ', obj);
-        const send = {
-          username: obj.username,
-          linkedin_id: obj.passid,
-          firstname: obj.givenName,
-          lastname:  obj.familyName,
-          profile_picture: obj.profile_picture,
-          email: obj.email,
-          industry: obj.industry,
-          location: obj.location,
-          linkedin_url: obj.profileUrl
-        };
+    console.log('profile: ', profile)
 
-        return done(null, send);
+    return Users.verifyId(profile.id)
+    .then(function(existing) {
+      console.log('existing:', existing)
+      if (existing !== undefined){
+        var send = {
+          linkedin_id: existing.linkedin_id
+        }
+        return done(null, send)
+      } else {
+        return Users.insert(profile)
+        .then(function(inserted) {
+          console.log('inserted: ', inserted)
+          var send = {
+            linkedin_id: inserted.linkedin_id
+          }
+          return done(null, send)
+        })
+      }
       })
       .catch(function(err) {
-        console.log('verify insert promise err = ', err);
+        console.log('Verify insert err: ', err);
         return done(null, err);
       });
 

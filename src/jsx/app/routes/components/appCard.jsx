@@ -13,8 +13,10 @@ export default class AppCard extends React.Component {
   }
 
   deleteTask = (e) => {
-    this.props.dispatch(actions.rejectApp(this.props.fuckingApps.appID));
-    this.props.dispatch(actions.getApplications(4))  
+    // this.props.dispatch(actions.getApplications(3))  
+    this.props.dispatch(actions.rejectApp(1, this.props.fuckingApps.appID));
+    // this.props.dispatch(actions.getApplications(3))
+
     console.log('appID in deleteTask:', this.props.fuckingApps.appID)
   };
 

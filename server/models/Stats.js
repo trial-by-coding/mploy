@@ -7,23 +7,33 @@ var Stats = module.exports;
 //only run when new user created
 Stats.newUserData = function(userID) {
   console.log('userID in stats: ', userID)
+
   return db('stats')
-    .returning('statID')
-    .insert({
-      total_apps: 0,
-      denied: 0,
-      considered: 0,
-      interviewed: 0,
-      additional: 0,
-      offered: 0,
-      user_id: userID
-    })
-    .then(function(statID) {
-      return statID
-    })
-    .catch(function(err) {
-      throw err
-    })
+    .where({user_id: userID})
+  .then(function(record) {
+    if (record[0] === undefined){
+      return db('stats')
+        .returning('statID')
+        .insert({
+          total_apps: 0,
+          denied: 0,
+          considered: 0,
+          interviewed: 0,
+          additional: 0,
+          offered: 0,
+          user_id: userID
+        })
+      .then(function(statID) {
+        console.log('Stats initialized: ', statID)
+        return statID[0]
+      })
+      .catch(function(err) {
+        throw err
+      })
+    } else {
+      console.log('User stats previously initialized')
+    }
+  })
 };
 
 Stats.incrementTotalApps = function(userID) {
@@ -35,7 +45,7 @@ Stats.incrementTotalApps = function(userID) {
       'total_apps', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
     })
     .catch(function(err) {
       throw err
@@ -43,6 +53,7 @@ Stats.incrementTotalApps = function(userID) {
 };
 
 Stats.incrementDenied = function(userID) {
+  console.log('userID in incrementDenied', userID)
   return db('stats')
     .where({
       user_id: userID
@@ -51,7 +62,7 @@ Stats.incrementDenied = function(userID) {
       'denied', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
     })
     .catch(function(err) {
       throw err
@@ -67,7 +78,7 @@ Stats.incrementConsidered = function(userID) {
       'considered', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
     })
     .catch(function(err) {
       throw err
@@ -83,7 +94,23 @@ Stats.incrementInterview = function(userID) {
       'interview_offer', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
+    })
+    .catch(function(err) {
+      throw err
+    })
+};
+
+Stats.incrementOffer = function(userID) {
+  return db('stats')
+    .where({
+      user_id: userID
+    })
+    .increment(
+      'offered', 1
+    )
+    .then(function(record) {
+      return record[0]
     })
     .catch(function(err) {
       throw err
