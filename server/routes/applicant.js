@@ -11,27 +11,23 @@ module.exports = function(router) {
   router.use(function(req,res,next) {
     if (req.user !== undefined){
       var linkedin_id = req.user.linkedin_id
-      return Users.verifyId(linkedin_id)
+      return Users.verifyEmployer(linkedin_id)
       .catch(function(err) {
-        console.log('Failed to verify user:', err)
-        res.redirect('/')
-      })
-      .then(function(userObj) {
-        console.log('userObj[0].userID: ',userObj[0].userID)
-        return Employers.verify(userObj[0].userID)
+        console.log('Failed to verify user as applicant:', err)
+        res.redirect('/employer/dashboard')
       })
       .then(function(resp) {
-        console.log('Resp from Employers.verify:', resp)
+        console.log('Resp from Users.verifyEmployer:', resp)
         if (resp){
           console.log('User is not an applicant.')
-          res.redirect('/')
+          res.redirect('/employer/dashboard')
         } else {
           return next()
         }
       })
       .catch(function(err) {
-        console.log('Employer authentication failed: ', err)
-        res.redirect('/')
+        console.log('Applicant authentication failed: ', err)
+        res.redirect('/employer/dashboard')
       }) 
     } else {
       console.log('User not logged in')
