@@ -29,7 +29,7 @@ JobPosts.create = function(jobObj) {
       user_id: jobObj.user_id
     })
     .then(function(recordID) {
-      return recordID
+      return recordID[0]
     })
     .catch(function(err) {
       throw err
@@ -49,7 +49,8 @@ JobPosts.getAll = function() {
 
 JobPosts.getJob = function(jobID) {
     
-    return db('job_posts').where('jobID', jobID)
+    return db('job_posts')
+    .where('jobID', jobID)
     .then(function(record) {
       if (record.length === 0){
         err="no records with that jobID found";
