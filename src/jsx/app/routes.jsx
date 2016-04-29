@@ -17,9 +17,7 @@ import Lists from 'routes/lists';
 export default (history, onUpdate) => {
   return (
     <Router history={history} onUpdate={onUpdate}>
-
       <Route path='/' component={Landing}/>
-
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
         <Route path='/profile' component={Profile} />
