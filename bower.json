@@ -34,6 +34,15 @@
     "PACE": "pace#~1.0.2",
     "perfect-scrollbar": "~0.6.7",
     "bootstrap-sass": "~3.3.6",
-    "react-bootstrap": "^0.29.2"
+    "react-bootstrap": "^0.29.2",
+    "jquery-ui": "^1.11.4",
+    "modernizr": "^3.3.1",
+    "Chart.js": "chartjs#^2.0.2",
+    "moment": "^2.13.0",
+    "trumbowyg": "^2.0.5",
+    "blueimp-gallery": "^2.20.0",
+    "d3": "^3.5.16",
+    "vex": "^2.3.4",
+    "codemirror": "^5.14.2"
   }
 }

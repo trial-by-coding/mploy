@@ -7,8 +7,6 @@ import {
   ModalFooter
 } from 'react-modal-bootstrap';
 
-import { GreenForm } from '../forms/green_form';
-
 
 export default class JobModal extends React.Component {
   render() {
@@ -28,7 +26,7 @@ export default class JobModal extends React.Component {
             <ModalTitle>Modal title</ModalTitle>
           </ModalHeader>
           <ModalBody>
-          <GreenForm />
+
           </ModalBody>
           <ModalFooter>
             <button className='btn btn-default' onClick={this.props.hideModal}>
