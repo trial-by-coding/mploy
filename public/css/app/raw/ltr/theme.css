@@ -65,6 +65,7 @@
     -ms-transform: rotateY(90deg);
     -o-transform: rotateY(90deg); } }
 
+/* line 201, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack {
   -webkit-perspective: 1300px;
   -ms-perspective: 1300px;
@@ -78,6 +79,7 @@
   padding-bottom: 100px;
   font-size: 1.5em; }
 
+/* line 216, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-closing .vex-content {
   animation: vex-flipout-horizontal 0.5s;
   -webkit-animation: vex-flipout-horizontal 0.5s;
@@ -86,6 +88,7 @@
   -o-animation: vex-flipout-horizontal 0.5s;
   -webkit-backface-visibility: hidden; }
 
+/* line 224, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-content {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -96,6 +99,7 @@
   -o-animation: vex-flipin-horizontal 0.5s;
   -webkit-backface-visibility: hidden; }
 
+/* line 235, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-content {
   font-family: Lato, sans-serif;
   font-weight: 200;
@@ -108,15 +112,18 @@
   max-width: 100%;
   width: 600px; }
 
+/* line 247, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-content h1, .vex.vex-theme-flat-attack .vex-content h2, .vex.vex-theme-flat-attack .vex-content h3, .vex.vex-theme-flat-attack .vex-content h4, .vex.vex-theme-flat-attack .vex-content h5, .vex.vex-theme-flat-attack .vex-content h6, .vex.vex-theme-flat-attack .vex-content p, .vex.vex-theme-flat-attack .vex-content ul, .vex.vex-theme-flat-attack .vex-content li {
   color: inherit; }
 
+/* line 250, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-close {
   position: absolute;
   top: 0;
   right: 0;
   cursor: pointer; }
 
+/* line 256, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-close:before {
   font-family: Lato, sans-serif;
   font-weight: 100;
@@ -134,12 +141,15 @@
   color: white;
   background: #666666; }
 
+/* line 273, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-message {
   margin-bottom: 0.5em; }
 
+/* line 276, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input {
   margin-bottom: 0.5em; }
 
+/* line 279, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input textarea, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="date"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="datetime"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="datetime-local"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="email"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="month"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="number"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="password"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="search"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="tel"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="text"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="time"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="url"], .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="week"] {
   border-radius: 3px;
   background: #f0f0f0;
@@ -152,10 +162,12 @@
   min-height: 2.5em;
   margin: 0 0 0.25em; }
 
+/* line 295, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
   box-shadow: inset 0 0 0 2px #666666;
   outline: none; }
 
+/* line 301, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons {
   *zoom: 1;
   padding-top: 1em;
@@ -163,11 +175,13 @@
   margin-left: -2em;
   margin-right: -2em; }
 
+/* line 308, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-form .vex-dialog-buttons:after {
   content: "";
   display: table;
   clear: both; }
 
+/* line 313, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button {
   border-radius: 0;
   border: 0;
@@ -181,67 +195,87 @@
   line-height: 1em;
   font-family: inherit; }
 
+/* line 330, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-last {
   margin-left: 0; }
 
+/* line 333, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button:focus {
   outline: none; }
 
+/* line 336, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-primary {
   background: #666666;
   color: white; }
 
+/* line 340, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-primary:focus {
   box-shadow: inset 0 3px rgba(0, 0, 0, 0.2); }
 
+/* line 345, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary {
   background: white;
   color: #cccccc; }
 
+/* line 349, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:focus {
   box-shadow: inset 0 3px #aaaaaa;
   background: #eeeeee;
   color: #777777; }
 
+/* line 356, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:hover, .vex.vex-theme-flat-attack .vex-dialog-button.vex-dialog-button-secondary:active {
   color: #777777; }
 
+/* line 359, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-close:before {
   background: #ff7ea7; }
 
+/* line 362, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
   box-shadow: inset 0 0 0 2px #ff7ea7; }
 
+/* line 367, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-pink .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
   background: #ff7ea7; }
 
+/* line 370, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-close:before {
   background: #ce4a55; }
 
+/* line 373, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
   box-shadow: inset 0 0 0 2px #ce4a55; }
 
+/* line 378, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-red .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
   background: #ce4a55; }
 
+/* line 381, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-close:before {
   background: #34b989; }
 
+/* line 384, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
   box-shadow: inset 0 0 0 2px #34b989; }
 
+/* line 389, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-green .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
   background: #34b989; }
 
+/* line 392, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-close:before {
   background: #477fa5; }
 
+/* line 395, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input textarea:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="date"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="datetime"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="datetime-local"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="email"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="month"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="number"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="password"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="search"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="tel"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="text"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="time"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="url"]:focus, .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-input input[type="week"]:focus {
   box-shadow: inset 0 0 0 2px #477fa5; }
 
+/* line 400, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex.vex-theme-flat-attack.vex-theme-flat-attack-blue .vex-dialog-form .vex-dialog-buttons .vex-dialog-button.vex-dialog-button-primary {
   background: #477fa5; }
 
+/* line 404, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_vex.scss */
 .vex-loading-spinner.vex-theme-flat-attack {
   height: 4em;
   width: 4em; }
@@ -252,9 +286,11 @@
 // ===================================================================================================================*/
 /* =====================================================================================================================
 // Ion.Tabs: Skin details */
+/* line 9, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-tabs.scss */
 .ionTabs__head {
   border-bottom: 1px solid #cecece; }
 
+/* line 13, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-tabs.scss */
 .ionTabs__tab {
   font-size: 11px;
   line-height: 13px;
@@ -268,9 +304,11 @@
   text-align: center;
   min-width: 50px; }
 
+/* line 25, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-tabs.scss */
 .ionTabs__tab:hover {
   background: #e5e5e5; }
 
+/* line 28, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-tabs.scss */
 .ionTabs__tab.ionTabs__tab_state_active {
   top: 1px;
   margin-top: 0;
@@ -280,14 +318,17 @@
   border-top-color: #d71410;
   border-bottom: 1px solid #fff; }
 
+/* line 38, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-tabs.scss */
 .ionTabs__body {
   background: #fff;
   border: 1px solid #cecece;
   border-top: none; }
 
+/* line 44, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-tabs.scss */
 .ionTabs__item {
   padding: 15px 26px; }
 
+/* line 48, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-tabs.scss */
 .ionTabs__preloader {
   height: 50px;
   background: url(/imgs/preloader-flat.gif) no-repeat 25px 50%; }
@@ -350,19 +391,23 @@
     -webkit-transform: rotate(360deg);
             transform: rotate(360deg); } }
 
+/* line 133, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 .messenger-spinner {
   position: relative;
   border-radius: 100%; }
 
+/* line 137, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger.messenger-spinner-active .messenger-spinner .messenger-spinner {
   display: block; }
 
+/* line 140, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 .messenger-spinner .messenger-spinner-side {
   width: 50%;
   height: 100%;
   overflow: hidden;
   position: absolute; }
 
+/* line 146, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 .messenger-spinner .messenger-spinner-side .messenger-spinner-fill {
   border-radius: 999px;
   position: absolute;
@@ -373,9 +418,11 @@ ul.messenger.messenger-spinner-active .messenger-spinner .messenger-spinner {
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear; }
 
+/* line 162, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 .messenger-spinner .messenger-spinner-side-left {
   left: 0; }
 
+/* line 165, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 .messenger-spinner .messenger-spinner-side-left .messenger-spinner-fill {
   left: 100%;
   border-top-left-radius: 0;
@@ -385,9 +432,11 @@ ul.messenger.messenger-spinner-active .messenger-spinner .messenger-spinner {
   -webkit-transform-origin: 0 50%;
   transform-origin: 0 50%; }
 
+/* line 180, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 .messenger-spinner .messenger-spinner-side-right {
   left: 50%; }
 
+/* line 183, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 .messenger-spinner .messenger-spinner-side-right .messenger-spinner-fill {
   left: -100%;
   border-top-right-radius: 0;
@@ -397,6 +446,7 @@ ul.messenger.messenger-spinner-active .messenger-spinner .messenger-spinner {
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%; }
 
+/* line 199, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat {
   border-radius: 4px;
   -moz-user-select: none;
@@ -406,9 +456,11 @@ ul.messenger-theme-flat {
       user-select: none;
   background: #404040; }
 
+/* line 211, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat.messenger-empty {
   display: none; }
 
+/* line 214, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message {
   box-shadow: inset 0px 1px rgba(255, 255, 255, 0.13), inset 48px 0px 0px #292929;
   border-radius: 0px;
@@ -421,6 +473,7 @@ ul.messenger-theme-flat .messenger-message {
   font-weight: 500;
   padding: 10px 30px 13px 65px; }
 
+/* line 232, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-close {
   position: absolute;
   top: 0px;
@@ -437,16 +490,20 @@ ul.messenger-theme-flat .messenger-message .messenger-close {
   border: 0;
   -webkit-appearance: none; }
 
+/* line 248, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-close:hover {
   color: #bbbbbb; }
 
+/* line 251, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-close:active {
   color: #777777; }
 
+/* line 254, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-actions {
   float: none;
   margin-top: 10px; }
 
+/* line 258, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-actions a {
   border-radius: 4px;
   text-decoration: none;
@@ -458,17 +515,21 @@ ul.messenger-theme-flat .messenger-message .messenger-actions a {
   padding: 4px 11px 6px;
   text-transform: capitalize; }
 
+/* line 273, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-actions a:hover {
   color: #f0f0f0;
   background: #2e2e2e; }
 
+/* line 277, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-actions a:active {
   background: #292929;
   color: #aaaaaa; }
 
+/* line 281, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-actions .messenger-phrase {
   display: none; }
 
+/* line 284, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message .messenger-message-inner:before {
   border-radius: 50%;
   position: absolute;
@@ -481,26 +542,32 @@ ul.messenger-theme-flat .messenger-message .messenger-message-inner:before {
   width: 13px;
   z-index: 20; }
 
+/* line 300, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-success .messenger-message-inner:before {
   background: #5fca4a; }
 
+/* line 303, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-info .messenger-message-inner:before {
   background: #61c4b8; }
 
+/* line 306, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-error .messenger-message-inner:before {
   background: #dd6a45; }
 
+/* line 309, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-soon .messenger-spinner {
   width: 32px;
   height: 32px;
   background: transparent; }
 
+/* line 314, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-soon .messenger-spinner .messenger-spinner-side .messenger-spinner-fill {
   background: #dd6a45;
   -webkit-animation-duration: 20s;
   animation-duration: 20s;
   opacity: 1; }
 
+/* line 323, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-soon .messenger-spinner:after {
   content: "";
   background: #292929;
@@ -512,17 +579,20 @@ ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-soon .mes
   left: 3px;
   display: block; }
 
+/* line 334, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-later .messenger-spinner {
   width: 32px;
   height: 32px;
   background: transparent; }
 
+/* line 339, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-later .messenger-spinner .messenger-spinner-side .messenger-spinner-fill {
   background: #dd6a45;
   -webkit-animation-duration: 600s;
   animation-duration: 600s;
   opacity: 1; }
 
+/* line 348, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-later .messenger-spinner:after {
   content: "";
   background: #292929;
@@ -534,18 +604,22 @@ ul.messenger-theme-flat .messenger-message.alert-error.messenger-retry-later .me
   left: 3px;
   display: block; }
 
+/* line 359, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message-slot.messenger-last .messenger-message {
   border-radius: 4px 4px 0px 0px;
   box-shadow: inset 48px 0px 0px #292929; }
 
+/* line 369, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message-slot.messenger-first .messenger-message {
   border-radius: 0px 0px 4px 4px;
   box-shadow: inset 0px 1px rgba(255, 255, 255, 0.13), inset 48px 0px 0px #292929; }
 
+/* line 379, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-message-slot.messenger-first.messenger-last .messenger-message {
   border-radius: 4px;
   box-shadow: inset 48px 0px 0px #292929; }
 
+/* line 389, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_messenger.scss */
 ul.messenger-theme-flat .messenger-spinner {
   display: block;
   position: absolute;
@@ -563,6 +637,7 @@ ul.messenger-theme-flat .messenger-spinner {
 // ===================================================================================================================*/
 /* =====================================================================================================================
 // Skin details */
+/* line 9, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-line-mid,
 .irs-line-left,
 .irs-line-right,
@@ -570,42 +645,52 @@ ul.messenger-theme-flat .messenger-spinner {
 .irs-slider {
   background: url(/imgs/app/sprite-skin-flat.png) repeat-x; }
 
+/* line 17, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs {
   height: 40px; }
 
+/* line 20, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-with-grid {
   height: 60px; }
 
+/* line 23, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-line {
   height: 12px;
   top: 25px; }
 
+/* line 26, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-line-left {
   height: 12px;
   background-position: 0 -30px; }
 
+/* line 30, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-line-mid {
   height: 12px;
   background-position: 0 0; }
 
+/* line 34, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-line-right {
   height: 12px;
   background-position: 100% -30px; }
 
+/* line 39, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-diapason {
   height: 12px;
   top: 25px;
   background-position: 0 -60px; }
 
+/* line 44, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-slider {
   width: 16px;
   height: 18px;
   top: 22px;
   background-position: 0 -90px; }
 
+/* line 49, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 #irs-active-slider, .irs-slider:hover {
   background-position: 0 -120px; }
 
+/* line 53, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-min, .irs-max {
   color: #999;
   font-size: 10px;
@@ -616,6 +701,7 @@ ul.messenger-theme-flat .messenger-spinner {
   background: #e1e4e9;
   border-radius: 4px; }
 
+/* line 62, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-from, .irs-to, .irs-single {
   color: #fff;
   font-size: 10px;
@@ -625,6 +711,7 @@ ul.messenger-theme-flat .messenger-spinner {
   background: #ed5565;
   border-radius: 4px; }
 
+/* line 70, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-from:after, .irs-to:after, .irs-single:after {
   position: absolute;
   display: block;
@@ -638,15 +725,19 @@ ul.messenger-theme-flat .messenger-spinner {
   border: 3px solid transparent;
   border-top-color: #ed5565; }
 
+/* line 81, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-grid-pol {
   background: #e1e4e9; }
 
+/* line 84, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_ion-rangeSlider.scss */
 .irs-grid-text {
   color: #999; }
 
+/* line 6, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 .bs-example > .dropdown > .dropdown-toggle {
   float: left; }
 
+/* line 9, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 .bs-example > .dropdown > .dropdown-menu {
   clear: left;
   display: block;
@@ -655,62 +746,79 @@ ul.messenger-theme-flat .messenger-spinner {
 
 /* ADD/REMOVE/CHANGE THEMES HERE */
 /* GLOBAL SETTINGS */
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_link.scss */
 a {
   color: #2EB398; }
+  /* line 4, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_link.scss */
   a:hover, a:focus {
     color: #2EB398;
     border-color: #2EB398; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_forms.scss */
 .form-control {
   border-color: #ddd; }
+  /* line 5, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_forms.scss */
   .form-control:focus {
     box-shadow: none !important;
     border-color: #2EB398; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_panel.scss */
 .rubix-panel-container {
   background: #ffffff; }
+  /* line 5, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_panel.scss */
   .rubix-panel-container.bordered {
     border: 1px solid rgba(206, 219, 236, 0.75);
     box-shadow: 0px 2px 0px 0px rgba(206, 219, 236, 0.5); }
+  /* line 10, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_panel.scss */
   .rubix-panel-container.noOverflow {
     overflow: visible; }
 
+/* line 15, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_panel.scss */
 .rubix-panel-controls {
   color: #89949B; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_button.scss */
 .btn {
   color: #89949B; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_select2.scss */
 .select2-container-multi .select2-choices {
   border-radius: 0; }
 
+/* line 6, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_select2.scss */
 .select2-container .select2-choice, .select2-container-multi .select2-choices {
   border-width: 2px;
   border-color: #2EB398; }
 
+/* line 11, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_select2.scss */
 .select2-container .select2-choice .select2-arrow {
   color: white;
   border-radius: 0;
   background: #2EB398;
   border-color: #2EB398; }
 
+/* line 18, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_select2.scss */
 .select2-drop-active, .select2-drop.select2-drop-above.select2-drop-active, .select2-container-active .select2-choice, .select2-container-active .select2-choices, .select2-dropdown-open.select2-drop-above .select2-choice, .select2-dropdown-open.select2-drop-above .select2-choices, .select2-container-multi.select2-container-active .select2-choices, .form-control.select2-container.select2-dropdown-open {
   border-width: 2px;
   border-color: #2EB398; }
 
+/* line 23, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_select2.scss */
 .select2-results .select2-highlighted {
   background: #2EB398; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
 .tt-suggestion.tt-is-under-cursor {
   color: #ffffff;
   background: #E76049; }
 
+/* line 6, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
 .dropdown-header {
   font-family: Lato, sans-serif;
   color: #98A0A3;
   background: #F9FAFB;
   border-bottom: 1px solid #F2F2F2; }
 
+/* line 12, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
 .dropdown-menu, .tt-dropdown-menu {
   border: none;
   outline: none;
@@ -718,51 +826,65 @@ a {
   min-width: 200px;
   overflow: hidden;
   border-radius: 5px; }
+  /* line 20, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
   .dropdown-menu.double-width, .tt-dropdown-menu.double-width {
     min-width: 325px; }
 
+/* line 24, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
 .dropdown-menu > li > a {
   outline: none;
   color: #89949B; }
+  /* line 28, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
   .dropdown-menu > li > a:hover {
     color: #89949B;
     background: rgba(231, 96, 73, 0.6); }
 
+/* line 33, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
 .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus {
   color: #ffffff;
   background: #E76049; }
 
+/* line 37, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
 .dropdown-menu > .disabled > a, .dropdown-menu > .disabled > a:hover, .dropdown-menu > .disabled > a:focus {
   background: none;
   color: rgba(137, 148, 155, 0.5); }
 
+/* line 41, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
 .dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu {
   border: none;
   margin-top: 0px;
   min-width: 200px;
   border-radius: 5px;
   margin-bottom: 5px; }
+  /* line 48, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_dropdown.scss */
   .dropup .dropdown-menu.double-width, .navbar-fixed-bottom .dropdown .dropdown-menu.double-width {
     min-width: 325px; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_pagination.scss */
 .pagination {
   margin: 0 0 25px; }
 
+/* line 5, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_pagination.scss */
 .pagination > .active > a, .pagination > .active > a:hover, .pagination > .active > a:focus, .pagination > .active > span, .pagination > .active > span:hover, .pagination > .active > span:focus {
   background: #E76049;
   border-color: #E76049; }
 
+/* line 9, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_pagination.scss */
 .pagination > li > a, .pagination > li > span {
   color: inherit; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_breadcrumbs.scss */
 .breadcrumb > li > a {
   color: #E76049; }
+  /* line 4, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_breadcrumbs.scss */
   .breadcrumb > li > a:hover, .breadcrumb > li > a:focus {
     border-color: #E76049; }
 
+/* line 27, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html {
   letter-spacing: 0.5px; }
 
+/* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/components/_datepicker.scss */
 html.default .datepicker table tr td.active,
 html.default .datepicker table tr td.active:hover,
 html.default .datepicker table tr td.active.disabled,
@@ -773,217 +895,289 @@ html.default .datepicker table tr td span.active.disabled,
 html.default .datepicker table tr td span.active.disabled:hover {
   background: #E76049 !important; }
 
+/* line 4, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .list-bg-theme > .list-group-item.active {
   background: #E76049 !important;
   color: white !important; }
 
+/* line 11, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .list-fg-theme > .list-group-item {
   color: #E76049; }
 
+/* line 16, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .rubix-panel-header .nav-theme.nav-tabs > li > a {
   color: white; }
+  /* line 19, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .rubix-panel-header .nav-theme.nav-tabs > li > a:hover, html.default .rubix-panel-header .nav-theme.nav-tabs > li > a:focus {
     color: white; }
 
+/* line 24, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .rubix-panel-header .nav-theme.nav-tabs > li.active > a:hover, html.default .rubix-panel-header .nav-theme.nav-tabs > li.active > a:focus {
   color: #E76049; }
 
+/* line 29, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .nav-theme.nav-tabs {
   border-color: #E76049; }
+  /* line 32, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .nav-theme.nav-tabs > li > a, html.default .nav-theme.nav-tabs > li > a:hover, html.default .nav-theme.nav-tabs > li > a:focus, html.default .nav-theme.nav-tabs > li.active > a {
     color: #E76049;
     border-color: #E76049;
     border-bottom-color: transparent; }
 
+/* line 40, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .nav-theme.nav-pills > li > a:hover, html.default .nav-theme.nav-pills > li > a:focus, html.default .nav-theme.nav-pills > li.active > a {
   background: #E76049;
   color: white; }
 
+/* line 46, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .menu-theme, html.default .dropup .menu-theme {
   border-color: #E76049; }
+  /* line 49, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .menu-theme > li > a:hover, html.default .dropup .menu-theme > li > a:hover {
     background: rgba(231, 96, 73, 0.05); }
+  /* line 53, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .menu-theme > .active > a, html.default .menu-theme > .active > a:hover, html.default .menu-theme > .active > a:focus, html.default .dropup .menu-theme > .active > a, html.default .dropup .menu-theme > .active > a:hover, html.default .dropup .menu-theme > .active > a:focus {
     color: white;
     background: #E76049; }
 
+/* line 58, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .btn-theme {
   outline: none;
   background: #E76049;
   color: white;
   border-color: #E76049; }
+  /* line 64, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .btn-theme.btn-outlined {
     color: #E76049;
     background: none; }
+    /* line 68, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
     html.default .btn-theme.btn-outlined.btn-onlyOnHover {
       color: #89949B; }
+  /* line 73, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .btn-theme:hover, html.default .btn-theme:focus, html.default .btn-theme:active, html.default .btn-theme.active {
     outline: none;
     color: white;
     background: #ed8776;
     border-color: #ed8776; }
+    /* line 79, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
     html.default .btn-theme:hover.btn-outlined, html.default .btn-theme:focus.btn-outlined, html.default .btn-theme:active.btn-outlined, html.default .btn-theme.active.btn-outlined {
       background: #E76049;
       color: white;
       border-color: #E76049; }
+  /* line 86, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .btn-theme.btn-inverse.btn-outlined {
     color: white;
     border-color: white; }
+    /* line 90, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
     html.default .btn-theme.btn-inverse.btn-outlined:hover, html.default .btn-theme.btn-inverse.btn-outlined:focus, html.default .btn-theme.btn-inverse.btn-outlined:active, html.default .btn-theme.btn-inverse.btn-outlined.active {
       color: #E76049;
       background: white;
       border-color: white; }
+      /* line 95, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
       html.default .btn-theme.btn-inverse.btn-outlined:hover.btn-retainBg, html.default .btn-theme.btn-inverse.btn-outlined:focus.btn-retainBg, html.default .btn-theme.btn-inverse.btn-outlined:active.btn-retainBg, html.default .btn-theme.btn-inverse.btn-outlined.active.btn-retainBg {
         background: #E76049;
         color: white;
         border-color: #E76049; }
 
+/* line 104, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .tl-theme .rubix-timeline-body > ul > li:before {
   border-color: #E76049; }
 
+/* line 108, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .border-theme {
   border-color: #E76049 !important; }
+  /* line 111, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .border-theme .rubix-timeline-body > ul {
     border-color: #E76049; }
+  /* line 115, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .border-theme.rubix-timeline-view:before {
     border-color: #E76049; }
 
+/* line 120, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .border-hover-theme:hover {
   border-color: #E76049 !important; }
 
+/* line 125, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .border-focus-theme:focus {
   border-color: #E76049 !important; }
 
+/* line 130, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .fg-focus-theme:focus {
   color: #E76049; }
 
+/* line 134, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .fg-hover-theme:hover {
   color: #E76049; }
 
+/* line 138, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .fg-theme {
   color: #E76049; }
+  /* line 141, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .fg-theme > .tab-container > .nav-tabs > .b-tab > a {
     color: #E76049; }
+  /* line 145, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .fg-theme .tab-container.plain > .nav-tabs > .b-tab.active > a {
     color: #E76049; }
+  /* line 150, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .fg-theme.fg-tab-active .tab-container > .nav-tabs > .b-tab.active > a {
     color: #E76049; }
 
+/* line 155, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .bg-focus-theme:focus {
   background: #E76049; }
 
+/* line 158, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .bg-hover-theme:hover {
   background: #E76049; }
 
+/* line 161, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
 html.default .bg-theme {
   background: #E76049; }
+  /* line 166, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .bg-theme > .tab-container > .nav-tabs > .b-tab.open > a {
     background: rgba(0, 0, 0, 0.03); }
+  /* line 172, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .bg-theme > .tab-container > .nav-tabs > .b-tab > .dropdown-menu > li.active > a {
     background: #E76049; }
+  /* line 179, /Users/lancespears/Documents/mploy/src/sass/app/theme/_colors.scss */
   html.default .bg-theme table td, html.default .bg-theme th {
     border-color: rgba(0, 0, 0, 0.05) !important; }
 
+/* line 37, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.default {
   background: white;
   overflow-x: hidden;
   color: #89949B; }
+  /* line 42, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.default body {
     background: white;
     overflow-x: hidden;
     color: #89949B; }
+    /* line 47, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.default body #app-container {
       overflow: hidden; }
+    /* line 54, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.default body #container > div:first-child#navbar #rubix-nav-header {
       margin: 0; }
+    /* line 59, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.default body #container > div:first-child#body {
       margin-top: 0;
       padding-top: 25px; }
+    /* line 67, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.default body #container.container-open > #sidebar {
       left: 0; }
+    /* line 70, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.default body #container.container-open #rubix-nav-header {
       margin-left: 250px;
       margin-right: -250px; }
       @media (min-width: 990px) {
+        /* line 70, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
         html.default body #container.container-open #rubix-nav-header {
           margin-right: 0; } }
+    /* line 77, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.default body #container.container-open > #body, html.default body #container.container-open > #footer-container {
       margin-left: 250px;
       margin-right: -250px; }
       @media (min-width: 990px) {
+        /* line 77, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
         html.default body #container.container-open > #body, html.default body #container.container-open > #footer-container {
           margin-right: 0; } }
+    /* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #navbar {
       width: 100%; }
+    /* line 6, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #rubix-nav-header {
       transition: all 0.3s ease;
       border: none;
       margin-left: 0;
       background: #273135; }
+      /* line 12, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-brand {
         width: 100%;
         text-align: center;
         color: #89949B; }
+        /* line 17, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
         html.default body #rubix-nav-header .navbar-brand > img {
           top: -3px;
           position: relative; }
         @media (max-width: 320px) {
+          /* line 23, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
           html.default body #rubix-nav-header .navbar-brand > img {
             width: 80px;
             left: -10px; } }
+      /* line 30, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-content {
         height: 75px; }
+      /* line 34, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav {
         margin: 0;
         display: inline-block; }
+        /* line 38, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
         html.default body #rubix-nav-header .navbar-nav:first-child {
           margin-left: -25px; }
+        /* line 41, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
         html.default body #rubix-nav-header .navbar-nav:last-child {
           margin-right: -25px; }
+      /* line 47, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li > a {
         border: none;
         padding: 25px;
         display: block; }
+      /* line 53, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li > a > .rubix-icon {
         -moz-osx-font-smoothing: grayscale;
         -webkit-font-smoothing: antialiased; }
+      /* line 60, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.divider {
         height: 75px;
         border: 1px solid rgba(59, 70, 72, 0.45); }
+      /* line 65, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.dropdown.open > a {
         color: white;
         background: none; }
+      /* line 70, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.active > a, html.default body #rubix-nav-header .navbar-nav > li > a {
         height: 75px;
         font-size: 26px;
         background: none;
         text-align: center;
         color: #89949B; }
+        /* line 77, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
         html.default body #rubix-nav-header .navbar-nav > li.active > a:hover, html.default body #rubix-nav-header .navbar-nav > li > a:hover {
           color: #ffffff; }
+      /* line 82, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.pressed > a {
         color: white; }
+      /* line 86, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.logout > a, html.default body #rubix-nav-header .navbar-nav > li.sidebar-btn > a {
         width: 80px;
         font-size: 30px;
         padding-left: 0;
         padding-right: 0; }
+      /* line 93, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.logout > a {
         color: #ffffff;
         background: #E76049; }
+        /* line 97, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
         html.default body #rubix-nav-header .navbar-nav > li.logout > a:hover {
           background: #F4654D; }
+      /* line 102, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.sidebar-btn > a {
         color: #ffffff;
         background: #2AA38B; }
+        /* line 106, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
         html.default body #rubix-nav-header .navbar-nav > li.sidebar-btn > a:hover {
           background: #2EB398; }
+      /* line 111, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.collapse-left > a {
         padding-left: 0; }
+      /* line 115, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.collapse-right > a {
         padding-right: 0; }
+      /* line 119, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li.small-font > a {
         font-size: 20px; }
+      /* line 123, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header .navbar-nav > li .notification-badge {
         font-size: 10px;
         padding: 3px 5px;
@@ -992,19 +1186,24 @@ html.default {
         margin-top: -10px;
         position: absolute; }
     @media (min-width: 990px) {
+      /* line 135, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #rubix-nav-header {
         margin-left: 250px; } }
+    /* line 141, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #flag-menu-btn > img {
       top: -2px;
       position: relative; }
+    /* line 147, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body .lang-menu-text {
       line-height: 32px; }
+    /* line 151, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #notifications-menu, html.default body #rss-menu, html.default body #flag-menu, html.default body #settings-menu {
       border: none;
       margin-top: 0px;
       overflow: visible;
       box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2);
       border-top: 5px solid #E76049 !important; }
+      /* line 158, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu:after, html.default body #rss-menu:after, html.default body #flag-menu:after, html.default body #settings-menu:after {
         top: -14px;
         right: 25px;
@@ -1014,34 +1213,45 @@ html.default {
         border-left: 12px solid transparent;
         border-right: 12px solid transparent;
         border-bottom: 12px solid #E76049; }
+    /* line 171, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #notifications-menu > li, html.default body #rss-menu > li {
       border-bottom: 1px solid #f2f2f2; }
+      /* line 173, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu > li:last-child, html.default body #rss-menu > li:last-child {
         border-bottom: none; }
+    /* line 178, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #notifications-menu > li > a > .container-fluid, html.default body #rss-menu > li > a > .container-fluid {
       padding-top: 10px;
       padding-bottom: 10px; }
+    /* line 184, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #notifications-menu > li > a > .container-fluid > .row > .avatar-container, html.default body #rss-menu > li > a > .container-fluid > .row > .avatar-container {
       width: 75px;
       padding-right: 10px; }
+      /* line 188, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu > li > a > .container-fluid > .row > .avatar-container .label, html.default body #rss-menu > li > a > .container-fluid > .row > .avatar-container .label {
         font-size: 8px; }
+    /* line 193, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #notifications-menu > li > a > .container-fluid > .row > .notification-container, html.default body #rss-menu > li > a > .container-fluid > .row > .notification-container {
       width: 225px; }
+      /* line 196, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu > li > a > .container-fluid > .row > .notification-container > .time, html.default body #rss-menu > li > a > .container-fluid > .row > .notification-container > .time {
         line-height: 1;
         font-size: 10px;
         padding-bottom: 5px; }
+        /* line 201, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
         html.default body #notifications-menu > li > a > .container-fluid > .row > .notification-container > .time > strong > .rubix-icon, html.default body #rss-menu > li > a > .container-fluid > .row > .notification-container > .time > strong > .rubix-icon {
           margin-right: 5px; }
+      /* line 206, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu > li > a > .container-fluid > .row > .notification-container > .message-header, html.default body #rss-menu > li > a > .container-fluid > .row > .notification-container > .message-header {
         line-height: 1;
         font-size: 12px;
         padding-bottom: 5px; }
+      /* line 212, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu > li > a > .container-fluid > .row > .notification-container > .message-details, html.default body #rss-menu > li > a > .container-fluid > .row > .notification-container > .message-details {
         line-height: 1;
         font-size: 10px;
         padding-bottom: 5px; }
+    /* line 220, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
     html.default body #notifications-menu .notification-footer-btn, html.default body #rss-menu .notification-footer-btn {
       margin: 0;
       height: 100%;
@@ -1052,11 +1262,14 @@ html.default {
       border: none !important;
       color: #98A0A3 !important;
       background: #F9FAFB !important; }
+      /* line 231, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu .notification-footer-btn:hover, html.default body #notifications-menu .notification-footer-btn:focus, html.default body #rss-menu .notification-footer-btn:hover, html.default body #rss-menu .notification-footer-btn:focus {
         border: none !important;
         background: #eaedf1 !important; }
+      /* line 236, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_header.scss */
       html.default body #notifications-menu .notification-footer-btn.left-btn, html.default body #rss-menu .notification-footer-btn.left-btn {
         border-right: 1px solid #DDE1E6 !important; }
+    /* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
     html.default body #sidebar {
       top: 0;
       bottom: 0;
@@ -1068,16 +1281,21 @@ html.default {
       width: 250px;
       background: #273135; }
       @media (min-width: 990px) {
+        /* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body #sidebar {
           left: 0; } }
+      /* line 17, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body #sidebar #avatar {
         height: 75px;
         background: #FA7252; }
+        /* line 21, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body #sidebar #avatar img {
           top: 17px;
           position: relative; }
+      /* line 27, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body #sidebar #avatar-col {
         margin-left: -5px; }
+      /* line 31, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body #sidebar #demo-progress {
         margin: 0;
         top: 30px;
@@ -1086,20 +1304,24 @@ html.default {
         border-radius: 0;
         position: relative;
         background: #DE5939; }
+      /* line 41, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body #sidebar #demo-icon {
         top: 3px;
         float: right;
         font-size: 18px;
         position: relative;
         color: #DE5939; }
+      /* line 49, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body #sidebar .sidebar-controls-container {
         width: 250px;
         height: 35px;
         display: table;
         visibility: visible;
         background: #DE5939; }
+        /* line 56, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body #sidebar .sidebar-controls-container > .sidebar-controls {
           display: table-row; }
+          /* line 59, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body #sidebar .sidebar-controls-container > .sidebar-controls > .sidebar-control-btn {
             border: none;
             outline: none;
@@ -1110,26 +1332,34 @@ html.default {
             display: table-cell;
             vertical-align: middle;
             border-right: 1px solid #cf4d2e; }
+            /* line 70, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
             html.default body #sidebar .sidebar-controls-container > .sidebar-controls > .sidebar-control-btn > a {
               outline: none;
               color: #993F31; }
+              /* line 73, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
               html.default body #sidebar .sidebar-controls-container > .sidebar-controls > .sidebar-control-btn > a:hover, html.default body #sidebar .sidebar-controls-container > .sidebar-controls > .sidebar-control-btn > a:focus {
                 border: none; }
+            /* line 78, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
             html.default body #sidebar .sidebar-controls-container > .sidebar-controls > .sidebar-control-btn.active {
               background: #ba4e3b !important; }
+              /* line 80, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
               html.default body #sidebar .sidebar-controls-container > .sidebar-controls > .sidebar-control-btn.active > a {
                 color: #FA7252; }
+            /* line 85, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
             html.default body #sidebar .sidebar-controls-container > .sidebar-controls > .sidebar-control-btn:hover {
               background: rgba(0, 0, 0, 0.04); }
+      /* line 92, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body #sidebar .sidebar-item {
         height: 35px;
         background: #1F282D; }
+      /* line 97, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body #sidebar #sidebar-container {
         bottom: 0;
         width: 250px;
         overflow: hidden;
         position: absolute;
         top: 110px; }
+        /* line 109, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body #sidebar #sidebar-container > .sidebar {
           top: 0;
           bottom: 0;
@@ -1137,6 +1367,7 @@ html.default {
           overflow: hidden;
           position: absolute;
           transition: all 0.3s ease; }
+    /* line 120, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
     html.default body .sidebar-header {
       line-height: 1;
       font-size: 12px;
@@ -1144,17 +1375,20 @@ html.default {
       font-weight: bold;
       padding-bottom: 12px;
       color: rgba(137, 148, 155, 0.4); }
+    /* line 129, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
     html.default body .sidebar-nav {
       padding: 0;
       list-style: none;
       margin-left: 25px;
       border-left: 2px solid rgba(59, 70, 72, 0.5); }
+      /* line 135, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body .sidebar-nav > li {
         height: 45px;
         outline: none;
         cursor: pointer;
         overflow: hidden;
         position: relative; }
+        /* line 142, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body .sidebar-nav > li > a {
           height: 45px;
           border: none;
@@ -1165,30 +1399,39 @@ html.default {
           line-height: 14px;
           text-decoration: none;
           padding: 15px 0px 15px 25px; }
+          /* line 153, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li > a > .rubix-icon {
             width: 16px;
             height: 17px;
             vertical-align: top;
             display: inline-block; }
+          /* line 160, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li > a > .name {
             line-height: 16px;
             vertical-align: top; }
+            /* line 164, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
             html.default body .sidebar-nav > li > a > .name > span > .label {
               float: right;
               margin-top: -3px;
               padding: 5px 10px;
               margin-right: 30px; }
+          /* line 172, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li > a > .rubix-icon ~ .name {
             margin-left: 10px; }
+          /* line 176, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li > a:hover, html.default body .sidebar-nav > li > a:focus {
             border: none;
             background: rgba(0, 0, 0, 0.2); }
+        /* line 183, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body .sidebar-nav > li:hover:before, html.default body .sidebar-nav > li.open:before {
           display: none; }
+        /* line 188, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body .sidebar-nav > li.open {
           height: 100%; }
+          /* line 191, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li.open > a {
             background: rgba(0, 0, 0, 0.2); }
+        /* line 196, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body .sidebar-nav > li:before {
           left: 0;
           top: 22px;
@@ -1197,15 +1440,20 @@ html.default {
           position: absolute;
           display: inline-block;
           border: 1px solid rgba(59, 70, 72, 0.5); }
+        /* line 206, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body .sidebar-nav > li.active {
           border-left: 5px solid #E76049; }
+          /* line 208, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li.active > a {
             background: rgba(0, 0, 0, 0.4);
             padding-left: 20px; }
+            /* line 212, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
             html.default body .sidebar-nav > li.active > a:hover {
               background: rgba(0, 0, 0, 0.4); }
+          /* line 217, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li.active:before {
             display: none; }
+          /* line 221, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
           html.default body .sidebar-nav > li.active:after {
             top: 11px;
             right: 0;
@@ -1215,27 +1463,35 @@ html.default {
             border-top: 12px solid transparent;
             border-bottom: 12px solid transparent;
             border-right: 10px solid #E9F0F5; }
+    /* line 235, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
     html.default body .sidebar-nav-container > .sidebar-nav {
       border: none;
       margin-left: -25px;
       margin-right: -25px; }
+      /* line 241, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body .sidebar-nav-container > .sidebar-nav > li:before {
         display: none; }
+      /* line 245, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body .sidebar-nav-container > .sidebar-nav > li > a {
         font-size: 16px;
         line-height: 16px;
         padding: 15px 25px; }
+        /* line 250, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body .sidebar-nav-container > .sidebar-nav > li > a > .name {
           line-height: 18px;
           margin-left: 15px; }
+        /* line 255, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
         html.default body .sidebar-nav-container > .sidebar-nav > li > a > .rubix-icon {
           width: 18px;
           height: 19px;
           display: inline-block; }
+      /* line 263, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
       html.default body .sidebar-nav-container > .sidebar-nav > li.active > a {
         padding-left: 20px; }
+    /* line 270, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_sidebar.scss */
     html.default body #navbar ~ #sidebar {
       top: 75px; }
+    /* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_body.scss */
     html.default body #body {
       left: 0;
       -ms-flex: 1 0 auto;
@@ -1248,28 +1504,36 @@ html.default {
       background: #E9F0F5;
       margin-top: 25px;
       padding-bottom: 25px; }
+    /* line 19, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_body.scss */
     html.default body #navbar ~ #body {
       margin-top: 74px;
       padding-top: 25px; }
     @media (min-width: 990px) {
+      /* line 24, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_body.scss */
       html.default body #sidebar ~ #body {
         margin-left: 250px; } }
+    /* line 30, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_body.scss */
     html.default body #sidebar + #body {
       margin-top: 0;
       padding-top: 25px; }
+    /* line 35, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_body.scss */
     html.default body .external-event {
       background: #E76049; }
+    /* line 2, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_footer.scss */
     html.default body #footer {
       padding: 10px;
       position: relative;
       color: #CCD6DF;
       background: #89949B; }
+    /* line 9, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_footer.scss */
     html.default body #footer-container {
       transition: all 0.3s ease; }
     @media (min-width: 990px) {
+      /* line 13, /Users/lancespears/Documents/mploy/src/sass/app/theme/sections/_footer.scss */
       html.default body #sidebar ~ #footer-container {
         margin-left: 250px; } }
 
+/* line 96, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html .sidebar-nav > li > a > .toggle-button {
   top: 14px;
   right: 15px;
@@ -1277,20 +1541,25 @@ html .sidebar-nav > li > a > .toggle-button {
   -webkit-transform-origin: 4px;
           transform-origin: 4px;
   transition: all 0.125s ease; }
+  /* line 103, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html .sidebar-nav > li > a > .toggle-button.open {
     -webkit-transform: rotate(-90deg);
             transform: rotate(-90deg); }
+  /* line 107, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html .sidebar-nav > li > a > .toggle-button.opposite {
     -webkit-transform-origin: 12px;
             transform-origin: 12px; }
+    /* line 110, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html .sidebar-nav > li > a > .toggle-button.opposite.open {
       -webkit-transform: rotate(90deg);
               transform: rotate(90deg); }
 
+/* line 116, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.touchevents, html.touchevents > body, html.touchevents #app-container, html.touchevents #app-container > #container {
   position: relative;
   overflow: hidden !important; }
 
+/* line 121, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.touchevents #body {
   top: 0;
   bottom: 0;
@@ -1302,6 +1571,7 @@ html.touchevents #body {
   margin-bottom: 0 !important;
   min-height: 100% !important;
   margin-top: -100px !important; }
+  /* line 133, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.touchevents #body > div {
     position: absolute;
     top: 0;
@@ -1313,52 +1583,68 @@ html.touchevents #body {
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
     padding-top: 200px; }
+    /* line 145, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.touchevents #body > div > div {
       overflow-x: hidden; }
 
+/* line 156, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.touchevents #sidebar {
   overflow: hidden !important; }
+  /* line 158, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.touchevents #sidebar #sidebar-container > .sidebar {
     overflow-x: hidden !important;
     overflow-y: scroll !important;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar; }
 
+/* line 166, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.touchevents #footer {
   display: none !important;
   position: relative !important; }
 
+/* line 172, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.static {
   background: #273135; }
+  /* line 175, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.static body, html.static #app-container {
     background: #273135; }
+  /* line 179, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.static #body {
     margin-top: -40px !important; }
+  /* line 183, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.static #sidebar, html.static #rubix-nav-header {
     position: relative !important; }
+  /* line 187, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.static #rubix-nav-header {
     position: static;
     margin-top: -110px;
     margin-bottom: -110px;
     margin-left: -25px !important;
     margin-right: -25px; }
+  /* line 195, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.static #sidebar {
     overflow: visible !important; }
+    /* line 198, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static #sidebar #sidebar-container, html.static #sidebar .sidebar {
       overflow: visible !important; }
   @media (min-width: 990px) {
+    /* line 204, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static #rubix-nav-header {
       margin-left: 225px !important; } }
+  /* line 210, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.static #container.container-open #rubix-nav-header {
     margin-left: 225px !important; }
   @media (min-width: 990px) {
+    /* line 215, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static #container.container-open #rubix-nav-header {
       margin-right: -25px !important; } }
 
+/* line 222, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.boxed {
   height: 100%;
   overflow: hidden;
   background: #333333 url(/imgs/app/congruent_outline.png); }
+  /* line 227, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.boxed body {
     margin: 0;
     width: 100%;
@@ -1366,32 +1652,42 @@ html.boxed {
     overflow: hidden;
     background: none;
     transition: all 0.5s ease; }
+    /* line 235, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.boxed body #rubix-nav-header {
       margin: 0;
       position: absolute; }
+    /* line 240, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.boxed body #sidebar {
       top: 75px; }
+    /* line 245, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.boxed body #container.container-open > #sidebar {
       left: 0; }
+    /* line 248, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.boxed body #container.container-open #rubix-nav-header {
       margin-left: 0;
       margin-right: 0; }
+    /* line 252, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.boxed body #container.container-open > #body, html.boxed body #container.container-open > #footer-container {
       margin-left: 250px;
       margin-right: -250px; }
       @media (min-width: 990px) {
+        /* line 252, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
         html.boxed body #container.container-open > #body, html.boxed body #container.container-open > #footer-container {
           margin-right: 0;
           margin-left: 250px; } }
+    /* line 263, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.boxed body > #app-container {
       height: 100%;
       overflow: hidden;
       position: relative; }
+      /* line 268, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
       html.boxed body > #app-container #rubix-nav-header {
         position: relative; }
+      /* line 272, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
       html.boxed body > #app-container #sidebar {
         margin: 0;
         position: absolute; }
+      /* line 277, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
       html.boxed body > #app-container #body {
         left: 0;
         right: 0;
@@ -1405,51 +1701,67 @@ html.boxed {
         margin-top: -175px !important;
         overflow-y: auto;
         overflow-x: hidden; }
+      /* line 293, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
       html.boxed body > #app-container #footer-container, html.boxed body > #app-container #footer {
         display: none; }
+      /* line 297, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
       html.boxed body > #app-container #navbar ~ #body {
         margin-top: 0;
         top: 69px; }
   @media (min-width: 990px) {
+    /* line 305, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.boxed body {
       width: 990px;
       margin: auto;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); }
+      /* line 310, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
       html.boxed body > #app-container {
         margin: auto; }
+        /* line 313, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
         html.boxed body > #app-container #navbar {
           padding: 0; }
+        /* line 317, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
         html.boxed body > #app-container #sidebar {
           margin-left: 0; }
+        /* line 321, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
         html.boxed body > #app-container #sidebar ~ #body, html.boxed body > #app-container #sidebar ~ #body ~ #footer-container {
           right: 0;
           margin-left: 250px; } }
 
+/* line 330, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
 html.static.boxed {
   height: auto;
   overflow: auto;
   overflow-x: hidden; }
+  /* line 335, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
   html.static.boxed body {
     height: auto;
     overflow: visible;
     overflow-x: hidden; }
+    /* line 340, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static.boxed body #app-container {
       overflow: hidden; }
+    /* line 345, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static.boxed body #container.container-open #rubix-nav-header {
       margin-left: 0 !important;
       margin-right: 0 !important; }
+    /* line 351, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static.boxed body #navbar {
       width: 100%; }
+    /* line 355, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static.boxed body #rubix-nav-header {
       margin-right: 0;
       margin-top: -110px;
       margin-left: 0 !important; }
+    /* line 361, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static.boxed body #body {
       overflow: hidden !important;
       padding-top: 95px !important;
       position: relative !important;
       padding-bottom: 95px !important; }
+    /* line 368, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static.boxed body #footer-container, html.static.boxed body #footer {
       display: block !important; }
+    /* line 372, /Users/lancespears/Documents/mploy/src/sass/app/theme/_theme-mixin.scss */
     html.static.boxed body #footer-container {
       margin-top: 25px; }

@@ -2,6 +2,11 @@ import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
 
+import { connect } from 'react-redux';
+
+import actions from 'redux/actions';
+import { VisibilityFilters } from 'redux/actions/actionTypes';
+
 class SocialBanner extends React.Component {
   constructor(props) {
     super(props);
@@ -26,15 +31,23 @@ class SocialBanner extends React.Component {
       likeTextStyle: 'fg-orange75'
     });
   }
+
+
   render() {
     return (
+      // background photo
       <div style={{height: 350, marginTop: -25, backgroundImage: 'url(/imgs/shots/Blick_auf_Manhattan.JPG)', backgroundSize: 'cover', position: 'relative', marginBottom: 25, backgroundPosition: 'center'}}>
         <div className='social-cover' style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
         </div>
+
         <div className='social-desc'>
           <div>
-            <h1 className='fg-white'>Empire State, NY, USA</h1>
-            <h5 className='fg-white' style={{opacity: 0.8}}>- Aug 20th, 2014</h5>
+            <h1 className='fg-white'>
+              {/*user city,st*/}
+            </h1>
+            <h5 className='fg-white' style={{opacity: 0.8}}>
+              {/*today's date*/}
+            </h5>
             <div style={{marginTop: 50}}>
               <div style={{display: 'inline-block'}}>
                 <Button id='likeCount' retainBackground rounded bsStyle='orange75' active={this.state.likeActive} onClick={this.handleLike.bind(this)}>
@@ -46,9 +59,13 @@ class SocialBanner extends React.Component {
           </div>
         </div>
         <div className='social-avatar'>
-          <Img src='/imgs/avatars/avatar.jpg' height='100' width='100' style={{display: 'block', borderRadius: 100, border: '2px solid #fff', margin: 'auto', marginTop: 50}} />
-          <h4 className='fg-white text-center'>Anna Sanchez</h4>
-          <h5 className='fg-white text-center' style={{opacity: 0.8}}>DevOps Engineer, NY</h5>
+          <Img src=/* linkedin avatar */'' height='100' width='100' style={{display: 'block', borderRadius: 100, border: '2px solid #fff', margin: 'auto', marginTop: 50}} />
+          <h4 className='fg-white text-center'>
+            {/*linkedin name: first, last*/}
+          </h4>
+          <h5 className='fg-white text-center' style={{opacity: 0.8}}>
+            {/*linkedin current job title/specialty*/}
+          </h5>
           <hr className='border-black75' style={{borderWidth: 2}}/>
           <div className='text-center'>
             <Button outlined inverse retainBackground active={this.state.followActive} bsStyle='brightblue' onClick={this.handleFollow.bind(this)}>
@@ -61,12 +78,14 @@ class SocialBanner extends React.Component {
   }
 }
 
+
 export default class Body extends React.Component {
+
   componentDidMount() {
     $('html').addClass('social');
     (() => {
       // create a map in the "map" div, set the view to a given place and zoom
-      var map = L.map('map', {
+      let map = L.map('map', {
         scrollWheelZoom: false
       }).setView([40.7127, -74.0059], 16);
 
@@ -80,6 +99,8 @@ export default class Body extends React.Component {
           .openPopup();
     })();
   }
+
+
   componentWillUnmount() {
     $('html').removeClass('social');
   }

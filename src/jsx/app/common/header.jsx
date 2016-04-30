@@ -8,7 +8,7 @@ class Brand extends React.Component {
     return (
       <NavHeader {...this.props}>
         <NavBrand tabIndex='-1'>
-          <img src='/imgs/app/logo.png' alt='rubix' width='111' height='28' />
+          <img src=/*logo here*/'' alt='mploy' width='111' height='28' />
         </NavBrand>
       </NavHeader>
     );
