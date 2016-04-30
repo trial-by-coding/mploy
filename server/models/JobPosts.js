@@ -62,3 +62,19 @@ JobPosts.getJob = function(jobID) {
     })
 };
 
+
+JobPosts.getJobsByUser = function(userID) {
+    
+    return db('job_posts')
+    .where('user_id', userID)
+    .then(function(record) {
+      if (record.length === 0){
+        err="no records with that jobID found";
+        throw err;
+      }
+      return record[0]
+    })
+    .catch(function(err) {
+      throw err
+    })
+};

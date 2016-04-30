@@ -55,28 +55,51 @@ module.exports = function(router) {
     }
   }); 
 
+  router.get('/currentuserapps', function(req, res){
+    console.log('---currentuserapps:received GET');
+    var linkedin_id = req.user.linkedin_id
+    return Users.verifyId(linkedin_id)
+    .then(function(data){
+    console.log("User data: ", data);
+    return Applications.getAppsByUser(data.userID)
+    })
+    .then(function(jobs) {
+    console.log('Responding with applications for current user: ', jobs)
+    res.status(200).send(jobs);
+    })
+    .catch(function(err){
+    console.log("No applications retrieved for current user: ", err);
+    res.status(400).send(err);
+    })
+  }) 
+
   router.post('/submitapp', function(req, res) {
     console.log('received submit application POST, body:',req.body);
     if(! req || !req.body) {
       console.log("error: submitapp POST with no body");
       res.status(400).send("/submitapp expected a body object");
     } else {
-      console.log("body:",req.body);
-      Applications.submit(req.body)
-      .then(function(data){
-        res.status(200).send("success!");
-        console.log("Application successfully submitted")
-        Stats.incrementTotalApps(req.body.user_id)
-        .then(function() {
-          console.log("Total apps increment successful")  
+      var linkedin_id = req.user.linkedin_id
+      return Users.verifyId(linkedin_id)
+      .then(function(userInfo) {
+        console.log("body:",req.body);
+        req.body.user_id = userInfo.userID
+        Applications.submit(req.body)
+        .then(function(data){
+          res.status(200).send("success!");
+          console.log("Application successfully submitted")
+          Stats.incrementTotalApps(req.body.user_id)
+          .then(function() {
+            console.log("Total apps increment successful")  
+          })
+          .catch(function() {
+            console.log("Total apps increment failed")
+          })  
         })
-        .catch(function() {
-          console.log("Total apps increment failed")
-        })  
-      })
-      .catch(function(err){
-        console.log("application submission failed, err:", err);
-        res.status(400).send("Application submission and/or increment failed");  
+        .catch(function(err){
+          console.log("application submission failed, err:", err);
+          res.status(400).send("Application submission and/or increment failed");  
+        }) 
       })
     }
   });

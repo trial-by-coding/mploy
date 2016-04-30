@@ -59,7 +59,7 @@ module.exports = function(router) {
   });
 
   router.get('/appsbyjob', function(req, res){
-    console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
+    console.log('---appsbyjob:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.jobID) {
       console.log("request for jobId = ",rq.jobID);
@@ -77,6 +77,24 @@ module.exports = function(router) {
       res.status(400).send("must supply jobID in query string");       
     }
   });
+
+  router.get('/jobscreated', function(req, res) {
+    console.log('---jobscreated:received GET')
+    var linkedin_id = req.user.linkedin_id
+    return Users.verifyId(linkedin_id)
+    .then(function(data){
+    console.log("User data: ", data);
+    return JobPosts.getJobsByUser(data.userID)
+    })
+    .then(function(jobs) {
+    console.log('Responding with job posts for current user: ', jobs)
+    res.status(200).send(jobs);
+    })
+    .catch(function(err){
+    console.log("No job posts retrieved for current user: ", err);
+    res.status(400).send(err);
+    })
+  })
 
   router.get('/unconsideredapps', function(req, res){
     console.log('---unconsideredapps:received GET, query='+JSON.stringify(req.query));
@@ -98,6 +116,8 @@ module.exports = function(router) {
     }
   });
 
+
+//get user id
   router.post('/submitjob', function(req, res) {
     console.log('received submit job POST, body:',req.body);
     if(! req || !req.body) {
@@ -163,6 +183,19 @@ module.exports = function(router) {
       res.status(400).send("Must supply appID in query string");       
     }
   });
+
+  router.get('/appsbyemployer', function(req, res) {
+    console.log('---appsbyemployer:received GET')
+    // var linkedin_id = req.user.linkedin_id
+    // return Users.verifyId(linkedin_id)
+    // .then(function(userRec) {
+    // return JobPosts.userJoin()
+    // })
+    return Users.jobJoin(1)
+    .then(function(result) {
+      res.send(result)
+    })
+  })
 
 	//catch all
 	router.get('/*', function(req, res) {
