@@ -13,7 +13,7 @@ import Profile from 'routes/containers/profile'
 
 
 @SidebarMixin
-export default class App extends React.Component {
+export default class EmployerApp extends React.Component {
 	render() {
     const dispatch = this.props.dispatch
 		var classes = classNames({
