@@ -6,4 +6,5 @@ test/**
 .sass-cache
 update
 server/auth/config.js
+localuser.js
 knexfile.js

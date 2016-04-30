@@ -1,10 +1,19 @@
+var localuser = require('./localuser.js')
+
 module.exports = {
 
   development: {
     client: 'postgresql',
     connection: {
       database: 'mploy_dev',
-      user: 'lancespears'
+      user: localuser.user
+    },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
     }
   }
 };
