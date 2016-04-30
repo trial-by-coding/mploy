@@ -2,15 +2,15 @@ import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
 import AppCard from 'routes/components/appCard';
-import { getApplications } from 'redux/actions/index.js';
 
+import { getApplications } from 'redux/actions/index.js';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect((state) => state)
-class ApplicationContainer extends React.Component {
+export default class ApplicationContainer extends React.Component {
     constructor(props){
     super(props)
   }
@@ -58,24 +58,26 @@ class ApplicationContainer extends React.Component {
   } 
 console.log("applist before render:", this.props.applist)
 	return (
-    <Grid>
-  		<Row>
-        {this.props.appList.items.map(function(app){
-          // console.log('inside applist:', app)
-           return (
-              <Col sm={12} md={4} lg={4}>
-                <PanelContainer style={panelStyle}>
-                  <Panel style={ panelPad }>
-                    <PanelBody >
-                        <AppCard dispatch={dispatch} fuckingApps={app} />
-                    </PanelBody>
-                  </Panel>
-                </PanelContainer>
-              </Col>
-            ) 
-          })
-        }
-  		</Row>
-    </Grid>
+    <Container id='body' className='social'>
+      <Grid>
+    		<Row>
+          {this.props.appList.items.map(function(app){
+            // console.log('inside applist:', app)
+             return (
+                <Col sm={12} md={4} lg={4}>
+                  <PanelContainer style={panelStyle}>
+                    <Panel style={ panelPad }>
+                      <PanelBody >
+                          <AppCard dispatch={dispatch} fuckingApps={app} />
+                      </PanelBody>
+                    </Panel>
+                  </PanelContainer>
+                </Col>
+              ) 
+            })
+          }
+    		</Row>
+      </Grid>
+    </Container>
 	)}
 }

@@ -67,13 +67,15 @@ export default class JobsContainer extends React.Component {
     }
 
 		return (
-			<div>
-			{jobList.map(job => <JobCard data={job} 
-                                   openModal={this.openModal}/>)}
-      <JobModal isOpen={this.state.isOpen}
-                openModal={this.openModal}
-                hideModal={this.hideModal} />
-			</div>
+      <Container id='body' className='social'>
+  			<div>
+  			{jobList.map(job => <JobCard data={job} 
+                                     openModal={this.openModal}/>)}
+        <JobModal isOpen={this.state.isOpen}
+                  openModal={this.openModal}
+                  hideModal={this.hideModal} />
+  			</div>
+      </Container>
 		)
 	}
 }

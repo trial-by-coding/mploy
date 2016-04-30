@@ -11492,6 +11492,11 @@
 
 	var _dec, _class;
 
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.default = undefined;
+
 	var _getPrototypeOf = __webpack_require__(53);
 
 	var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
@@ -11594,37 +11599,42 @@
 	      }
 	      console.log("applist before render:", this.props.applist);
 	      return React.createElement(
-	        Grid,
-	        null,
+	        Container,
+	        { id: 'body', className: 'social' },
 	        React.createElement(
-	          Row,
+	          Grid,
 	          null,
-	          this.props.appList.items.map(function (app) {
-	            // console.log('inside applist:', app)
-	            return React.createElement(
-	              Col,
-	              { sm: 12, md: 4, lg: 4 },
-	              React.createElement(
-	                PanelContainer,
-	                { style: panelStyle },
+	          React.createElement(
+	            Row,
+	            null,
+	            this.props.appList.items.map(function (app) {
+	              // console.log('inside applist:', app)
+	              return React.createElement(
+	                Col,
+	                { sm: 12, md: 4, lg: 4 },
 	                React.createElement(
-	                  Panel,
-	                  { style: panelPad },
+	                  PanelContainer,
+	                  { style: panelStyle },
 	                  React.createElement(
-	                    PanelBody,
-	                    null,
-	                    React.createElement(_appCard2.default, { dispatch: dispatch, fuckingApps: app })
+	                    Panel,
+	                    { style: panelPad },
+	                    React.createElement(
+	                      PanelBody,
+	                      null,
+	                      React.createElement(_appCard2.default, { dispatch: dispatch, fuckingApps: app })
+	                    )
 	                  )
 	                )
-	              )
-	            );
-	          })
+	              );
+	            })
+	          )
 	        )
 	      );
 	    }
 	  }]);
 	  return ApplicationContainer;
 	}(React.Component)) || _class);
+	exports.default = ApplicationContainer;
 
 /***/ },
 /* 197 */
