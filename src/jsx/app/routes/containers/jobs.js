@@ -40,6 +40,7 @@ class JobsContainer extends React.Component {
   };
 
 	render() {
+    console.log()
 		console.log('container props', this);
 		let jobList = this.props.jobList.items;
 

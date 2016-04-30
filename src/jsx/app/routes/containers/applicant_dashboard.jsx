@@ -4,7 +4,7 @@ import SidebarMixin from 'global/jsx/sidebar_component';
 import Header from 'common/header';
 import Sidebar from 'common/sidebar';
 import Footer from 'common/footer';
-import AppList from '../components/appList';
+import JobList from '../components/jobList';
 
 import { connect } from 'react-redux'
 
@@ -24,10 +24,10 @@ class AppContainer extends React.Component {
     }
 	}
   componentDidMount() {
-    this.props.dispatch(actions.getEmployerUnconsidered(1));
-    this.props.dispatch(actions.getEmployerConsidered(3));
-    this.props.dispatch(actions.getEmployerInterviews(4));
-    this.props.dispatch(actions.getEmployerOffers(2));
+    this.props.dispatch(actions.getApplicantUnconsidered(1));
+    this.props.dispatch(actions.getApplicantConsidered(3));
+    this.props.dispatch(actions.getApplicantInterviews(4));
+    this.props.dispatch(actions.getApplicantOffers(2));
   }
 
 
@@ -41,16 +41,16 @@ class AppContainer extends React.Component {
       <Grid>
         <Row>
         	<Col md={3}>
-        		<AppList data={this.props.unconsidered}/>
+        		<JobList data={this.props.unconsidered}/>
           </Col>
           <Col md={3}>
-        		<AppList data={this.props.considered} />
+        		<JobList data={this.props.considered} />
           </Col>
           <Col md={3}>
-        		<AppList data={this.props.interviews} />
+        		<JobList data={this.props.interviews} />
           </Col>
           <Col md={3}>
-        		<AppList data={this.props.offers} />
+        		<JobList data={this.props.offers} />
           </Col>
         </Row>
       </Grid>

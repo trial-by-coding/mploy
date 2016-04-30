@@ -5,6 +5,7 @@ import Header from 'common/header';
 import Sidebar from 'common/sidebar';
 import Footer from 'common/footer';
 
+
 class ShortCard extends React.Component {
   render() {
 
@@ -16,7 +17,7 @@ class ShortCard extends React.Component {
   }
 }
 
-export default class AppList extends React.Component {
+export default class JobList extends React.Component {
   componentDidMount() {
     $('#nestable').nestable({
       group: 1
@@ -36,5 +37,3 @@ export default class AppList extends React.Component {
     );
   }
 }
-
-

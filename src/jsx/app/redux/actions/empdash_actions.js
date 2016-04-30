@@ -1,42 +1,42 @@
 import axios from 'axios';
-import {GET_UNCONSIDERED,
-			  GET_CONSIDERED,
-			  GET_INTERVIEWS,
-			  GET_OFFERS } from './actionTypes';
+import {GET_EMPLOYER_UNCONSIDERED,
+			  GET_EMPLOYER_CONSIDERED,
+			  GET_EMPLOYER_INTERVIEWS,
+			  GET_EMPLOYER_OFFERS } from './actionTypes';
 
-function getUnconsidered(jobID){
+function getEmployerUnconsidered(jobID){
 	console.log('getUnconsidered Actions')
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=unconsidered')
 		.then(
-			payload => dispatch({ type: GET_UNCONSIDERED, payload})
+			payload => dispatch({ type: GET_EMPLOYER_UNCONSIDERED, payload})
 		)
 		.catch(resp => console.log("Error fetching unconsidered", resp));
 }
 
-function getConsidered(jobID){
+function getEmployerConsidered(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=considered')
 		.then(
-			payload => dispatch({ type: GET_CONSIDERED, payload})
+			payload => dispatch({ type: GET_EMPLOYER_CONSIDERED, payload})
 		);
 }
 
-function getInterviews(jobID){
+function getEmployerInterviews(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=interviews')
 		.then(
-			payload => dispatch({ type: GET_INTERVIEWS, payload})
+			payload => dispatch({ type: GET_EMPLOYER_INTERVIEWS, payload})
 		);
 }
 
-function getOffers(jobID){
+function getEmployerOffers(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=offers')
 		.then(
-			payload => dispatch({ type: GET_OFFERS, payload})
+			payload => dispatch({ type: GET_EMPLOYER_OFFERS, payload})
 		);
 }
 
 module.exports = {
-	getUnconsidered: getUnconsidered,
-	getConsidered: getConsidered,
-	getInterviews: getInterviews,
-	getOffers: getOffers
+	getEmployerUnconsidered: getEmployerUnconsidered,
+	getEmployerConsidered: getEmployerConsidered,
+	getEmployerInterviews: getEmployerInterviews,
+	getEmployerOffers: getEmployerOffers
 }
