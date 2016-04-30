@@ -63,9 +63,9 @@ module.exports = function(router) {
     console.log("User data: ", data);
     return Applications.getAppsByUser(data.userID)
     })
-    .then(function(jobs) {
-    console.log('Responding with applications for current user: ', jobs)
-    res.status(200).send(jobs);
+    .then(function(apps) {
+    console.log('Responding with applications for current user: ', apps)
+    res.status(200).send(apps);
     })
     .catch(function(err){
     console.log("No applications retrieved for current user: ", err);

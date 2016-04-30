@@ -72,7 +72,7 @@ JobPosts.getJobsByUser = function(userID) {
         err="no records with that jobID found";
         throw err;
       }
-      return record[0]
+      return record
     })
     .catch(function(err) {
       throw err
