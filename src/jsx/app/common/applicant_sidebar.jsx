@@ -31,10 +31,8 @@ class ApplicantSidebar extends React.Component {
 
                   <SidebarNavItem glyph='icon-feather-mail' name={<span>Menu <BLabel className='bg-darkgreen45 fg-white'>3</BLabel></span>}>
                     <SidebarNav>
-                      <SidebarNavItem glyph='icon-feather-inbox' name='Inbox' />
-                      <SidebarNavItem glyph='icon-outlined-mail-open' name='Mail' />
-                      <SidebarNavItem glyph='icon-dripicons-message' name='Compose' />
                       <SidebarNavItem glyph='icon-fontello-calendar-alt' href='/calendar' name='Calendar' />
+                      <SidebarNavItem glyph='icon-fontello-flow-cascade' href='/lists' name='Lists' />
                     </SidebarNav>
                   </SidebarNavItem>
                 </SidebarNav>
@@ -82,16 +80,16 @@ export default class extends React.Component {
               </Col>
               <Col xs={8} collapseLeft id='avatar-col'>
                 <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>LinkedIn User</div>
-                <div>
+                {/*<div>
                   <Progress id='demo-progress' value={30} min={0} max={100} color='#ffffff'/>
                   <Icon id='demo-icon' bundle='fontello' glyph='lock-5' />
-                </div>
+                </div>*/}
               </Col>
             </Row>
           </Grid>
         </div>
         <SidebarControls>
-          <SidebarControlBtn bundle='fontello' glyph='docs' sidebar={0} />
+          <SidebarControlBtn bundle='fontello' glyph='home' sidebar={0} />
           <SidebarControlBtn bundle='fontello' glyph='chat-1' sidebar={1} />
           <SidebarControlBtn bundle='fontello' glyph='chart-pie-2' sidebar={2} />
           <SidebarControlBtn bundle='fontello' glyph='th-list-2' sidebar={3} />
