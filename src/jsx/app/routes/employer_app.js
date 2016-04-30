@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
+import Header from 'routes/components/header';
+import EmployerSidebar from 'routes/components/employer_sidebar';
+import Footer from 'routes/components/footer';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import Applications from 'routes/containers/applications'
@@ -21,7 +21,7 @@ export default class EmployerApp extends React.Component {
 		})
 		return (
 			<Container id='container' className={classes}>
-				<Sidebar />
+				<EmployerSidebar />
 				<Header />
         {this.props.children}
 				<Footer />
