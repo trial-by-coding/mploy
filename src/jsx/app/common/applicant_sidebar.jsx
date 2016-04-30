@@ -34,6 +34,7 @@ class ApplicantSidebar extends React.Component {
                       <SidebarNavItem glyph='icon-feather-inbox' name='Inbox' />
                       <SidebarNavItem glyph='icon-outlined-mail-open' name='Mail' />
                       <SidebarNavItem glyph='icon-dripicons-message' name='Compose' />
+                      <SidebarNavItem glyph='icon-fontello-calendar-alt' href='/calendar' name='Calendar' />
                     </SidebarNav>
                   </SidebarNavItem>
                 </SidebarNav>

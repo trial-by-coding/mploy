@@ -10,11 +10,13 @@ import Profile from 'routes/containers/profile';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import PieDonutSeries from 'routes/charts/rubix/piedonut_series';
+import Calendar from 'routes/calendar';
 
 
 export default (history, onUpdate) => {
   return (
     <Router history={history} onUpdate={onUpdate}>
+
       <Route path='/' component={Landing}/>
 
       <Route path='/applicant' component={ApplicantApp}>
@@ -28,7 +30,9 @@ export default (history, onUpdate) => {
         <Route path='/profile' component={Profile} />
         <Route path='/applications' component={Applications} />
         <Route path='/rubix/piedonut' component={PieDonutSeries} />
+        <Route path='/calendar' component={Calendar} />
       </Route>
+
     </Router>
   );
 };
