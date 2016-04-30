@@ -2,10 +2,6 @@ import { Link, State, Navigation } from 'react-router';
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
-
 import { connect } from 'react-redux';
 
 import actions from 'redux/actions';

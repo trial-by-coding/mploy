@@ -3,7 +3,7 @@ import SidebarMixin from 'global/jsx/sidebar_component';
 
 import Header from 'routes/components/header';
 import ApplicantSidebar from 'routes/components/applicant_sidebar';
-import Footer from 'routes/common/footer';
+import Footer from 'routes/components/footer';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import Applications from 'routes/containers/applications'

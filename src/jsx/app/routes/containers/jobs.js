@@ -1,9 +1,6 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'routes/componentsheader';
-import Sidebar from 'routes/components/sidebar';
-import Footer from 'routes/components/footer';
 import JobCard from 'routes/components/jobCard';
 import JobModal from 'routes/components/jobModal';
 

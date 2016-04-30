@@ -98,7 +98,7 @@ export default class extends React.Component {
         </SidebarControls>
         <div id='sidebar-container'>
           <Sidebar sidebar={0}>
-            <ApplicationSidebar />
+            <ApplicantSidebar />
           </Sidebar>
           <Sidebar sidebar={1}>
             <DummySidebar />

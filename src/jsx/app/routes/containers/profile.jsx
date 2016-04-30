@@ -1,9 +1,6 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'routes/components/header';
-import Sidebar from 'routes/components/sidebar';
-import Footer from 'routes/components/footer';
 
 class SocialBanner extends React.Component {
   constructor(props) {
