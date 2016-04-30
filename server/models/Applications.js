@@ -85,6 +85,17 @@ Applications.getByStatus = function(jobID, status) {
   })
 };
 
+Applications.appsAndApplicants = function(jobID) {
+  return db('applications')
+  .join('users', 'user_id', '=', 'users.userID' )
+  .where({
+    job_id: jobID
+  })
+  .then(function(data) {
+    return data
+  })
+};
+
 Applications.getUnconsidered = function(jobID) {
   
   return db('applications')
@@ -106,6 +117,21 @@ Applications.getAppsByUser = function(userID) {
   return db('applications')
   .where({
     'user_id': userID
+  })
+  .then(function(records) {
+    return records
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
+Applications.getAppsByUserAndStatus = function(userID, status) {
+  
+  return db('applications')
+  .where({
+    'user_id': userID,
+    'status': status
   })
   .then(function(records) {
     return records

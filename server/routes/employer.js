@@ -78,6 +78,27 @@ module.exports = function(router) {
     }
   });
 
+  //TO DO:
+  router.get('/appsandapplicants', function(req, res) {
+    console.log('---appsandapplicants:received GET, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.jobID) {
+      console.log("jobId for request = ",rq.jobID);
+      Applications.appsAndApplicants(rq.jobID) 
+      .then(function(data){
+        console.log("returning application data", data);
+        res.status(200).send(JSON.stringify(data));
+      })
+      .catch(function(err){
+        console.log("could not get application data for jobID "+rq.jobID+", err:", err);
+        res.status(400).send(err);
+      })
+    } else {
+      console.log("must supply jobID in query string"); 
+      res.status(400).send("must supply jobID in query string");       
+    }
+  });
+
   router.get('/jobscreated', function(req, res) {
     console.log('---jobscreated:received GET')
     var linkedin_id = req.user.linkedin_id
