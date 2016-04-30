@@ -67,6 +67,7 @@
     "ncp": "^2.0.0",
     "nedb": "^1.7.2",
     "node-libs-browser": "^0.5.3",
+    "node-sass": "^3.6.0",
     "passport": "^0.3.2",
     "passport-github": "^1.1.0",
     "passport-github2": "^0.1.10",

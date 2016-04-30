@@ -193,7 +193,7 @@ logData('WEBPACK DEV SERVER HOST :', whost);
 gulp.task('sass:app', function() {
   gulp.src('./src/sass/'+defaultAppName+'/*.scss')
       .pipe(sass({
-        // sourceComments: 'normal'
+        sourceComments: 'normal'
       }))
       .pipe(autoprefixer('last 2 versions', '> 1%', 'ie 9'))
       .pipe(insert.prepend(banner()+'\n'))
