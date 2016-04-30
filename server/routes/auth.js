@@ -36,11 +36,6 @@ module.exports = function(router, passport) {
     }
   });
 
-  //get endpoint to serve up index.html
-  // router.get('/dashboard', function(req, res) {
-  //   res.sendFile(assetFolder + '/index.html');
-  // });
-
   //------Authentication Routes
 
   // LinkedIn
@@ -68,6 +63,7 @@ module.exports = function(router, passport) {
   router.get('/logout', function(req, res) {
     req.logout();
     req.session = null;
+    console.log('Signing out')
     res.redirect('/');
   });
 };
