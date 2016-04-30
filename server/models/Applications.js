@@ -126,6 +126,21 @@ Applications.getAppsByUser = function(userID) {
   })
 };
 
+Applications.getAppsByUserAndStatus = function(userID, status) {
+  
+  return db('applications')
+  .where({
+    'user_id': userID,
+    'status': status
+  })
+  .then(function(records) {
+    return records
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
 Applications.getAppsByJob = function(jobID) {
   
   return db('applications').where('job_id', jobID)
