@@ -12,7 +12,7 @@ import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
-class AppContainer extends React.Component {
+export default class EmployerDashboard extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -57,21 +57,4 @@ class AppContainer extends React.Component {
     </Container>
     )
 	}
-}
-
-@SidebarMixin
-export default class extends React.Component {
-	render() {
-    const dispatch = this.props.dispatch
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <AppContainer />
-				<Footer />
-			</Container>
-	)}
 }

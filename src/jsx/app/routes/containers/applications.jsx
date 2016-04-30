@@ -82,28 +82,3 @@ console.log("applist before render:", this.props.applist)
     </Grid>
 	)}
 }
-
-@SidebarMixin
-export default class extends React.Component {
-
-	render() {
-    const app = ['Some text', 'More Text', 'Even More Text'];
-
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <Container id='body'>
-          <Grid>
-            <Row>
-              <ApplicationContainer />
-            </Row>
-          </Grid>
-        </Container>
-				<Footer />
-			</Container>
-	)}
-}

@@ -64,7 +64,7 @@ class SocialBanner extends React.Component {
   }
 }
 
-class Body extends React.Component {
+export default class Body extends React.Component {
   componentDidMount() {
     $('html').addClass('social');
     (() => {
@@ -293,24 +293,6 @@ class Body extends React.Component {
           </Row>
         </Grid>
         {this.props.children}
-      </Container>
-    );
-  }
-}
-
-@SidebarMixin
-export default class extends React.Component {
-  render() {
-    var classes = classNames({
-      'container-open': this.props.open
-    });
-
-    return (
-      <Container id='container' className={classes}>
-        <Sidebar />
-        <Header />
-        <Body />
-        <Footer />
       </Container>
     );
   }

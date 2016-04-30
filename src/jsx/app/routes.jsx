@@ -1,5 +1,6 @@
-import { Route, Router } from 'react-router';
+import { Route, Router, IndexRoute } from 'react-router';
 
+import App from 'routes/app'
 import Landing from 'routes/landing';
 import Blank from 'routes/blank';
 import Applications from 'routes/containers/applications';
@@ -15,12 +16,15 @@ export default (history, onUpdate) => {
   return (
     <Router history={history} onUpdate={onUpdate}>
       <Route path='/' component={Landing}/>
-      <Route path='/user' component={ApplicantDashboard}>
+
+      <Route path='/applicant' component={App}>
+        <IndexRoute component={ApplicantDashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/jobs' component={Jobs} />
         <Route path='/rubix/piedonut' component={PieDonutSeries} />
       </Route>
-      <Route path='/employer' component={EmployerDashboard} >
+      <Route path='/employer' component={App} >
+        <IndexRoute component={EmployerDashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/applications' component={Applications} />
         <Route path='/rubix/piedonut' component={PieDonutSeries} />

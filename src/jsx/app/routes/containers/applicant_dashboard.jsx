@@ -12,28 +12,17 @@ import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
-class AppContainer extends React.Component {
+export default class ApplicantDashboard extends React.Component {
 	constructor(props) {
 		super(props)
-		this.state = {
-      isFetching: true,
-      unconsidered:[],
-      considered: [],
-      interviews: [],
-      offers: []
-    }
 	}
   componentDidMount() {
-    this.props.dispatch(actions.getApplicantUnconsidered(1));
-    this.props.dispatch(actions.getApplicantConsidered(3));
-    this.props.dispatch(actions.getApplicantInterviews(4));
-    this.props.dispatch(actions.getApplicantOffers(2));
+
   }
 
 
 
 	render() {
-
 
     console.log("AppContainer state", this.state);
 		return (
@@ -57,21 +46,4 @@ class AppContainer extends React.Component {
     </Container>
     )
 	}
-}
-
-@SidebarMixin
-export default class extends React.Component {
-	render() {
-    const dispatch = this.props.dispatch
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <AppContainer />
-				<Footer />
-			</Container>
-	)}
 }

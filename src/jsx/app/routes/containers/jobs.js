@@ -15,7 +15,7 @@ import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
-class JobsContainer extends React.Component {
+export default class JobsContainer extends React.Component {
   componentWillMount() {
     this.props.dispatch(actions.getJobs());
   }
@@ -81,30 +81,4 @@ class JobsContainer extends React.Component {
 			</div>
 		)
 	}
-}
-
-
-@SidebarMixin
-export default class extends React.Component {
-	render() {
-    const dispatch = this.props.dispatch
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <Container id='body'>
-          <Grid>
-            <Row>
-            	<Col md={12}>
-            		<JobsContainer />
-              </Col>
-            </Row>
-          </Grid>
-        </Container>
-				<Footer />
-			</Container>
-	)}
 }
