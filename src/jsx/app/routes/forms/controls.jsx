@@ -1,5 +1,9 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
+import Header from 'common/header';
+import Sidebar from 'common/sidebar';
+import Footer from 'common/footer';
+import actions from 'redux/actions';
 
 
 export default class Body extends React.Component {
@@ -7,6 +11,7 @@ export default class Body extends React.Component {
     super(props)
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.eduChange = this.eduChange.bind(this)
+    this.skillChange = this.skillChange.bind(this)
 
     this.state = {
       formVal: {
@@ -30,6 +35,11 @@ export default class Body extends React.Component {
     }
   }
 
+  componentDidMount() {
+    console.log('props in controls is:', this.props)
+  }
+
+
   onFormSubmit(e){
     e.preventDefault()
     console.log('app form is:', this.state.formVal.education);
@@ -41,10 +51,35 @@ export default class Body extends React.Component {
         education:e.target.value,
       }
     });
+  }
 
+  skillChange(e){
+    console.log("skillChanged before:",this.state.formVal)
+
+    this.setState({
+      formVal:{
+        skill_10:e.target.checked,
+      }
+    });
+
+    console.log("skillChanged after:",this.state.formVal)
   }
 
   render() {
+
+    let appFormList = this.props.data;
+    console.log("appFormList be:", appFormList)
+
+    let skillsArr = [];
+
+    for (var key in appFormList) {
+      if (key.indexOf('skill') !== -1 && appFormList[key] !== null) {
+        skillsArr.push(appFormList[key])
+      }
+    }
+
+    console.log("skillsArr be:", skillsArr)
+
     return (
       <Container id='body'>
         <Grid>
@@ -78,27 +113,9 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label>Skills</Label>
-                              <Checkbox value='option1' name='checkbox-options'>
-                                Javascript
-                              </Checkbox>
-                              <Checkbox value='option2' defaultChecked name='checkbox-options'>
-                                React
-                              </Checkbox>
-                              <Checkbox value='option3' name='checkbox-options'>
-                                Redux
-                              </Checkbox>
-                              <Checkbox value='option3' name='checkbox-options'>
-                                Node
-                              </Checkbox>
-                              <Checkbox value='option3' name='checkbox-options'>
-                                Express
-                              </Checkbox>
-                              <Checkbox value='option3' name='checkbox-options'>
-                                Gulp
-                              </Checkbox>
-                              <Checkbox value='option3' name='checkbox-options'>
-                                Git
-                              </Checkbox>
+                              {skillsArr.map(item => <Checkbox onChange={this.skillChange}
+                                                               checked={this.state.skill_10}
+                                                               name='checkbox-options'>{item}</Checkbox>)}
                               <hr/>
                             </FormGroup>
 
@@ -111,7 +128,7 @@ export default class Body extends React.Component {
                             </FormGroup>
 
                             <FormGroup>
-                              <Label htmlFor='dropdownselect'>Visa required</Label>
+                              <Label htmlFor='dropdownselect'>Would you require visa sponsorship?</Label>
                               <Select id='dropdownselect' defaultValue='1'>
                                 <option value='1'>Yes</option>
                                 <option value='2'>No</option>
@@ -119,7 +136,7 @@ export default class Body extends React.Component {
                             </FormGroup>
 
                             <FormGroup>
-                              <Label htmlFor='textarea'>Why are you the top canidate?</Label>
+                              <Label htmlFor='textarea'>Why are you the top candidate?</Label>
                               <Textarea id='textarea' rows='3' placeholder='Sell yourself!' />
                             </FormGroup>
 

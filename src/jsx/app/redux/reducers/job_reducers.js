@@ -3,6 +3,7 @@ import  { ADD_JOB,
           REMOVE_JOB,
           APPLY_JOB,
           SHOW_FORM,
+          APP_FORM_POP,
           HIDE_FORM,
           FETCH_JOBS,
           SET_VISIBILITY_FILTER } from '../actions/actionTypes';
@@ -26,6 +27,12 @@ function jobList(state = initialState, action) {
       console.log('HIDE_FORM');
       return Object.assign({}, state, {
         showForm: false
+      });
+    case APP_FORM_POP:
+      console.log('APP_FORM, reducer fired!',action.payload.data);
+      const appForm = action.payload.data;
+      return Object.assign({}, state, {
+        appFormPop: appForm
       });
     default:
       return state

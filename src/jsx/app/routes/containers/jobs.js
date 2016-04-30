@@ -35,7 +35,8 @@ export default class JobsContainer extends React.Component {
   };
 
 	render() {
-    console.log()
+
+    const { dispatch } = this.props;
 		console.log('container props', this);
 		let jobList = this.props.jobList.items;
 
@@ -68,15 +69,42 @@ export default class JobsContainer extends React.Component {
 
 		return (
 
+
       <Container id='body' className='social'>
-  			<div>
-  			{jobList.map(job => <JobCard data={job} 
-                                     openModal={this.openModal}/>)}
-        <JobModal isOpen={this.state.isOpen}
-                  openModal={this.openModal}
-                  hideModal={this.hideModal} />
-  			</div>
+        <div>
+        {jobList.map(job => <JobCard data={job} 
+                                     openModal={this.openModal}
+                                     dispatch={dispatch} />)}
+        </div>   			
       </Container>
 		)
 	}
 }
+
+
+
+@SidebarMixin
+export default class extends React.Component {
+	render() {
+    // const dispatch = this.props.dispatch
+		var classes = classNames({
+			'container-open': this.props.open
+		})
+		return (
+			<Container id='container' className={classes}>
+				<Sidebar />
+				<Header />
+        <Container id='body'>
+          <Grid>
+            <Row>
+            	<Col md={12}>
+            		<JobsContainer />
+              </Col>
+            </Row>
+          </Grid>
+        </Container>
+				<Footer />
+			</Container>
+	)}
+}
+

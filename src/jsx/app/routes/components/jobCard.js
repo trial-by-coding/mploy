@@ -69,7 +69,7 @@ class JobApply extends React.Component {
     return (
       <Modal lg>
         <ModalBody>
-        <Controls  data={this.props.data} />
+        <Controls dispatch={this.props.dispatch} data={this.props.data} />
         </ModalBody>
         <ModalFooter>
           <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
@@ -102,7 +102,7 @@ class JobApply extends React.Component {
 export default class JobCard extends React.Component {
 
   render() {
-    console.log('jobCard', this.props);
+    // console.log('jobCard', this.state);
 
     const styles = {
       margin: '12.5px 0',
@@ -119,6 +119,7 @@ export default class JobCard extends React.Component {
     const colStyle = {
       zIndex: -100
     }
+
 
     return(
       <Col sm={12} md={4} lg={4}  className="clearfix">
