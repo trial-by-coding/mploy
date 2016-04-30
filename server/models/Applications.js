@@ -87,7 +87,7 @@ Applications.getByStatus = function(jobID, status) {
 
 Applications.appsAndApplicants = function(jobID) {
   return db('applications')
-  .join('users', 'user_id', '=', 'users.user_id' )
+  .join('users', 'user_id', '=', 'users.userID' )
   .where({
     job_id: jobID
   })

@@ -104,26 +104,6 @@ module.exports = function(router) {
     }
   });
 
-	//router.use(function(req,res,next) {
-		//check to see if applicant
-		//if applicant res.next()
-		// }
-    //next();
-		// res.redirect('/job')
-	//});
-
-	//routes:
-  //router.get('/appsbyuser', function(req, res) {
-  //  console.log("applicant:appsbyuser:responding with appsbyuser data");
-  //  res.status(200).send("applicant:appsbyuser");
-    /*
-    console.log('---received appsbyuser GET, query='+JSON.stringify(req.query));
-    var rq = req.query;
-
-    */
-  //});
-
-
 	//catch all
 	router.get('/*', function(req, res) { 
 		res.redirect('/job')
