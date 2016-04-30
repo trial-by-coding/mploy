@@ -31,16 +31,7 @@ exports.up = function(knex, Promise) {
       table.string('location');
       table.string('employment_type');
       table.boolean('visa_required');
-      table.string('skill_1');
-      table.string('skill_2');
-      table.string('skill_3');
-      table.string('skill_4');
-      table.string('skill_5');
-      table.string('skill_6');
-      table.string('skill_7');
-      table.string('skill_8');
-      table.string('skill_9');
-      table.string('skill_10');
+      table.jsonb('skills');
       table.integer('user_id')
         .references('userID')
         .inTable('users');
@@ -51,20 +42,11 @@ exports.up = function(knex, Promise) {
       table.increments('appID').primary();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.binary('cover_letter');
-      table.decimal('years_experience', 4, 1);
+      table.string('years_experience');
       table.string('education', 100);
       table.string('personal_statement', 300);
       table.string('status');
-      table.boolean('skill_1_met');
-      table.boolean('skill_2_met');
-      table.boolean('skill_3_met');
-      table.boolean('skill_4_met');
-      table.boolean('skill_5_met');
-      table.boolean('skill_6_met');
-      table.boolean('skill_7_met');
-      table.boolean('skill_8_met');
-      table.boolean('skill_9_met');
-      table.boolean('skill_10_met');
+      table.jsonb('skills_met');
       table.boolean('can_work_here');
       table.integer('user_id')
         .references('userID')
