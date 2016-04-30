@@ -1,10 +1,6 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
-
 import LoremIpsum from 'global/jsx/loremipsum';
 import ReactStyle from 'global/jsx/react-styles/src/ReactStyle.jsx';
 
@@ -313,20 +309,3 @@ var Body = React.createClass({
   }
 });
 
-@SidebarMixin
-export default class extends React.Component {
-  render() {
-    var classes = classNames({
-      'container-open': this.props.open
-    });
-
-    return (
-      <Container id='container' className={classes}>
-        <Sidebar />
-        <Header />
-        <Body />
-        <Footer />
-      </Container>
-    );
-  }
-}

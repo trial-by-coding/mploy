@@ -1,9 +1,6 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
 import AppCard from 'routes/components/appCard';
 import { getApplications } from 'redux/actions/index.js';
 
@@ -80,30 +77,5 @@ console.log("applist before render:", this.props.applist)
         }
   		</Row>
     </Grid>
-	)}
-}
-
-@SidebarMixin
-export default class extends React.Component {
-
-	render() {
-    const app = ['Some text', 'More Text', 'Even More Text'];
-
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <Container id='body'>
-          <Grid>
-            <Row>
-              <ApplicationContainer />
-            </Row>
-          </Grid>
-        </Container>
-				<Footer />
-			</Container>
 	)}
 }

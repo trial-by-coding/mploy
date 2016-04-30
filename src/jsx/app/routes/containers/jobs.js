@@ -1,13 +1,8 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
 import JobCard from 'routes/components/jobCard';
-import JobModal from '../components/jobModal';
-// import Description from 'routes/components/description';
-// import Confirm from 'routes/components/confirm';
+import JobModal from 'routes/components/jobModal';
 
 import { connect } from 'react-redux'
 
@@ -15,7 +10,7 @@ import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
-class JobsContainer extends React.Component {
+export default class JobsContainer extends React.Component {
   componentWillMount() {
     this.props.dispatch(actions.getJobs());
   }
@@ -40,6 +35,7 @@ class JobsContainer extends React.Component {
   };
 
 	render() {
+    console.log()
 		console.log('container props', this);
 		let jobList = this.props.jobList.items;
 
@@ -80,30 +76,4 @@ class JobsContainer extends React.Component {
 			</div>
 		)
 	}
-}
-
-
-@SidebarMixin
-export default class extends React.Component {
-	render() {
-    const dispatch = this.props.dispatch
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <Container id='body'>
-          <Grid>
-            <Row>
-            	<Col md={12}>
-            		<JobsContainer />
-              </Col>
-            </Row>
-          </Grid>
-        </Container>
-				<Footer />
-			</Container>
-	)}
 }

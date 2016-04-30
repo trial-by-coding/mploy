@@ -53,11 +53,11 @@ module.exports = function(router) {
         })
         .then(function() {
           console.log('Verifying employer status and redirecting.')
-          res.redirect('/employer/dashboard')
+          res.redirect('/employer')
         })
       }
       if (req.session.employer === 'false'){
-        res.redirect('/jobs')
+        res.redirect('/applicant')
       }
     });
 
@@ -96,12 +96,12 @@ module.exports = function(router) {
 
     router.get('/jobs', function(req, res) {
         console.log("jobs dash");
-        res.redirect('/user/jobs');
+        res.redirect('/user');
     });
 
     router.get('/*', function(req, res) {
         console.log("user:default:redirecting to job");
-        res.redirect('/user/jobs');
+        res.redirect('/user');
     });
 
     // router.post('/employerverify', function(req, res) {

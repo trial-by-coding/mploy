@@ -1,9 +1,6 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
 
 class Chart extends React.Component {
   render() {
@@ -20,7 +17,7 @@ class Chart extends React.Component {
 }
 
 var interval = null;
-class Body extends React.Component {
+export default class Body extends React.Component {
   componentWillUnmount() {
     clearInterval(this.interval);
   }
@@ -143,20 +140,3 @@ class Body extends React.Component {
 }
 
 
-@SidebarMixin
-export default class extends React.Component {
-  render() {
-    var classes = classNames({
-      'container-open': this.props.open
-    });
-
-    return (
-      <Container id='container' className={classes}>
-        <Sidebar />
-        <Header />
-        <Body />
-        <Footer />
-      </Container>
-    );
-  }
-}

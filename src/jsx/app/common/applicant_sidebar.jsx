@@ -6,7 +6,7 @@ import {
 import { Link } from 'react-router';
 import LoremIpsum from 'global/jsx/loremipsum';
 
-class ApplicationSidebar extends React.Component {
+class ApplicantSidebar extends React.Component {
   render() {
     return (
       <div>

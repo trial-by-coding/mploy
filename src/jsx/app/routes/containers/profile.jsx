@@ -1,9 +1,6 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
 
 class SocialBanner extends React.Component {
   constructor(props) {
@@ -64,7 +61,7 @@ class SocialBanner extends React.Component {
   }
 }
 
-class Body extends React.Component {
+export default class Body extends React.Component {
   componentDidMount() {
     $('html').addClass('social');
     (() => {
@@ -293,24 +290,6 @@ class Body extends React.Component {
           </Row>
         </Grid>
         {this.props.children}
-      </Container>
-    );
-  }
-}
-
-@SidebarMixin
-export default class extends React.Component {
-  render() {
-    var classes = classNames({
-      'container-open': this.props.open
-    });
-
-    return (
-      <Container id='container' className={classes}>
-        <Sidebar />
-        <Header />
-        <Body />
-        <Footer />
       </Container>
     );
   }

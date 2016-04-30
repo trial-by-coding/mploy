@@ -1,10 +1,7 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 
-import Header from 'common/header';
-import Sidebar from 'common/sidebar';
-import Footer from 'common/footer';
-import AppList from '../components/lists';
+import AppList from 'routes/components/appList';
 
 import { connect } from 'react-redux'
 
@@ -12,7 +9,7 @@ import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
-class AppContainer extends React.Component {
+export default class EmployerDashboard extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -24,10 +21,10 @@ class AppContainer extends React.Component {
     }
 	}
   componentDidMount() {
-    this.props.dispatch(actions.getUnconsidered(1));
-    this.props.dispatch(actions.getConsidered(3));
-    this.props.dispatch(actions.getInterviews(4));
-    this.props.dispatch(actions.getOffers(2));
+    this.props.dispatch(actions.getEmployerUnconsidered(1));
+    this.props.dispatch(actions.getEmployerConsidered(3));
+    this.props.dispatch(actions.getEmployerInterviews(4));
+    this.props.dispatch(actions.getEmployerOffers(2));
   }
 
 
@@ -57,21 +54,4 @@ class AppContainer extends React.Component {
     </Container>
     )
 	}
-}
-
-@SidebarMixin
-export default class extends React.Component {
-	render() {
-    const dispatch = this.props.dispatch
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <AppContainer />
-				<Footer />
-			</Container>
-	)}
 }
