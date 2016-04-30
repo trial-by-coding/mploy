@@ -17,6 +17,9 @@ class Brand extends React.Component {
 
 var HeaderNavigation = React.createClass({
   mixins: [ History ],
+  logout: function() {
+      window.location = '/auth/logout';
+  },
   render() {
     var props = {
       ...this.props,
@@ -26,7 +29,7 @@ var HeaderNavigation = React.createClass({
     return (
       <NavContent {...props}>
         <Nav>
-          <NavItem className='logout' href='#'>
+          <NavItem className='logout' href='#' onClick={() => this.logout()}>
             <Icon bundle='fontello' glyph='off-1' />
           </NavItem>
         </Nav>
