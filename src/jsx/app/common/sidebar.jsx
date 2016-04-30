@@ -18,6 +18,17 @@ class ApplicationSidebar extends React.Component {
                 <SidebarNav style={{marginBottom: 0}}>
                   <SidebarNavItem glyph='icon-fontello-gauge' name='Home' href='/' />
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
+
+                    <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Charts <BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
+                        <SidebarNav>
+                          <SidebarNavItem glyph='icon-fontello-chart-area' name='Rubix Charts'>
+                            <SidebarNav>
+                              <SidebarNavItem name='Pie + Donut Series' href='/rubix/piedonut' />
+                            </SidebarNav>
+                          </SidebarNavItem>
+                        </SidebarNav>
+                    </SidebarNavItem>
+
                   <SidebarNavItem glyph='icon-feather-mail' name={<span>Menu <BLabel className='bg-darkgreen45 fg-white'>3</BLabel></span>}>
                     <SidebarNav>
                       <SidebarNavItem glyph='icon-feather-inbox' name='Inbox' />
@@ -59,10 +70,17 @@ export default class extends React.Component {
           <Grid>
             <Row className='fg-white'>
               <Col xs={4} collapseRight>
+
+    {/*<Avatar src = {this.props.currentAvatar} float = 'left' style = {this.avatarStyle.bind(this).call()} size = {55}/>*/}
+
+
                 <img src='/imgs/app/avatars/avatar0.png' width='40' height='40' />
+
+
+
               </Col>
               <Col xs={8} collapseLeft id='avatar-col'>
-                <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>Demo Girl</div>
+                <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>LinkedIn User</div>
                 <div>
                   <Progress id='demo-progress' value={30} min={0} max={100} color='#ffffff'/>
                   <Icon id='demo-icon' bundle='fontello' glyph='lock-5' />

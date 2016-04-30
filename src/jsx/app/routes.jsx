@@ -7,7 +7,7 @@ import Jobs from 'routes/containers/jobs';
 import Controls from 'routes/forms/controls';
 import Profile from 'routes/containers/profile';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
-
+import PieDonutSeries from 'routes/charts/rubix/piedonut_series';
 
 
 export default (history, onUpdate) => {
@@ -19,6 +19,7 @@ export default (history, onUpdate) => {
       <Route path='/blank' component={Blank} />
       <Route path='/employer/dashboard' component={EmployerDashboard} />
       <Route path='/profile' component={Profile} />
+        <Route path='/rubix/piedonut' component={PieDonutSeries} />
     </Router>
   );
 };
