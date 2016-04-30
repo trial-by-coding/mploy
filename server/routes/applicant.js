@@ -71,7 +71,25 @@ module.exports = function(router) {
     console.log("No applications retrieved for current user: ", err);
     res.status(400).send(err);
     })
-  }) 
+  });
+
+  router.get('/currentuserapps/:status', function(req, res){
+    console.log('---currentuserapps:received GET');
+    var linkedin_id = req.user.linkedin_id
+    return Users.verifyId(linkedin_id)
+    .then(function(data){
+    console.log("User data: ", data);
+    return Applications.getAppsByUserAndStatus(data.userID, req.params.status)
+    })
+    .then(function(apps) {
+    console.log('Responding with applications for current user: ', apps)
+    res.status(200).send(apps);
+    })
+    .catch(function(err){
+    console.log("No applications retrieved for current user: ", err);
+    res.status(400).send(err);
+    })
+  });
 
   router.post('/submitapp', function(req, res) {
     console.log('received submit application POST, body:',req.body);
