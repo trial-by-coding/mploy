@@ -8,6 +8,3 @@ update
 server/auth/config.js
 localuser.js
 knexfile.js
-/public/bower_components/
-/public/css/app/
-/public/js/app/
