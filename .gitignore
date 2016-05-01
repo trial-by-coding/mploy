@@ -8,3 +8,5 @@ update
 server/auth/config.js
 localuser.js
 knexfile.js
+/public/css/app/
+/public/js/app/
