@@ -18,24 +18,16 @@ class ApplicantSidebar extends React.Component {
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
-
-                    <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Charts <BLabel className='bg-brown50 fg-white'>1</BLabel></span>}>
+                  <SidebarNavItem glyph='icon-fontello-user' name='Jobs' href='/jobs' />
+                    <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Charts <BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
                         <SidebarNav>
-
                               <SidebarNavItem glyph='icon-fontello-chart-pie' name='Pie + Donut Series' href='/rubix/piedonut' />
-
                         </SidebarNav>
                     </SidebarNavItem>
-
-
                   <SidebarNavItem glyph='icon-feather-mail' name={<span>Menu <BLabel className='bg-darkgreen45 fg-white'>2</BLabel></span>}>
                     <SidebarNav>
-
-
                         <SidebarNavItem glyph='icon-dripicons-view-list' name='Lists' href='/lists' />
                         <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/calendar' />
-
-
                     </SidebarNav>
                   </SidebarNavItem>
                 </SidebarNav>
