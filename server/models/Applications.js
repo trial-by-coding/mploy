@@ -43,6 +43,44 @@ Applications.deleteApp = function(appID) {
   })
 };
 
+Applications.advanceStatus = function(appID, status) {
+  
+  return db('applications')
+  .returning()
+  .where({
+    appID: appID
+  })
+  .then(function(record) {
+    console.log(record)
+    return db('applications')
+    .returning
+  })
+  .then(function() {
+
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
+Applications.revertStatus = function(appID, status) {
+  
+  return db('applications')
+  .returning()
+  .where({
+    appID: appID
+  })
+  .update({
+    status: status
+  })
+  .then(function(record) {
+    return record
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
 //update status
 Applications.updateStatus = function(appID, status) {
   
@@ -61,6 +99,7 @@ Applications.updateStatus = function(appID, status) {
       throw err
   })
 };
+
 Applications.getByStatus = function(jobID, status) {
   console.log('in get by status: ', status)
   return db('applications')

@@ -16,7 +16,7 @@ JobPosts.create = function(jobObj) {
       location: jobObj.location,
       employment_type: jobObj.employment_type,
       visa_required: jobObj.visa_required,
-      skills: appObj.skills,
+      skills: jobObj.skills,
       user_id: jobObj.user_id
     })
     .then(function(recordID) {

@@ -182,6 +182,44 @@ module.exports = function(router) {
     }
   });
 
+  router.put('/advancestatus', function(req, res){
+    console.log('Received updatestatus PUT, body:',req.body);
+    if(! req || !req.body) {
+      console.log("Error: updatestatus PUT with no body");
+      res.status(400).send("/updatestatus expected a body object");
+    } else {
+      console.log("body: ",req.body);
+      Applications.advanceStatus(req.body.appID)
+      .then(function(data){
+        console.log("Application successfully updated")
+        res.status(200).send("success!");
+      })
+      .catch(function(err){
+        console.log("Application update failed, err:",err);
+        res.status(400).send("Application update failed:",err);
+      })
+    }
+  });
+
+  router.put('/revertstatus', function(req, res){
+    console.log('Received updatestatus PUT, body:',req.body);
+    if(! req || !req.body) {
+      console.log("Error: updatestatus PUT with no body");
+      res.status(400).send("/updatestatus expected a body object");
+    } else {
+      console.log("body: ",req.body);
+      Applications.updateStatus(req.body.appID, req.body.status)
+      .then(function(data){
+        console.log("Application successfully updated")
+        res.status(200).send("success!");
+      })
+      .catch(function(err){
+        console.log("Application update failed, err:",err);
+        res.status(400).send("Application update failed:",err);
+      })
+    }
+  });
+
   //increment denied in stats for user who created app
   router.delete('/deleteapp', function(req, res){
     console.log('---delete app:received DELETE, query='+JSON.stringify(req.query));
@@ -209,19 +247,6 @@ module.exports = function(router) {
       res.status(400).send("Must supply appID in query string");       
     }
   });
-
-  router.get('/appsbyemployer', function(req, res) {
-    console.log('---appsbyemployer:received GET')
-    // var linkedin_id = req.user.linkedin_id
-    // return Users.verifyId(linkedin_id)
-    // .then(function(userRec) {
-    // return JobPosts.userJoin()
-    // })
-    return Users.jobJoin(1)
-    .then(function(result) {
-      res.send(result)
-    })
-  })
 
 	//catch all
 	router.get('/*', function(req, res) {

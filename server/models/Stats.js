@@ -16,10 +16,10 @@ Stats.newUserData = function(userID) {
         .returning('statID')
         .insert({
           total_apps: 0,
+          applied: 0,
           denied: 0,
           considered: 0,
           interviewed: 0,
-          additional: 0,
           offered: 0,
           user_id: userID
         })

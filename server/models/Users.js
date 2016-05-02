@@ -126,29 +126,3 @@ Users.verifyEmployer = function(linkedin_id){
     throw err;
   })
 };
-
-//on page load front end should hit User.verifyID to get all data for current user /verifyuser
-//pass user ID to jobJoin endpoint
-
-Users.jobJoin = function(userID) {
-  console.log('in Users.jobJoin: ')
-  return db('job_posts')
-  .join('applications', 'job_id', '=', 'applications.job_id')
-  .join('users', '')
-  // .join('users', 'job_posts.jobID', '=', 'applications.job_id')
-  // .join('users', 'applications.user_id', '=', 'users.userID')
-  .where({
-    user_id: userID
-  })
-  .then(function(multijoin) {
-    console.log('multijoin: ', multijoin)
-    return multijoin
-  })
-};
-
-
-
-
-
-
-
