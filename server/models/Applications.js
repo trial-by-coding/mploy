@@ -12,18 +12,10 @@ Applications.submit = function(appObj) {
     education: appObj.education,
     personal_statement: appObj.personal_statement,
     status: 'unconsidered',
-    skill_1_met: appObj.skill_1,
-    skill_2_met: appObj.skill_2,
-    skill_3_met: appObj.skill_3,
-    skill_4_met: appObj.skill_4,
-    skill_5_met: appObj.skill_5,
-    skill_6_met: appObj.skill_6,
-    skill_7_met: appObj.skill_7,
-    skill_8_met: appObj.skill_8,
-    skill_9_met: appObj.skill_9,
-    skill_10_met: appObj.skill_10,
+    skills_met: appObj.skills_met,
     job_id: appObj.job_id,
-    user_id: appObj.user_id
+    user_id: appObj.user_id,
+    can_work_here: appObj.can_work_here
   })
   .then(function(recordID) {
     return recordID[0]

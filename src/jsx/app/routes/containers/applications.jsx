@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
 import AppCard from 'routes/components/appCard';
 
 import { getApplications } from 'redux/actions/index.js';

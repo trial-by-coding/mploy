@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
 import Header from 'common/header';
-import Sidebar from 'common/sidebar';
+import Sidebar from 'routes/components/applicant_sidebar';
 import Footer from 'common/footer';
 import actions from 'redux/actions';
 
@@ -17,6 +17,7 @@ export default class Body extends React.Component {
     this.visaChange = this.visaChange.bind(this)
     this.aboutChange = this.aboutChange.bind(this)
     this.expChange = this.expChange.bind(this)
+    this.fileChagne = this.fileChange.bind(this)
 
     //initial state 
     this.state = {
@@ -26,8 +27,8 @@ export default class Body extends React.Component {
         years_experience:'less than 1 year',
         education:'',
         personal_statement:'',
-        skills_met: this.props.fknSkills,
-        job_id:'',
+        job_id:this.props.data.jobID,
+        skills_met: this.props.skillsArray,
         user_id:null,
         can_work_here:false
       }
@@ -37,30 +38,36 @@ export default class Body extends React.Component {
   //helper functions start
   onFormSubmit(e){
     e.preventDefault()
-    console.log('app form is:', this.state.formVal.education);
+
+    this.props.dispatch(actions.applyToJob(this.state.formVal));
+
+    console.log('app form is:', this.state.formVal);
+
   }
 
   eduChange(e){
-    this.setState({
-      formVal:{
-        education:e.target.value,
-      }
-    },function(){
-      console.log(this.state.formVal.education)
-    });
+
+  this.setState({ formVal: { ...this.state.formVal, education: e.target.value }},function(){
+    console.log("after state_extend:", this.state)
+  })
+  // var newState = React.addons.update(this.state, {
+  //   formVal: {
+  //     education: e.target.value
+  //   }
+  // });
+  // this.setState(newState,function(){
+  //   console.log("after state_extend:", this.state)
+  // });
+
   }
 
   visaChange(e){
     let visaBool = e.target.value;
     visaBool === '1' ? (visaBool = true) : (visaBool = false) 
 
-    this.setState({
-      formVal:{
-        can_work_here:visaBool
-      }
-    },function(){
-      console.log('visa needed:',this.state.formVal.can_work_here)
-    });
+    this.setState({ formVal: { ...this.state.formVal, can_work_here:visaBool }},function(){
+    console.log("after state_extend:", this.state)
+    })  
   }
 
   skillChange(e,idx){
@@ -75,51 +82,47 @@ export default class Body extends React.Component {
 
     skills[idx] = e.target.checked
     console.log('skills after idx is:', skills)
-    
-    this.setState({
-      formVal: {
-        skills_met: skills
-      }
-    },function(){
-    console.log("skillChanged state:",this.state)
-    });
+
+    this.setState({ formVal: { ...this.state.formVal, skills_met: skills }},function(){
+    console.log("after state_extend:", this.state)
+    })
 
   }
 
   aboutChange(e){
-    this.setState({
-      formVal:{
-        personal_statement:e.target.value,
-      }
-    },function(){
-      console.log(this.state.formVal.personal_statement)
-    });
+
+    this.setState({ formVal: { ...this.state.formVal, personal_statement: e.target.value }},function(){
+    console.log("after state_extend:", this.state)
+    })
+
   }
 
   expChange(e){
-
-    this.setState({
-      formVal:{
-        years_experience:e.target.value,
-      }
-    },function(){
-      console.log(this.state.formVal.years_experience)
-    });
+    this.setState({ formVal: { ...this.state.formVal, years_experience: e.target.value }},function(){
+    console.log("after state_extend:", this.state)
+    })
   }
 
+  fileChange(e){
+    console.log("file upload is:",e.target.files)
+  }
   //end helper funcs
 
 
   render() {
-    //helper func for keys in skills obj
-    let appFormList = this.props.data;
-    let skillsVals = [];
+    console.log("wtf is props jCard:", this.props)
+    console.log("wtf is dispatch:", this.props.dispatch)
 
-    for (var key in appFormList) {
-      if (key.indexOf('skill') !== -1 && appFormList[key] !== null) {
-        skillsVals.push(appFormList[key])
-      }
-    }
+
+    //helper func for keys in skills obj
+    // let appFormList = this.props.data;
+    // let skillsVals = [];
+
+    // for (var key in appFormList) {
+    //   if (key.indexOf('skill') !== -1 && appFormList[key] !== null) {
+    //     skillsVals.push(appFormList[key])
+    //   }
+    // }
 
     return (
       <Container id='body'>
@@ -154,7 +157,7 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label>Skills</Label>
-                              {skillsVals.map((item,idx) => <Checkbox onChange={(e) => this.skillChange(e,idx)}
+                              {this.props.data.skills.map((item,idx) => <Checkbox onChange={(e) => this.skillChange(e,idx)}
                                                                value={item}
                                                                name='checkbox-options'>{item}</Checkbox>)}
                               <hr/>
@@ -163,7 +166,6 @@ export default class Body extends React.Component {
                             <FormGroup>
                               <Label htmlFor='password' control>Education</Label>
                                 <Input 
-                                value={this.state.formVal.education}
                                 onChange={this.eduChange}
                                 autoFocus type='text'  placeholder='education' />
                             </FormGroup>
@@ -185,7 +187,7 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='fileinput'>Upload Cover Letter </Label>
-                              <Input id='fileinput' type='file' />
+                              <Input onChange={this.fileChange} id='fileinput' type='file' />
                               <HelpBlock>PDF,docx,doc files only.</HelpBlock>
                             </FormGroup>
                         </Col>

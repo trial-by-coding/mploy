@@ -1,10 +1,6 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
 import AppList from 'routes/components/appList';
-
 import { connect } from 'react-redux'
-
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 

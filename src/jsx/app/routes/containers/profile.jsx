@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
 import { connect } from 'react-redux';
 
 import actions from 'redux/actions';

@@ -16,16 +16,7 @@ JobPosts.create = function(jobObj) {
       location: jobObj.location,
       employment_type: jobObj.employment_type,
       visa_required: jobObj.visa_required,
-      skill_1: jobObj.skill_1,
-      skill_2: jobObj.skill_2,
-      skill_3: jobObj.skill_3,
-      skill_4: jobObj.skill_4,
-      skill_5: jobObj.skill_5,
-      skill_6: jobObj.skill_6,
-      skill_7: jobObj.skill_7,
-      skill_8: jobObj.skill_8,
-      skill_9: jobObj.skill_9,
-      skill_10: jobObj.skill_10,
+      skills: appObj.skills,
       user_id: jobObj.user_id
     })
     .then(function(recordID) {

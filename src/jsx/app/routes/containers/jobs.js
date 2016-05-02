@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
 import JobCard from 'routes/components/jobCard';
 import JobModal from 'routes/components/jobModal';
 
@@ -83,28 +81,4 @@ export default class JobsContainer extends React.Component {
 
 
 
-@SidebarMixin
-export default class extends React.Component {
-	render() {
-    // const dispatch = this.props.dispatch
-		var classes = classNames({
-			'container-open': this.props.open
-		})
-		return (
-			<Container id='container' className={classes}>
-				<Sidebar />
-				<Header />
-        <Container id='body'>
-          <Grid>
-            <Row>
-            	<Col md={12}>
-            		<JobsContainer />
-              </Col>
-            </Row>
-          </Grid>
-        </Container>
-				<Footer />
-			</Container>
-	)}
-}
 
