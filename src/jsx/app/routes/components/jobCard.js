@@ -69,7 +69,7 @@ class JobApply extends React.Component {
     return (
       <Modal lg>
         <ModalBody>
-        <Controls dispatch={this.props.dispatch} data={this.props.data} />
+        <Controls fknSkills={this.props.fknSkills} dispatch={this.props.dispatch} complete={false} data={this.props.data} />
         </ModalBody>
         <ModalFooter>
           <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
@@ -80,6 +80,7 @@ class JobApply extends React.Component {
   }
 
   render() {
+
     const btnStyles = {
       textAlign: 'center',
       margin: '0 auto'
@@ -102,8 +103,15 @@ class JobApply extends React.Component {
 export default class JobCard extends React.Component {
 
   render() {
-    // console.log('jobCard', this.state);
+    let appFormList = this.props.data;
+    let skillsArr = [];
+    for (var key in appFormList) {
+      if (key.indexOf('skill') !== -1 && appFormList[key] !== null) {
+        skillsArr.push(false)
+      }
+    }
 
+    // console.log('jobCard', this.state);
     const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
@@ -132,7 +140,8 @@ export default class JobCard extends React.Component {
               	<JobHeader data={this.props.data} />
                 <JobBody data={this.props.data} />
                 <JobApply data={this.props.data}
-                          openModal={this.props.openModal}/>
+                          openModal={this.props.openModal}
+                          fknSkills={skillsArr}/>
               </div>
               </Row>
             </Grid>

@@ -9,76 +9,117 @@ import actions from 'redux/actions';
 export default class Body extends React.Component {
   constructor(props){
     super(props)
+
+    //binding helper functions
     this.onFormSubmit = this.onFormSubmit.bind(this)
     this.eduChange = this.eduChange.bind(this)
     this.skillChange = this.skillChange.bind(this)
+    this.visaChange = this.visaChange.bind(this)
+    this.aboutChange = this.aboutChange.bind(this)
+    this.expChange = this.expChange.bind(this)
 
+    //initial state 
     this.state = {
+      complete: (!this.props.complete) || false,
       formVal: {
         cover_letter:null,
-        years_experience:'',
+        years_experience:'less than 1 year',
         education:'',
         personal_statement:'',
-        skill_1:'',
-        skill_2:'',
-        skill_3:'',
-        skill_4:'',
-        skill_5:'',
-        skill_6:'',
-        skill_7:'',
-        skill_8:'',
-        skill_9:'',
-        skill_10:'',
+        skills_met: this.props.fknSkills,
         job_id:'',
         user_id:null,
+        can_work_here:false
       }
-    }
+    } 
   }
-
-  componentDidMount() {
-    console.log('props in controls is:', this.props)
-  }
-
-
+  
+  //helper functions start
   onFormSubmit(e){
     e.preventDefault()
     console.log('app form is:', this.state.formVal.education);
   }
-  // this.onChange = this.onChange.bind(this)
+
   eduChange(e){
     this.setState({
       formVal:{
         education:e.target.value,
       }
+    },function(){
+      console.log(this.state.formVal.education)
     });
   }
 
-  skillChange(e){
-    console.log("skillChanged before:",this.state.formVal)
+  visaChange(e){
+    let visaBool = e.target.value;
+    visaBool === '1' ? (visaBool = true) : (visaBool = false) 
 
     this.setState({
       formVal:{
-        skill_10:e.target.checked,
+        can_work_here:visaBool
       }
+    },function(){
+      console.log('visa needed:',this.state.formVal.can_work_here)
     });
-
-    console.log("skillChanged after:",this.state.formVal)
   }
 
+  skillChange(e,idx){
+    e.persist()
+    console.log("e in skillChange:", e.target.checked)
+    console.log("item in skillChange:", idx)
+
+    
+    let skills = this.state.formVal.skills_met.slice();
+    console.log('skills before idx is:', skills)
+    console.log('state before idx is:', this.state)
+
+    skills[idx] = e.target.checked
+    console.log('skills after idx is:', skills)
+    
+    this.setState({
+      formVal: {
+        skills_met: skills
+      }
+    },function(){
+    console.log("skillChanged state:",this.state)
+    });
+
+  }
+
+  aboutChange(e){
+    this.setState({
+      formVal:{
+        personal_statement:e.target.value,
+      }
+    },function(){
+      console.log(this.state.formVal.personal_statement)
+    });
+  }
+
+  expChange(e){
+
+    this.setState({
+      formVal:{
+        years_experience:e.target.value,
+      }
+    },function(){
+      console.log(this.state.formVal.years_experience)
+    });
+  }
+
+  //end helper funcs
+
+
   render() {
-
+    //helper func for keys in skills obj
     let appFormList = this.props.data;
-    console.log("appFormList be:", appFormList)
-
-    let skillsArr = [];
+    let skillsVals = [];
 
     for (var key in appFormList) {
       if (key.indexOf('skill') !== -1 && appFormList[key] !== null) {
-        skillsArr.push(appFormList[key])
+        skillsVals.push(appFormList[key])
       }
     }
-
-    console.log("skillsArr be:", skillsArr)
 
     return (
       <Container id='body'>
@@ -103,18 +144,18 @@ export default class Body extends React.Component {
                         <Col xs={12}>
                             <FormGroup>
                               <Label htmlFor='dropdownselect'>Years Experience</Label>
-                              <Select id='dropdownselect' defaultValue='1'>
-                                <option value='1'>less than 1 year</option>
-                                <option value='2'>1-2 years</option>
-                                <option value='3'>2-3 years</option>
-                                <option value='4'>3+ years</option>
+                              <Select id='dropdownselect' defaultValue='1' onChange={this.expChange}>
+                                <option value='less than 1 year'>less than 1 year</option>
+                                <option value='1-2 years'>1-2 years</option>
+                                <option value='2-3 years'>2-3 years</option>
+                                <option value='3+ years'>3+ years</option>
                               </Select>
                             </FormGroup>
 
                             <FormGroup>
                               <Label>Skills</Label>
-                              {skillsArr.map(item => <Checkbox onChange={this.skillChange}
-                                                               checked={this.state.skill_10}
+                              {skillsVals.map((item,idx) => <Checkbox onChange={(e) => this.skillChange(e,idx)}
+                                                               value={item}
                                                                name='checkbox-options'>{item}</Checkbox>)}
                               <hr/>
                             </FormGroup>
@@ -129,7 +170,7 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='dropdownselect'>Would you require visa sponsorship?</Label>
-                              <Select id='dropdownselect' defaultValue='1'>
+                              <Select onChange={this.visaChange} id='dropdownselect' defaultValue='2'>
                                 <option value='1'>Yes</option>
                                 <option value='2'>No</option>
                               </Select>
@@ -137,7 +178,9 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='textarea'>Why are you the top candidate?</Label>
-                              <Textarea id='textarea' rows='3' placeholder='Sell yourself!' />
+                              <Textarea id='textarea' rows='3' 
+                                        placeholder='Sell yourself!'
+                                        onChange={this.aboutChange} />
                             </FormGroup>
 
                             <FormGroup>
