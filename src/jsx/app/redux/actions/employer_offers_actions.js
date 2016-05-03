@@ -1,7 +1,7 @@
 import axios from 'axios';
 import	{	GET_EMPLOYER_OFFERS,
-					ADD_OFFERS,
-					REMOVE_OFFERS	} from './actionTypes';
+					ADD_OFFER,
+					REMOVE_OFFER	} from './actionTypes';
 
 function getEmployerOffers(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=offers')
@@ -9,17 +9,17 @@ function getEmployerOffers(jobID){
 			payload => dispatch({ type: GET_EMPLOYER_OFFERS, payload}));
 }
 
-function addOffers(item) {
+function addOffer(item) {
 	console.log('advance action creator');
-	return {type: ADD_OFFERS, item};
+	return {type: ADD_OFFER, item};
 }
 
-function removeOffers(index) {
-	return {type: REMOVE_OFFERS, index};
+function removeOffer(index) {
+	return {type: REMOVE_OFFER, index};
 }
 
 module.exports = {
 	getEmployerOffers: getEmployerOffers,
-	addOffers: addOffers,
-	removeOffers: removeOffers
+	addOffer: addOffer,
+	removeOffer: removeOffer
 }
