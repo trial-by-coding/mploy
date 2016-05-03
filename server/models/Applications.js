@@ -128,7 +128,7 @@ Applications.revertStatus = function(appID) {
         appID: appID
       })
       .update({
-        status: 'interviews'
+        status: 'unconsidered'
       })
 
       case 'interviews':
@@ -138,17 +138,19 @@ Applications.revertStatus = function(appID) {
         appID: appID
       })
       .update({
-        status: 'offers'
+        status: 'considered'
       })
 
-      case 'offered':
+      case 'offers':
       return db('applications')
       .returning('*')
-      .del()
       .where({
         appID: appID
       })
-      
+      .update({
+        status: 'interviews'
+      })
+
       default:
       console.log('Unexpected record status: ', record.status)
       return 'Unexpected record status: ', record.status

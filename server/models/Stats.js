@@ -88,6 +88,58 @@ Stats.advanceIncrement = function(userID, status) {
   })
 };
 
+Stats.revertIncrement = function(userID, status) {
+  return db('applications')
+  .returning('status')
+  .where({
+    status: status
+  })
+  .then(function() {
+    console.log('status in stats.advance: ', status)
+    switch(status){
+
+      case 'applied':
+      return db('stats')
+      .where({
+        user_id: userID
+      })
+      .returning('*')
+      .increment('applied', 1)
+      .decrement('considered', 1)
+
+      case 'considered':
+      return db('stats')
+      .where({
+        user_id: userID
+      })
+      .returning('*')
+      .increment('considered', 1)
+      .decrement('interviewed', 1)
+
+      case 'interviews':
+      return db('stats')
+      .where({
+        user_id: userID
+      })
+      .returning('*')
+      .increment('interviewed', 1)
+      .decrement('offered', 1)
+
+      default:
+      console.log('Unexpected record status: ', status)
+      return 'Unexpected record status: ', status
+    }
+  })
+  .then(function(result) {
+    console.log('result in stats: ', result)
+    console.log('Status revert successful.')
+    return result
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
 Stats.incrementTotalApps = function(userID) {
   return db('stats')
     .where({

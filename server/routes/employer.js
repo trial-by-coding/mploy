@@ -183,10 +183,10 @@ module.exports = function(router) {
   });
 
   router.put('/advancestatus', function(req, res){
-    console.log('Received updatestatus PUT, body:',req.body);
+    console.log('Received advancestatus PUT, body:',req.body);
     if(! req || !req.body) {
-      console.log("Error: updatestatus PUT with no body");
-      res.status(400).send("/updatestatus expected a body object");
+      console.log("Error: advancestatus PUT with no body");
+      res.status(400).send("/advancestatus expected a body object");
     } else {
       var appID = req.body.appID;
       var linkedin_id = req.user.linkedin_id;
@@ -194,7 +194,7 @@ module.exports = function(router) {
       var user_id;
       return Applications.advanceStatus(appID)
       .then(function(data){
-        console.log("Application successfully updated");
+        console.log("Application status updated");
         if (data.status){
           status = data.status;
           user_id = data.user_id;
@@ -213,14 +213,44 @@ module.exports = function(router) {
         }
       })
       .catch(function(err){
-        console.log("Application update failed, err:",err);
-        // res.status(400).send("Application update failed:",err);
+        console.log("Application advance failed, err: ", err);
+        res.status(400).send("Application advance failed: ", err);
       });
     }
   });
 
   router.put('/revertstatus', function(req, res){
-
+    console.log('Received revertstatus PUT, body:',req.body);
+    if(! req || !req.body) {
+      console.log("Error: revertstatus PUT with no body");
+      res.status(400).send("/revertstatus expected a body object");
+    } else {
+      var appID = req.body.appID;
+      var linkedin_id = req.user.linkedin_id;
+      var status;
+      var user_id;
+      return Applications.revertStatus(appID)
+      .then(function(data){
+        console.log("Application status successfully reverted");
+        if (data.status){
+          status = data.status;
+          user_id = data.user_id;
+          return Notifications.createNotification(appID, user_id, status)
+          .then(function(notification) {
+            console.log('Notification created: ', notification);
+            return Stats.revertIncrement(user_id, status);
+          })
+          .then(function(stat) {
+            console.log('Stats advanced: ', stat);
+            res.status(200).send("Successfully reverted application stats");
+          })
+        }
+      })
+      .catch(function(err){
+        console.log("Application revert failed, err:",err);
+        res.status(400).send("Application revert failed:",err);
+      });
+    }
   });
 
   //increment denied in stats for user who created app
