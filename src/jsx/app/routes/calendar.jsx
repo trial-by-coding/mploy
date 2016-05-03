@@ -1,8 +1,13 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
+import { Link, connect } from 'react-router';
+
+import Header from 'routes/components/header';
+import Sidebar from 'routes/components/applicant_sidebar';
+import Footer from 'routes/components/footer';
 
 
-export default class Body extends React.Component {
+class Body extends React.Component {
   componentDidMount() {
     $('#calendar').fullCalendar({
       header: {
@@ -144,20 +149,21 @@ export default class Body extends React.Component {
                     <Grid>
                       <Row>
                         <Col xs={12}>
-                          <h3>Calendar: External Events</h3>
+                          <h3>Calendar</h3>
                         </Col>
                       </Row>
                     </Grid>
                   </PanelHeader>
-                  <PanelBody style={{padding: 25}}>
+                  <PanelBody style={{padding: 25}, {color: 'red'}, {margin: 15}}>
                     <div id='wrap'>
                       <div id='external-events'>
                         <h4>Draggable Events</h4>
-                        <div className='external-event'>My Event 1</div>
-                        <div className='external-event'>My Event 2</div>
-                        <div className='external-event'>My Event 3</div>
-                        <div className='external-event'>My Event 4</div>
-                        <div className='external-event'>My Event 5</div>
+                        <div className='external-event'>Interview with ABC</div>
+                        <div className='external-event'>Interview with ABC</div>
+                        <div className='external-event'>Interview with ABC</div>
+                        <div className='external-event'>Interview with ABC</div>
+                        <div className='external-event'>Interview with ABC</div>
+
                         <Checkbox id='drop-remove'>
                           remove after drop
                         </Checkbox>
@@ -171,6 +177,24 @@ export default class Body extends React.Component {
             </Col>
           </Row>
         </Grid>
+      </Container>
+    );
+  }
+}
+
+@SidebarMixin
+export default class extends React.Component {
+  render() {
+    const classes = classNames({
+      'container-open': this.props.open
+    });
+
+    return (
+      <Container id='container' className={classes}>
+        <Sidebar />
+        <Header />
+        <Body />
+        <Footer />
       </Container>
     );
   }
