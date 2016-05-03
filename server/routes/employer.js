@@ -5,8 +5,7 @@ var Notifications = require('../models/Notifications.js');
 var Stats = require('../models/Stats.js');
 var express = require('express');
 var bodyParser = require('body-parser');
-var multer = require('multer');
-var upload = multer({ dest: './uploads'});
+
 
 module.exports = function(router) {
   var app = express();
@@ -32,7 +31,7 @@ module.exports = function(router) {
   //     .catch(function(err) {
   //       console.log('Employer authentication failed: ', err)
   //       res.redirect('/jobs')
-  //     }) 
+  //     })
   //   } else {
   //     console.log('User not logged in')
   //     res.redirect('/')
@@ -46,7 +45,7 @@ module.exports = function(router) {
     var rq = req.query;
     if (rq && rq.jobID && rq.status) {
       console.log("request for jobId = ",rq.jobID);
-      Applications.getByStatus(rq.jobID, rq.status) 
+      Applications.getByStatus(rq.jobID, rq.status)
       .then(function(data){
         console.log("returning application data", data);
         res.status(200).send(JSON.stringify(data));
@@ -54,10 +53,10 @@ module.exports = function(router) {
       .catch(function(err){
         console.log("could not get application data for jobID "+rq.jobID+", err:", err);
         res.status(400).send(err);
-      })
+      });
     } else {
-      console.log("must supply jobID in query string"); 
-      res.status(400).send("must supply jobID in query string");       
+      console.log("must supply jobID in query string");
+      res.status(400).send("must supply jobID in query string");
     }
   });
 
@@ -66,7 +65,7 @@ module.exports = function(router) {
     var rq = req.query;
     if (rq && rq.jobID) {
       console.log("request for jobId = ",rq.jobID);
-      Applications.getAppsByJob(rq.jobID) 
+      Applications.getAppsByJob(rq.jobID)
       .then(function(data){
         console.log("returning application data", data);
         res.status(200).send(JSON.stringify(data));
@@ -74,10 +73,10 @@ module.exports = function(router) {
       .catch(function(err){
         console.log("could not get application data for jobID "+rq.jobID+", err:", err);
         res.status(400).send(err);
-      })
+      });
     } else {
-      console.log("must supply jobID in query string"); 
-      res.status(400).send("must supply jobID in query string");       
+      console.log("must supply jobID in query string");
+      res.status(400).send("must supply jobID in query string");
     }
   });
 
@@ -86,7 +85,7 @@ module.exports = function(router) {
     var rq = req.query;
     if (rq && rq.jobID) {
       console.log("jobId for request = ",rq.jobID);
-      Applications.appsAndApplicants(rq.jobID) 
+      Applications.appsAndApplicants(rq.jobID)
       .then(function(data){
         console.log("returning application data", data);
         res.status(200).send(JSON.stringify(data));
@@ -94,37 +93,37 @@ module.exports = function(router) {
       .catch(function(err){
         console.log("could not get application data for jobID "+rq.jobID+", err:", err);
         res.status(400).send(err);
-      })
+      });
     } else {
-      console.log("must supply jobID in query string"); 
-      res.status(400).send("must supply jobID in query string");       
+      console.log("must supply jobID in query string");
+      res.status(400).send("must supply jobID in query string");
     }
   });
 
   router.get('/jobscreated', function(req, res) {
-    console.log('---jobscreated:received GET')
-    var linkedin_id = req.user.linkedin_id
+    console.log('---jobscreated:received GET');
+    var linkedin_id = req.user.linkedin_id;
     return Users.verifyId(linkedin_id)
     .then(function(data){
     console.log("User data: ", data);
-    return JobPosts.getJobsByUser(data.userID)
+    return JobPosts.getJobsByUser(data.userID);
     })
     .then(function(jobs) {
-    console.log('Responding with job posts for current user: ', jobs)
+    console.log('Responding with job posts for current user: ', jobs);
     res.status(200).send(jobs);
     })
     .catch(function(err){
     console.log("No job posts retrieved for current user: ", err);
     res.status(400).send(err);
-    })
-  })
+    });
+  });
 
   router.get('/unconsideredapps', function(req, res){
     console.log('---unconsideredapps:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.jobID) {
       console.log("request for jobId = ",rq.jobID);
-      Applications.getUnconsidered(rq.jobID) 
+      Applications.getUnconsidered(rq.jobID)
       .then(function(data){
         console.log("returning application data", data);
         res.status(200).send(JSON.stringify(data));
@@ -132,10 +131,10 @@ module.exports = function(router) {
       .catch(function(err){
         console.log("could not get application data for jobID "+rq.jobID+", err:", err);
         res.status(400).send(err);
-      })
+      });
     } else {
-      console.log("must supply jobID in query string"); 
-      res.status(400).send("must supply jobID in query string");       
+      console.log("must supply jobID in query string");
+      res.status(400).send("must supply jobID in query string");
     }
   });
 
@@ -146,21 +145,21 @@ module.exports = function(router) {
       console.log("error: submitjob POST with no body");
       res.status(400).send("/submitjob expected a body object");
     } else {
-      var linkedin_id = req.user.linkedin_id
+      var linkedin_id = req.user.linkedin_id;
       return Users.verifyId(linkedin_id)
       .then(function(userInfo) {
       req.body.user_id = userInfo.userID;
-      req.body.skills = JSON.stringify(req.body.skills)
-      JobPosts.create(req.body)  
+      req.body.skills = JSON.stringify(req.body.skills);
+      JobPosts.create(req.body);
       })
       .then(function(data){
-        console.log("job post successfully submitted")
+        console.log("job post successfully submitted");
         res.status(200).send("success!");
       })
       .catch(function(err){
         console.log("job post submission failed, err:",err);
         res.status(400).send("job post submission failed:",err);
-      })
+      });
     }
   });
 
@@ -173,13 +172,13 @@ module.exports = function(router) {
       console.log("body: ",req.body);
       Applications.updateStatus(req.body.appID, req.body.status)
       .then(function(data){
-        console.log("Application successfully updated")
+        console.log("Application successfully updated");
         res.status(200).send("success!");
       })
       .catch(function(err){
         console.log("Application update failed, err:",err);
         res.status(400).send("Application update failed:",err);
-      })
+      });
     }
   });
 
@@ -190,33 +189,33 @@ module.exports = function(router) {
       res.status(400).send("/updatestatus expected a body object");
     } else {
       var appID = req.body.appID;
-      var linkedin_id = req.user.linkedin_id
+      var linkedin_id = req.user.linkedin_id;
       var status;
       var userID;
       Applications.advanceStatus(appID)
       .then(function(data){
-        console.log("Application successfully updated")
+        console.log("Application successfully updated");
         res.status(200).send("Success!");
       })
       .then(function() {
-        return Users.verifyId(linkedin_id)
+        return Users.verifyId(linkedin_id);
       })
       .then(function(userData) {
         userID = userData.userID;
-        console.log('User verified')
-        return Notifications.createNotification(appID, userID, status)
+        console.log('User verified');
+        return Notifications.createNotification(appID, userID, status);
       })
       .then(function(notification) {
-        console.log('Notification created: ', notification)
-        return Stats.advanceIncrement(userID, status)
+        console.log('Notification created: ', notification);
+        return Stats.advanceIncrement(userID, status);
       })
       .then(function(stat) {
-        console.log('Stats advanced: ', stat)
+        console.log('Stats advanced: ', stat);
       })
       .catch(function(err){
         console.log("Application update failed, err:",err);
         res.status(400).send("Application update failed:",err);
-      })
+      });
     }
   });
 
@@ -230,31 +229,31 @@ module.exports = function(router) {
     var rq = req.query;
     if (rq && rq.appID) {
       console.log("request for appId = ",rq.appID);
-      Applications.deleteApp(rq.appID) 
+      Applications.deleteApp(rq.appID)
       .then(function(data){
         res.status(200).send(JSON.stringify(data));
         console.log("Successfully deleted application: ", data);
         return Stats.incrementDenied(data.user_id)
         .then(function() {
-          console.log('App denied stat successfully incremented')
+          console.log('App denied stat successfully incremented');
         })
         .catch(function() {
-          console.log('App denied stat failed to increment')
-        })
+          console.log('App denied stat failed to increment');
+        });
       })
       .catch(function(err){
         console.log("Could not get application data for appID "+rq.appID+", err:", err);
         res.status(400).send(err);
-      })
+      });
     } else {
-      console.log("Must supply appID in query string"); 
-      res.status(400).send("Must supply appID in query string");       
+      console.log("Must supply appID in query string");
+      res.status(400).send("Must supply appID in query string");
     }
   });
 
 	//Catch all
 	router.get('/*', function(req, res) {
-		res.redirect('/job')
+		res.redirect('/job');
 	});
 
-}
+};
