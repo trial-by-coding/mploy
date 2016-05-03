@@ -4,28 +4,21 @@ var Applications = module.exports;
 
 //Will cover letter have to be added separately?
 Applications.submit = function(appObj) {
-  return db('applications').returning('appID')
+  return db('applications')
+  .returning('appID')
   .insert({
     cover_letter: appObj.cover_letter,
     years_experience: appObj.years_experience,
     education: appObj.education,
     personal_statement: appObj.personal_statement,
     status: 'unconsidered',
-    skill_1_met: appObj.skill_1,
-    skill_2_met: appObj.skill_2,
-    skill_3_met: appObj.skill_3,
-    skill_4_met: appObj.skill_4,
-    skill_5_met: appObj.skill_5,
-    skill_6_met: appObj.skill_6,
-    skill_7_met: appObj.skill_7,
-    skill_8_met: appObj.skill_8,
-    skill_9_met: appObj.skill_9,
-    skill_10_met: appObj.skill_10,
+    skills_met: appObj.skills_met,
     job_id: appObj.job_id,
-    user_id: appObj.user_id
+    user_id: appObj.user_id,
+    can_work_here: appObj.can_work_here
   })
   .then(function(recordID) {
-    return recordID
+    return recordID[0]
   })
   .catch(function(err) {
     throw err
@@ -43,7 +36,7 @@ Applications.deleteApp = function(appID) {
   .delete()
   .where('appID', appID)
   .then(function(records) {
-    return records
+    return records[0]
   })
   .catch(function(err) {
       throw err
@@ -62,7 +55,7 @@ Applications.updateStatus = function(appID, status) {
     status: status
   })
   .then(function(record) {
-    return record
+    return record[0]
   })
   .catch(function(err) {
       throw err
@@ -102,7 +95,7 @@ Applications.getUnconsidered = function(jobID) {
   .orderBy('created_at', 'desc')
   .where({
     job_id: jobID, 
-    status: 'Not yet considered'
+    status: 'unconsidered'
   })
   .then(function(records) {
     return records

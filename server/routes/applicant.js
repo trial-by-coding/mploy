@@ -101,6 +101,8 @@ module.exports = function(router) {
       return Users.verifyId(linkedin_id)
       .then(function(userInfo) {
         console.log("body:",req.body);
+        console.log('req.body.skills_met: ', req.body.skills_met)
+        req.body.skills_met = JSON.stringify(req.body.skills_met)
         req.body.user_id = userInfo.userID
         Applications.submit(req.body)
         .then(function(data){

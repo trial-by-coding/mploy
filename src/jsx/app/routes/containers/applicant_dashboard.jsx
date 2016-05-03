@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
 import JobList from 'routes/components/jobList';
 
 import { connect } from 'react-redux'

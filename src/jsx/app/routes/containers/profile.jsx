@@ -1,7 +1,4 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
-
 import { connect } from 'react-redux';
 
 import actions from 'redux/actions';
@@ -31,7 +28,6 @@ class SocialBanner extends React.Component {
       likeTextStyle: 'fg-orange75'
     });
   }
-
 
   render() {
     return (
@@ -79,13 +75,15 @@ class SocialBanner extends React.Component {
 }
 
 
+
 export default class Body extends React.Component {
 
   componentDidMount() {
     $('html').addClass('social');
     (() => {
       // create a map in the "map" div, set the view to a given place and zoom
-      let map = L.map('map', {
+      var map = L.map('map', {
+
         scrollWheelZoom: false
       }).setView([40.7127, -74.0059], 16);
 
@@ -99,6 +97,9 @@ export default class Body extends React.Component {
           .openPopup();
     })();
   }
+
+
+
 
 
   componentWillUnmount() {
@@ -315,3 +316,4 @@ export default class Body extends React.Component {
     );
   }
 }
+

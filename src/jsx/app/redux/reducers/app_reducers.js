@@ -19,6 +19,8 @@ function appList(state = {}, action) {
       return Object.assign({}, state, {
         items: [...state.items.slice(0, action.appID), ...state.items.slice(action.appID + 1)]
       })
+    case ADD_APP:
+      console.log("ADD_APP action fired!",action.payload)  
     default:
       return state;
     }

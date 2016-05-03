@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 
 import { connect } from 'react-redux'
-import JobModal from './jobModal'
-
+// import JobModal from './jobModal'
+import LoremIpsum from 'global/jsx/loremipsum';
+import Controls from '../forms/controls'
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 
@@ -22,6 +23,7 @@ class JobHeader extends React.Component {
         </Col>
         <Col md={6}>
           <div class="jobimg">
+          <h4> jobID: {this.props.data.jobID }</h4>
             <img></img>
           </div>
         </Col>
@@ -63,7 +65,22 @@ class JobBody extends React.Component {
 
 class JobApply extends React.Component {
 
+  getLargeModal() {
+    return (
+      <Modal lg>
+        <ModalBody>
+        <Controls dispatch={this.props.dispatch} complete={false} skillsArray={this.props.skillsArray} data={this.props.data} />
+        </ModalBody>
+        <ModalFooter>
+          <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
+          <Button outlined bsStyle='primary'>Save changes</Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+
   render() {
+    // console.log("props in motherfkn jobApply:", this.props.data)
     const btnStyles = {
       textAlign: 'center',
       margin: '0 auto'
@@ -74,7 +91,7 @@ class JobApply extends React.Component {
           <Col md={12}>
             <Button bsStyle="primary"
                     bsSize="large"
-                    onClick={this.props.openModal}> Apply
+                    onClick={ModalManager.create.bind(this, this.getLargeModal())}> Apply
             </Button>
           </Col>
         </Row>
@@ -84,9 +101,16 @@ class JobApply extends React.Component {
 }
 
 export default class JobCard extends React.Component {
-  render() {
-    console.log('jobCard', this.props);
 
+  render() {
+
+    let skillsArr =[]
+
+    this.props.data.skills.map(function(item){
+      skillsArr.push(false);
+    })
+
+    // console.log('jobCard', this.state);
     const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
@@ -103,6 +127,7 @@ export default class JobCard extends React.Component {
       zIndex: -100
     }
 
+
     return(
       <Col sm={12} md={4} lg={4}  className="clearfix">
       <PanelContainer style={panelStyle}>
@@ -114,7 +139,9 @@ export default class JobCard extends React.Component {
               	<JobHeader data={this.props.data} />
                 <JobBody data={this.props.data} />
                 <JobApply data={this.props.data}
-                          openModal={this.props.openModal}/>
+                          dispatch={this.props.dispatch}
+                          openModal={this.props.openModal}
+                          skillsArray={skillsArr} />
               </div>
               </Row>
             </Grid>

@@ -18,16 +18,18 @@ class EmployerSidebar extends React.Component {
                 <SidebarNav style={{marginBottom: 0}}>
                   <SidebarNavItem glyph='icon-fontello-gauge' name='Home' href='/' />
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
+                  <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>} />
+                  <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' /> 
 
-                    <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Charts <BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
-                        <SidebarNav>
-                          <SidebarNavItem glyph='icon-fontello-chart-area' name='Rubix Charts'>
-                            <SidebarNav>
-                              <SidebarNavItem name='Pie + Donut Series' href='/rubix/piedonut' />
-                            </SidebarNav>
-                          </SidebarNavItem>
-                        </SidebarNav>
-                    </SidebarNavItem>
+                  <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Charts <BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
+                      <SidebarNav>
+                        <SidebarNavItem glyph='icon-fontello-chart-area' name='Rubix Charts'>
+                          <SidebarNav>
+                            <SidebarNavItem name='Pie + Donut Series' href='/rubix/piedonut' />
+                          </SidebarNav>
+                        </SidebarNavItem>
+                      </SidebarNav>
+                  </SidebarNavItem>
 
                   <SidebarNavItem glyph='icon-feather-mail' name={<span>Menu <BLabel className='bg-darkgreen45 fg-white'>3</BLabel></span>}>
                     <SidebarNav>

@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
 import AppCard from 'routes/components/appCard';
 
 import { getApplications } from 'redux/actions/index.js';
@@ -16,7 +14,7 @@ export default class ApplicationContainer extends React.Component {
   }
 
   componentDidMount(){
-    this.props.dispatch(getApplications(1))  
+    this.props.dispatch(getApplications(2))  
   }
 
 

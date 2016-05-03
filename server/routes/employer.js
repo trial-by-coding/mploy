@@ -36,7 +36,7 @@ module.exports = function(router) {
   //   }
   // });
 
-  //offset to get certain number of jobs at a time
+  //Could offset to get certain number of jobs at a time
 
   router.get('/appsbystatus', function(req, res){
     console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
@@ -145,8 +145,13 @@ module.exports = function(router) {
       console.log("error: submitjob POST with no body");
       res.status(400).send("/submitjob expected a body object");
     } else {
-      console.log("body:",req.body);
-      JobPosts.create(req.body)
+      var linkedin_id = req.user.linkedin_id
+      return Users.verifyId(linkedin_id)
+      .then(function(userInfo) {
+      req.body.user_id = userInfo.userID;
+      req.body.skills = JSON.stringify(req.body.skills)
+      JobPosts.create(req.body)  
+      })
       .then(function(data){
         console.log("job post successfully submitted")
         res.status(200).send("success!");
@@ -187,7 +192,7 @@ module.exports = function(router) {
       .then(function(data){
         res.status(200).send(JSON.stringify(data));
         console.log("Successfully deleted application: ", data);
-        return Stats.incrementDenied(data[0].user_id)
+        return Stats.incrementDenied(data.user_id)
         .then(function() {
           console.log('App denied stat successfully incremented')
         })

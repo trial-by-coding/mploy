@@ -1,6 +1,4 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
 import JobCard from 'routes/components/jobCard';
 import JobModal from 'routes/components/jobModal';
 
@@ -35,7 +33,8 @@ export default class JobsContainer extends React.Component {
   };
 
 	render() {
-    console.log()
+
+    const { dispatch } = this.props;
 		console.log('container props', this);
 		let jobList = this.props.jobList.items;
 
@@ -67,15 +66,19 @@ export default class JobsContainer extends React.Component {
     }
 
 		return (
+
+
       <Container id='body' className='social'>
-  			<div>
-  			{jobList.map(job => <JobCard data={job} 
-                                     openModal={this.openModal}/>)}
-        <JobModal isOpen={this.state.isOpen}
-                  openModal={this.openModal}
-                  hideModal={this.hideModal} />
-  			</div>
+        <div>
+        {jobList.map(job => <JobCard data={job} 
+                                     openModal={this.openModal}
+                                     dispatch={dispatch} />)}
+        </div>   			
       </Container>
 		)
 	}
 }
+
+
+
+

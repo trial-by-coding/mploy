@@ -3,7 +3,6 @@ exports.seed = function(knex, Promise) {
   return Promise.join(
     // Deletes ALL existing entries
     knex('applications').del(), 
-
     // Inserts seed entries
     knex('applications').insert({years_experience: '1.5 years', education: 'MA in CS', personal_statement: 'I am a great guy who likes computers', status: 'unconsidered', skills_met: JSON.stringify([true,false,true, false, true, true, true]), user_id: 5, job_id: 4}),
     knex('applications').insert({years_experience: '2.5 years', education: 'MA in CS', personal_statement: 'I am a great guy who likes computers', status: 'unconsidered', skills_met: JSON.stringify([true, true, false, false, true, true, true]), can_work_here: false, user_id: 5, job_id: 3}),

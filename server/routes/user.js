@@ -2,9 +2,6 @@ var express = require('express');
 var JobPosts = require('../models/JobPosts.js')
 var Users = require('../models/Users.js')
 
-//http://www.localhost8080/auth/linkedin/employer
-//http://www.localhost8080/auth/linkedin/callback
-
 module.exports = function(router) {
 
     var applicant = express.Router();
@@ -38,28 +35,29 @@ module.exports = function(router) {
         })
     });
 
-    router.get('/redirect', function(req, res) {
-      console.log('req.session.employer: ', req.session.employer)
-      console.log('req.user.linkedin_id: ', req.user.linkedin_id)
-      if (req.session.employer === 'true'){
-        var linkedin_id = req.user.linkedin_id
-        return Users.verifyEmployer(linkedin_id)
-        .then(function(res) {
-          console.log('res in redirect:', res)
-          if (!res){
-            console.log('Designating employer status to user.')
-            return Users.designateAsEmployer(linkedin_id)
-          }
-        })
-        .then(function() {
-          console.log('Verifying employer status and redirecting.')
-          res.redirect('/employer')
-        })
-      }
-      if (req.session.employer === 'false'){
-        res.redirect('/applicant')
-      }
-    });
+  //Checks to see if user is listed as an employer after employer click and redirects to proper dashboard
+  router.get('/redirect', function(req, res) {
+    console.log('req.session.employer: ', req.session.employer)
+    console.log('req.user.linkedin_id: ', req.user.linkedin_id)
+    if (req.session.employer === 'true'){
+      var linkedin_id = req.user.linkedin_id
+      return Users.verifyEmployer(linkedin_id)
+      .then(function(res) {
+        console.log('res in redirect:', res)
+        if (!res){
+          console.log('Designating employer status to user.')
+          return Users.designateAsEmployer(linkedin_id)
+        }
+      })
+      .then(function() {
+        console.log('Verifying employer status and redirecting.')
+        res.redirect('/employer')
+      })
+    }
+    if (req.session.employer === 'false'){
+      res.redirect('/applicant')
+    }
+  });
 
     router.get('/job', function(req, res) {
         console.log('req.user: ', req.user)
@@ -81,8 +79,8 @@ module.exports = function(router) {
         JobPosts.getJob(req.params.id)
         .then(function(data){
             if (data.length === 0){
-                console.log("no data returned for request for jobID "+req.params.id);
-                err = "no data returned for request for jobID "+req.params.id;
+                console.log("no data returned for request for jobID "+reg.params.id);
+                err = "no data returned for request for jobID "+reg.params.id;
                 res.status(400).send(err);
             }
             console.log("return data for jobID "+req.params.id, data);
@@ -94,15 +92,15 @@ module.exports = function(router) {
         })
     });
 
-    router.get('/jobs', function(req, res) {
-        console.log("jobs dash");
-        res.redirect('/user');
-    });
+  router.get('/jobs', function(req, res) {
+    console.log("jobs dash");
+    res.redirect('/user');
+  });
 
-    router.get('/*', function(req, res) {
-        console.log("user:default:redirecting to job");
-        res.redirect('/user');
-    });
+  router.get('/*', function(req, res) {
+    console.log("user:default:redirecting to job");
+    res.redirect('/user');
+  });
 
     // router.post('/employerverify', function(req, res) {
     //  console.log("employerverify:body:",req.body);

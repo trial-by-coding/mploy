@@ -4,6 +4,7 @@ import ApplicantApp from 'routes/applicant_app';
 import EmployerApp from 'routes/employer_app';
 import Landing from 'routes/landing';
 import Applications from 'routes/containers/applications';
+import NewJob from 'routes/containers/newjob';
 import Jobs from 'routes/containers/jobs';
 import Controls from 'routes/forms/controls';
 import Profile from 'routes/containers/profile';
@@ -17,9 +18,7 @@ import Lists from 'routes/lists';
 export default (history, onUpdate) => {
   return (
     <Router history={history} onUpdate={onUpdate}>
-
       <Route path='/' component={Landing}/>
-
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
         <Route path='/profile' component={Profile} />
@@ -30,6 +29,7 @@ export default (history, onUpdate) => {
         <IndexRoute component={EmployerDashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/applications' component={Applications} />
+        <Route path='/newjob' component={NewJob} />
         <Route path='/rubix/piedonut' component={PieDonutSeries} />
         <Route path='/calendar' component={Calendar} />
         <Route path='/lists' component={Lists} />

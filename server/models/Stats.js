@@ -11,7 +11,6 @@ Stats.newUserData = function(userID) {
   return db('stats')
     .where({user_id: userID})
   .then(function(record) {
-    console.log('therecord: ',record)
     if (record[0] === undefined){
       return db('stats')
         .returning('statID')
@@ -26,7 +25,7 @@ Stats.newUserData = function(userID) {
         })
       .then(function(statID) {
         console.log('Stats initialized: ', statID)
-        return statID
+        return statID[0]
       })
       .catch(function(err) {
         throw err
@@ -46,7 +45,7 @@ Stats.incrementTotalApps = function(userID) {
       'total_apps', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
     })
     .catch(function(err) {
       throw err
@@ -63,7 +62,7 @@ Stats.incrementDenied = function(userID) {
       'denied', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
     })
     .catch(function(err) {
       throw err
@@ -79,7 +78,7 @@ Stats.incrementConsidered = function(userID) {
       'considered', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
     })
     .catch(function(err) {
       throw err
@@ -95,7 +94,23 @@ Stats.incrementInterview = function(userID) {
       'interview_offer', 1
     )
     .then(function(record) {
-      return record
+      return record[0]
+    })
+    .catch(function(err) {
+      throw err
+    })
+};
+
+Stats.incrementOffer = function(userID) {
+  return db('stats')
+    .where({
+      user_id: userID
+    })
+    .increment(
+      'offered', 1
+    )
+    .then(function(record) {
+      return record[0]
     })
     .catch(function(err) {
       throw err
