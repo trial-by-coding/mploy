@@ -1,5 +1,7 @@
 import classNames from 'classnames';
-import JobList from 'routes/components/jobList';
+import SidebarMixin from 'global/jsx/sidebar_component';
+
+import ApplicantLane from 'routes/components/applicantLane';
 
 import { connect } from 'react-redux'
 
@@ -12,29 +14,27 @@ export default class ApplicantDashboard extends React.Component {
 		super(props)
 	}
   componentDidMount() {
-
+    this.props.dispatch(actions.getApplicantUnconsidered(1))
   }
-
-
 
 	render() {
 
-    console.log("AppContainer state", this.state);
+    console.log("AppContainer state", this.props);
 		return (
 		<Container id='body'>
       <Grid>
         <Row>
         	<Col md={3}>
-        		<JobList data={this.props.unconsidered}/>
+        		<ApplicantLane data={this.props.unconsidered}/>
           </Col>
           <Col md={3}>
-        		<JobList data={this.props.considered} />
+        		<ApplicantLane data={this.props.considered} />
           </Col>
           <Col md={3}>
-        		<JobList data={this.props.interviews} />
+        		<ApplicantLane data={this.props.interviews} />
           </Col>
           <Col md={3}>
-        		<JobList data={this.props.offers} />
+        		<ApplicantLane data={this.props.offers} />
           </Col>
         </Row>
       </Grid>

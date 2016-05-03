@@ -44,8 +44,6 @@ app.use('/auth', auth);
 app.get('/', function(req, res, next) {
   var store = getStore();
   var actions = getActions();
-  store.dispatch(actions.addTodo('Hello From Server 1'));
-  store.dispatch(actions.addTodo('Hello From Server 2'));
   renderHTML(req, res, next, store);
 });
 

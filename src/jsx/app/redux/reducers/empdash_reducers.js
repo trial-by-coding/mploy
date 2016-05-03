@@ -1,7 +1,7 @@
 import {GET_EMPLOYER_UNCONSIDERED,
 			  GET_EMPLOYER_CONSIDERED,
 			  GET_EMPLOYER_INTERVIEWS,
-			  GET_EMPLOYER_OFFERS } from '../actions/actionTypes';
+			  GET_EMPLOYER_OFFERS  } from '../actions/actionTypes';
 
 const initialState = {
       unconsidered: [],
