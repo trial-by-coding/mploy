@@ -12,10 +12,6 @@ var passport = require('passport');
 var db = require('./server/db/db.js');
 var session = require('cookie-session');
 
-var JobPosts = require('./server/models/JobPosts.js');
-var Stats = require('./server/models/Stats.js');
-var Applications = require('./server/models/Applications.js');
-
 var app = express();
 app.use(compression());
 app.use(cookieParser());
@@ -37,7 +33,6 @@ app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
 // *** routes *** //
-// load our routes and pass in our app and fully configured  passport
 var user = express.Router();
 require('./server/routes/user.js')(user);
 app.use('/user', user);

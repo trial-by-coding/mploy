@@ -5,6 +5,8 @@ var Notifications = require('../models/Notifications.js');
 var Stats = require('../models/Stats.js');
 var express = require('express');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer({ dest: './uploads'});
 
 module.exports = function(router) {
   var app = express();
@@ -79,7 +81,6 @@ module.exports = function(router) {
     }
   });
 
-  //TO DO:
   router.get('/appsandapplicants', function(req, res) {
     console.log('---appsandapplicants:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
@@ -137,7 +138,6 @@ module.exports = function(router) {
       res.status(400).send("must supply jobID in query string");       
     }
   });
-
 
 //Should we keep stats on number of jobs posted?
   router.post('/submitjob', function(req, res) {
