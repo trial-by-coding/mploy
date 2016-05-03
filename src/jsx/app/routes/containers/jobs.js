@@ -19,19 +19,6 @@ export default class JobsContainer extends React.Component {
     }
   }
 
-  openModal = () => {
-    console.log('openModal working');
-    this.setState({
-      isOpen: true
-    });
-  };
-
-  hideModal = () => {
-    this.setState({
-      isOpen: false
-    });
-  };
-
 	render() {
 
     const { dispatch } = this.props;

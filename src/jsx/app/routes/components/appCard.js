@@ -12,19 +12,11 @@ export default class AppCard extends React.Component {
     super(props)
   }
 
-  deleteTask = (e) => {
-    // this.props.dispatch(actions.getApplications(3))  
-    this.props.dispatch(actions.rejectApp(2, this.props.fuckingApps.appID));
-    // this.props.dispatch(actions.getApplications(3))
-
-    console.log('appID in deleteTask:', this.props.fuckingApps.appID)
-  };
-
   render() {
-    // console.log('fuckingApps be:', this.props.fuckingApps)
+    // console.log('app be:', this.props.app)
     let skillList = [];
-    for (var key in this.props.fuckingApps) {
-      if (key.indexOf('skill') !== -1 && this.props.fuckingApps[key] !== null) {
+    for (var key in this.props.app) {
+      if (key.indexOf('skill') !== -1 && this.props.app[key] !== null) {
         skillList.push(key)
       }
     }
@@ -36,9 +28,6 @@ export default class AppCard extends React.Component {
     };
       console.log('props in appCard:',this.props)
 
-    // if(!this.props.appList.items) {
-    //   return <div> Loading... </div>
-    // } 
     return (
 
 
@@ -46,7 +35,7 @@ export default class AppCard extends React.Component {
       <div>
     
         <Row style={styles}>
-          <h4> App ID: {this.props.fuckingApps.appID} </h4>
+          <h4> App ID: {this.props.app.appID} </h4>
           <h4> Skills </h4>
           <row className='skills'>
           { skillList.map( skill => <div className="label col-md-3 label-primary"> {skill} </div> ) }
@@ -56,32 +45,32 @@ export default class AppCard extends React.Component {
         <Row style={styles}>
           <h4>Years Experience</h4>
           <row className='skills'>
-          { this.props.fuckingApps.years_experience }
+          { this.props.app.years_experience }
           </row>
         </Row> 
 
         <Row style={styles}>
           <h4>Education</h4>
           <row className='skills'>
-          { this.props.fuckingApps.education }
+          { this.props.app.education }
           </row>
         </Row> 
 
         <Row style={styles}>
           <h4>Visa Required</h4>
           <row className='skills'>
-          { this.props.fuckingApps.can_work_here === true ? 'No' : 'Yes' }
+          { this.props.app.can_work_here === true ? 'No' : 'Yes' }
           </row>
         </Row> 
 
         <Row style={styles}>
           <h4>About canidate </h4>
           <row className='skills'>
-            { this.props.fuckingApps.personal_statement }
+            { this.props.app.personal_statement }
           </row>
           <row className='skills'>
             <h4> Applied on </h4>
-            {this.props.fuckingApps.created_at}
+            {this.props.app.created_at}
           </row>
         </Row> 
 

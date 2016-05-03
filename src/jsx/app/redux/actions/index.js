@@ -8,6 +8,7 @@ import employerunconsidered from './employer_unconsidered_actions';
 import employerconsidered from './employer_considered_actions';
 import employerinterviews from './employer_interviews_actions';
 import employeroffers from './employer_offers_actions';
+import employersidebar from './employer_sidebar_actions';
 
 
 module.exports = {
@@ -19,5 +20,6 @@ module.exports = {
   ...employerunconsidered,
   ...employerconsidered,
   ...employerinterviews,
-  ...employeroffers
+  ...employeroffers,
+  ...employersidebar
 };

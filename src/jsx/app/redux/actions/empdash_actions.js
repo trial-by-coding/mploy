@@ -4,7 +4,7 @@ import {ADVANCE_EMPLOYER_REQUEST,
 
 
 function advanceEmployerRequest(appID) {
-	return dispatch => axios.put('user/employer/advancestatus', appID)
+	return dispatch => axios.put('user/employer/advancestatus', {'appID': appID})
 		.then(
 			payload => dispatch({type: ADVANCE_EMPLOYER_REQUEST, payload}))
 }

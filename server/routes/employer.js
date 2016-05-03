@@ -214,7 +214,7 @@ module.exports = function(router) {
       })
       .catch(function(err){
         console.log("Application update failed, err:",err);
-        res.status(400).send("Application update failed:",err);
+        // res.status(400).send("Application update failed:",err);
       });
     }
   });
