@@ -1,6 +1,7 @@
 var JobPosts = require('../models/JobPosts.js');
 var Applications = require('../models/Applications.js');
 var Users = require('../models/Users.js');
+var Notifications = require('../models/Notifications.js');
 var Stats = require('../models/Stats.js');
 var express = require('express');
 var bodyParser = require('body-parser');
