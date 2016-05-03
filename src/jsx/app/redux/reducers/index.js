@@ -1,7 +1,6 @@
 import apps from './app_reducers';
 import jobs from './job_reducers';
 import profile from './profile_reducers';
-// import empdash from './empdash_reducers';
 import appdash from './appdash_reducers';
 import employerunconsidered from './employer_unconsidered_reducers';
 import employerconsidered from './employer_considered_reducers';
@@ -12,7 +11,6 @@ module.exports = {
   ...apps,
   ...jobs,
   ...profile,
-  // ...empdash,
   ...appdash,
   ...employerunconsidered,
   ...employerconsidered,

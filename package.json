@@ -70,8 +70,6 @@
     "node-libs-browser": "^0.5.3",
     "node-sass": "^3.6.0",
     "passport": "^0.3.2",
-    "passport-github": "^1.1.0",
-    "passport-github2": "^0.1.10",
     "passport-linkedin-oauth2": "^1.4.0",
     "pg": "^4.5.3",
     "q": "^1.4.1",
