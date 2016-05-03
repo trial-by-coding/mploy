@@ -37,42 +37,49 @@ Stats.newUserData = function(userID) {
 };
 
 Stats.advanceIncrement = function(userID, status) {
-  return new Promise (function (resolve, reject) {
+  return db('applications')
+  .returning('status')
+  .where({
+    status: status
+  })
+  .then(function() {
+    console.log('status in stats.advance: ', status)
     switch(status){
 
-      case 'considered': 
+      case 'considered':
       return db('stats')
-      .returning('*')
       .where({
         user_id: userID
       })
+      .returning('*')
       .increment('considered', 1)
       .decrement('applied', 1)
 
       case 'interviews':
       return db('stats')
-      .returning('*')
       .where({
         user_id: userID
       })
+      .returning('*')
       .increment('interviewed', 1)
       .decrement('considered', 1)
 
       case 'offers':
       return db('stats')
-      .returning('*')
       .where({
         user_id: userID
       })
+      .returning('*')
       .increment('offered', 1)
       .decrement('interviewed', 1)
 
       default:
-      console.log('Unexpected record status: ', record.status)
-      return 'Unexpected record status: ', record.status
-    }   
+      console.log('Unexpected record status: ', status)
+      return 'Unexpected record status: ', status
+    }
   })
   .then(function(result) {
+    console.log('result in stats: ', result)
     console.log('Status advance successful.')
     return result
   })
