@@ -241,7 +241,7 @@ module.exports = function(router) {
             return Stats.revertIncrement(user_id, status);
           })
           .then(function(stat) {
-            console.log('Stats advanced: ', stat);
+            console.log('Stats revised: ', stat);
             res.status(200).send("Successfully reverted application stats");
           })
         }
