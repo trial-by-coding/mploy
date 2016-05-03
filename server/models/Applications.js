@@ -46,7 +46,7 @@ Applications.deleteApp = function(appID) {
 Applications.advanceStatus = function(appID) {
   
   return db('applications')
-  .returning()
+  .returning('*')
   .where({
     appID: appID
   })
@@ -89,7 +89,8 @@ Applications.advanceStatus = function(appID) {
       })
       default:
       console.log('Unexpected record status: ', record.status)
-    }   
+      return 'Unexpected record status: ', record.status
+    }
   })
   .then(function(result) {
     console.log('Status advance successful.')
@@ -103,16 +104,17 @@ Applications.advanceStatus = function(appID) {
 Applications.revertStatus = function(appID) {
   
   return db('applications')
-  .returning()
+  .returning('*')
   .where({
     appID: appID
   })
   .then(function(record) {
     console.log(record)
     switch(record.status){
+      
       case 'unconsidered': 
       return 'Error! Unconsidered records cannot be reverted.'
-      }
+      
       case 'considered':
       return db('applications')
       .returning('*')
@@ -122,6 +124,7 @@ Applications.revertStatus = function(appID) {
       .update({
         status: 'interviews'
       })
+
       case 'interviews':
       return db('applications')
       .returning('*')
@@ -131,6 +134,7 @@ Applications.revertStatus = function(appID) {
       .update({
         status: 'offers'
       })
+
       case 'offered':
       return db('applications')
       .returning('*')
@@ -138,8 +142,10 @@ Applications.revertStatus = function(appID) {
       .where({
         appID: appID
       })
+      
       default:
       console.log('Unexpected record status: ', record.status)
+      return 'Unexpected record status: ', record.status
     }   
   })
   .then(function(result) {

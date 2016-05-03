@@ -37,7 +37,7 @@ module.exports = function(router) {
   //   }
   // });
 
-  //Could offset to get certain number of jobs at a time
+  //Offset to get certain number of jobs at a time?
 
   router.get('/appsbystatus', function(req, res){
     console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
@@ -139,7 +139,7 @@ module.exports = function(router) {
   });
 
 
-//Should keep stats on number of jobs posted?
+//Should we keep stats on number of jobs posted?
   router.post('/submitjob', function(req, res) {
     console.log('received submit job POST, body:',req.body);
     if(! req || !req.body) {
@@ -252,7 +252,7 @@ module.exports = function(router) {
     }
   });
 
-	//catch all
+	//Catch all
 	router.get('/*', function(req, res) {
 		res.redirect('/job')
 	});
