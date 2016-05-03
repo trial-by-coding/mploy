@@ -6,8 +6,9 @@ import {ADVANCE_REQUEST,
 				UNDO } from './actionTypes';
 
 
-function advance(status) {
-	return dispatch({type: ADVANCE, status});
+function advance(application) {
+	console.log('advance action creator');
+	return {type: ADVANCE, application};
 }
 
 function advanceRequest() {
@@ -17,7 +18,7 @@ function advanceRequest() {
 }
 
 function reject(index) {
-	return dispatch({type: REJECT, index});
+	return {type: REJECT, index};
 }
 
 function rejectRequest() {

@@ -6,9 +6,6 @@ import EmployerDashboardCard from './empdashcard';
 export default class EmployerLane extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      type: this.props.lane
-    }
   }
   componentDidMount() {
   }
@@ -20,7 +17,10 @@ export default class EmployerLane extends React.Component {
       <div className='shortcard'>
         <ul>
           {list.map((item, index) => <EmployerDashboardCard item={item}
-                                                            index={index}/>)}
+                                                            index={index}
+                                                            lane={this.props.lane}
+                                                            advance={this.props.advance}
+                                                            dispatch={this.props.dispatch}/>)}
         </ul>
       </div>
     );

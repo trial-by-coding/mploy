@@ -20,14 +20,28 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.getEmployerInterviews(4));
     this.props.dispatch(actions.getEmployerOffers(2));
   }
+  advance = (appID, status, item, index)  => {
+    console.log('employer dashboard props', this.props);
+    if(status === 'unconsidered') { this.props.dispatch(actions.removeUnconsidered(index))
+                                    this.props.dispatch(actions.addConsidered(item))}
+    else if(status === 'considered') {  this.props.dispatch(actions.removeConsidered(index))
+                                        this.props.dispatch(actions.addInterview(item))}
+    else if(status === 'interviews') {  this.props.dispatch(actions.removeInterview(index))
+                                        this.props.dispatch(actions.addOffer(item))}
+    else if(status === 'offers') {  this.props.dispatch(actions.removeOffer(index)) }  
+
+    this.props.dispatch(actions.advanceEmployerRequest(appID));
+  };
+
   
 
 
 	render() {
-    let unconsidered = this.props.employerdashboard.unconsidered;
-    let considered = this.props.employerdashboard.considered;
-    let interviews = this.props.employerdashboard.interviews;
-    let offers = this.props.employerdashboard.offers;
+    console.log('employer dashboard props', this.props);
+    let unconsidered = this.props.unconsidered;
+    let considered = this.props.considered;
+    let interviews = this.props.interviews;
+    let offers = this.props.offers;
 
     if( !offers ) {
       console.log('Loading');
@@ -41,22 +55,30 @@ export default class EmployerDashboard extends React.Component {
         	<Col md={3}>
             <div> Unconsidered </div>
         		<EmployerLane data={unconsidered}
-                          lane={'unconsidered'}/>
+                          lane={'unconsidered'}
+                          advance={this.advance}
+                          dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Considered </div>
         		<EmployerLane data={considered} 
-                          lane={'considered'}/>
+                          lane={'considered'}
+                          advance={this.advance}
+                          dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Interviews </div>
         		<EmployerLane data={interviews} 
-                          lane={'interviews'}/>
+                          lane={'interviews'}
+                          advance={this.advance}
+                          dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Offers </div>
         		<EmployerLane data={offers} 
-                          lane={'offers'}/>
+                          lane={'offers'}
+                          advance={this.advance}
+                          dispatch={this.props.dispatch}/>
           </Col>
         </Row>
       </Grid>

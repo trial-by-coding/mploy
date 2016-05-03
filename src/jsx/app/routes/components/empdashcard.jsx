@@ -1,8 +1,15 @@
 import classNames from 'classnames';
+import actions from 'redux/actions';
 
 export default class empdashCard extends React.Component {
+
   render() {
 
+    let dispatch = this.props.dispatch;
+    let advance = this.props.advance;
+    let status = this.props.lane;
+    let index = this.props.index;
+    let item = this.props.item
     return (
       <div>
         <Col md={2}>
@@ -16,7 +23,7 @@ export default class empdashCard extends React.Component {
           </div>
         </Col>
         <Col md={2}>
-          <div> > </div>
+          <div onClick={() => advance(item.appID, status, item, index)}> > </div>
         </Col>
       </div>
     )
