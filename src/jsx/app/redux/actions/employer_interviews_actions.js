@@ -1,7 +1,7 @@
 import axios from 'axios';
 import	{	GET_EMPLOYER_INTERVIEWS,
-					ADD_INTERVIEWS,
-					REMOVE_INTERVIEWS	} from './actionTypes';
+					ADD_INTERVIEW,
+					REMOVE_INTERVIEW	} from './actionTypes';
 
 function getEmployerInterviews(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=interviews')
@@ -9,17 +9,17 @@ function getEmployerInterviews(jobID){
 			payload => dispatch({ type: GET_EMPLOYER_INTERVIEWS, payload}));
 }
 
-function addInterviews(item) {
+function addInterview(item) {
 	console.log('advance action creator');
-	return {type: ADD_INTERVIEWS, item};
+	return {type: ADD_INTERVIEW, item};
 }
 
-function removeInterviews(index) {
-	return {type: REMOVE_INTERVIEWS, index};
+function removeInterview(index) {
+	return {type: REMOVE_INTERVIEW, index};
 }
 
 module.exports = {
 	getEmployerInterviews: getEmployerInterviews,
-	addInterviews: addInterviews,
-	removeInterviews: removeInterviews
+	addInterview: addInterview,
+	removeInterview: removeInterview
 }

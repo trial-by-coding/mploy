@@ -4,13 +4,13 @@ import {ADVANCE_EMPLOYER_REQUEST,
 
 
 function advanceEmployerRequest(appID) {
-	return dispatch => axios.put('user/employer/advancestatus?appID='+appID)
+	return dispatch => axios.put('user/employer/advancestatus', appID)
 		.then(
 			payload => dispatch({type: ADVANCE_EMPLOYER_REQUEST, payload}))
 }
 
 function rejectEmployerRequest(appID) {
-	return dispatch => axios.delete('user/employer/deleteapp?appID='+appID)
+	return dispatch => axios.delete('user/employer/deleteapp?appID='+ appID)
 		.then(
 			payload => dispatch({type: REJECT_EMPLOYER_REQUEST, payload}));
 }

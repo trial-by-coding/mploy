@@ -1,6 +1,6 @@
 import apps from './app_types';
 import jobs from './job_types';
-// import empdash from './empdash_types';
+import empdash from './empdash_types';
 import appdash from './appdash_types';
 import profile from './profile_types';
 import employerunconsidered from './employer_unconsidered_types.js';
@@ -12,7 +12,7 @@ module.exports = {
   ...apps,
   ...jobs,
   ...profile,
-  // ...empdash,
+  ...empdash,
   ...appdash,
   ...employerunconsidered,
   ...employerconsidered,
