@@ -13,8 +13,8 @@ export default class empdashCard extends React.Component {
           <AppCard app={this.props.item}/>
         </ModalBody>
         <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
-          <Button outlined bsStyle='primary'>Save changes</Button>
+          <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Reject</Button>
+          <Button outlined bsStyle='primary'>Accept</Button>
         </ModalFooter>
       </Modal>
     );

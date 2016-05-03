@@ -42,6 +42,11 @@ export default class EmployerDashboard extends React.Component {
     else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index)),
                                         this.props.dispatch(actions.addInterview(item)) }  
   };
+  reject = () => {
+    this.props.dispatch(actions.rejectApp(2, this.props.app.appID));
+    
+    console.log('appID in deleteTask:', this.props.app.appID)
+  };
 
 
 	render() {

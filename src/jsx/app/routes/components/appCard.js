@@ -12,14 +12,6 @@ export default class AppCard extends React.Component {
     super(props)
   }
 
-  deleteTask = (e) => {
-    // this.props.dispatch(actions.getApplications(3))  
-    this.props.dispatch(actions.rejectApp(2, this.props.app.appID));
-    // this.props.dispatch(actions.getApplications(3))
-
-    console.log('appID in deleteTask:', this.props.app.appID)
-  };
-
   render() {
     // console.log('app be:', this.props.app)
     let skillList = [];
@@ -36,9 +28,6 @@ export default class AppCard extends React.Component {
     };
       console.log('props in appCard:',this.props)
 
-    // if(!this.props.appList.items) {
-    //   return <div> Loading... </div>
-    // } 
     return (
 
 
