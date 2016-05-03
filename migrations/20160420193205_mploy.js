@@ -14,7 +14,7 @@ exports.up = function(knex, Promise) {
       table.string('linkedin_headline');
       table.string('location');
       table.string('linkedin_url');
-      table.binary('resume');
+      table.string('resume');
       table.boolean('employer');
     }),
 
@@ -41,7 +41,7 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('applications', function(table) {
       table.increments('appID').primary();
       table.timestamp('created_at').defaultTo(knex.fn.now());
-      table.binary('cover_letter');
+      table.string('cover_letter');
       table.string('years_experience');
       table.string('education', 100);
       table.string('personal_statement', 300);
@@ -61,14 +61,26 @@ exports.up = function(knex, Promise) {
       table.increments('statID').primary();
       table.integer('total_apps');
       table.integer('denied');
+      table.integer('applied');
       table.integer('considered');
       table.integer('interviewed');
-      table.integer('additional');
       table.integer('offered');
       table.integer('user_id')
         .references('userID')
         .inTable('users'); 
-    })
+    }),
+
+    knex.schema.createTable('notifications', function(table) {
+      table.increments('notifyID').primary();
+      table.timestamp('created_at').defaultTo(knex.fn.now());
+      table.string('new_status')
+      table.integer('app_id')
+        .references('appID')
+        .inTable('applications');
+      table.integer('user_id')
+        .references('userID')
+        .inTable('users');
+     }),
   ])
 };
 
@@ -79,5 +91,6 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTable('job_posts'),
     knex.schema.dropTable('applications'),
     knex.schema.dropTable('stats'),
+    knex.schema.dropTable('notifications')
   ]);
 };

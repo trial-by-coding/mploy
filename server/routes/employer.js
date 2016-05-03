@@ -1,9 +1,12 @@
 var JobPosts = require('../models/JobPosts.js');
 var Applications = require('../models/Applications.js');
 var Users = require('../models/Users.js');
+var Notifications = require('../models/Notifications.js');
 var Stats = require('../models/Stats.js');
 var express = require('express');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer({ dest: './uploads'});
 
 module.exports = function(router) {
   var app = express();
@@ -36,7 +39,7 @@ module.exports = function(router) {
   //   }
   // });
 
-  //Could offset to get certain number of jobs at a time
+  //Offset to get certain number of jobs at a time?
 
   router.get('/appsbystatus', function(req, res){
     console.log('---appsbystatus:received GET, query='+JSON.stringify(req.query));
@@ -78,7 +81,6 @@ module.exports = function(router) {
     }
   });
 
-  //TO DO:
   router.get('/appsandapplicants', function(req, res) {
     console.log('---appsandapplicants:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
@@ -137,8 +139,7 @@ module.exports = function(router) {
     }
   });
 
-
-//get user id
+//Should we keep stats on number of jobs posted?
   router.post('/submitjob', function(req, res) {
     console.log('received submit job POST, body:',req.body);
     if(! req || !req.body) {
@@ -182,6 +183,47 @@ module.exports = function(router) {
     }
   });
 
+  router.put('/advancestatus', function(req, res){
+    console.log('Received updatestatus PUT, body:',req.body);
+    if(! req || !req.body) {
+      console.log("Error: updatestatus PUT with no body");
+      res.status(400).send("/updatestatus expected a body object");
+    } else {
+      var appID = req.body.appID;
+      var linkedin_id = req.user.linkedin_id
+      var status;
+      var userID;
+      Applications.advanceStatus(appID)
+      .then(function(data){
+        console.log("Application successfully updated")
+        res.status(200).send("Success!");
+      })
+      .then(function() {
+        return Users.verifyId(linkedin_id)
+      })
+      .then(function(userData) {
+        userID = userData.userID;
+        console.log('User verified')
+        return Notifications.createNotification(appID, userID, status)
+      })
+      .then(function(notification) {
+        console.log('Notification created: ', notification)
+        return Stats.advanceIncrement(userID, status)
+      })
+      .then(function(stat) {
+        console.log('Stats advanced: ', stat)
+      })
+      .catch(function(err){
+        console.log("Application update failed, err:",err);
+        res.status(400).send("Application update failed:",err);
+      })
+    }
+  });
+
+  router.put('/revertstatus', function(req, res){
+
+  });
+
   //increment denied in stats for user who created app
   router.delete('/deleteapp', function(req, res){
     console.log('---delete app:received DELETE, query='+JSON.stringify(req.query));
@@ -210,20 +252,7 @@ module.exports = function(router) {
     }
   });
 
-  router.get('/appsbyemployer', function(req, res) {
-    console.log('---appsbyemployer:received GET')
-    // var linkedin_id = req.user.linkedin_id
-    // return Users.verifyId(linkedin_id)
-    // .then(function(userRec) {
-    // return JobPosts.userJoin()
-    // })
-    return Users.jobJoin(1)
-    .then(function(result) {
-      res.send(result)
-    })
-  })
-
-	//catch all
+	//Catch all
 	router.get('/*', function(req, res) {
 		res.redirect('/job')
 	});

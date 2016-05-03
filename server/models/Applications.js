@@ -43,6 +43,120 @@ Applications.deleteApp = function(appID) {
   })
 };
 
+Applications.advanceStatus = function(appID) {
+  
+  return db('applications')
+  .returning('*')
+  .where({
+    appID: appID
+  })
+  .then(function(record) {
+    console.log(record)
+    switch(record.status){
+      case 'unconsidered': 
+      return db('applications')
+      .returning('*')
+      .where({
+        appID: appID
+      })
+      .update({
+        status: 'considered'
+      })
+      case 'considered':
+      return db('applications')
+      .returning('*')
+      .where({
+        appID: appID
+      })
+      .update({
+        status: 'interviews'
+      })
+      case 'interviews':
+      return db('applications')
+      .returning('*')
+      .where({
+        appID: appID
+      })
+      .update({
+        status: 'offers'
+      })
+      case 'offers':
+      return db('applications')
+      .returning('*')
+      .del()
+      .where({
+        appID: appID
+      })
+      default:
+      console.log('Unexpected record status: ', record.status)
+      return 'Unexpected record status: ', record.status
+    }
+  })
+  .then(function(result) {
+    console.log('Status advance successful.')
+    return result
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
+Applications.revertStatus = function(appID) {
+  
+  return db('applications')
+  .returning('*')
+  .where({
+    appID: appID
+  })
+  .then(function(record) {
+    console.log(record)
+    switch(record.status){
+      
+      case 'unconsidered': 
+      return 'Error! Unconsidered records cannot be reverted.'
+      
+      case 'considered':
+      return db('applications')
+      .returning('*')
+      .where({
+        appID: appID
+      })
+      .update({
+        status: 'interviews'
+      })
+
+      case 'interviews':
+      return db('applications')
+      .returning('*')
+      .where({
+        appID: appID
+      })
+      .update({
+        status: 'offers'
+      })
+
+      case 'offered':
+      return db('applications')
+      .returning('*')
+      .del()
+      .where({
+        appID: appID
+      })
+      
+      default:
+      console.log('Unexpected record status: ', record.status)
+      return 'Unexpected record status: ', record.status
+    }   
+  })
+  .then(function(result) {
+    console.log('Status revert successful.')
+    return result
+  })
+  .catch(function(err) {
+      throw err
+  })
+};
+
 //update status
 Applications.updateStatus = function(appID, status) {
   
@@ -61,6 +175,7 @@ Applications.updateStatus = function(appID, status) {
       throw err
   })
 };
+
 Applications.getByStatus = function(jobID, status) {
   console.log('in get by status: ', status)
   return db('applications')

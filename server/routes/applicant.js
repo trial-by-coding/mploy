@@ -1,6 +1,7 @@
 var Applications = require('../models/Applications.js');
 var Stats = require('../models/Stats.js');
 var Users = require('../models/Users.js');
+var Notifications = require('../models/Notifications.js');
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -104,6 +105,7 @@ module.exports = function(router) {
         console.log('req.body.skills_met: ', req.body.skills_met)
         req.body.skills_met = JSON.stringify(req.body.skills_met)
         req.body.user_id = userInfo.userID
+        req.body.skills_met = JSON.stringify(req.body.skills_met)
         Applications.submit(req.body)
         .then(function(data){
           res.status(200).send("success!");
@@ -121,6 +123,26 @@ module.exports = function(router) {
           res.status(400).send("Application submission and/or increment failed");  
         }) 
       })
+    }
+  });
+
+  router.delete('/clearnotification', function(req, res) {
+    console.log('---clear notification:received DELETE, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.notifyID) {
+      console.log("request for notifyID = ",rq.notifyID);
+      Notifications.deleteApp(rq.notifyID) 
+      .then(function(data){
+        res.status(200).send(JSON.stringify(data));
+        console.log("Successfully deleted notificaiton: ", data);
+      })
+      .catch(function(err){
+        console.log("Failed to remove notification "+rq.notify+", err:", err);
+        res.status(400).send(err);
+      })
+    } else {
+      console.log("Must supply notifyID in query string"); 
+      res.status(400).send("Must supply notifyID in query string");       
     }
   });
 
