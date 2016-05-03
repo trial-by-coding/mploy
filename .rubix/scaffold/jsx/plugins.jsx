@@ -27,6 +27,7 @@ import "bower_components/perfect-scrollbar/js/min/perfect-scrollbar.jquery.min.j
 
 
 // add your optional scripts here!
+import 'js/vendor/bootstrap-slider/bootstrap-slider.js';
 
 
 /* ------------------------------------------------------------------------ */

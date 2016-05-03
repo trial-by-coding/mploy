@@ -32,22 +32,7 @@ function hideForm() {
 	}
 }
 
-function applyToJob(data) {
-	return new Promise(function(resolve, reject) {
-		$.ajax({
-			type: 'POST',
-			url: '/job',
-			data: data,
-			success: function(resp) {
-				if (response.status >= 400) {
-	        reject("Bad response from server");
-	        return;
-	      }
-	      resolve(resp);
-			}
-		})
-	})
-}
+
 
 module.exports = {
 	getJobs: getJobs,

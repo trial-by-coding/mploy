@@ -145,8 +145,13 @@ module.exports = function(router) {
       console.log("error: submitjob POST with no body");
       res.status(400).send("/submitjob expected a body object");
     } else {
-      console.log("body:",req.body);
-      JobPosts.create(req.body)
+      var linkedin_id = req.user.linkedin_id
+      return Users.verifyId(linkedin_id)
+      .then(function(userInfo) {
+      req.body.user_id = userInfo.userID;
+      req.body.skills = JSON.stringify(req.body.skills)
+      JobPosts.create(req.body)  
+      })
       .then(function(data){
         console.log("job post successfully submitted")
         res.status(200).send("success!");
