@@ -15,7 +15,7 @@ module.exports = {
   ...jobs,
   ...empdash,
   ...appdash,
-  ...profile
+  ...profile,
   ...employerunconsidered,
   ...employerconsidered,
   ...employerinterviews,

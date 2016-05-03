@@ -11,7 +11,7 @@ import employeroffers from './employer_offers_types.js';
 module.exports = {
   ...apps,
   ...jobs,
-  ...profile
+  ...profile,
   // ...empdash,
   ...appdash,
   ...employerunconsidered,
