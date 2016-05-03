@@ -139,7 +139,7 @@ module.exports = function(router) {
   });
 
 
-//get user id
+//Should keep stats on number of jobs posted?
   router.post('/submitjob', function(req, res) {
     console.log('received submit job POST, body:',req.body);
     if(! req || !req.body) {

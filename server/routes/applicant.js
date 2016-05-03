@@ -105,6 +105,7 @@ module.exports = function(router) {
         console.log('req.body.skills_met: ', req.body.skills_met)
         req.body.skills_met = JSON.stringify(req.body.skills_met)
         req.body.user_id = userInfo.userID
+        req.body.skills_met = JSON.stringify(req.body.skills_met)
         Applications.submit(req.body)
         .then(function(data){
           res.status(200).send("success!");
