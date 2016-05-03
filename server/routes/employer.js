@@ -188,11 +188,26 @@ module.exports = function(router) {
       console.log("Error: updatestatus PUT with no body");
       res.status(400).send("/updatestatus expected a body object");
     } else {
-      console.log("body: ",req.body);
-      Applications.advanceStatus(req.body.appID)
+      var appID = req.body.appID;
+      var linkedin_id = req.user.linkedin_id
+      var status;
+      var userID;
+      Applications.advanceStatus(appID)
       .then(function(data){
         console.log("Application successfully updated")
-        res.status(200).send("success!");
+        res.status(200).send("Success!");
+      })
+      .then(function() {
+        return Users.verifyId(linkedin_id)
+      })
+      .then(function(userData) {
+        userID = userData.userID;
+        console.log('User verified')
+        return Notifications.createNotification(appID, userID, status)
+      })
+      .then(function(notification) {
+        console.log('Notification created: ', notification)
+        //Stats
       })
       .catch(function(err){
         console.log("Application update failed, err:",err);
@@ -211,7 +226,7 @@ module.exports = function(router) {
       Applications.updateStatus(req.body.appID, req.body.status)
       .then(function(data){
         console.log("Application successfully updated")
-        res.status(200).send("success!");
+        res.status(200).send("Success!");
       })
       .catch(function(err){
         console.log("Application update failed, err:",err);

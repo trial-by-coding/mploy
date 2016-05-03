@@ -60,8 +60,8 @@ exports.up = function(knex, Promise) {
     knex.schema.createTable('stats', function(table) {
       table.increments('statID').primary();
       table.integer('total_apps');
-      table.integer('applied');
       table.integer('denied');
+      table.integer('applied');
       table.integer('considered');
       table.integer('interviewed');
       table.integer('offered');
