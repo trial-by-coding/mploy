@@ -207,7 +207,10 @@ module.exports = function(router) {
       })
       .then(function(notification) {
         console.log('Notification created: ', notification)
-        //Stats
+        return Stats.advanceIncrement(userID, status)
+      })
+      .then(function(stat) {
+        console.log('Stats advanced: ', stat)
       })
       .catch(function(err){
         console.log("Application update failed, err:",err);
@@ -217,22 +220,7 @@ module.exports = function(router) {
   });
 
   router.put('/revertstatus', function(req, res){
-    console.log('Received updatestatus PUT, body:',req.body);
-    if(! req || !req.body) {
-      console.log("Error: updatestatus PUT with no body");
-      res.status(400).send("/updatestatus expected a body object");
-    } else {
-      console.log("body: ",req.body);
-      Applications.updateStatus(req.body.appID, req.body.status)
-      .then(function(data){
-        console.log("Application successfully updated")
-        res.status(200).send("Success!");
-      })
-      .catch(function(err){
-        console.log("Application update failed, err:",err);
-        res.status(400).send("Application update failed:",err);
-      })
-    }
+
   });
 
   //increment denied in stats for user who created app
