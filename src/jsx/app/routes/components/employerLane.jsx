@@ -20,6 +20,7 @@ export default class EmployerLane extends React.Component {
                                                             index={index}
                                                             lane={this.props.lane}
                                                             advance={this.props.advance}
+                                                            retract={this.props.retract}
                                                             dispatch={this.props.dispatch}/>)}
         </ul>
       </div>
