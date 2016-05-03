@@ -21,10 +21,14 @@ export default (history, onUpdate) => {
       <Route path='/' component={Landing}/>
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
-        <Route path='/profile' component={Profile} />
+      <Route path='/profile' component={Profile} />
         <Route path='/jobs' component={Jobs} />
         <Route path='/rubix/piedonut' component={PieDonutSeries} />
+        <Route path='/calendar' component={Calendar} />
+        <Route path='/lists' component={Lists} />
+
       </Route>
+
       <Route path='/employer' component={EmployerApp} >
         <IndexRoute component={EmployerDashboard} />
         <Route path='/profile' component={Profile} />
@@ -33,6 +37,7 @@ export default (history, onUpdate) => {
         <Route path='/rubix/piedonut' component={PieDonutSeries} />
         <Route path='/calendar' component={Calendar} />
         <Route path='/lists' component={Lists} />
+
       </Route>
     </Router>
   );

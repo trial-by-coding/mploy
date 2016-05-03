@@ -21,6 +21,7 @@ import "bower_components/eventemitter2/lib/eventemitter2.js";
 // Perfect Scrollbar
 import "bower_components/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js";
 
+
 /* ------------------------------------------------------------------------ */
 /*                            Optional Scripts.                             */
 /* ------------------------------------------------------------------------ */
@@ -42,6 +43,8 @@ import 'js/vendor/bootstrap-slider/bootstrap-slider.js';
 import 'js/vendor/datatables/datatables.js';
 import 'js/vendor/dropzone/dropzone.js';
 import 'js/vendor/fullcalendar/fullcalendar.js';
+import 'js/vendor/fullcalendar/gcal.js';
+import 'js/vendor/fullcalendar/lib/jquery-ui.custom.min.js';
 import 'js/vendor/holder/holder.js';
 import 'js/vendor/ion.rangeSlider/ion.rangeSlider.min.js';
 import 'js/vendor/ion.tabs/ion.tabs.min.js';
@@ -61,6 +64,7 @@ import 'js/vendor/sparklines/sparklines.js';
 import 'js/vendor/switchery/switchery.js';
 import 'js/vendor/tablesaw/tablesaw.js';
 import 'js/vendor/timeline/timeline.js';
+import 'js/vendor/p-scrollbar/src/jquery.mousewheel.js';
 
 
 /* ------------------------------------------------------------------------ */

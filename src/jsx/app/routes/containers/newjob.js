@@ -1,26 +1,26 @@
 import classNames from 'classnames';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
-import Header from '../../common/header';
+import Header from '../components/header';
 import Sidebar from '../components/applicant_sidebar';
-import Footer from '../../common/footer';
+import Footer from '../components/footer';
 // import ReactSliderNativeBootstrap from 'react-bootstrap-native-slider';
 // import ReactStyle from 'global/jsx/react-styles/src/ReactStyle';
 
 @connect(state => state)
 export default class NewJob extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
 
-    this.onFormSubmit = this.onFormSubmit.bind(this)
-    this.jobTitle = this.jobTitle.bind(this)
-    this.companyName = this.companyName.bind(this)
-    this.jobDesc = this.jobDesc.bind(this)
-    this.eduChange = this.eduChange.bind(this)
-    this.visaChange = this.visaChange.bind(this)
-    this.minSalary = this.minSalary.bind(this)
-    this.maxSalary = this.maxSalary.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.jobTitle = this.jobTitle.bind(this);
+    this.companyName = this.companyName.bind(this);
+    this.jobDesc = this.jobDesc.bind(this);
+    this.eduChange = this.eduChange.bind(this);
+    this.visaChange = this.visaChange.bind(this);
+    this.minSalary = this.minSalary.bind(this);
+    this.maxSalary = this.maxSalary.bind(this);
 
     this.state = {
       formVal: {
@@ -35,7 +35,7 @@ export default class NewJob extends React.Component {
         visa_required: null,
         skills: null
       }
-    }
+    };
   }
 
   // componentWillMount() {
@@ -94,57 +94,57 @@ export default class NewJob extends React.Component {
   jobTitle(e){
 
     this.setState({ formVal: { ...this.state.formVal, job_title: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
-  }  
+    console.log("after state_extend:", this.state);
+    });
+  }
 
   companyName(e){
 
     this.setState({ formVal: { ...this.state.formVal, company_name: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
-  }  
+    console.log("after state_extend:", this.state);
+    });
+  }
 
   jobDesc(e){
 
     this.setState({ formVal: { ...this.state.formVal, job_description: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
-  }  
+    console.log("after state_extend:", this.state);
+    });
+  }
 
   eduChange(e){
 
     this.setState({ formVal: { ...this.state.formVal, desired_education: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
+    console.log("after state_extend:", this.state);
+    });
   }
 
 
   visaChange(e){
     let visaBool = e.target.value;
-    visaBool === '1' ? (visaBool = true) : (visaBool = false) 
+    visaBool === '1' ? (visaBool = true) : (visaBool = false);
 
     this.setState({ formVal: { ...this.state.formVal, visa_required:visaBool }},function(){
-    console.log("after state_extend:", this.state)
-    })  
+    console.log("after state_extend:", this.state);
+    });
   }
 
   minSalary(e){
 
     this.setState({ formVal: { ...this.state.formVal, min_salary: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
-  }  
+    console.log("after state_extend:", this.state);
+    });
+  }
 
   maxSalary(e){
 
     this.setState({ formVal: { ...this.state.formVal, max_salary: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
+    console.log("after state_extend:", this.state);
+    });
   }
 
   onFormSubmit(e){
-    e.preventDefault()
+    e.preventDefault();
 
     // this.props.dispatch(actions.applyToJob(this.state.formVal));
 
@@ -156,9 +156,9 @@ export default class NewJob extends React.Component {
    const align = {
     margin:"auto",
     'maxWidth':'700px'
-    }
+    };
 
-   
+
 
 
     return (
@@ -185,21 +185,21 @@ export default class NewJob extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='password' control>Job Title</Label>
-                                <Input 
+                                <Input
                                 onChange={this.jobTitle}
                                 autoFocus type='text'  placeholder='Awesome Title here' />
                             </FormGroup>
 
                             <FormGroup>
                               <Label htmlFor='password' control>Company Name</Label>
-                                <Input 
+                                <Input
                                 onChange={this.companyName}
                                 autoFocus type='text'  placeholder='Mploy' />
                             </FormGroup>
 
                             <FormGroup>
                               <Label htmlFor='textarea'>Job description:</Label>
-                              <Textarea id='textarea' rows='5' 
+                              <Textarea id='textarea' rows='5'
                                         placeholder='Position details'
                                         onChange={this.jobDesc} />
                             </FormGroup>
@@ -207,7 +207,7 @@ export default class NewJob extends React.Component {
                             <FormGroup>
                               <Label htmlFor='password' control>Skills</Label>
                               <InputGroup>
-                                <Input 
+                                <Input
                                 onChange={this.companyName}
                                 autoFocus type='text'  placeholder='Mploy' />
                                 <Button bsStyle='primary'>Primary</Button>
@@ -219,11 +219,11 @@ export default class NewJob extends React.Component {
                                 <InputGroup>
                                   <HelpBlock>Please use numbers only.</HelpBlock>
 
-                                  <Input 
+                                  <Input
                                   onChange={this.minSalary}
                                   autoFocus type='text'  placeholder='70k' />
                                 <Label htmlFor='password' control>Salary Max</Label>
-                                  <Input 
+                                  <Input
                                   onChange={this.maxSalary}
                                   autoFocus type='text'  placeholder='120k' />
                                 </InputGroup>
@@ -231,7 +231,7 @@ export default class NewJob extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='password' control>Desired Education</Label>
-                                <Input 
+                                <Input
                                 onChange={this.eduChange}
                                 autoFocus type='text'  placeholder='Education level' />
                             </FormGroup>
@@ -270,7 +270,7 @@ export default class NewJob extends React.Component {
         </Grid>
 
       </Container>
-    )
+    );
   }
 }
 

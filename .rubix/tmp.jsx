@@ -12,3 +12,9 @@ import 'css/fonts/app/fonts.css';
 /* ------------------------------------------------------------------------ */
 /*                         Optional Stylesheets.                            */
 /* ------------------------------------------------------------------------ */
+
+import 'js/vendor/fullcalendar/fullcalendar.css';
+import 'js/vendor/fullcalendar/lib/cupertino/jquery-ui.min.css';
+import 'js/vendor/select2/select2.css';
+import 'js/vendor/select2/select2-bootstrap.css';
+import 'js/vendor/p-scrollbar/src/perfect-scrollbar.css';

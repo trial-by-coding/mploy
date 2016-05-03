@@ -1,25 +1,25 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
-import Header from 'common/header';
+import Header from 'routes/components/header';
 import Sidebar from 'routes/components/applicant_sidebar';
-import Footer from 'common/footer';
+import Footer from 'routes/components/footer';
 import actions from 'redux/actions';
 
 
 export default class Body extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
 
     //binding helper functions
-    this.onFormSubmit = this.onFormSubmit.bind(this)
-    this.eduChange = this.eduChange.bind(this)
-    this.skillChange = this.skillChange.bind(this)
-    this.visaChange = this.visaChange.bind(this)
-    this.aboutChange = this.aboutChange.bind(this)
-    this.expChange = this.expChange.bind(this)
-    this.fileChagne = this.fileChange.bind(this)
+    this.onFormSubmit = this.onFormSubmit.bind(this);
+    this.eduChange = this.eduChange.bind(this);
+    this.skillChange = this.skillChange.bind(this);
+    this.visaChange = this.visaChange.bind(this);
+    this.aboutChange = this.aboutChange.bind(this);
+    this.expChange = this.expChange.bind(this);
+    this.fileChagne = this.fileChange.bind(this);
 
-    //initial state 
+    //initial state
     this.state = {
       complete: (!this.props.complete) || false,
       formVal: {
@@ -32,12 +32,12 @@ export default class Body extends React.Component {
         user_id:null,
         can_work_here:false
       }
-    } 
+    };
   }
-  
+
   //helper functions start
   onFormSubmit(e){
-    e.preventDefault()
+    e.preventDefault();
 
     this.props.dispatch(actions.applyToJob(this.state.formVal));
 
@@ -48,8 +48,8 @@ export default class Body extends React.Component {
   eduChange(e){
 
   this.setState({ formVal: { ...this.state.formVal, education: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-  })
+    console.log("after state_extend:", this.state);
+  });
   // var newState = React.addons.update(this.state, {
   //   formVal: {
   //     education: e.target.value
@@ -63,55 +63,55 @@ export default class Body extends React.Component {
 
   visaChange(e){
     let visaBool = e.target.value;
-    visaBool === '1' ? (visaBool = true) : (visaBool = false) 
+    visaBool === '1' ? (visaBool = true) : (visaBool = false);
 
     this.setState({ formVal: { ...this.state.formVal, can_work_here:visaBool }},function(){
-    console.log("after state_extend:", this.state)
-    })  
+    console.log("after state_extend:", this.state);
+    });
   }
 
   skillChange(e,idx){
-    e.persist()
-    console.log("e in skillChange:", e.target.checked)
-    console.log("item in skillChange:", idx)
+    e.persist();
+    console.log("e in skillChange:", e.target.checked);
+    console.log("item in skillChange:", idx);
 
-    
+
     let skills = this.state.formVal.skills_met.slice();
-    console.log('skills before idx is:', skills)
-    console.log('state before idx is:', this.state)
+    console.log('skills before idx is:', skills);
+    console.log('state before idx is:', this.state);
 
-    skills[idx] = e.target.checked
-    console.log('skills after idx is:', skills)
+    skills[idx] = e.target.checked;
+    console.log('skills after idx is:', skills);
 
     this.setState({ formVal: { ...this.state.formVal, skills_met: skills }},function(){
-    console.log("after state_extend:", this.state)
-    })
+    console.log("after state_extend:", this.state);
+    });
 
   }
 
   aboutChange(e){
 
     this.setState({ formVal: { ...this.state.formVal, personal_statement: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
+    console.log("after state_extend:", this.state);
+    });
 
   }
 
   expChange(e){
     this.setState({ formVal: { ...this.state.formVal, years_experience: e.target.value }},function(){
-    console.log("after state_extend:", this.state)
-    })
+    console.log("after state_extend:", this.state);
+    });
   }
 
   fileChange(e){
-    console.log("file upload is:",e.target.files)
+    console.log("file upload is:",e.target.files);
   }
   //end helper funcs
 
 
   render() {
-    console.log("wtf is props jCard:", this.props)
-    console.log("wtf is dispatch:", this.props.dispatch)
+    console.log("wtf is props jCard:", this.props);
+    console.log("wtf is dispatch:", this.props.dispatch);
 
 
     //helper func for keys in skills obj
@@ -165,7 +165,7 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='password' control>Education</Label>
-                                <Input 
+                                <Input
                                 onChange={this.eduChange}
                                 autoFocus type='text'  placeholder='education' />
                             </FormGroup>
@@ -180,7 +180,7 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='textarea'>Why are you the top candidate?</Label>
-                              <Textarea id='textarea' rows='3' 
+                              <Textarea id='textarea' rows='3'
                                         placeholder='Sell yourself!'
                                         onChange={this.aboutChange} />
                             </FormGroup>
@@ -326,4 +326,3 @@ export default class Body extends React.Component {
         </Radio>
       </div>
     </FormGroup>*/
-
