@@ -126,3 +126,37 @@ Users.verifyEmployer = function(linkedin_id){
     throw err;
   })
 };
+
+//Applicant
+
+Users.designateAsApplicant = function(linkedin_id){
+  return db('users')
+  .returning('*')
+  .where({
+    linkedin_id: linkedin_id
+  })
+  .update({
+    employer: false
+  })
+  .then(function(record) {
+    return record[0]
+  })
+  .catch(function(err) {
+    throw err
+  })
+};
+
+Users.verifyApplicant = function(linkedin_id){
+  return db('users')
+  .returning('*')
+  .where({
+    linkedin_id: linkedin_id,
+    employer: false
+  })
+  .then(function(record) {
+    return record[0];
+  })
+  .catch(function(err) {
+    throw err;
+  })
+};
