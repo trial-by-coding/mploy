@@ -1,9 +1,9 @@
 import { History } from 'react-router';
 import classNames from 'classnames';
-
+import { connect } from 'react-redux';
 import { SidebarBtn } from 'global/jsx/sidebar_component';
 
-class Brand extends React.Component {
+export default class Brand extends React.Component {
   render() {
     return (
       <NavHeader {...this.props}>

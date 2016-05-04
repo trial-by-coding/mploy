@@ -11,8 +11,8 @@ Users.verifyId = function(linkedin_id) {
   })
   .limit(1)
   .then(function(record) {
-    return record[0]
-  })
+    return record[0];
+  });
 };
 
 Users.insert = function(obj) {
@@ -23,20 +23,20 @@ Users.insert = function(obj) {
   userObj.firstName = obj.name.givenName;
   userObj.lastName = obj.name.familyName;
   if (obj._json.pictureUrls.values){
-    userObj.profile_picture = obj._json.pictureUrls.values[0]; 
+    userObj.profile_picture = obj._json.pictureUrls.values[0];
   } else {
-    userObj.profile_picture = 'https://5481cf3ac956b3637572-6a158f98e8017b9014d6ed26285e201d.ssl.cf2.rackcdn.com/static/images/anonymousUser.jpg'
+    userObj.profile_picture = 'https://5481cf3ac956b3637572-6a158f98e8017b9014d6ed26285e201d.ssl.cf2.rackcdn.com/static/images/anonymousUser.jpg';
   }
   userObj.email = obj._json.emailAddress;
   userObj.industry = obj._json.industry;
   userObj.headline = obj._json.headline;
   userObj.location = obj._json.location.name;
-  userObj.profileUrl = obj._json.publicProfileUrl;
+  userObj.profileUrl = obj._json.siteStandardProfileRequest.url;
 
   return db('users')
   .returning('*')
   .insert({
-    
+
     linkedin_id: userObj.linkedin_id,
     username: userObj.username,
     firstname: userObj.firstName,
@@ -50,8 +50,8 @@ Users.insert = function(obj) {
     employer: false
   })
   .then(function(record) {
-    return record[0]
-  })
+    return record[0];
+  });
 };
 
 //Resume handling:
@@ -68,10 +68,10 @@ Users.insertResume = function(uid, resume) {
       return userID;
     })
     .then(function(record) {
-      return record[0]
+      return record[0];
     })
     .catch(function(err) {
-      throw err
+      throw err;
     });
 };
 
@@ -86,10 +86,10 @@ Users.updateResume = function(uid, newResume) {
       return userID;
     })
     .then(function(record) {
-      return record[0]
+      return record[0];
     })
     .catch(function(err) {
-      throw err
+      throw err;
     });
 };
 
@@ -105,11 +105,11 @@ Users.designateAsEmployer = function(linkedin_id){
     employer: true
   })
   .then(function(record) {
-    return record[0]
+    return record[0];
   })
   .catch(function(err) {
-    throw err
-  })
+    throw err;
+  });
 };
 
 Users.verifyEmployer = function(linkedin_id){
@@ -124,7 +124,7 @@ Users.verifyEmployer = function(linkedin_id){
   })
   .catch(function(err) {
     throw err;
-  })
+  });
 };
 
 //Applicant
@@ -139,11 +139,11 @@ Users.designateAsApplicant = function(linkedin_id){
     employer: false
   })
   .then(function(record) {
-    return record[0]
+    return record[0];
   })
   .catch(function(err) {
-    throw err
-  })
+    throw err;
+  });
 };
 
 Users.verifyApplicant = function(linkedin_id){
@@ -158,5 +158,5 @@ Users.verifyApplicant = function(linkedin_id){
   })
   .catch(function(err) {
     throw err;
-  })
+  });
 };

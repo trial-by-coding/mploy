@@ -1,13 +1,11 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-import { Link, connect } from 'react-router';
-
-import Header from 'routes/components/header';
-import Sidebar from 'routes/components/applicant_sidebar';
-import Footer from 'routes/components/footer';
+import { connect } from 'react-redux';
+import { Link, History } from 'react-router';
+import actions from 'redux/actions';
+import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 
-class Body extends React.Component {
+export default class Body extends React.Component {
   componentDidMount() {
     $('#calendar').fullCalendar({
       header: {
@@ -177,24 +175,6 @@ class Body extends React.Component {
             </Col>
           </Row>
         </Grid>
-      </Container>
-    );
-  }
-}
-
-@SidebarMixin
-export default class extends React.Component {
-  render() {
-    const classes = classNames({
-      'container-open': this.props.open
-    });
-
-    return (
-      <Container id='container' className={classes}>
-        <Sidebar />
-        <Header />
-        <Body />
-        <Footer />
       </Container>
     );
   }
