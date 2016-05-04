@@ -17,6 +17,7 @@ Stats.newUserData = function(userID) {
         .insert({
           total_apps: 0,
           applied: 0,
+          rescinded: 0,
           denied: 0,
           considered: 0,
           interviewed: 0,
@@ -53,7 +54,14 @@ Stats.advanceIncrement = function(userID, status) {
       })
       .returning('*')
       .increment('considered', 1)
-      .decrement('applied', 1)
+      .then(function() {
+        return db('stats')
+        .where({
+          user_id: userID
+        })
+        .returning('*')
+        .decrement('applied', 1)
+      })
 
       case 'interviews':
       return db('stats')
@@ -62,7 +70,14 @@ Stats.advanceIncrement = function(userID, status) {
       })
       .returning('*')
       .increment('interviewed', 1)
-      .decrement('considered', 1)
+        .then(function() {
+          return db('stats')
+          .where({
+            user_id: userID
+          })
+          .returning('*')
+          .decrement('considered', 1)
+        })
 
       case 'offers':
       return db('stats')
@@ -71,7 +86,14 @@ Stats.advanceIncrement = function(userID, status) {
       })
       .returning('*')
       .increment('offered', 1)
-      .decrement('interviewed', 1)
+        .then(function() {
+          return db('stats')
+          .where({
+            user_id: userID
+          })
+          .returning('*')
+          .decrement('interviews', 1)
+        })
 
       default:
       console.log('Unexpected record status: ', status)
@@ -140,20 +162,38 @@ Stats.revertIncrement = function(userID, status) {
   })
 };
 
-Stats.incrementTotalApps = function(userID) {
+Stats.getStats = function(userID) {
   return db('stats')
     .where({
       user_id: userID
     })
-    .increment(
-      'total_apps', 1
-    )
     .then(function(record) {
       return record[0]
     })
     .catch(function(err) {
       throw err
     })
+};
+
+Stats.incrementTotalApps = function(userID) {
+  return db('stats')
+    .where({
+      user_id: userID
+    })
+    .increment('total_apps', 1)
+    .then(function() {
+      return db('stats')
+      .where({
+        user_id: userID
+      })
+      .increment('applied', 1)
+      })
+      .then(function(record) {
+        return record[0]  
+      })
+      .catch(function(err) {
+        throw err
+   })
 };
 
 Stats.incrementRescinded = function(userID) {
