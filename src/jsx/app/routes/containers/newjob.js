@@ -21,9 +21,12 @@ export default class NewJob extends React.Component {
     this.visaChange = this.visaChange.bind(this);
     this.minSalary = this.minSalary.bind(this);
     this.maxSalary = this.maxSalary.bind(this);
+    this.skillChange = this.skillChange.bind(this);
+    this.addSkill = this.addSkill.bind(this)
 
     this.state = {
       formVal: {
+        skillName:'',
         company_name: null,
         job_title: null,
         job_description: null,
@@ -33,9 +36,12 @@ export default class NewJob extends React.Component {
         location: null,
         employment_type: null,
         visa_required: null,
-        skills: null
+        skills: ['test']
       }
     };
+
+
+
   }
 
   // componentWillMount() {
@@ -97,6 +103,8 @@ export default class NewJob extends React.Component {
     console.log("after state_extend:", this.state);
     });
   }
+  
+
 
   companyName(e){
 
@@ -143,6 +151,31 @@ export default class NewJob extends React.Component {
     });
   }
 
+  skillChange(e){
+    let skill = e.target.value;
+
+    // skills.push(e.target.value),
+    // console.log('skills after idx is:', skills);
+
+    this.setState({ formVal: { ...this.state.formVal, skillName: skill }},function(){
+    console.log("after state_extend:", this.state);
+    });
+
+  }
+
+  addSkill(){
+    let skill = this.state.formVal.skillName;
+
+    let skills = this.state.formVal.skills.slice()
+
+    skills.push(skill);
+
+    this.setState({ formVal: { ...this.state.formVal, skills: skills, skillName:'' }},function(){
+    console.log("after state_extend:", this.state);
+    });
+
+  }
+
   onFormSubmit(e){
     e.preventDefault();
 
@@ -158,7 +191,7 @@ export default class NewJob extends React.Component {
     'maxWidth':'700px'
     };
 
-
+    console.log('skills be:', this.state.formVal.skills)
 
 
     return (
@@ -205,20 +238,33 @@ export default class NewJob extends React.Component {
                             </FormGroup>
 
                             <FormGroup>
-                              <Label htmlFor='password' control>Skills</Label>
-                              <InputGroup>
-                                <Input
-                                onChange={this.companyName}
-                                autoFocus type='text'  placeholder='Mploy' />
-                                <Button bsStyle='primary'>Primary</Button>
-                              </InputGroup>
+                              <Label htmlFor='textarea'>What skills are needed for this position?</Label>
+                                <InputGroup>
+                                  <Input type='text' id='searchbtnicon' placeholder='Enter skills here ...' 
+                                                                        onChange={this.skillChange}
+                                                                        value={this.state.formVal.skillName} />
+                                  <InputGroupAddon className='plain'>
+                                    <Button onClick={this.addSkill}>
+                                      <span> add </span>
+                                      <Icon bundle='fontello' glyph='plus' />
+                                    </Button>
+                                  </InputGroupAddon>
+                                </InputGroup>
                             </FormGroup>
+                                
+                            <Row>
+                              {this.state.formVal.skills.map(function(item){
+                                   return <Col xs={1}>
+                                            <BLabel>{item}</BLabel>{' '}
+                                          </Col>
+                                          
+                              })} 
+                            </Row>
 
                             <FormGroup>
                               <Label htmlFor='password' control>Salary Min</Label>
                                 <InputGroup>
                                   <HelpBlock>Please use numbers only.</HelpBlock>
-
                                   <Input
                                   onChange={this.minSalary}
                                   autoFocus type='text'  placeholder='70k' />
