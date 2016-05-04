@@ -9,6 +9,7 @@ import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicationContainer from 'routes/containers/applications';
 import Jobs from 'routes/containers/jobs';
 import Profile from 'routes/containers/profile_user';
+import Calendar from 'routes/calendar';
 
 
 

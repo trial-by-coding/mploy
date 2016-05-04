@@ -3,6 +3,7 @@ import {
   SidebarControls, SidebarControlBtn
 } from 'global/jsx/sidebar_component';
 
+import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link, History } from 'react-router';
 import actions from 'redux/actions';
@@ -12,9 +13,11 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 export default class ApplicantSidebar extends React.Component {
 
 
+
   render() {
 
     const user = this.props;
+    console.log('SIDEBAR', this.props);
 
     return (
       <div>
@@ -24,21 +27,25 @@ export default class ApplicantSidebar extends React.Component {
               <div className='sidebar-header'>PAGES</div>
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
+
+                  <SidebarNavItem glyph='icon-fontello-gauge' name={<span>Dashboard <BLabel className='bg-darkgreen45 fg-white'></BLabel></span>}>
+                  <SidebarNav>
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
-
-                  <SidebarNavItem glyph='icon-fontello-user' name='Jobs' href='/jobs' />
-                    <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Charts <BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
-
-                        <SidebarNav>
-                              <SidebarNavItem glyph='icon-fontello-chart-pie' name='Pie + Donut Series' href='/rubix/piedonut' />
-                        </SidebarNav>
-                    </SidebarNavItem>
-                  <SidebarNavItem glyph='icon-feather-mail' name={<span>Menu <BLabel className='bg-darkgreen45 fg-white'>2</BLabel></span>}>
-                    <SidebarNav>
-                        <SidebarNavItem glyph='icon-dripicons-view-list' name='Lists' href='/lists' />
-                        <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/calendar' />
-                    </SidebarNav>
+                </SidebarNav>
+                  <SidebarNav>
+                    <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/jobs' />
+                  </SidebarNav>
                   </SidebarNavItem>
+                  <SidebarNavItem glyph='icon-feather-menu' name={<span>Menu <BLabel className='bg-darkgreen45 fg-white'></BLabel></span>}>
+                    <SidebarNav>
+                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/calendar' />
+                    </SidebarNav>
+                    <SidebarNav>
+                    <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/charts' />
+                    </SidebarNav>
+                    </SidebarNavItem>
+
+
                 </SidebarNav>
               </div>
             </Col>
@@ -81,7 +88,7 @@ export default class extends React.Component {
           </Grid>
         </div>
         <SidebarControls>
-          <SidebarControlBtn bundle='fontello' glyph='columns' sidebar={0} />
+          <SidebarControlBtn bundle='fontello' glyph='home' sidebar={0} />
           <SidebarControlBtn bundle='fontello' glyph='chart-pie-2' sidebar={1} />
           <SidebarControlBtn bundle='fontello' glyph='user-1' sidebar={2} />
         </SidebarControls>

@@ -24,6 +24,7 @@ render() {
   const location = this.props.user.location;
   const resume = this.props.user.resume;
   const employer = this.props.user.employer;
+  const linkedin_url = this.props.user.linkedin_url;
 
 const { dispatch } = this.props;
 
@@ -45,6 +46,7 @@ const { dispatch } = this.props;
         location={location}
         resume={resume}
         employer={employer}
+        linkedin_url={linkedin_url}
         />
       </div>
     </Container>

@@ -10,9 +10,8 @@ import Controls from 'routes/forms/controls';
 import Profile from 'routes/containers/profile_user';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
-import PieDonutSeries from 'routes/charts/rubix/piedonut_series';
+import Charts from 'routes/containers/charts';
 import Calendar from 'routes/calendar';
-import Lists from 'routes/lists';
 
 
 
@@ -24,9 +23,8 @@ export default (history, onUpdate) => {
         <IndexRoute component={ApplicantDashboard} />
         <Route path='/profile' component={Profile} />
         <Route path='/jobs' component={Jobs} />
-        <Route path='/rubix/piedonut' component={PieDonutSeries} />
+        <Route path='/charts' component={Charts} />
         <Route path='/calendar' component={Calendar} />
-        <Route path='/lists' component={Lists} />
 
       </Route>
 
@@ -35,9 +33,8 @@ export default (history, onUpdate) => {
         <Route path='/profile' component={Profile} />
         <Route path='/applications' component={Applications} />
         <Route path='/newjob' component={NewJob} />
-        <Route path='/rubix/piedonut' component={PieDonutSeries} />
+        <Route path='/charts' component={Charts} />
         <Route path='/calendar' component={Calendar} />
-        <Route path='/lists' component={Lists} />
 
       </Route>
     </Router>
