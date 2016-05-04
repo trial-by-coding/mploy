@@ -136,7 +136,7 @@ export default class Body extends React.Component {
                     <Grid>
                       <Row>
                         <Col xs={12}>
-                          <h3>Submit Application for Job Id:{this.props.data.jobID}</h3>
+                          <h3>Submit Application for {this.props.data.job_title} at {this.props.data.company_name}</h3>
                         </Col>
                       </Row>
                     </Grid>
@@ -167,7 +167,7 @@ export default class Body extends React.Component {
                               <Label htmlFor='password' control>Education</Label>
                                 <Input
                                 onChange={this.eduChange}
-                                autoFocus type='text'  placeholder='education' />
+                                autoFocus type='text'  placeholder='Degree(s)' />
                             </FormGroup>
 
                             <FormGroup>
