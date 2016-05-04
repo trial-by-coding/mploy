@@ -16,6 +16,7 @@ export default class NewJob extends React.Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.jobTitle = this.jobTitle.bind(this);
     this.companyName = this.companyName.bind(this);
+    this.locationChange = this.locationChange.bind(this)
     this.jobDesc = this.jobDesc.bind(this);
     this.eduChange = this.eduChange.bind(this);
     this.visaChange = this.visaChange.bind(this);
@@ -23,12 +24,14 @@ export default class NewJob extends React.Component {
     this.maxSalary = this.maxSalary.bind(this);
     this.skillChange = this.skillChange.bind(this);
     this.addSkill = this.addSkill.bind(this)
+    this.empType = this.empType.bind(this)
 
     this.state = {
       formVal: {
         skillName:'',
         company_name: null,
         job_title: null,
+        location: null,
         job_description: null,
         desired_education: null,
         min_salary: null,
@@ -111,6 +114,13 @@ export default class NewJob extends React.Component {
     this.setState({ formVal: { ...this.state.formVal, company_name: e.target.value }},function(){
     console.log("after state_extend:", this.state);
     });
+  }  
+
+  locationChange(e){
+
+    this.setState({ formVal: { ...this.state.formVal, location: e.target.value }},function(){
+    console.log("after state_extend:", this.state);
+    });
   }
 
   jobDesc(e){
@@ -176,10 +186,18 @@ export default class NewJob extends React.Component {
 
   }
 
+  empType(e){
+    let type = e.target.value;
+
+    this.setState({ formVal: { ...this.state.formVal, employment_type:type }},function(){
+    console.log("after state_extend:", this.state);
+    });
+  }
+
   onFormSubmit(e){
     e.preventDefault();
 
-    // this.props.dispatch(actions.applyToJob(this.state.formVal));
+    this.props.dispatch(actions.postNewJob(this.state.formVal));
 
     console.log('app form is:', this.state.formVal);
 
@@ -190,6 +208,12 @@ export default class NewJob extends React.Component {
     margin:"auto",
     'maxWidth':'700px'
     };
+    
+    const tagMargin = {
+    'margin-left':"0px",
+    'font-size': '16px'
+    };    
+
 
     console.log('skills be:', this.state.formVal.skills)
 
@@ -231,6 +255,23 @@ export default class NewJob extends React.Component {
                             </FormGroup>
 
                             <FormGroup>
+                              <Label htmlFor='password' control>Location</Label>
+                                <Input
+                                onChange={this.locationChange}
+                                autoFocus type='text'  placeholder='City, State, Country' />
+                            </FormGroup>
+                            
+                            <FormGroup>
+                              <Label htmlFor='dropdownselect'>Employment type</Label>
+                              <Select onChange={this.empType} id='dropdownselect' defaultValue='2'>
+                                <option value='Part time'>Part time</option>
+                                <option value='Full time'>Full Time</option>
+                                <option value='Temporary'>Temporary</option>
+                                <option value='Seasonal'>Seasonal</option>
+                              </Select>
+                            </FormGroup>
+                            
+                            <FormGroup>
                               <Label htmlFor='textarea'>Job description:</Label>
                               <Textarea id='textarea' rows='5'
                                         placeholder='Position details'
@@ -250,17 +291,17 @@ export default class NewJob extends React.Component {
                                     </Button>
                                   </InputGroupAddon>
                                 </InputGroup>
+
+                              <Row style={tagMargin} >
+                                {this.state.formVal.skills.map(function(item){
+                                     return <span>
+                                              <BLabel>{item}</BLabel>{' '}
+                                            </span>
+                                            
+                                })} 
+                              </Row>
                             </FormGroup>
                                 
-                            <Row>
-                              {this.state.formVal.skills.map(function(item){
-                                   return <Col xs={1}>
-                                            <BLabel>{item}</BLabel>{' '}
-                                          </Col>
-                                          
-                              })} 
-                            </Row>
-
                             <FormGroup>
                               <Label htmlFor='password' control>Salary Min</Label>
                                 <InputGroup>
