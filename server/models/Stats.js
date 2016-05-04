@@ -156,6 +156,23 @@ Stats.incrementTotalApps = function(userID) {
     })
 };
 
+Stats.incrementRescinded = function(userID) {
+  console.log('userID in incrementDenied', userID)
+  return db('stats')
+    .where({
+      user_id: userID
+    })
+    .increment(
+      'rescinded', 1
+    )
+    .then(function(record) {
+      return record[0]
+    })
+    .catch(function(err) {
+      throw err
+    })
+};
+
 Stats.incrementDenied = function(userID) {
   console.log('userID in incrementDenied', userID)
   return db('stats')
@@ -164,54 +181,6 @@ Stats.incrementDenied = function(userID) {
     })
     .increment(
       'denied', 1
-    )
-    .then(function(record) {
-      return record[0]
-    })
-    .catch(function(err) {
-      throw err
-    })
-};
-
-Stats.incrementConsidered = function(userID) {
-  return db('stats')
-    .where({
-      user_id: userID
-    })
-    .increment(
-      'considered', 1
-    )
-    .then(function(record) {
-      return record[0]
-    })
-    .catch(function(err) {
-      throw err
-    })
-};
-
-Stats.incrementInterview = function(userID) {
-  return db('stats')
-    .where({
-      user_id: userID
-    })
-    .increment(
-      'interview_offer', 1
-    )
-    .then(function(record) {
-      return record[0]
-    })
-    .catch(function(err) {
-      throw err
-    })
-};
-
-Stats.incrementOffer = function(userID) {
-  return db('stats')
-    .where({
-      user_id: userID
-    })
-    .increment(
-      'offered', 1
     )
     .then(function(record) {
       return record[0]

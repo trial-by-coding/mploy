@@ -146,6 +146,51 @@ module.exports = function(router) {
     }
   });
 
+  router.delete('/rescindapp', function(req, res){
+    console.log('---rescind app:received DELETE, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.appID) {
+      console.log("request for appId = ",rq.appID);
+      Applications.deleteApp(rq.appID)
+      .then(function(data){
+        res.status(200).send(JSON.stringify(data));
+        console.log("Successfully rescinded application: ", data);
+        return Stats.incrementRescinded(data.user_id)
+        .then(function() {
+          console.log('App rescinded stat successfully incremented');
+        })
+        .catch(function() {
+          console.log('App rescinded stat failed to increment');
+        });
+      })
+      .catch(function(err){
+        console.log("Could not get application data for appID "+rq.appID+", err:", err);
+        res.status(400).send(err);
+      });
+    } else {
+      console.log("Must supply appID in query string");
+      res.status(400).send("Must supply appID in query string");
+    }
+  });
+
+  router.get('/notifications', function(req, res){
+    console.log('---notifications:received GET');
+    var linkedin_id = req.user.linkedin_id
+    return Users.verifyId(linkedin_id)
+    .then(function(data){
+    console.log("User data: ", data);
+    return Notifications.getNotifications(data.userID)
+    })
+    .then(function(notes) {
+    console.log('Responding with notifications for current user: ', notes)
+    res.status(200).send(notes);
+    })
+    .catch(function(err){
+    console.log("No notifications retrieved for current user: ", err);
+    res.status(400).send(err);
+    })
+  });
+
 	//catch all
 	router.get('/*', function(req, res) { 
 		res.redirect('/job')
