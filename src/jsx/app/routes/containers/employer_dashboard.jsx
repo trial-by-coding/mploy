@@ -34,7 +34,7 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.advanceEmployerRequest(appID));
   };
 
-  retract = (appID, status, item, index) => {
+  revert = (appID, status, item, index) => {
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)) }
     else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index))
                                         this.props.dispatch(actions.addUnconsidered(item))}
@@ -45,10 +45,11 @@ export default class EmployerDashboard extends React.Component {
 
     this.props.dispatch(actions.revertEmployerRequest(appID)); 
   };
-  reject = () => {
-    this.props.dispatch(actions.rejectApp(2, this.props.app.appID));
-    
-    console.log('appID in deleteTask:', this.props.app.appID)
+
+  reject = (jobID, appID) => {
+    ModalManager.remove;
+    this.props.dispatch(actions.rejectApp(jobID, appID));  
+    console.log('appID in deleteTask:', appID)
   };
 
 
@@ -58,6 +59,7 @@ export default class EmployerDashboard extends React.Component {
     let considered = this.props.considered;
     let interviews = this.props.interviews;
     let offers = this.props.offers;
+    console.log('reject', this.reject);
 
     if( !offers ) {
       console.log('Loading');
@@ -74,7 +76,7 @@ export default class EmployerDashboard extends React.Component {
                           lane={'unconsidered'}
                           advance={this.advance}
                           revert={this.revert}
-                          retract={this.retract}
+                          reject={this.reject}
                           dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
@@ -83,7 +85,7 @@ export default class EmployerDashboard extends React.Component {
                           lane={'considered'}
                           advance={this.advance}
                           revert={this.revert}
-                          retract={this.retract}
+                          reject={this.reject}
                           dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
@@ -92,7 +94,7 @@ export default class EmployerDashboard extends React.Component {
                           lane={'interviews'}
                           advance={this.advance}
                           revert={this.revert}
-                          retract={this.retract}
+                          reject={this.reject}
                           dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
@@ -101,7 +103,7 @@ export default class EmployerDashboard extends React.Component {
                           lane={'offers'}
                           advance={this.advance}
                           revert={this.revert}
-                          retract={this.retract}
+                          reject={this.reject}
                           dispatch={this.props.dispatch}/>
           </Col>
         </Row>
