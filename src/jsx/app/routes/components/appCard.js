@@ -64,7 +64,7 @@ export default class AppCard extends React.Component {
         </Row> 
 
         <Row style={styles}>
-          <h4>About canidate </h4>
+          <h4>About candidate </h4>
           <row className='skills'>
             { this.props.app.personal_statement }
           </row>

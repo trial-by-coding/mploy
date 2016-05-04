@@ -39,8 +39,8 @@ module.exports = function(router) {
   router.get('/redirect', function(req, res) {
     console.log('req.session.employer: ', req.session.employer)
     console.log('req.user.linkedin_id: ', req.user.linkedin_id)
+    var linkedin_id = req.user.linkedin_id
     if (req.session.employer === 'true'){
-      var linkedin_id = req.user.linkedin_id
       return Users.verifyEmployer(linkedin_id)
       .then(function(res) {
         console.log('res in redirect:', res)
@@ -55,7 +55,18 @@ module.exports = function(router) {
       })
     }
     if (req.session.employer === 'false'){
-      res.redirect('/applicant')
+      return Users.verifyApplicant(linkedin_id)
+      .then(function(res) {
+        console.log('res in redirect:', res)
+        if (!res){
+          console.log('Designating employer status to user.')
+          return Users.designateAsApplicant(linkedin_id)
+        }
+      })
+      .then(function() {
+        console.log('Verifying employer status and redirecting.')
+        res.redirect('/applicant')
+      })
     }
   });
 
