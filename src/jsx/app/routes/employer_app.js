@@ -1,5 +1,7 @@
 import classNames from 'classnames';
+import axios from 'axios';
 import SidebarMixin from 'global/jsx/sidebar_component';
+
 
 import Header from 'routes/components/header';
 import EmployerSidebar from 'routes/components/employer_sidebar';
@@ -14,11 +16,29 @@ import Profile from 'routes/containers/profile_user';
 
 @SidebarMixin
 export default class EmployerApp extends React.Component {
+	constructor(props) {
+		super(props)
+	}
+
+	isEmployer = () => {
+		axios.get('user/verifyuser')
+			.then(function(user) {
+				console.log('user data', user);
+				console.log('previous page', document.referrer);
+				if(!user.data.employer) {
+					window.location.back();
+				}
+			})
+	};
+
 	render() {
     const dispatch = this.props.dispatch;
 		var classes = classNames({
 			'container-open': this.props.open
-		});
+		})
+
+		this.isEmployer();
+
 		return (
 			<Container id='container' className={classes}>
 				<EmployerSidebar />
@@ -26,5 +46,6 @@ export default class EmployerApp extends React.Component {
         {this.props.children}
 				<Footer />
 			</Container>
-	);}
+		);
+	}
 }
