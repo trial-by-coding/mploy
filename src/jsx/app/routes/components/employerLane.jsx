@@ -7,8 +7,7 @@ export default class EmployerLane extends React.Component {
   constructor(props) {
     super(props);
   }
-  componentDidMount() {
-  }
+
   render() {
     let list = this.props.data;
     let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item']
@@ -20,7 +19,8 @@ export default class EmployerLane extends React.Component {
                                                             index={index}
                                                             lane={this.props.lane}
                                                             advance={this.props.advance}
-                                                            retract={this.props.retract}
+                                                            revert={this.props.revert}
+                                                            reject={this.props.reject}
                                                             dispatch={this.props.dispatch}/>)}
         </ul>
       </div>

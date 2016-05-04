@@ -15,6 +15,7 @@ import Profile from 'routes/containers/profile'
 @SidebarMixin
 export default class EmployerApp extends React.Component {
 	render() {
+		
     const dispatch = this.props.dispatch
 		var classes = classNames({
 			'container-open': this.props.open
