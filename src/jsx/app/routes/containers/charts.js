@@ -2,9 +2,8 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link, History } from 'react-router';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
-export default class Chart extends React.Component {
+class Chart extends React.Component {
   render() {
     return (
       <PanelContainer>
@@ -18,23 +17,27 @@ export default class Chart extends React.Component {
   }
 }
 
-let interval = null;
+@connect(state => state)
 export default class Body extends React.Component {
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-  componentDidMount() {
-    setTimeout(() => {
+
+
+
+componentWillMount() {
+  this.props.dispatch(actions.fetchChart());
+
+
+  setTimeout(() => {
+
       (() => {
         let pie = Rubix.Pie('#pie-chart', {
-          title: 'Pie chart',
-          subtitle: 'Browser Share',
+          title: 'Application Progress',
+          subtitle: 'none',
           height: 300
         });
 
         pie.addData([
           {
-            name: 'Firefox',
+            name: '',
             value: 45.0,
             color: '#4572a7'
           },
@@ -64,13 +67,14 @@ export default class Body extends React.Component {
             color: '#db843d'
           }
         ]);
+
       })();
 
 
       (() => {
         let pie2 = Rubix.Pie('#pie2-chart', {
-          title: 'Pie2 chart',
-          subtitle: 'Browser Share',
+          title: 'Application Outcome',
+          subtitle: 'none',
           height: 300
         });
 
@@ -108,13 +112,28 @@ export default class Body extends React.Component {
         ]);
 
       })();
-
     }, 15);
   }
 
+  constructor(props){
+    super(props);
+}
+
   render() {
+
+    console.log('CHART STATS', this.props);
+
+    if( !this.props.chart ) {
+      return ( <div>Loading...</div>);
+    }
+
+   const { dispatch } = this.props;
+
+
     return (
       <Container id='body'>
+      <div>
+      <Chart dispatch={dispatch} />
         <Grid>
           <Row>
             <Col sm={6} collapseRight>
@@ -125,6 +144,7 @@ export default class Body extends React.Component {
             </Col>
           </Row>
         </Grid>
+        </div>
       </Container>
     );
   }
