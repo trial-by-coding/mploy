@@ -19,6 +19,17 @@ Notifications.createNotification = function(appID, userID, status) {
   })
 };
 
+Notifications.getNotifications = function(userID) {
+
+  return db('notifications')
+  .join('applications', 'notifications.app_id', '=', 'applications.appID') 
+  .join('job_posts', 'applications.job_id', '=', 'job_posts.jobID') 
+  .select('appID', 'company_name', 'job_title', 'new_status', 'notifications.user_id', 'notifications.created_at')
+  .then(function(records) {
+    return records
+  })
+};
+
 Notifications.deleteNotification = function(notifyID) {
 
   return db('notifications')
