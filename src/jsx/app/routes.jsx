@@ -7,12 +7,13 @@ import Applications from 'routes/containers/applications';
 import NewJob from 'routes/containers/newjob';
 import Jobs from 'routes/containers/jobs';
 import Controls from 'routes/forms/controls';
-import Profile from 'routes/containers/profile';
+import Profile from 'routes/containers/profile_user';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import PieDonutSeries from 'routes/charts/rubix/piedonut_series';
 import Calendar from 'routes/calendar';
 import Lists from 'routes/lists';
+
 
 
 export default (history, onUpdate) => {
@@ -21,7 +22,7 @@ export default (history, onUpdate) => {
       <Route path='/' component={Landing}/>
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
-      <Route path='/profile' component={Profile} />
+        <Route path='/profile' component={Profile} />
         <Route path='/jobs' component={Jobs} />
         <Route path='/rubix/piedonut' component={PieDonutSeries} />
         <Route path='/calendar' component={Calendar} />

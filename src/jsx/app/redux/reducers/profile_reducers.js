@@ -4,13 +4,11 @@ import { FETCH_USER,
          VisibilityFilters } from '../actions/actionTypes';
 
 
-const INITIAL_STATE = { user: [] };
-
-function profileUser(state = INITIAL_STATE, action) {
+function user(state = {},  action) {
   switch (action.type) {
     case FETCH_USER:
-    console.log('FETCH_USER', action.payload.data);
-      return [...state, { user: action.payload.data } ];
+    const data = action.payload.data;
+      return Object.assign({}, state,  data  );
 
     case DELETE_USER:
       return [
@@ -33,6 +31,6 @@ function visibilityFilter(state = VisibilityFilters.SHOW_USER, action) {
 }
 
 module.exports = {
-  profileUser,
+  user,
   visibilityFilter
 };
