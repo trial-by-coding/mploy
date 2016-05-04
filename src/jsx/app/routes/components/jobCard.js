@@ -17,14 +17,12 @@ class JobHeader extends React.Component {
       <Row>
         <Col md={6}>
           <div class="jobtitle">
-          <h4>{this.props.data.job_title}</h4>
-          <p style={pStyles}>Location: {this.props.data.location}</p>
+          <h5>{this.props.data.job_title}</h5>
           </div>
         </Col>
         <Col md={6}>
           <div class="jobimg">
-          <h4> jobID: {this.props.data.jobID }</h4>
-            <img></img>
+          <h5> {this.props.data.company_name}</h5>
           </div>
         </Col>
       </Row>
@@ -42,19 +40,21 @@ class JobBody extends React.Component {
       <div className='jobbody'>
       <Row>
         <div className="description">
-        Description
+        <h6>{this.props.data.location}</h6>
+        Description:
         <p style={pStyles}>{this.props.data.job_description}</p>
         </div>
       </Row>
       <Row>
         <Col md={6}>
-          <div className="experience">
-          Exp: placeholder
+          <div className="type">
+          Type:
+          <p>{this.props.data.employment_type}</p>
           </div>
         </Col>
         <Col md={6}>
           <div className="Salary">
-          Salary:<p>{this.props.data.min_salary}-{this.props.data.max_salary}</p>
+          Salary:<p>{this.props.data.min_salary}k-{this.props.data.max_salary}k</p>
           </div>
         </Col>
       </Row>
