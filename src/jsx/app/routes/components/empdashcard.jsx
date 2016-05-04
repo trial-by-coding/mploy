@@ -6,10 +6,14 @@ export default class empdashCard extends React.Component {
 
   getLargeModal() {
     
-    let jobID = this.props.item.job_ID
-    let appID = this.props.item.appID
+    let dispatch = this.props.dispatch;
+    let advance = this.props.advance;
+    let revert = this.props.revert;
+    let status = this.props.lane;
+    let index = this.props.index;
+    let item = this.props.item;
     let reject = this.props.reject
-    // console.log('reject', this.props);
+    let accept = this.props.accept
 
     return (
       <Modal lg>
@@ -17,8 +21,8 @@ export default class empdashCard extends React.Component {
           <AppCard app={this.props.item}/>
         </ModalBody>
         <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={() => reject(jobID, appID)} onTouchEnd={ModalManager.remove}>Reject</Button>
-          <Button outlined bsStyle='primary'>Accept</Button>
+          <Button outlined bsStyle='danger' onClick={() => reject(item.job_id, item.appID, item, status, index)} onTouchEnd={ModalManager.remove}>Reject</Button>
+          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
         </ModalFooter>
       </Modal>
     );
