@@ -17,6 +17,7 @@ Stats.newUserData = function(userID) {
         .insert({
           total_apps: 0,
           applied: 0,
+          rescinded: 0,
           denied: 0,
           considered: 0,
           interviewed: 0,
@@ -138,6 +139,19 @@ Stats.revertIncrement = function(userID, status) {
   .catch(function(err) {
       throw err
   })
+};
+
+Stats.getStats = function(userID) {
+  return db('stats')
+    .where({
+      user_id: userID
+    })
+    .then(function(record) {
+      return record[0]
+    })
+    .catch(function(err) {
+      throw err
+    })
 };
 
 Stats.incrementTotalApps = function(userID) {
