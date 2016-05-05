@@ -19,8 +19,9 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.getEmployerConsidered(3));
     this.props.dispatch(actions.getEmployerInterviews(4));
     this.props.dispatch(actions.getEmployerOffers(2));
-    this.props.dispatch(actions.getApplications(2))
+    this.props.dispatch(actions.getApplications(2));
   }
+
 
   advance = (appID, status, item, index)  => {
     // console.log('employer dashboard props', this.props);
@@ -66,7 +67,7 @@ export default class EmployerDashboard extends React.Component {
 
 
 	render() {
-    // console.log('employer dashboard props', this.props);
+    console.log('employer dashboard props', this.props);
     let unconsidered = this.props.unconsidered;
     let considered = this.props.considered;
     let interviews = this.props.interviews;
