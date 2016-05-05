@@ -7,7 +7,7 @@ import employerunconsidered from './employer_unconsidered_types.js';
 import employerconsidered from './employer_considered_types.js';
 import employerinterviews from './employer_interviews_types.js';
 import employeroffers from './employer_offers_types.js';
-import employersidebar from './employer_sidebar_types';
+import employerposts from './employer_posts_types';
 
 module.exports = {
   ...apps,
@@ -19,5 +19,5 @@ module.exports = {
   ...employerconsidered,
   ...employerinterviews,
   ...employeroffers,
-  ...employersidebar
+  ...employerposts
 };

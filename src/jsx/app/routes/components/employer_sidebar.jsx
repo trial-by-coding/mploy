@@ -3,11 +3,16 @@ import {
   SidebarControls, SidebarControlBtn
 } from 'global/jsx/sidebar_component';
 
+import { connect } from 'react-redux'
 import { Link } from 'react-router';
 import LoremIpsum from 'global/jsx/loremipsum';
+import actions from 'redux/actions'
 
 class EmployerSidebar extends React.Component {
   render() {
+    let posts = this.props.posts;
+
+
     return (
       <div>
         <Grid>
@@ -16,12 +21,14 @@ class EmployerSidebar extends React.Component {
               <div className='sidebar-header'>PAGES</div>
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
-                  <SidebarNavItem glyph='icon-fontello-gauge' name='Home' href='/' />
+                  <SidebarNavItem glyph='icon-fontello-gauge' name='Home' href='/employer' />
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
                   <SidebarNavItem glyph='icon-fontello-user' name='Calendar' href='/calendar' />
                     <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
                       <SidebarNav>
-                        <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' /> 
+                        { posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />)}
+                        <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' /> 
+                        
                       </SidebarNav>
                     </SidebarNavItem>
                     <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Charts <BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
@@ -58,19 +65,31 @@ class DummySidebar extends React.Component {
   }
 }
 
-
+@connect(state => state)
 export default class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentWillMount() {
+    this.props.dispatch(actions.getJobPosts());
+  }
+
+
+  setJobPost = (jobID) => {
+    this.props.dispatch(actions.setJobPost(jobID));
+  };
+
   render() {
+    console.log('siderbar props', this.props);
+
+
     return (
       <div id='sidebar' {...this.props}>
         <div id='avatar'>
           <Grid>
             <Row className='fg-white'>
               <Col xs={4} collapseRight>
-
-    {/*<Avatar src = {this.props.currentAvatar} float = 'left' style = {this.avatarStyle.bind(this).call()} size = {55}/>*/}
-
-
                 <img src='/imgs/app/avatars/avatar0.png' width='40' height='40' />
 
 
@@ -88,14 +107,12 @@ export default class extends React.Component {
         </div>
         <SidebarControls>
           <SidebarControlBtn bundle='fontello' glyph='docs' sidebar={0} />
-          <SidebarControlBtn bundle='fontello' glyph='chat-1' sidebar={1} />
-          <SidebarControlBtn bundle='fontello' glyph='chart-pie-2' sidebar={2} />
-          <SidebarControlBtn bundle='fontello' glyph='th-list-2' sidebar={3} />
           <SidebarControlBtn bundle='fontello' glyph='bell-5' sidebar={4} />
         </SidebarControls>
         <div id='sidebar-container'>
           <Sidebar sidebar={0}>
-            <EmployerSidebar />
+            <EmployerSidebar  posts={this.props.posts}
+                              setJobPost={this.setJobPost}/>
           </Sidebar>
         </div>
       </div>

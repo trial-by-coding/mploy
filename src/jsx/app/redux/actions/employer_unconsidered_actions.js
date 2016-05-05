@@ -14,6 +14,13 @@ function getEmployerUnconsidered(jobID){
 		.catch(resp => console.log("Error fetching unconsidered", resp));
 }
 
+function getApplicantUnconsidered() {
+	console.log('getUnconsidered Actions')
+	return dispatch => axios.get('/user/applicant/currentuserapps/unconsidered')
+		.then(
+			payload => dispatch({ type: GET_EMPLOYER_UNCONSIDERED, payload }));
+}
+
 function addUnconsidered(item) {
 	console.log('advance action creator');
 	return {type: ADD_UNCONSIDERED, item};
@@ -25,6 +32,7 @@ function removeUnconsidered(index) {
 
 module.exports = {
 	getEmployerUnconsidered: getEmployerUnconsidered,
+	getApplicantUnconsidered: getApplicantUnconsidered,
 	addUnconsidered: addUnconsidered,
 	removeUnconsidered: removeUnconsidered
 }
