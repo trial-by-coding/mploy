@@ -4,6 +4,8 @@ var Users = require('../models/Users.js');
 var Notifications = require('../models/Notifications.js');
 var express = require('express');
 var bodyParser = require('body-parser');
+var multer = require('multer');
+var upload = multer({dest: '../uploads'})
 
 module.exports = function(router) {
   var app = express();
@@ -91,6 +93,14 @@ module.exports = function(router) {
     res.status(400).send(err);
     })
   });
+
+  router.post('/uploadcoverletter', upload.single('coverletter'), function(req, res, next){
+    res.status(200).send(req.file.path);
+  })
+
+  router.post('/uploadresume', upload.single('resume'), function(req, res, next){
+    res.status(200).send(req.file.path);
+  })
 
   router.post('/submitapp', function(req, res) {
     console.log('received submit application POST, body:',req.body);

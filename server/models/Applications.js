@@ -8,6 +8,7 @@ Applications.submit = function(appObj) {
   .returning('appID')
   .insert({
     cover_letter: appObj.cover_letter,
+    resume: appObj.resume,
     years_experience: appObj.years_experience,
     education: appObj.education,
     personal_statement: appObj.personal_statement,
