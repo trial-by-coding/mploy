@@ -4,6 +4,7 @@ import Header from 'routes/components/header';
 import Sidebar from 'routes/components/applicant_sidebar';
 import Footer from 'routes/components/footer';
 import actions from 'redux/actions';
+import request from 'superagent';
 
 
 export default class Body extends React.Component {
@@ -17,13 +18,15 @@ export default class Body extends React.Component {
     this.visaChange = this.visaChange.bind(this);
     this.aboutChange = this.aboutChange.bind(this);
     this.expChange = this.expChange.bind(this);
-    this.fileChagne = this.fileChange.bind(this);
+    this.setCoverletter = this.setCoverletter.bind(this);
+    this.setResume= this.setResume.bind(this);
 
     //initial state
     this.state = {
       complete: (!this.props.complete) || false,
       formVal: {
         cover_letter:null,
+        resume:null,
         years_experience:'less than 1 year',
         education:'',
         personal_statement:'',
@@ -103,8 +106,36 @@ export default class Body extends React.Component {
     });
   }
 
-  fileChange(e){
-    console.log("file upload is:",e.target.files);
+  setCoverletter(e){
+    console.log("coverletter file upload is:",e.target.files);
+
+    var coverLetter = new FormData();
+    coverLetter.append("coverletter", e.target.files[0], e.target.files[0].name);
+    var that = this;
+    request.post('/user/applicant/uploadcoverletter')
+    .send(coverLetter)
+    .end(function(err, response) {
+      console.log(response);
+      that.setState({ formVal: { ...that.state.formVal, cover_letter: response.text}},function(){
+        console.log("after state_extend:", that.state);
+      });
+  });
+  }
+
+  setResume(e){
+    console.log("resume file upload is:",e.target.files);
+
+    var resume = new FormData();
+    resume.append("resume", e.target.files[0], e.target.files[0].name);
+    var that = this;
+    request.post('/user/applicant/uploadresume')
+    .send(resume)
+    .end(function(err, response) {
+      console.log(response);
+      that.setState({ formVal: { ...that.state.formVal, resume: response.text}},function(){
+        console.log("after state_extend:", that.state);
+      });
+  });
   }
   //end helper funcs
 
@@ -187,7 +218,13 @@ export default class Body extends React.Component {
 
                             <FormGroup>
                               <Label htmlFor='fileinput'>Upload Cover Letter </Label>
-                              <Input onChange={this.fileChange} id='fileinput' type='file' />
+                              <Input onChange={this.setCoverletter} id='fileinput' type='file' name='coverletter' accept='application/msword,text/plain, application/pdf'/>
+                              <HelpBlock>PDF,docx,doc files only.</HelpBlock>
+                            </FormGroup>
+
+                            <FormGroup>
+                              <Label htmlFor='fileinput'>Upload Resume</Label>
+                              <Input onChange={this.setResume} id='fileinput' type='file' name='resume' accept='application/msword,text/plain, application/pdf'/>
                               <HelpBlock>PDF,docx,doc files only.</HelpBlock>
                             </FormGroup>
                         </Col>

@@ -14,7 +14,6 @@ exports.up = function(knex, Promise) {
       table.string('linkedin_headline');
       table.string('location');
       table.string('linkedin_url');
-      table.string('resume');
       table.boolean('employer');
     }),
 
@@ -42,6 +41,7 @@ exports.up = function(knex, Promise) {
       table.increments('appID').primary();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.string('cover_letter');
+      table.string('resume');
       table.string('years_experience');
       table.string('education', 100);
       table.string('personal_statement', 300);

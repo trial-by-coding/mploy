@@ -274,7 +274,8 @@ var webpackConfig = function(withHotLoader) {
     plugins: [
       new dwebpack.DefinePlugin({
         __BACKEND__: JSON.stringify('node'),
-        __APPNAME__: JSON.stringify(defaultAppName)
+        __APPNAME__: JSON.stringify(defaultAppName),
+    'global.GENTLY': false
       })
     ],
     resolve: {
@@ -286,6 +287,9 @@ var webpackConfig = function(withHotLoader) {
     externals: {
       'react': 'react',
       'React': 'react',
+    },
+    node: {
+      __dirname: true,
     }
   };
 };

@@ -4,12 +4,33 @@ import { connect } from 'react-redux'
 
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
+import FileCard from './fileCard'
 
 // const AppCard = ({app}) => {
 
 export default class AppCard extends React.Component {
   constructor(props){
     super(props)
+  }
+
+  getTextModal(filePath) {
+    console.log("appCard:filePath:",filePath)
+    return (
+      <Modal>
+        <ModalBody>
+          <FileCard app={filePath}/>
+        </ModalBody>
+        <ModalFooter>
+          <Button outlined bsStyle='primary'>Close</Button>
+        </ModalFooter>
+      </Modal>
+    );
+  }
+
+  handleClick(ref){
+    console.log("appCard:handleClick:ref=",ref);
+    if (ref !== null)
+      ModalManager.create.bind(this, this.getTextModal(ref));
   }
 
   render() {
@@ -35,7 +56,7 @@ export default class AppCard extends React.Component {
       <div>
     
         <Row style={styles}>
-          <h4> App ID: {this.props.app.appID} </h4>
+          <h2> {this.props.app.username}: </h2>
           <h4> Skills </h4>
           <row className='skills'>
           { skillList.map( skill => <div className="label col-md-3 label-primary"> {skill} </div> ) }
@@ -73,6 +94,19 @@ export default class AppCard extends React.Component {
             {this.props.app.created_at}
           </row>
         </Row> 
+
+        <Row style={styles}>
+          <button
+          onClick={() => this.handleClick(this.props.app.resume)}
+          className='btn btn-info'>
+          View Resume
+          </button>
+          <button
+          onClick={() => this.handleClick(this.props.app.cover_letter)}
+          className='btn btn-info'>
+          View Cover Letter
+          </button>
+        </Row>
 
         <Row style={styles}>
           <button 
