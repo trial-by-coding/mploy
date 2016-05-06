@@ -116,7 +116,7 @@ Applications.revertStatus = function(appID) {
     appID: appID
   })
   .then(function(record) {
-    console.log(record)
+    console.log('record[0].status in revert status: ', record[0].status)
     switch(record[0].status){
       
       case 'unconsidered': 
@@ -158,7 +158,7 @@ Applications.revertStatus = function(appID) {
     }   
   })
   .then(function(result) {
-    console.log('Status revert successful.')
+    console.log('Status revert successful.', result[0])
     return result[0]
   })
   .catch(function(err) {

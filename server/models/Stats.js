@@ -92,7 +92,7 @@ Stats.advanceIncrement = function(userID, status) {
             user_id: userID
           })
           .returning('*')
-          .decrement('interviews', 1)
+          .decrement('interviewed', 1)
         })
 
       default:
@@ -120,14 +120,21 @@ Stats.revertIncrement = function(userID, status) {
     console.log('status in stats.advance: ', status)
     switch(status){
 
-      case 'applied':
+      case 'unconsidered':
       return db('stats')
       .where({
         user_id: userID
       })
       .returning('*')
       .increment('applied', 1)
-      .decrement('considered', 1)
+      .then(function() {
+        return db('stats')
+          .where({
+          user_id: userID
+          })
+          .returning('*')
+          .decrement('considered', 1)
+        })
 
       case 'considered':
       return db('stats')
@@ -136,7 +143,14 @@ Stats.revertIncrement = function(userID, status) {
       })
       .returning('*')
       .increment('considered', 1)
-      .decrement('interviewed', 1)
+      .then(function() {
+        return db('stats')
+          .where({
+          user_id: userID
+          })
+          .returning('*')
+          .decrement('interviewed', 1)
+        })
 
       case 'interviews':
       return db('stats')
@@ -145,7 +159,14 @@ Stats.revertIncrement = function(userID, status) {
       })
       .returning('*')
       .increment('interviewed', 1)
-      .decrement('offered', 1)
+      .then(function() {
+        return db('stats')
+          .where({
+          user_id: userID
+          })
+          .returning('*')
+          .decrement('offered', 1)
+        })
 
       default:
       console.log('Unexpected record status: ', status)
