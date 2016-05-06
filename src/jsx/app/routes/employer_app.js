@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import axios from 'axios';
 import SidebarMixin from 'global/jsx/sidebar_component';
+import actions from 'redux/actions';
+import { connect } from 'react-redux'
 
 
 import Header from 'routes/components/header';
@@ -15,9 +17,14 @@ import Profile from 'routes/containers/profile_user';
 
 
 @SidebarMixin
+@connect(state => state)
 export default class EmployerApp extends React.Component {
 	constructor(props) {
 		super(props)
+	}
+
+	componentWillMount() {
+    this.props.dispatch(actions.getJobPosts());
 	}
 
 	isEmployer = () => {
@@ -36,6 +43,9 @@ export default class EmployerApp extends React.Component {
 		var classes = classNames({
 			'container-open': this.props.open
 		})
+		let posts = this.props.posts;
+
+
 
 		this.isEmployer();
 

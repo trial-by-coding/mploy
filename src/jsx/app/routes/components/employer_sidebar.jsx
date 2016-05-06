@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux'
 import { Link } from 'react-router';
 import LoremIpsum from 'global/jsx/loremipsum';
-import actions from 'redux/actions'
+import actions from 'redux/actions';
 
 class EmployerSidebar extends React.Component {
   render() {
@@ -58,8 +58,9 @@ export default class extends React.Component {
 
   render() {
     console.log('siderbar props', this.props);
-    if(!this.props.posts) {
-      return <div> Loading... </div>
+    let posts = this.props.posts
+    if(!posts.length === 0) {
+      return (<div> Loading... </div>)
     }
 
     return (
@@ -83,7 +84,7 @@ export default class extends React.Component {
         </SidebarControls>
         <div id='sidebar-container'>
           <Sidebar sidebar={0}>
-            <EmployerSidebar  posts={this.props.posts}
+            <EmployerSidebar  posts={posts}
                               setJobPost={this.setJobPost}/>
           </Sidebar>
           <Sidebar sidebar={1}>
