@@ -11,14 +11,7 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 
 export default class ApplicantSidebar extends React.Component {
-
-
-
   render() {
-
-    const user = this.props;
-    console.log('SIDEBAR', this.props);
-
     return (
       <div>
         <Grid>
@@ -60,29 +53,22 @@ export default class ApplicantSidebar extends React.Component {
 
 export default class extends React.Component {
   render() {
-
     const user = this.props;
-
     return (
       <div id='sidebar' {...this.props}>
         <div id='avatar'>
           <Grid>
             <Row className='fg-white'>
               <Col xs={4} collapseRight>
-
-
-                {/*<img src={user.profile_picture} width='40' height='40' />*/}
+                <img src={user.profile_picture} width='40' height='40' />
 
                 {/*<Avatar src = {user.profile_picture} float = 'left' style = {this.avatarStyle.bind(this).call()} size = {55}/>*/}
 
-
               </Col>
               <Col xs={8} collapseLeft id='avatar-col'>
-
                 <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>
-                {/*{user.firstname} {user.lastname}*/}
+                {user.firstname} {user.lastname}
                 </div>
-
               </Col>
             </Row>
           </Grid>

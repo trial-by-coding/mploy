@@ -1,17 +1,17 @@
 import { Route, Router, IndexRoute } from 'react-router';
 
+import Landing from 'routes/landing';
 import ApplicantApp from 'routes/applicant_app';
 import EmployerApp from 'routes/employer_app';
-import Landing from 'routes/landing';
 import Applications from 'routes/containers/applications';
 import NewJob from 'routes/containers/newjob';
 import Jobs from 'routes/containers/jobs';
 import Controls from 'routes/forms/controls';
 import Profile from 'routes/containers/profile_user';
+import Charts from 'routes/containers/chart_stats';
+import Calendar from 'routes/calendar';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
-import Charts from 'routes/containers/charts';
-import Calendar from 'routes/calendar';
 
 
 

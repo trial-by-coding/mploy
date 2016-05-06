@@ -1,14 +1,24 @@
 import axios from 'axios';
-import { FETCH_CHART } from './actionTypes';
+import { FETCH_CHARTS
 
-function fetchChart() {
+} from './actionTypes';
+
+        //  SET_VISIBILITY_FILTER,
+        //  VisibilityFilters } from './actionTypes';
+
+
+function fetchCharts() {
   return dispatch => axios.get('/user/stats')
   .then(
-    payload => dispatch({ type: FETCH_CHART, payload })
+    payload => dispatch({ type: FETCH_CHARTS, payload })
   );
 }
 
+// function setVisibilityFilter(filter) {
+//   return { type: SET_VISIBILITY_FILTER, filter };
+// }
 
 module.exports = {
-  fetchChart
+  fetchCharts
+  // setVisibilityFilter
 };

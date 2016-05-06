@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { Link, History } from 'react-router';
+// import { Link, History } from 'react-router';
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
 

@@ -1,3 +1,8 @@
 module.exports = {
-  FETCH_CHART: 'FETCH_CHART'
-};
+    FETCH_CHARTS: 'FETCH_CHARTS'
+
+    // SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
+    // VisibilityFilters: {
+    //   SHOW_ALL: 'SHOW_ALL'
+    // },
+  };
