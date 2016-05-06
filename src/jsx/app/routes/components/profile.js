@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link, History } from 'react-router';
 import actions from 'redux/actions';
-import Charts from '../containers/charts';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 export default class Profile extends React.Component{
 
@@ -16,7 +14,6 @@ render() {
   const user = this.props;
     return (
     <Container id='body' className='social'>
-      {/*Begin: background photo*/}
       <div style={{height: 350, marginTop: -25, backgroundImage: 'url(/imgs/shots/Blick_auf_Manhattan.JPG)', backgroundSize: 'cover', position: 'relative', marginBottom: 25, backgroundPosition: 'center'}}>
         <div className='social-cover' style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
           </div>
@@ -43,23 +40,10 @@ render() {
           </div>
       </div>
   </div>
-  {/*End: background photo*/}
+
         <Grid>
           <Row>
             {/*<Col sm={6} collapseRight>*/}
-
-              {/*rescinded
-              denied
-              in process  = total apps - rescinded and denied */}
-
-                <Charts />
-                    {/*<li className="list-group-item">{user.resume}</li>*/}
-
-                    {/*applied
-                    considered
-                    interviewed
-                    offered*/}
-
             {/*</Col>*/}
           </Row>
         </Grid>

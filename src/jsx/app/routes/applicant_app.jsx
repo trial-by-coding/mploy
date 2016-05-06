@@ -10,6 +10,7 @@ import ApplicationContainer from 'routes/containers/applications';
 import Jobs from 'routes/containers/jobs';
 import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/calendar';
+import Charts from 'routes/containers/chart_stats';
 
 
 
