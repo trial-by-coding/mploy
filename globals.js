@@ -137,13 +137,53 @@ global.renderHTML = function(req, res, next, store) {
       var str = renderDOMString(store, data, renderProps);
 
       console.log('renderProps.location.pathname: ', renderProps.location.pathname)
-      if (renderProps.location.pathname === '/employer'){
+      if (renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/profile' || renderProps.location.pathname === '/newjob' || renderProps.location.pathname === '/charts' || renderProps.location.pathname === '/calendar' || renderProps.location.pathname === '/jobs' || renderProps.location.pathname === '/applicant'){
         console.log('!req.user: ', !req.user)
         console.log('Hi there user!: ', req.user)
         if (!req.user){
           renderProps.location.pathname = '/'
           res.redirect('/')
-        } else {
+        }
+        // if (req.user && renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/newjob'){
+        //   var isEmployer 
+
+        //   var linkedin_id = req.user.linkedin_id
+        //   return Users.verifyId(linkedin_id)
+        //   .then(function(data) {
+        //     console.log('user data in employer route:', data)
+        //     isEmployer = data.employer
+        //   })
+        //   .catch(function() {
+        //     isEmployer = false
+        //   })
+        //   .then(function() {
+        //     console.log('isEmployer: ', isEmployer)
+        //     if(!isEmployer){
+        //       renderProps.location.pathname = '/applicant'
+        //       res.redirect('/applicant')
+        //     }  
+        //     return
+        //   })
+        // }
+        // if(req.user && renderProps.location.pathname === '/applicant'){
+        //   var isEmp 
+
+        //   var linkedin_id = req.user.linkedin_id
+        //   return Users.verifyId(linkedin_id)
+        //   .then(function(data) {
+        //     console.log('user data in applicant route:', data)
+        //     isEmp = data.employer
+        //   })
+        //   .catch(function() {
+        //     isEmp = false
+        //   })
+
+        //   if(isEmployer){
+        //     renderProps.location.pathname = '/employer'
+        //     res.redirect('/employer')
+        //   }
+        // } 
+        else {
           if(isRTL) {
             str = rtl.replace(new RegExp('{container}', 'g'), str);
             str = str.replace(new RegExp('{server_data}', 'g'), data);
