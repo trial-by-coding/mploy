@@ -59,7 +59,7 @@ export default class extends React.Component {
   render() {
     console.log('siderbar props', this.props);
     let posts = this.props.posts
-    if(!posts.length === 0) {
+    if(posts.length === 0) {
       return (<div> Loading... </div>)
     }
 
