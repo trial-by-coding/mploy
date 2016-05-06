@@ -13,11 +13,22 @@ export default class ApplicantDashboard extends React.Component {
 	constructor(props) {
 		super(props)
 	}
-  componentDidMount() {
-    this.props.dispatch(actions.getApplicantUnconsidered(1))
+  componentWillMount() {
+    this.props.dispatch(actions.getApplicantUnconsidered())
+    this.props.dispatch(actions.getApplicantConsidered())
+    this.props.dispatch(actions.getApplicantInterviews())
+    this.props.dispatch(actions.getApplicantOffers())
+
   }
 
 	render() {
+
+    let unconsidered = this.props.unconsidered;
+    let considered = this.props.considered;
+    let interviews = this.props.interviews;
+    let offers = this.props.offers;
+    let dispatch = this.props.dispatch;
+    let apps = [unconsidered, considered, interviews, offers];
 
     console.log("AppContainer state", this.props);
 		return (
@@ -25,16 +36,8 @@ export default class ApplicantDashboard extends React.Component {
       <Grid>
         <Row>
         	<Col md={3}>
-        		<ApplicantLane data={this.props.unconsidered}/>
-          </Col>
-          <Col md={3}>
-        		<ApplicantLane data={this.props.considered} />
-          </Col>
-          <Col md={3}>
-        		<ApplicantLane data={this.props.interviews} />
-          </Col>
-          <Col md={3}>
-        		<ApplicantLane data={this.props.offers} />
+        		{ apps.map(item => <ApplicantLane data={unconsidered}
+                                              dispatch={dispatch}/>) }
           </Col>
         </Row>
       </Grid>

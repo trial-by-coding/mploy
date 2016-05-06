@@ -11,7 +11,6 @@ export default class EmployerLane extends React.Component {
   render() {
     let list = this.props.data;
     let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item']
-    console.log("AppList data", list)
     return (
       <div className='shortcard'>
         <ul>
@@ -19,6 +18,7 @@ export default class EmployerLane extends React.Component {
                                                             index={index}
                                                             lane={this.props.lane}
                                                             advance={this.props.advance}
+                                                            accept={this.props.accept}
                                                             revert={this.props.revert}
                                                             reject={this.props.reject}
                                                             dispatch={this.props.dispatch}/>)}

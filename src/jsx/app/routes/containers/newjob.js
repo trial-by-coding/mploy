@@ -103,7 +103,7 @@ export default class NewJob extends React.Component {
   jobTitle(e){
 
     this.setState({ formVal: { ...this.state.formVal, job_title: e.target.value }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
   
@@ -112,28 +112,28 @@ export default class NewJob extends React.Component {
   companyName(e){
 
     this.setState({ formVal: { ...this.state.formVal, company_name: e.target.value }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }  
 
   locationChange(e){
 
     this.setState({ formVal: { ...this.state.formVal, location: e.target.value }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
 
   jobDesc(e){
 
     this.setState({ formVal: { ...this.state.formVal, job_description: e.target.value }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
 
   eduChange(e){
 
     this.setState({ formVal: { ...this.state.formVal, desired_education: e.target.value }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
 
@@ -143,21 +143,21 @@ export default class NewJob extends React.Component {
     visaBool === '1' ? (visaBool = true) : (visaBool = false);
 
     this.setState({ formVal: { ...this.state.formVal, visa_required:visaBool }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
 
   minSalary(e){
 
     this.setState({ formVal: { ...this.state.formVal, min_salary: e.target.value }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
 
   maxSalary(e){
 
     this.setState({ formVal: { ...this.state.formVal, max_salary: e.target.value }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
 
@@ -168,7 +168,7 @@ export default class NewJob extends React.Component {
     // console.log('skills after idx is:', skills);
 
     this.setState({ formVal: { ...this.state.formVal, skillName: skill }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
 
   }
@@ -181,7 +181,7 @@ export default class NewJob extends React.Component {
     skills.push(skill);
 
     this.setState({ formVal: { ...this.state.formVal, skills: skills, skillName:'' }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
 
   }
@@ -190,7 +190,7 @@ export default class NewJob extends React.Component {
     let type = e.target.value;
 
     this.setState({ formVal: { ...this.state.formVal, employment_type:type }},function(){
-    console.log("after state_extend:", this.state);
+    // console.log("after state_extend:", this.state);
     });
   }
 

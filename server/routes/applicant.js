@@ -11,32 +11,32 @@ module.exports = function(router) {
   var app = express();
   app.use(bodyParser.json()); // support json encoded bodies
 
-  // router.use(function(req,res,next) {
-  //   if (req.user !== undefined){
-  //     var linkedin_id = req.user.linkedin_id
-  //     return Users.verifyEmployer(linkedin_id)
-  //     .catch(function(err) {
-  //       console.log('Failed to verify user as applicant:', err)
-  //       res.redirect('/employer/dashboard')
-  //     })
-  //     .then(function(resp) {
-  //       console.log('Resp from Users.verifyEmployer:', resp)
-  //       if (resp){
-  //         console.log('User is not an applicant.')
-  //         res.redirect('/employer/dashboard')
-  //       } else {
-  //         return next()
-  //       }
-  //     })
-  //     .catch(function(err) {
-  //       console.log('Applicant authentication failed: ', err)
-  //       res.redirect('/employer/dashboard')
-  //     }) 
-  //   } else {
-  //     console.log('User not logged in')
-  //     res.redirect('/')
-  //   }
-  // });
+  router.use(function(req,res,next) {
+    if (req.user !== undefined){
+      var linkedin_id = req.user.linkedin_id
+      return Users.verifyEmployer(linkedin_id)
+      .catch(function(err) {
+        console.log('Failed to verify user as applicant:', err)
+        res.redirect('/employer')
+      })
+      .then(function(resp) {
+        console.log('Resp from Users.verifyEmployer:', resp)
+        if (resp){
+          console.log('User is not an applicant.')
+          res.redirect('/employer')
+        } else {
+          return next()
+        }
+      })
+      .catch(function(err) {
+        console.log('Applicant authentication failed: ', err)
+        res.redirect('/employer')
+      }) 
+    } else {
+      console.log('User not logged in')
+      res.redirect('/')
+    }
+  });
 
   router.get('/appsbyuser', function(req, res){
     console.log('---appsbyuser:received GET, query='+JSON.stringify(req.query));
