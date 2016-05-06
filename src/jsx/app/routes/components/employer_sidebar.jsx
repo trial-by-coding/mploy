@@ -6,7 +6,7 @@ import {
 import { connect } from 'react-redux'
 import { Link } from 'react-router';
 import LoremIpsum from 'global/jsx/loremipsum';
-import actions from 'redux/actions'
+import actions from 'redux/actions';
 
 class EmployerSidebar extends React.Component {
   render() {
@@ -25,7 +25,7 @@ class EmployerSidebar extends React.Component {
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
                     <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
                       <SidebarNav>
-                        { posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />)}
+                        { posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />) }
                         <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' /> 
                       </SidebarNav>
                     </SidebarNavItem>
@@ -58,7 +58,10 @@ export default class extends React.Component {
 
   render() {
     console.log('siderbar props', this.props);
-
+    let posts = this.props.posts
+    if(!posts.length === 0) {
+      return (<div> Loading... </div>)
+    }
 
     return (
       <div id='sidebar' {...this.props}>
@@ -81,7 +84,7 @@ export default class extends React.Component {
         </SidebarControls>
         <div id='sidebar-container'>
           <Sidebar sidebar={0}>
-            <EmployerSidebar  posts={this.props.posts}
+            <EmployerSidebar  posts={posts}
                               setJobPost={this.setJobPost}/>
           </Sidebar>
           <Sidebar sidebar={1}>
