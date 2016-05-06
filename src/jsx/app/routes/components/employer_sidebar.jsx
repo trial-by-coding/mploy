@@ -25,7 +25,7 @@ class EmployerSidebar extends React.Component {
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
                     <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
                       <SidebarNav>
-                        { posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />)}
+                        { posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />) }
                         <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' /> 
                       </SidebarNav>
                     </SidebarNavItem>
@@ -58,7 +58,9 @@ export default class extends React.Component {
 
   render() {
     console.log('siderbar props', this.props);
-
+    if(!this.props.posts) {
+      return <div> Loading... </div>
+    }
 
     return (
       <div id='sidebar' {...this.props}>
