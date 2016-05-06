@@ -120,7 +120,7 @@ Stats.revertIncrement = function(userID, status) {
     console.log('status in stats.advance: ', status)
     switch(status){
 
-      case 'applied':
+      case 'unconsidered':
       return db('stats')
       .where({
         user_id: userID
