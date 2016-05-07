@@ -243,15 +243,21 @@ Applications.getAppsByUser = function(userID) {
   })
 };
 
+// knex('projects').select(['projects.id', 'projects.project_number', 'projects.project_name', 'projects.start_date', 'projects.end_date',
+//     'owners.name', 'owners.email_addr as owner_email_addr',
+//     'clients.company', 'clients.email_addr as client_email_addr', 'clients.first_name', 'clients.last_name'])
+// .innerJoin('owners', 'owners.id', 'projects.owner_id')
+// .innerJoin('clients', 'clients.id', 'projects.client_id');
+
 Applications.getAppsByUserAndStatus = function(userID, status) {
+  console.log('userId+status: ', userID, status)
   
   return db('applications')
-  .where({
-    'user_id': userID,
-    'status': status
-  })
+  .join('job_posts', 'applications.job_id', '=', 'job_posts.jobID')
+  .select(['job_posts.user_id as job_user_id', 'job_posts.*', 'job_posts.created_at as job_created_at','applications.user_id as app_user_id', 'applications.created_at as app_created_at', 'applications.cover_letter','applications.resume','applications.years_experience', 'applications.education', 'applications.personal_statement', 'applications.status', 'applications.skills_met', 'applications.can_work_here', 'users.*'])
+  .join('users', 'applications.user_id', '=', 'users.userID')
   .then(function(records) {
-    return records
+    return records.filter(function(item) {return item.app_user_id === userID && item.status === status})
   })
   .catch(function(err) {
       throw err
