@@ -10,6 +10,7 @@ import employerconsidered from './employer_considered_actions';
 import employerinterviews from './employer_interviews_actions';
 import employeroffers from './employer_offers_actions';
 import employerposts from './employer_posts_actions';
+import employerapp from './employer_actions';
 // import employersidebar from './employer_sidebar_actions';
 
 
@@ -24,6 +25,7 @@ module.exports = {
   ...employerconsidered,
   ...employerinterviews,
   ...employeroffers,
-  ...employerposts
+  ...employerposts,
+  ...employerapp
   // ...employersidebar
 };

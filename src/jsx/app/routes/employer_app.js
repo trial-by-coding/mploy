@@ -23,8 +23,7 @@ export default class EmployerApp extends React.Component {
 		super(props)
 	}
 
-	componentWillMount() {
-    this.props.dispatch(actions.getJobPosts());
+	componentDidMount() {
 	}
 
 	isEmployer = () => {
