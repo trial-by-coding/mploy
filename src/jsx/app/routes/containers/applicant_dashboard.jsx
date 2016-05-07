@@ -10,10 +10,7 @@ export default class ApplicantDashboard extends React.Component {
 		super(props);
 	}
   componentWillMount() {
-    this.props.dispatch(actions.getApplicantUnconsidered());
-    this.props.dispatch(actions.getApplicantConsidered());
-    this.props.dispatch(actions.getApplicantInterviews());
-    this.props.dispatch(actions.getApplicantOffers());
+
 
   }
 
@@ -41,8 +38,28 @@ export default class ApplicantDashboard extends React.Component {
       <Grid>
         <Row>
         	<Col md={3}>
-        		{ apps.map(item => <ApplicantLane data={unconsidered}
-                                              dispatch={dispatch}/>) }
+            <div> Unconsidered </div>
+            <ApplicantLane data={unconsidered}
+                          lane={'unconsidered'}
+                          dispatch={this.props.dispatch}/>
+          </Col>
+          <Col md={3}>
+            <div> Considered </div>
+            <ApplicantLane data={considered} 
+                          lane={'considered'}
+                          dispatch={this.props.dispatch}/>
+          </Col>
+          <Col md={3}>
+            <div> Interviews </div>
+            <ApplicantLane data={interviews} 
+                          lane={'interviews'}
+                          dispatch={this.props.dispatch}/>
+          </Col>
+          <Col md={3}>
+            <div> Offers </div>
+            <ApplicantLane data={offers} 
+                          lane={'offers'}
+                          dispatch={this.props.dispatch}/>
           </Col>
         </Row>
       </Grid>

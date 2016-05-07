@@ -7,7 +7,11 @@ import  { ADD_JOB,
           HIDE_FORM,
           FETCH_JOBS } from '../actions/actionTypes';
 
-var initialState = { showForm: false };
+
+var initialState = { 
+  showForm: false,
+  items: [] 
+};
 
 function jobList(state = initialState, action) {
   switch (action.type) {
@@ -33,6 +37,7 @@ function jobList(state = initialState, action) {
       return Object.assign({}, state, {
         appFormPop: appForm
       });
+
     default:
       return state;
   }

@@ -6,3 +6,4 @@ module.exports = {
   HIDE_FORM: 'HIDE_FORM',
   FETCH_JOBS: 'FETCH_JOBS'
 };
+
