@@ -1,5 +1,6 @@
 var fs = require('fs');
 var path = require('path');
+var Users = require('./server/models/Users.js');
 
 global.window = global;
 global.navigator = {
@@ -118,6 +119,8 @@ global.renderHTML = function(req, res, next, store) {
     data = escape(encodeURIComponent(JSON.stringify(store.getState())));
   }
 
+  //Routing below to limit access by employer/applicant
+
   ReactRouter.match({
     routes: routes({ listen: () => {} }),
     location: req.url
@@ -128,14 +131,52 @@ global.renderHTML = function(req, res, next, store) {
       res.redirect(redirectLocation.pathname + redirectLocation.search);
     } else if(renderProps) {
       var str = renderDOMString(store, data, renderProps);
-      if(isRTL) {
-        str = rtl.replace(new RegExp('{container}', 'g'), str);
-        str = str.replace(new RegExp('{server_data}', 'g'), data);
-        res.status(200).send(str);
+      var redir;
+
+      if (renderProps.location.pathname.substring(0,9) ==='/employer' || renderProps.location.pathname.substring(0,10) === '/applicant'){
+
+        if (!req.user){
+          renderProps.location.pathname = '/'
+          res.redirect('/')
+        }
+        if(req.user && renderProps.location.pathname.substring(0,10) === '/applicant'){
+          var applicant = !req.user.employer;
+
+          if(!applicant){
+            renderProps.location.pathname = '/employer'
+            redir = '/employer'
+          } 
+        }
+        if (req.user && renderProps.location.pathname.substring(0,9) ==='/employer'){
+          var employer = req.user.employer;
+
+          if(!employer){
+            renderProps.location.pathname = '/applicant'
+            redir = '/applicant'
+          } 
+        } if (req.user && redir){
+          res.redirect(redir)
+        } else {
+          if(isRTL) {
+            str = rtl.replace(new RegExp('{container}', 'g'), str);
+            str = str.replace(new RegExp('{server_data}', 'g'), data);
+            res.status(200).send(str);
+          } else {
+            str = ltr.replace(new RegExp('{container}', 'g'), str);
+            str = str.replace(new RegExp('{server_data}', 'g'), data);
+            res.status(200).send(str);
+          }
+        }
       } else {
-        str = ltr.replace(new RegExp('{container}', 'g'), str);
-        str = str.replace(new RegExp('{server_data}', 'g'), data);
-        res.status(200).send(str);
+        if(isRTL) {
+          str = rtl.replace(new RegExp('{container}', 'g'), str);
+          str = str.replace(new RegExp('{server_data}', 'g'), data);
+          res.status(200).send(str);
+        } else {
+          str = ltr.replace(new RegExp('{container}', 'g'), str);
+          str = str.replace(new RegExp('{server_data}', 'g'), data);
+          res.status(200).send(str);
+        }
       }
     } else {
       res.status(404).send('Not found');

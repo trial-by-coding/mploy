@@ -78,7 +78,7 @@ exports.up = function(knex, Promise) {
       table.integer('app_id')
         .references('appID')
         .inTable('applications');
-      table.integer('user_id')
+      table.integer('user_Id')
         .references('userID')
         .inTable('users');
      }),

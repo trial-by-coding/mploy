@@ -43,6 +43,7 @@ module.exports = function(router) {
     console.log('req.user.linkedin_id: ', req.user.linkedin_id)
     var linkedin_id = req.user.linkedin_id
     if (req.session.employer === 'true'){
+      req.user.employer = true
       return Users.verifyEmployer(linkedin_id)
       .then(function(res) {
         console.log('res in redirect:', res)
@@ -57,6 +58,7 @@ module.exports = function(router) {
       })
     }
     if (req.session.employer === 'false'){
+      req.user.employer = false
       return Users.verifyApplicant(linkedin_id)
       .then(function(res) {
         console.log('res in redirect:', res)
