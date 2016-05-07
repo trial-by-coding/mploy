@@ -11,3 +11,4 @@ knexfile.js
 /public/css/app/
 /public/js/app/
 .rubix/tmp.jsx
+ploads/
