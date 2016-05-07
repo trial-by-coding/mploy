@@ -20,13 +20,13 @@ class EmployerSidebar extends React.Component {
                 <div className='sidebar-nav-container'>
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
-                    <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employer/profile' />
+                    <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
                       <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
                         <SidebarNav>
-                          <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' />
+                          <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
                         </SidebarNav>
                       </SidebarNavItem>
-                      <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employer/calendar' />
+                      <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
               </Col>

@@ -19,10 +19,10 @@ export default class ApplicantSidebar extends React.Component {
               <div className='sidebar-header'>PAGES</div>
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
-                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/applicant/profile' />
-                  <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/applicant/jobs' />
-                  <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/applicant/calendar' />
-                  <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/applicant/charts' />
+                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/applicantprofile' />
+                  <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/applicantjobs' />
+                  <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/applicantcalendar' />
+                  <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/applicantcharts' />
                 </SidebarNav>
               </div>
             </Col>
