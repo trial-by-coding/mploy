@@ -29,7 +29,6 @@ const { dispatch } = this.props;
   return (
     <Container id='body' className='social'>
       <div>
-        {/*<Profile*/}
         <ApplicantSidebar
         dispatch={dispatch}
         firstname={firstname}

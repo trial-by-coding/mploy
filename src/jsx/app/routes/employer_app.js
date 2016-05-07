@@ -11,7 +11,7 @@ import EmployerDashboard from 'routes/containers/employer_dashboard';
 import Applications from 'routes/containers/applications';
 import Jobs from 'routes/containers/jobs';
 import Profile from 'routes/containers/profile_user';
-import Calendar from 'routes/calendar';
+import Calendar from 'routes/components/calendar';
 import Charts from 'routes/containers/chart_stats';
 
 

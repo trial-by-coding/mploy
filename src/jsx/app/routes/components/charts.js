@@ -39,7 +39,8 @@ export default class Body extends React.Component {
           },
           {
             name: 'Considered',
-            value: charts.considered,
+            // value: charts.considered,
+            value: 20,
             color: '#aa4643'
           },
           {
@@ -49,7 +50,8 @@ export default class Body extends React.Component {
           },
           {
             name: 'Interviewed',
-            value: charts.interviewed,
+            value: 23,
+            //value: charts.interviewed,
             color: '#80699b'
           },
           {

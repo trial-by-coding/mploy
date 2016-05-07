@@ -19,9 +19,9 @@ export default class ApplicantSidebar extends React.Component {
               <div className='sidebar-header'>PAGES</div>
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
-                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
-                  <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/jobs' />
-                  <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/calendar' />
+                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/applicant/profile' />
+                  <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/applicant/jobs' />
+                  <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/applicant/calendar' />
                   <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/charts' />
                 </SidebarNav>
               </div>

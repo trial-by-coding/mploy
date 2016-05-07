@@ -9,7 +9,7 @@ import Jobs from 'routes/containers/jobs';
 import Controls from 'routes/forms/controls';
 import Profile from 'routes/containers/profile_user';
 import Charts from 'routes/containers/chart_stats';
-import Calendar from 'routes/calendar';
+import Calendar from 'routes/components/calendar';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import Applicant_Sidebar from 'routes/components/applicant_sidebar';
@@ -24,20 +24,18 @@ export default (history, onUpdate) => {
         <IndexRoute component={ApplicantDashboard} />
         <Route path='/applicant/profile' component={Profile} />
         <Route path='/applicant/jobs' component={Jobs} />
-        <Route path='/applicant/charts' component={Charts} />
+        <Route path='/charts' component={Charts} />
         <Route path='/applicant/calendar' component={Calendar} />
         <Route path='/sidebar' component={Applicant_Sidebar} />
-
       </Route>
 
       <Route path='/employer' component={EmployerApp} >
         <IndexRoute component={EmployerDashboard} />
-        <Route path='/profile' component={Profile} />
-        <Route path='/applications' component={Applications} />
-        <Route path='/newjob' component={NewJob} />
+        <Route path='/employer/profile' component={Profile} />
+        <Route path='/employer/applications' component={Applications} />
+        <Route path='/employer/newjob' component={NewJob} />
         <Route path='/charts' component={Charts} />
-        <Route path='/calendar' component={Calendar} />
-
+        <Route path='/employer/calendar' component={Calendar} />
       </Route>
     </Router>
   );
