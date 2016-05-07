@@ -21,16 +21,16 @@ export default (history, onUpdate) => {
       <Route path='/' component={Landing}/>
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
-        <Route path='/applicant/profile' component={Profile} />
-        <Route path='/applicant/jobs' component={Jobs} />
-        <Route path='/applicant/charts' component={Charts} />
-        <Route path='/applicant/calendar' component={Calendar} />
+        <Route path='/profile' component={Profile} />
+        <Route path='/jobs' component={Jobs} />
+        <Route path='/charts' component={Charts} />
+        <Route path='/calendar' component={Calendar} />
 
       </Route>
 
       <Route path='/employer' component={EmployerApp} >
         <IndexRoute component={EmployerDashboard} />
-        <Route path='/employerprofile' component={Profile} />
+        <Route path='/employer/profile' component={Profile} />
         <Route path='/employer/applications' component={Applications} />
         <Route path='/employer/newjob' component={NewJob} />
         <Route path='/employer/charts' component={Charts} />

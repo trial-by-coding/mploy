@@ -6,14 +6,13 @@ import {  GET_JOB_POSTS,
 				  GET_EMPLOYER_INTERVIEWS,
 				  GET_EMPLOYER_OFFERS,
 				  FETCH_USER							 } from './actionTypes';
-import actions from '../actions';
+
 let jobID = undefined;
-function fetchRequests() {
+function fetchEmployerRequests() {
 	return dispatch => axios.get('/user/employer/jobscreated')
 		.then(payload => {
 			jobID = payload.data[0].jobID;
 			console.log('payload', payload);
-			console.log('actions', actions);
 			dispatch({ type: GET_JOB_POSTS, payload })
 			dispatch({ type: SET_JOB_POST, jobID})
 			return axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=unconsidered')
@@ -42,5 +41,5 @@ function fetchRequests() {
 }
 
 module.exports = {
-	fetchRequests: fetchRequests
+	fetchEmployerRequests: fetchEmployerRequests
 }
