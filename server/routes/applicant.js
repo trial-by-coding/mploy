@@ -5,7 +5,7 @@ var Notifications = require('../models/Notifications.js');
 var express = require('express');
 var bodyParser = require('body-parser');
 var multer = require('multer');
-var upload = multer({dest: '../uploads'})
+var upload = multer({dest: 'ploads'});
 
 module.exports = function(router) {
   var app = express();
@@ -95,11 +95,13 @@ module.exports = function(router) {
   });
 
   router.post('/uploadcoverletter', upload.single('coverletter'), function(req, res, next){
-    res.status(200).send(req.file.path);
+    //console.log("applicant:uploadcoverletter:req.file=",req.file);
+    res.status(200).send(req.file.filename);
   })
 
   router.post('/uploadresume', upload.single('resume'), function(req, res, next){
-    res.status(200).send(req.file.path);
+    //console.log("applicant:uploadresume:req.file=",req.file);
+    res.status(200).send(req.file.filename);
   })
 
   router.post('/submitapp', function(req, res) {

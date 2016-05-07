@@ -4,33 +4,12 @@ import { connect } from 'react-redux'
 
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
-import FileCard from './fileCard'
 
 // const AppCard = ({app}) => {
 
 export default class AppCard extends React.Component {
   constructor(props){
     super(props)
-  }
-
-  getTextModal(filePath) {
-    console.log("appCard:filePath:",filePath)
-    return (
-      <Modal>
-        <ModalBody>
-          <FileCard app={filePath}/>
-        </ModalBody>
-        <ModalFooter>
-          <Button outlined bsStyle='primary'>Close</Button>
-        </ModalFooter>
-      </Modal>
-    );
-  }
-
-  handleClick(ref){
-    console.log("appCard:handleClick:ref=",ref);
-    if (ref !== null)
-      ModalManager.create.bind(this, this.getTextModal(ref));
   }
 
   render() {
@@ -96,16 +75,10 @@ export default class AppCard extends React.Component {
         </Row> 
 
         <Row style={styles}>
-          <button
-          onClick={() => this.handleClick(this.props.app.resume)}
-          className='btn btn-info'>
-          View Resume
-          </button>
-          <button
-          onClick={() => this.handleClick(this.props.app.cover_letter)}
-          className='btn btn-info'>
-          View Cover Letter
-          </button>
+          <a href={this.props.app.resume}
+            download={this.props.app.resume}>Download Resume</a>
+          <a href={this.props.app.cover_letter}
+            download={this.props.app.cover_letter}>Download Cover Letter</a>
         </Row>
 
         <Row style={styles}>
