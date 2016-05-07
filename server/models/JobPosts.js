@@ -38,6 +38,19 @@ JobPosts.getAll = function() {
     })
 };
 
+JobPosts.deleteJob = function(jobID) {
+    
+    return db('job_posts')
+    .del()
+    .where({jobID: jobID})
+    .then(function(record) {
+      return record[0]
+    })
+    .catch(function(err) {
+      throw err
+    })
+};
+
 JobPosts.getJob = function(jobID) {
     
     return db('job_posts')

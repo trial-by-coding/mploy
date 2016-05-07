@@ -3,7 +3,9 @@ exports.up = function(knex, Promise) {
 
     //users table
     knex.schema.createTable('users', function(table) {
-      table.increments('userID').primary();
+      table.increments('userID')
+        .primary()
+        .unsigned();
       table.string('linkedin_id').unique();
       table.string('username', 30); //needs character limit
       table.string('firstname', 30);
@@ -19,7 +21,9 @@ exports.up = function(knex, Promise) {
 
     // //job posts table
     knex.schema.createTable('job_posts', function(table) {
-      table.increments('jobID').primary();
+      table.increments('jobID')
+        .primary()
+        .unsigned();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.string('company_name');
       table.string('job_title');
@@ -32,13 +36,16 @@ exports.up = function(knex, Promise) {
       table.boolean('visa_required');
       table.jsonb('skills');
       table.integer('user_id')
+        .unsigned()
         .references('userID')
         .inTable('users');
     }),
     
     //applications table
     knex.schema.createTable('applications', function(table) {
-      table.increments('appID').primary();
+      table.increments('appID')
+        .primary()
+        .unsigned();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.string('cover_letter');
       table.string('resume');
@@ -49,16 +56,21 @@ exports.up = function(knex, Promise) {
       table.jsonb('skills_met');
       table.boolean('can_work_here');
       table.integer('user_id')
+        .unsigned()
         .references('userID')
         .inTable('users');
       table.integer('job_id')
+        .unsigned()
         .references('jobID')
-        .inTable('job_posts');
+        .inTable('job_posts')
+        .onDelete('CASCADE')
      }),
 
     // //stats table
     knex.schema.createTable('stats', function(table) {
-      table.increments('statID').primary();
+      table.increments('statID')
+        .primary()
+        .unsigned();
       table.integer('total_apps');
       table.integer('rescinded');
       table.integer('denied');
@@ -67,18 +79,23 @@ exports.up = function(knex, Promise) {
       table.integer('interviewed');
       table.integer('offered');
       table.integer('user_id')
+        .unsigned()
         .references('userID')
         .inTable('users'); 
     }),
 
     knex.schema.createTable('notifications', function(table) {
-      table.increments('notifyID').primary();
+      table.increments('notifyID')
+        .primary()
+        .unsigned();
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.string('new_status')
       table.integer('app_id')
+        .unsigned()
         .references('appID')
         .inTable('applications');
       table.integer('user_Id')
+        .unsigned()
         .references('userID')
         .inTable('users');
      }),

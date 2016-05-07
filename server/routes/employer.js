@@ -114,7 +114,7 @@ module.exports = function(router) {
     })
     .catch(function(err){
     console.log("No job posts retrieved for current user: ", err);
-    res.status(400).send(err);
+    res.status(404).send(err);
     });
   });
 
@@ -130,7 +130,7 @@ module.exports = function(router) {
       })
       .catch(function(err){
         console.log("could not get application data for jobID "+rq.jobID+", err:", err);
-        res.status(400).send(err);
+        res.status(404).send(err);
       });
     } else {
       console.log("must supply jobID in query string");
@@ -278,6 +278,27 @@ module.exports = function(router) {
     } else {
       console.log("Must supply appID in query string");
       res.status(400).send("Must supply appID in query string");
+    }
+  });
+
+  //Delete all applications for this job post, should notify users that position is no longer open
+  router.delete('/deletejob', function(req, res){
+    console.log('---delete job:received DELETE, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.jobID) {
+      console.log("request for jobID = ",rq.jobID);
+      JobPosts.deleteJob(rq.jobID)
+      .then(function(data){
+        res.status(200).send(JSON.stringify(data));
+        console.log("Successfully deleted job post: ", data)
+      })
+      .catch(function(err){
+        console.log("Could not get job post data for jobID "+rq.jobID+", err:", err);
+        res.status(404).send(err);
+      });
+    } else {
+      console.log("Must supply jobID in query string");
+      res.status(404).send("Must supply jobID in query string");
     }
   });
 
