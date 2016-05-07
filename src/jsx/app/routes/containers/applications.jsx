@@ -1,30 +1,24 @@
 import classNames from 'classnames';
 import AppCard from 'routes/components/appCard';
-
 import { getApplications } from 'redux/actions/index.js';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect((state) => state)
 export default class ApplicationContainer extends React.Component {
     constructor(props){
-    super(props)
+    super(props);
   }
 
   componentDidMount(){
-    this.props.dispatch(getApplications(2))  
+    this.props.dispatch(getApplications(2));
   }
-
-
-
 
 	render() {
     const { dispatch } = this.props;
 
-
-    console.log('in render func props:', this.props)
+    // console.log('in render func props:', this.props);
 
     const styles = {
       margin: '12.5px 0',
@@ -46,15 +40,15 @@ export default class ApplicationContainer extends React.Component {
     };
     const panelStyle = {
     	'maxWidth': '400px'
-    }
+    };
     const panelPad = {
       'padding': '0px 20px'
-    }
+    };
 
   if(!this.props.appList.items) {
-    return <div> Loading... </div>
-  } 
-console.log("applist before render:", this.props.applist)
+    return <div> Loading... </div>;
+  }
+console.log("applist before render:", this.props.applist);
 	return (
     <Container id='body' className='social'>
       <Grid>
@@ -71,11 +65,11 @@ console.log("applist before render:", this.props.applist)
                     </Panel>
                   </PanelContainer>
                 </Col>
-              ) 
+              );
             })
           }
     		</Row>
       </Grid>
     </Container>
-	)}
+	);}
 }

@@ -1,7 +1,4 @@
-import { FETCH_USER,
-         DELETE_USER,
-         SET_VISIBILITY_FILTER,
-         VisibilityFilters } from '../actions/actionTypes';
+import { FETCH_USER, DELETE_USER } from '../actions/actionTypes';
 
 
 function user(state = {},  action) {
@@ -21,16 +18,6 @@ function user(state = {},  action) {
   }
 }
 
-function visibilityFilter(state = VisibilityFilters.SHOW_USER, action) {
-  switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return action.filter;
-    default:
-      return state;
-  }
-}
-
 module.exports = {
-  user,
-  visibilityFilter
+  user
 };

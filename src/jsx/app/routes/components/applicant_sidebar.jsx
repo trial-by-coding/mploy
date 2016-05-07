@@ -7,7 +7,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link, History } from 'react-router';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 
 export default class ApplicantSidebar extends React.Component {
@@ -20,25 +19,10 @@ export default class ApplicantSidebar extends React.Component {
               <div className='sidebar-header'>PAGES</div>
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
-
-                  <SidebarNavItem glyph='icon-fontello-gauge' name={<span>Dashboard <BLabel className='bg-darkgreen45 fg-white'></BLabel></span>}>
-                  <SidebarNav>
-                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
-                </SidebarNav>
-                  <SidebarNav>
-                    <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/jobs' />
-                  </SidebarNav>
-                  </SidebarNavItem>
-                  <SidebarNavItem glyph='icon-feather-menu' name={<span>Menu <BLabel className='bg-darkgreen45 fg-white'></BLabel></span>}>
-                    <SidebarNav>
-                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/calendar' />
-                    </SidebarNav>
-                    <SidebarNav>
-                    <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/charts' />
-                    </SidebarNav>
-                    </SidebarNavItem>
-
-
+                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/applicant/profile' />
+                  <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/applicant/jobs' />
+                  <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/applicant/calendar' />
+                  <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/charts' />
                 </SidebarNav>
               </div>
             </Col>
@@ -50,24 +34,31 @@ export default class ApplicantSidebar extends React.Component {
 }
 
 
-
+@connect(state => state)
 export default class extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  componentWillMount() {
+    this.props.dispatch(actions.fetchUser());
+  }
+
   render() {
-    const user = this.props;
+
+  const user = this.props;
+
     return (
       <div id='sidebar' {...this.props}>
         <div id='avatar'>
           <Grid>
             <Row className='fg-white'>
               <Col xs={4} collapseRight>
-                <img src={user.profile_picture} width='40' height='40' />
-
-                {/*<Avatar src = {user.profile_picture} float = 'left' style = {this.avatarStyle.bind(this).call()} size = {55}/>*/}
-
+                <Img src={user.user.profile_picture} width='45' height='45'
+                  style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'left'}} />
               </Col>
               <Col xs={8} collapseLeft id='avatar-col'>
                 <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>
-                {user.firstname} {user.lastname}
+                {user.user.firstname} {user.user.lastname}
                 </div>
               </Col>
             </Row>
@@ -75,17 +66,13 @@ export default class extends React.Component {
         </div>
         <SidebarControls>
           <SidebarControlBtn bundle='fontello' glyph='home' sidebar={0} />
-          <SidebarControlBtn bundle='fontello' glyph='chart-pie-2' sidebar={1} />
-          <SidebarControlBtn bundle='fontello' glyph='user-1' sidebar={2} />
+          <SidebarControlBtn bundle='fontello' glyph='user-1' sidebar={1} />
         </SidebarControls>
         <div id='sidebar-container'>
           <Sidebar sidebar={0}>
             <ApplicantSidebar />
           </Sidebar>
           <Sidebar sidebar={1}>
-            <ApplicantSidebar />
-          </Sidebar>
-          <Sidebar sidebar={2}>
             <ApplicantSidebar />
           </Sidebar>
         </div>

@@ -27,7 +27,7 @@ export default class Body extends React.Component {
     setTimeout(() => {
       (() => {
         var pie = Rubix.Pie('#resume-chart', {
-          title: 'Application Status',
+          title: 'Status of Current Applications',
           subtitle: 'May 2016',
           height: 300
         });
@@ -39,86 +39,62 @@ export default class Body extends React.Component {
           },
           {
             name: 'Considered',
-            value: charts.considered,
+            // value: charts.considered,
+            value: 20,
             color: '#aa4643'
-          },
-          {
-            name: 'Denied',
-            value: charts.denied,
-            color: '#89a54e'
           },
           {
             name: 'Offered',
             value: charts.offered,
+            color: '#89a54e'
+          },
+          {
+            name: 'Interviewed',
+            value: 23,
+            //value: charts.interviewed,
             color: '#80699b'
           },
           {
-            name: 'Rescinded',
-            // value: charts.rescinded,
-            value: 25,  // data placeholder. Use line above when data available.
+            name: 'No Data',
+            value: 18, // data placeholder.
             color: '#db843d'
-          },
-          {
-            name: 'Pending',
-            // value: charts.pending,
-            value: 8.5, // data placeholder. Use line above when data available.
-            color: '#80699b'
-          },
-          {
-            name: 'Said No',
-            value: 6.2,
-            color: '#3d96ae'
           }
+
         ]);
       })();
 
       (() => {
         var pie = Rubix.Pie('#jobs-chart', {
-          title: 'Jobs Chart',
+          title: 'Outcomes',
           subtitle: 'May 2016',
           height: 300
         });
         pie.addData([
           {
-            name: 'Applied',
+            name: 'In Process',
             value: charts.applied,
+            // in process = total apps - ( denied + rescinded)
             color: '#4572a7'
-          },
-          {
-            name: 'Considered',
-            value: charts.considered,
-            color: '#aa4643'
           },
           {
             name: 'Denied',
             value: charts.denied,
-            color: '#89a54e'
-          },
-          {
-            name: 'Offered',
-            value: charts.offered,
-            color: '#80699b'
+            color: '#aa4643'
           },
           {
             name: 'Rescinded',
-            // value: charts.rescinded,
-            value: 10,  // data placeholder. Use line above when data available.
+            value: charts.rescinded,
             color: '#db843d'
           },
           {
-            name: 'Pending',
-            // value: charts.pending,
-            value: 17.5, // data placeholder. Use line above when data available.
+            name: 'No Data',
+            value: 18, // data placeholder. Use line above when data available.
             color: '#80699b'
-          },
-          {
-            name: 'Said No',
-            value: 33,
-            color: '#3d96ae'
           }
+
         ]);
       })();
-    }, 15);
+    }, 300);
   }
 
   render() {

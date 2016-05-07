@@ -1,23 +1,19 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-
 import ApplicantLane from 'routes/components/applicantLane';
-
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
+
 
 @connect(state => state)
 export default class ApplicantDashboard extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
 	}
   componentWillMount() {
-    this.props.dispatch(actions.getApplicantUnconsidered())
-    this.props.dispatch(actions.getApplicantConsidered())
-    this.props.dispatch(actions.getApplicantInterviews())
-    this.props.dispatch(actions.getApplicantOffers())
+    this.props.dispatch(actions.getApplicantUnconsidered());
+    this.props.dispatch(actions.getApplicantConsidered());
+    this.props.dispatch(actions.getApplicantInterviews());
+    this.props.dispatch(actions.getApplicantOffers());
 
   }
 
@@ -42,6 +38,6 @@ export default class ApplicantDashboard extends React.Component {
         </Row>
       </Grid>
     </Container>
-    )
+	);
 	}
 }

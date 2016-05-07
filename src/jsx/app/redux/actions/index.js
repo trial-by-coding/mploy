@@ -26,6 +26,6 @@ module.exports = {
   ...employerinterviews,
   ...employeroffers,
   ...employerposts,
-  ...employerapp
+  ...employerapp,
   // ...employersidebar
 };
