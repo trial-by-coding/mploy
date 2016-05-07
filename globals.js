@@ -108,8 +108,6 @@ var ltr = html.replace(new RegExp('{dir}', 'g'), 'ltr');
 var rtl = html.replace(new RegExp('{dir}', 'g'), 'rtl');
 
 global.renderHTML = function(req, res, next, store) {
-  console.log('req.url: ', req.url)
-  console.log('req.user: ', req.user)
   if(req.url === '/favicon.ico'
     || (req.url.search('.l20n') !== -1)) return next();
   res.header('Access-Control-Allow-Origin', '*');
@@ -121,69 +119,44 @@ global.renderHTML = function(req, res, next, store) {
     data = escape(encodeURIComponent(JSON.stringify(store.getState())));
   }
 
-  //renderProps.location.pathname    has url
+  //Routing below to limit access by employer/applicant
 
   ReactRouter.match({
     routes: routes({ listen: () => {} }),
     location: req.url
   }, function(err, redirectLocation, renderProps) {
-    console.log('redirectLocation: ', redirectLocation)
-      console.log('renderProps: ', renderProps)
     if(err) {
       res.status(500).send(err.message);
     } else if(redirectLocation) {
       res.redirect(redirectLocation.pathname + redirectLocation.search);
     } else if(renderProps) {
       var str = renderDOMString(store, data, renderProps);
+      var redir;
 
-      console.log('renderProps.location.pathname: ', renderProps.location.pathname)
-      if (renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/profile' || renderProps.location.pathname === '/newjob' || renderProps.location.pathname === '/charts' || renderProps.location.pathname === '/calendar' || renderProps.location.pathname === '/jobs' || renderProps.location.pathname === '/applicant'){
-        console.log('!req.user: ', !req.user)
-        console.log('Hi there user!: ', req.user)
+      if (renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/applicant'|| renderProps.location.pathname === '/profile' || renderProps.location.pathname === '/newjob' || renderProps.location.pathname === '/charts' || renderProps.location.pathname === '/calendar' || renderProps.location.pathname === '/jobs'){
+
         if (!req.user){
           renderProps.location.pathname = '/'
           res.redirect('/')
         }
-        // if (req.user && renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/newjob'){
-        //   var isEmployer 
+        if(req.user && renderProps.location.pathname === '/applicant'){
+          var applicant = !req.user.employer;
 
-        //   var linkedin_id = req.user.linkedin_id
-        //   return Users.verifyId(linkedin_id)
-        //   .then(function(data) {
-        //     console.log('user data in employer route:', data)
-        //     isEmployer = data.employer
-        //   })
-        //   .catch(function() {
-        //     isEmployer = false
-        //   })
-        //   .then(function() {
-        //     console.log('isEmployer: ', isEmployer)
-        //     if(!isEmployer){
-        //       renderProps.location.pathname = '/applicant'
-        //       res.redirect('/applicant')
-        //     }  
-        //     return
-        //   })
-        // }
-        // if(req.user && renderProps.location.pathname === '/applicant'){
-        //   var isEmp 
+          if(!applicant){
+            renderProps.location.pathname = '/employer'
+            redir = '/employer'
+          } 
+        }
+        if (req.user && renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/newjob'){
+          var employer = req.user.employer;
 
-        //   var linkedin_id = req.user.linkedin_id
-        //   return Users.verifyId(linkedin_id)
-        //   .then(function(data) {
-        //     console.log('user data in applicant route:', data)
-        //     isEmp = data.employer
-        //   })
-        //   .catch(function() {
-        //     isEmp = false
-        //   })
-
-        //   if(isEmployer){
-        //     renderProps.location.pathname = '/employer'
-        //     res.redirect('/employer')
-        //   }
-        // } 
-        else {
+          if(!employer){
+            renderProps.location.pathname = '/applicant'
+            redir = '/applicant'
+          } 
+        } if (req.user && redir){
+          res.redirect(redir)
+        } else {
           if(isRTL) {
             str = rtl.replace(new RegExp('{container}', 'g'), str);
             str = str.replace(new RegExp('{server_data}', 'g'), data);
