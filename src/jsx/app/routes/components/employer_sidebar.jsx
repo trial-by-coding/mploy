@@ -26,7 +26,6 @@ class EmployerSidebar extends React.Component {
                           <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' />
                         </SidebarNav>
                       </SidebarNavItem>
-                      <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/employer/charts' />
                       <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employer/calendar' />
                   </SidebarNav>
                 </div>

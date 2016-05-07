@@ -25,14 +25,13 @@ export default (browserHistory, onUpdate) => {
         <Route path='/applicant/jobs' component={Jobs} />
         <Route path='/applicant/charts' component={Charts} />
         <Route path='/applicant/calendar' component={Calendar} />
-        <Route path='/sidebar' component={Applicant_Sidebar} />
+        {/*<Route path='/sidebar' component={Applicant_Sidebar} />*/}
 
       </Route>
 
       <Route path='/employer' component={EmployerApp} >
         <IndexRoute component={EmployerDashboard} />
         <Route path='/employer/profile' component={Profile} />
-        <Route path='/employer/applications' component={Applications} />
         <Route path='/employer/newjob' component={NewJob} />
         <Route path='/employer/calendar' component={Calendar} />
       </Route>

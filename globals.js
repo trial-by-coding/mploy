@@ -133,13 +133,13 @@ global.renderHTML = function(req, res, next, store) {
       var str = renderDOMString(store, data, renderProps);
       var redir;
 
-      if (renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/applicant'|| renderProps.location.pathname === '/profile' || renderProps.location.pathname === '/newjob' || renderProps.location.pathname === '/charts' || renderProps.location.pathname === '/calendar' || renderProps.location.pathname === '/jobs'){
+      if (renderProps.location.pathname.substring(0,9) ==='/employer' || renderProps.location.pathname.substring(0,10) === '/applicant'){
 
         if (!req.user){
           renderProps.location.pathname = '/'
           res.redirect('/')
         }
-        if(req.user && renderProps.location.pathname === '/applicant'){
+        if(req.user && renderProps.location.pathname.substring(0,10) === '/applicant'){
           var applicant = !req.user.employer;
 
           if(!applicant){
@@ -147,7 +147,7 @@ global.renderHTML = function(req, res, next, store) {
             redir = '/employer'
           } 
         }
-        if (req.user && renderProps.location.pathname === '/employer' || renderProps.location.pathname === '/newjob'){
+        if (req.user && renderProps.location.pathname.substring(0,9) ==='/employer'){
           var employer = req.user.employer;
 
           if(!employer){
