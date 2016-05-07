@@ -30,11 +30,11 @@ export default (history, onUpdate) => {
 
       <Route path='/employer' component={EmployerApp} >
         <IndexRoute component={EmployerDashboard} />
-        <Route path='/employer/profile' component={Profile} />
-        <Route path='/employer/applications' component={Applications} />
-        <Route path='/employer/newjob' component={NewJob} />
-        <Route path='/employer/charts' component={Charts} />
-        <Route path='/employer/calendar' component={Calendar} />
+        <Route path='/profile' component={Profile} />
+        <Route path='/applications' component={Applications} />
+        <Route path='/newjob' component={NewJob} />
+        <Route path='/charts' component={Charts} />
+        <Route path='/calendar' component={Calendar} />
 
       </Route>
     </Router>
