@@ -57,13 +57,15 @@ export default class extends React.Component {
     console.log('siderbar props', this.props);
 
     let posts = this.props.posts
+
     return (
       <div id='sidebar' {...this.props}>
         <div id='avatar'>
           <Grid>
             <Row className='fg-white'>
               <Col xs={4} collapseRight>
-              <img src={user.user.profile_picture} width='40' height='40' />
+                <Img src={user.user.profile_picture} width='45' height='45'
+                  style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'left'}} />
               </Col>
               <Col xs={8} collapseLeft id='avatar-col'>
                 <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>
@@ -74,20 +76,16 @@ export default class extends React.Component {
           </Grid>
         </div>
         <SidebarControls>
-        <SidebarControlBtn bundle='fontello' glyph='docs' sidebar={0} />
-        <SidebarControlBtn bundle='fontello' glyph='chart-pie-2' sidebar={1} />
-        <SidebarControlBtn bundle='fontello' glyph='th-list-2' sidebar={2} />
+          <SidebarControlBtn bundle='fontello' glyph='home' sidebar={0} />
+          <SidebarControlBtn bundle='fontello' glyph='th-list-2' sidebar={1} />
         </SidebarControls>
         <div id='sidebar-container'>
           <Sidebar sidebar={0}>
-            <EmployerSidebar  posts={posts}
-                              setJobPost={this.setJobPost}/>
+            <EmployerSidebar />
           </Sidebar>
           <Sidebar sidebar={1}>
-            <EmployerSidebar />
-          </Sidebar>
-          <Sidebar sidebar={2}>
-            <EmployerSidebar />
+            <EmployerSidebar  posts={this.props.posts}
+                              setJobPost={this.setJobPost}/>
           </Sidebar>
         </div>
       </div>

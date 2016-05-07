@@ -46,7 +46,6 @@ export default class extends React.Component {
   render() {
 
   const user = this.props;
-  let today = new Date().getFullYear();
 
     return (
       <div id='sidebar' {...this.props}>
@@ -55,13 +54,12 @@ export default class extends React.Component {
             <Row className='fg-white'>
               <Col xs={4} collapseRight>
                 <Img src={user.user.profile_picture} width='45' height='45'
-                  style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto'}} />
+                  style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'left'}} />
               </Col>
               <Col xs={8} collapseLeft id='avatar-col'>
                 <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>
                 {user.user.firstname} {user.user.lastname}
                 </div>
-          
               </Col>
             </Row>
           </Grid>
