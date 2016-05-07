@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import ApplicantSidebar from 'routes/components/applicant_sidebar';
+import EmployerSidebar from 'routes/components/employer_sidebar';
 import { connect } from 'react-redux';
-import { Link, History } from 'react-router';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
+
 
 @connect(state => state)
 export default class SideBarContainer extends React.Component {

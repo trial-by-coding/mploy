@@ -1,8 +1,4 @@
 module.exports = {
   FETCH_USER: 'FETCH_USER',
-  DELETE_USER: 'DELETE_USER',
-  SET_VISIBILITY_FILTER: 'SET_VISIBILITY_FILTER',
-  VisibilityFilters: {
-    SHOW_USER: 'SHOW_USER',
-  },
+  DELETE_USER: 'DELETE_USER'
 };

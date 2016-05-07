@@ -1,10 +1,5 @@
 import axios from 'axios';
-import { FETCH_CHARTS
-
-} from './actionTypes';
-
-        //  SET_VISIBILITY_FILTER,
-        //  VisibilityFilters } from './actionTypes';
+import { FETCH_CHARTS } from './actionTypes';
 
 
 function fetchCharts() {
@@ -14,11 +9,7 @@ function fetchCharts() {
   );
 }
 
-// function setVisibilityFilter(filter) {
-//   return { type: SET_VISIBILITY_FILTER, filter };
-// }
 
 module.exports = {
   fetchCharts
-  // setVisibilityFilter
 };

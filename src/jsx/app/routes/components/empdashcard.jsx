@@ -5,15 +5,15 @@ import AppCard from './appCard';
 export default class empdashCard extends React.Component {
 
   getLargeModal() {
-    
+
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
     let revert = this.props.revert;
     let status = this.props.lane;
     let index = this.props.index;
     let item = this.props.item;
-    let reject = this.props.reject
-    let accept = this.props.accept
+    let reject = this.props.reject;
+    let accept = this.props.accept;
 
     return (
       <Modal lg>
@@ -42,7 +42,7 @@ export default class empdashCard extends React.Component {
           <div className='revert' onClick={() => revert(item.appID, status, item, index)}>
             back
           </div>
-        </Col>      
+        </Col>
         <Col md={8}>
           <div className='applicantname' onClick={ModalManager.create.bind(this, this.getLargeModal())}>
            {this.props.item.firstname + ' ' + this.props.item.lastname}
@@ -52,6 +52,6 @@ export default class empdashCard extends React.Component {
           <div onClick={() => advance(item.appID, status, item, index)}> > </div>
         </Col>
       </div>
-    )
+    );
   }
 }

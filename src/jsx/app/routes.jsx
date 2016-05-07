@@ -12,6 +12,7 @@ import Charts from 'routes/containers/chart_stats';
 import Calendar from 'routes/calendar';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
+import Applicant_Sidebar from 'routes/components/applicant_sidebar';
 
 
 
@@ -21,10 +22,11 @@ export default (history, onUpdate) => {
       <Route path='/' component={Landing}/>
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
-        <Route path='/profile' component={Profile} />
-        <Route path='/jobs' component={Jobs} />
-        <Route path='/charts' component={Charts} />
-        <Route path='/calendar' component={Calendar} />
+        <Route path='/applicant/profile' component={Profile} />
+        <Route path='/applicant/jobs' component={Jobs} />
+        <Route path='/applicant/charts' component={Charts} />
+        <Route path='/applicant/calendar' component={Calendar} />
+        <Route path='/sidebar' component={Applicant_Sidebar} />
 
       </Route>
 

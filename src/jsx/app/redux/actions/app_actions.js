@@ -4,9 +4,7 @@ import { ADD_APP,
          ACCEPT_APP,
          REJECT_APP,
          FETCH_APP,
-         ADD_JOB,
-         SET_VISIBILITY_FILTER,
-         VisibilityFilters } from './actionTypes';
+         ADD_JOB } from './actionTypes';
 
 
 
@@ -16,7 +14,7 @@ function getApplications(jobID) {
     .then(
       payload => dispatch({ type: FETCH_APP, payload })
     );
-	
+
 }
 
 function rejectApp(jobID, appID) {
@@ -25,10 +23,10 @@ function rejectApp(jobID, appID) {
 
       return axios.delete('user/employer/deleteapp?appID=' + appID)
         .then(function (payload) {
-          dispatch({ type: REMOVE_APP, appID })
-          dispatch({ type: FETCH_APP, payload })
+          dispatch({ type: REMOVE_APP, appID });
+          dispatch({ type: FETCH_APP, payload });
         });
-    }
+    };
   // return { type: REMOVE_APP, jobID };
 }
 
@@ -36,18 +34,18 @@ function applyToJob(app){
   return function(dispatch){
     return axios.post('user/applicant/submitapp',app)
       .then(function(payload){
-        dispatch({ type: ADD_APP, payload})
-      })
-  }
+        dispatch({ type: ADD_APP, payload});
+      });
+  };
 }
 
 function postNewJob(job){
   return function(dispatch){
     return axios.post('user/employer/submitjob',job)
       .then(function(payload){
-        dispatch({ type: ADD_JOB, payload})
-      })
-  }
+        dispatch({ type: ADD_JOB, payload});
+      });
+  };
 }
 
 module.exports = {
@@ -55,4 +53,4 @@ module.exports = {
   applyToJob:applyToJob,
 	getApplications: getApplications,
   rejectApp: rejectApp
-}
+};

@@ -1,17 +1,14 @@
 import classNames from 'classnames';
 
-import { connect } from 'react-redux'
-// import JobModal from './jobModal'
-import LoremIpsum from 'global/jsx/loremipsum';
-import Controls from '../forms/controls'
+import { connect } from 'react-redux';
+import Controls from '../forms/controls';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 class JobHeader extends React.Component {
   render() {
     const pStyles = {
       fontSize: '10px'
-    }
+    };
     return (
       <div className='jobheader'>
       <Row>
@@ -27,7 +24,7 @@ class JobHeader extends React.Component {
         </Col>
       </Row>
       </div>
-    )
+    );
   }
 }
 
@@ -35,7 +32,7 @@ class JobBody extends React.Component {
   render() {
     const pStyles = {
       fontSize: '10px'
-    }
+    };
     return (
       <div className='jobbody'>
       <Row>
@@ -59,7 +56,7 @@ class JobBody extends React.Component {
         </Col>
       </Row>
       </div>
-    )
+    );
   }
 }
 
@@ -80,11 +77,10 @@ class JobApply extends React.Component {
   }
 
   render() {
-    // console.log("props in motherfkn jobApply:", this.props.data)
     const btnStyles = {
       textAlign: 'center',
       margin: '0 auto'
-    }
+    };
     return (
       <div className="jobapply">
         <Row>
@@ -96,7 +92,7 @@ class JobApply extends React.Component {
           </Col>
         </Row>
       </div>
-    )
+    );
   }
 }
 
@@ -104,11 +100,11 @@ export default class JobCard extends React.Component {
 
   render() {
 
-    let skillsArr =[]
+    let skillsArr =[];
 
     this.props.data.skills.map(function(item){
       skillsArr.push(false);
-    })
+    });
 
     // console.log('jobCard', this.state);
     const styles = {
@@ -121,11 +117,11 @@ export default class JobCard extends React.Component {
     const panelStyle = {
       'max-width': '400px',
       'padding-top': '0px'
-    }
+    };
 
     const colStyle = {
       zIndex: -100
-    }
+    };
 
 
     return(
@@ -149,6 +145,6 @@ export default class JobCard extends React.Component {
         </Panel>
       </PanelContainer>
     </Col>
-		)
+		);
 	}
 }

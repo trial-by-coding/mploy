@@ -4,9 +4,7 @@ import { ADD_JOB,
          APPLY_JOB,
          FETCH_JOBS,
          SHOW_FORM,
-         HIDE_FORM,
-         SET_VISIBILITY_FILTER,
-         VisibilityFilters } from './actionTypes';
+         HIDE_FORM  } from './actionTypes';
 
 
 function getJobs() {
@@ -22,20 +20,18 @@ function showForm() {
 	console.log('showForm');
 	return {
 		type: SHOW_FORM
-	}
+	};
 }
 
 function hideForm() {
 	console.log('hideForm');
 	return {
 		type: HIDE_FORM
-	}
+	};
 }
-
-
 
 module.exports = {
 	getJobs: getJobs,
 	showForm: showForm,
 	hideForm: hideForm
-}
+};

@@ -5,15 +5,14 @@ import  { ADD_JOB,
           SHOW_FORM,
           APP_FORM_POP,
           HIDE_FORM,
-          FETCH_JOBS,
-          SET_VISIBILITY_FILTER } from '../actions/actionTypes';
+          FETCH_JOBS } from '../actions/actionTypes';
 
 var initialState = { showForm: false };
 
 function jobList(state = initialState, action) {
   switch (action.type) {
     case FETCH_JOBS:
-      console.log('FETCH_JOBS', action.payload.data)
+      console.log('FETCH_JOBS', action.payload.data);
       const data = action.payload.data;
       return Object.assign({}, state, {
         items: data
@@ -35,13 +34,9 @@ function jobList(state = initialState, action) {
         appFormPop: appForm
       });
     default:
-      return state
+      return state;
   }
 }
-
-
-
-
 
 module.exports = {
   jobList: jobList

@@ -2,9 +2,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
-import Header from '../components/header';
-import Sidebar from '../components/applicant_sidebar';
-import Footer from '../components/footer';
 // import ReactSliderNativeBootstrap from 'react-bootstrap-native-slider';
 // import ReactStyle from 'global/jsx/react-styles/src/ReactStyle';
 
@@ -16,15 +13,15 @@ export default class NewJob extends React.Component {
     this.onFormSubmit = this.onFormSubmit.bind(this);
     this.jobTitle = this.jobTitle.bind(this);
     this.companyName = this.companyName.bind(this);
-    this.locationChange = this.locationChange.bind(this)
+    this.locationChange = this.locationChange.bind(this);
     this.jobDesc = this.jobDesc.bind(this);
     this.eduChange = this.eduChange.bind(this);
     this.visaChange = this.visaChange.bind(this);
     this.minSalary = this.minSalary.bind(this);
     this.maxSalary = this.maxSalary.bind(this);
     this.skillChange = this.skillChange.bind(this);
-    this.addSkill = this.addSkill.bind(this)
-    this.empType = this.empType.bind(this)
+    this.addSkill = this.addSkill.bind(this);
+    this.empType = this.empType.bind(this);
 
     this.state = {
       formVal: {
@@ -42,9 +39,6 @@ export default class NewJob extends React.Component {
         skills: ['test']
       }
     };
-
-
-
   }
 
   // componentWillMount() {
@@ -107,15 +101,13 @@ export default class NewJob extends React.Component {
     // console.log("after state_extend:", this.state);
     });
   }
-  
-
 
   companyName(e){
 
     this.setState({ formVal: { ...this.state.formVal, company_name: e.target.value }},function(){
     // console.log("after state_extend:", this.state);
     });
-  }  
+  }
 
   locationChange(e){
 
@@ -137,7 +129,6 @@ export default class NewJob extends React.Component {
     // console.log("after state_extend:", this.state);
     });
   }
-
 
   visaChange(e){
     let visaBool = e.target.value;
@@ -177,7 +168,7 @@ export default class NewJob extends React.Component {
   addSkill(){
     let skill = this.state.formVal.skillName;
 
-    let skills = this.state.formVal.skills.slice()
+    let skills = this.state.formVal.skills.slice();
 
     skills.push(skill);
 
@@ -209,15 +200,13 @@ export default class NewJob extends React.Component {
     margin:"auto",
     'maxWidth':'700px'
     };
-    
+
     const tagMargin = {
     'margin-left':"0px",
     'font-size': '16px'
-    };    
+    };
 
-
-    console.log('skills be:', this.state.formVal.skills)
-
+    console.log('skills be:', this.state.formVal.skills);
 
     return (
       <Container id="body">
@@ -261,7 +250,7 @@ export default class NewJob extends React.Component {
                                 onChange={this.locationChange}
                                 autoFocus type='text'  placeholder='City, State, Country' />
                             </FormGroup>
-                            
+
                             <FormGroup>
                               <Label htmlFor='dropdownselect'>Employment type</Label>
                               <Select onChange={this.empType} id='dropdownselect' defaultValue='2'>
@@ -271,7 +260,7 @@ export default class NewJob extends React.Component {
                                 <option value='Seasonal'>Seasonal</option>
                               </Select>
                             </FormGroup>
-                            
+
                             <FormGroup>
                               <Label htmlFor='textarea'>Job description:</Label>
                               <Textarea id='textarea' rows='5'
@@ -282,7 +271,7 @@ export default class NewJob extends React.Component {
                             <FormGroup>
                               <Label htmlFor='textarea'>What skills are needed for this position?</Label>
                                 <InputGroup>
-                                  <Input type='text' id='searchbtnicon' placeholder='Enter skills here ...' 
+                                  <Input type='text' id='searchbtnicon' placeholder='Enter skills here ...'
                                                                         onChange={this.skillChange}
                                                                         value={this.state.formVal.skillName} />
                                   <InputGroupAddon className='plain'>
@@ -297,12 +286,12 @@ export default class NewJob extends React.Component {
                                 {this.state.formVal.skills.map(function(item){
                                      return <span>
                                               <BLabel>{item}</BLabel>{' '}
-                                            </span>
-                                            
-                                })} 
+                                            </span>;
+
+                                })}
                               </Row>
                             </FormGroup>
-                                
+
                             <FormGroup>
                               <Label htmlFor='password' control>Salary Min</Label>
                                 <InputGroup>

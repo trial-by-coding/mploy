@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import SidebarMixin from 'global/jsx/sidebar_component';
-
 import Header from 'routes/components/header';
 import ApplicantSidebar from 'routes/components/applicant_sidebar';
 import Footer from 'routes/components/footer';
@@ -13,9 +12,12 @@ import Calendar from 'routes/calendar';
 import Charts from 'routes/containers/chart_stats';
 
 
-
 @SidebarMixin
 export default class ApplicantApp extends React.Component {
+	constructor(props) {
+		super(props);
+	}
+
 	render() {
     const dispatch = this.props.dispatch;
 		var classes = classNames({

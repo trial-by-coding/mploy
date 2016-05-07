@@ -1,11 +1,9 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-// import { Link, History } from 'react-router';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 
-export default class Body extends React.Component {
+export default class Calendar extends React.Component {
   componentDidMount() {
     $('#calendar').fullCalendar({
       header: {

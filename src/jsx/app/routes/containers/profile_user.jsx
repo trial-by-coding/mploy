@@ -3,15 +3,14 @@ import Profile from 'routes/components/profile';
 import { connect } from 'react-redux';
 import { Link, History } from 'react-router';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 @connect(state => state)
 export default class ProfileContainer extends React.Component {
-  componentWillMount() {
-  }
   constructor(props){
     super(props);
-}
+  }
+  componentWillMount() {
+  }
 
 render() {
 
@@ -50,7 +49,6 @@ const { dispatch } = this.props;
         />
       </div>
     </Container>
-
   );
  }
 }
