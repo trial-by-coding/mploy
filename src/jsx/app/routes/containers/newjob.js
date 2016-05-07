@@ -100,6 +100,7 @@ export default class NewJob extends React.Component {
   //   });
   // }
 
+
   jobTitle(e){
 
     this.setState({ formVal: { ...this.state.formVal, job_title: e.target.value }},function(){
@@ -341,7 +342,7 @@ export default class NewJob extends React.Component {
                         <Col xs={12}>
                           <br/>
                           <div>
-                            <Button outlined bsStyle='lightgreen'>cancel</Button>{' '}
+                            <Button outlined bsStyle='lightgreen' href='/employer'>cancel</Button>{' '}
                             <Button type="submit" outlined bsStyle='lightgreen'>submit</Button>
                           </div>
                           <br/>

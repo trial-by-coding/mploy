@@ -46,17 +46,17 @@ class EmployerSidebar extends React.Component {
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
                   <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
-                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
+                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employer/profile' />
                     <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
                       <SidebarNav>
                         { 
                           posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />)
                         }
-                        <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' /> 
+                        <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/employer/newjob' /> 
                       </SidebarNav>
                     </SidebarNavItem>
-                    <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/charts' />
-                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/calendar' />
+                    <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/employer/charts' />
+                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employer/calendar' />
                 </SidebarNav>
               </div>
             </Col>

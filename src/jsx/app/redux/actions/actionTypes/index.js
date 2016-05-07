@@ -4,6 +4,7 @@ import empdash from './empdash_types';
 import appdash from './appdash_types';
 import profile from './profile_types';
 import charts from './chart_types';
+import employerapp from './employer_types';
 import employerunconsidered from './employer_unconsidered_types';
 import employerconsidered from './employer_considered_types';
 import employerinterviews from './employer_interviews_types';
