@@ -11,7 +11,31 @@ import actions from 'redux/actions';
 class EmployerSidebar extends React.Component {
   render() {
     let posts = this.props.posts;
-
+    if(posts === undefined || posts.length === 0) {
+      return (
+        <div>
+        <Grid>
+          <Row>
+            <Col xs={12}>
+              <div className='sidebar-header'>PAGES</div>
+              <div className='sidebar-nav-container'>
+                <SidebarNav style={{marginBottom: 0}}>
+                  <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
+                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
+                    <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
+                      <SidebarNav>
+                        <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' /> 
+                      </SidebarNav>
+                    </SidebarNavItem>
+                    <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/charts' />
+                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/calendar' />
+                </SidebarNav>
+              </div>
+            </Col>
+          </Row>
+        </Grid>
+      </div>)
+    }
 
     return (
       <div>
@@ -25,7 +49,9 @@ class EmployerSidebar extends React.Component {
                   <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/profile' />
                     <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
                       <SidebarNav>
-                        { posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />) }
+                        { 
+                          posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />)
+                        }
                         <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/newjob' /> 
                       </SidebarNav>
                     </SidebarNavItem>
@@ -47,9 +73,6 @@ export default class extends React.Component {
     super(props);
   }
 
-  componentWillMount() {
-    this.props.dispatch(actions.getJobPosts());
-  }
 
 
   setJobPost = (jobID) => {
@@ -59,9 +82,6 @@ export default class extends React.Component {
   render() {
     console.log('siderbar props', this.props);
     let posts = this.props.posts
-    if(posts.length === 0) {
-      return (<div> Loading... </div>)
-    }
 
     return (
       <div id='sidebar' {...this.props}>

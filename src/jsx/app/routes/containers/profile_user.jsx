@@ -8,7 +8,6 @@ import { VisibilityFilters } from 'redux/actions/actionTypes';
 @connect(state => state)
 export default class ProfileContainer extends React.Component {
   componentWillMount() {
-    this.props.dispatch(actions.fetchUser());
   }
   constructor(props){
     super(props);

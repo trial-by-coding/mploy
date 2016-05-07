@@ -14,13 +14,6 @@ export default class EmployerDashboard extends React.Component {
 	constructor(props) {
 		super(props)
   }
-  componentWillMount() {
-    this.props.dispatch(actions.getEmployerUnconsidered(1));
-    this.props.dispatch(actions.getEmployerConsidered(3));
-    this.props.dispatch(actions.getEmployerInterviews(4));
-    this.props.dispatch(actions.getEmployerOffers(2));
-    this.props.dispatch(actions.getApplications(2));
-  }
 
 
   advance = (appID, status, item, index)  => {
