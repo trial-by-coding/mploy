@@ -21,19 +21,19 @@ export default (browserHistory, onUpdate) => {
       <Route path='/' component={Landing}/>
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
-        <Route path='/applicant/profile' component={Profile} />
-        <Route path='/applicant/jobs' component={Jobs} />
-        <Route path='/applicant/charts' component={Charts} />
-        <Route path='/applicant/calendar' component={Calendar} />
+        <Route path='/applicantprofile' component={Profile} />
+        <Route path='/applicantjobs' component={Jobs} />
+        <Route path='/applicantcharts' component={Charts} />
+        <Route path='/applicantcalendar' component={Calendar} />
         {/*<Route path='/sidebar' component={Applicant_Sidebar} />*/}
 
       </Route>
 
       <Route path='/employer' component={EmployerApp} >
         <IndexRoute component={EmployerDashboard} />
-        <Route path='/employer/profile' component={Profile} />
-        <Route path='/employer/newjob' component={NewJob} />
-        <Route path='/employer/calendar' component={Calendar} />
+        <Route path='/employerprofile' component={Profile} />
+        <Route path='/employernewjob' component={NewJob} />
+        <Route path='/employercalendar' component={Calendar} />
       </Route>
     </Router>
   );
