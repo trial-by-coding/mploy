@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import actions from 'redux/actions';
+import { reduxForm } from 'redux-form';
 import request from 'superagent';
 import { Link } from 'react-router';
 
@@ -18,7 +19,7 @@ export default class Body extends React.Component {
     this.setCoverletter = this.setCoverletter.bind(this);
     this.setResume= this.setResume.bind(this);
 
-    initial state
+    // initial state
     this.state = {
       complete: (!this.props.complete) || false,
       formVal: {
