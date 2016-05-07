@@ -1,10 +1,8 @@
 import classNames from 'classnames';
-import SidebarMixin from 'global/jsx/sidebar_component';
-import Header from 'routes/components/header';
-import Sidebar from 'routes/components/applicant_sidebar';
-import Footer from 'routes/components/footer';
 import actions from 'redux/actions';
+import { reduxForm } from 'redux-form';
 import request from 'superagent';
+import { Link } from 'react-router';
 
 
 export default class Body extends React.Component {
@@ -21,7 +19,7 @@ export default class Body extends React.Component {
     this.setCoverletter = this.setCoverletter.bind(this);
     this.setResume= this.setResume.bind(this);
 
-    //initial state
+    // initial state
     this.state = {
       complete: (!this.props.complete) || false,
       formVal: {

@@ -1,6 +1,8 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import { reduxForm } from 'redux-form';
 import actions from 'redux/actions';
+import { Link } from 'react-router';
 
 // import ReactSliderNativeBootstrap from 'react-bootstrap-native-slider';
 // import ReactStyle from 'global/jsx/react-styles/src/ReactStyle';
@@ -191,7 +193,7 @@ export default class NewJob extends React.Component {
 
     this.props.dispatch(actions.postNewJob(this.state.formVal));
 
-    console.log('app form is:', this.state.formVal);
+    // console.log('app form is:', this.state.formVal);
 
   }
 
@@ -206,7 +208,7 @@ export default class NewJob extends React.Component {
     'font-size': '16px'
     };
 
-    console.log('skills be:', this.state.formVal.skills);
+    // console.log('skills be:', this.state.formVal.skills);
 
     return (
       <Container id="body">
@@ -231,24 +233,36 @@ export default class NewJob extends React.Component {
                         <Col xs={12}>
 
                             <FormGroup>
+                              <div className={`form-group ${jobTitle.touched && jobTitle.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Job Title</Label>
-                                <Input
+                                <Input className='form-control' {...jobTitle}
                                 onChange={this.jobTitle}
                                 autoFocus type='text'  placeholder='Awesome Title here' />
+                              <div className='text-help'>{jobTitle.touched ? jobTitle.error : ''}
+                              </div>
+                            </div>
                             </FormGroup>
 
                             <FormGroup>
+                                <div className={`form-group ${companyName.touched && companyName.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Company Name</Label>
-                                <Input
+                                <Input className='form-control' {...companyName}
                                 onChange={this.companyName}
                                 autoFocus type='text'  placeholder='Mploy' />
+                              <div className='text-help'>{companyName.touched ? companyName.error : ''}
+                                </div>
+                            </div>
                             </FormGroup>
 
                             <FormGroup>
+                                  <div className={`form-group ${locationChange.touched && locationChange.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Location</Label>
-                                <Input
+                                <Input className='form-control' {...locationChange}
                                 onChange={this.locationChange}
                                 autoFocus type='text'  placeholder='City, State, Country' />
+                              <div className='text-help'>{locationChange.touched ? locationChange.error : ''}
+                                  </div>
+                            </div>
                             </FormGroup>
 
                             <FormGroup>
@@ -262,16 +276,21 @@ export default class NewJob extends React.Component {
                             </FormGroup>
 
                             <FormGroup>
+                                  <div className={`form-group ${jobDesc.touched && jobDesc.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='textarea'>Job description:</Label>
-                              <Textarea id='textarea' rows='5'
+                              <Textarea id='textarea' rows='5' className='form-control' {...jobDesc}
                                         placeholder='Position details'
                                         onChange={this.jobDesc} />
+                                      <div className='text-help'>{jobDesc.touched ? jobDesc.error : ''}
+                                            </div>
+                                    </div>
                             </FormGroup>
 
                             <FormGroup>
+                                  <div className={`form-group ${skillChange.touched && skillChange.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='textarea'>What skills are needed for this position?</Label>
                                 <InputGroup>
-                                  <Input type='text' id='searchbtnicon' placeholder='Enter skills here ...'
+                                  <Input type='text' className='form-control' {...skillChange} id='searchbtnicon' placeholder='Enter skills here ...'
                                                                         onChange={this.skillChange}
                                                                         value={this.state.formVal.skillName} />
                                   <InputGroupAddon className='plain'>
@@ -290,9 +309,13 @@ export default class NewJob extends React.Component {
 
                                 })}
                               </Row>
+                              <div className='text-help'>{skillChange.touched ? skillChange.error : ''}
+                                    </div>
+                            </div>
                             </FormGroup>
 
                             <FormGroup>
+
                               <Label htmlFor='password' control>Salary Min</Label>
                                 <InputGroup>
                                   <HelpBlock>Please use numbers only.</HelpBlock>
@@ -307,10 +330,14 @@ export default class NewJob extends React.Component {
                             </FormGroup>
 
                             <FormGroup>
+                                  <div className={`form-group ${eduChange.touched && eduChange.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Desired Education</Label>
-                                <Input
+                                <Input className='form-control' {...eduChange}
                                 onChange={this.eduChange}
                                 autoFocus type='text'  placeholder='Education level' />
+                              <div className='text-help'>{eduChange.touched ? eduChange.error : ''}
+                                      </div>
+                              </div>
                             </FormGroup>
 
                             <FormGroup>
@@ -350,6 +377,37 @@ export default class NewJob extends React.Component {
     );
   }
 }
+
+function validate(values) {
+  const errors = {};
+
+  if(!values.jobTitle) {
+    errors.jobTitle = 'Enter a job title';
+  }
+  if(!values.companyName) {
+    errors.companyName = 'Enter a company name';
+  }
+  if(!values.locationChange) {
+    errors.locationChange = 'Enter a location';
+  }
+  if(!values.jobDesc) {
+    errors.jobDesc = 'Enter a job description';
+  }
+  if(!values.skillChange) {
+    errors.skillChange = 'Enter the required skills';
+  }
+  if(!values.eduChange) {
+    errors.eduChange = 'Enter desired education';
+  }
+  //return an object from the validate function
+  return errors;
+}
+
+export default reduxForm({
+  form: 'NewJobForm',
+  fields: ['jobTitle', 'companyName', 'locationChange', 'jobDesc', 'skillChange', 'eduChange'],
+  validate
+}, null, { actions })(NewJob);
 
 
   // <FormGroup>
