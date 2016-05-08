@@ -14,13 +14,8 @@ export default class AppCard extends React.Component {
   }
 
   render() {
-    // console.log('app be:', this.props.app)
-    let skillList = [];
-    for (var key in this.props.app) {
-      if (key.indexOf('skill') !== -1 && this.props.app[key] !== null) {
-        skillList.push(key)
-      }
-    }
+    let skills_met= JSON.parse(this.props.app.skills_met);
+    let skillsArray = this.props.app.skills
 
     const styles = {
       margin: '12.5px 0',
@@ -29,12 +24,12 @@ export default class AppCard extends React.Component {
     };
       console.log('props in appCard:',this.props)
 
+    if(!this.props.app) {
+        return ( <div>Loading...</div>);
+    }
+
     return (
-
-
-      //appCard info
       <div>
-
         <Row className>
           <Col xs={4} collapseRight>
             <Img src={this.props.app.profile_picture} width='45' height='45'
@@ -48,14 +43,21 @@ export default class AppCard extends React.Component {
         </Row>
     
         <Row style={styles}>
-          <h4> Skills:</h4>
+          <h4> Has Specified Skills:</h4>
           <row className='skills'>
-          { skillList.map( skill => <div className="label col-md-3 label-primary"> {skill} </div> ) }
+          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === true}).map( skill => <div className="label col-md-3 label-success"> {skill} </div> ) }
           </row>
         </Row>
 
         <Row style={styles}>
-          <h4>Personal statement: </h4>
+          <h4> Lacking Specified Skills:</h4>
+          <row className='skills'>
+          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === false}).map( skill => <div className="label col-md-3 label-danger"> {skill} </div> ) }
+          </row>
+        </Row>
+
+        <Row style={styles}>
+          <h4>Personal Statement: </h4>
           <row className='skills'>
             { this.props.app.personal_statement }
           </row>
@@ -76,7 +78,7 @@ export default class AppCard extends React.Component {
         </Row> 
 
         <Row style={styles}>
-          <h4>Requires Visa Sponsorship</h4>
+          <h4>Would Require Visa Sponsorship:</h4>
           <row className='skills'>
           { this.props.app.can_work_here === true ? 'No' : 'Yes' }
           </row>
@@ -86,15 +88,17 @@ export default class AppCard extends React.Component {
           </row>
         </Row> 
 
-
-        <div style={styles}>
-          <a href={this.props.app.resume}
-            download={this.props.app.resume}>Download Resume</a>
-        </div>
-        <div>
-          <a href={this.props.app.cover_letter}
-            download={this.props.app.cover_letter}>Download Cover Letter</a>
-        </div>
+       <Row style={styles}>
+          <h4>Documents:</h4>
+            <div style={styles}>
+              <a href={this.props.app.resume}
+                download={this.props.app.resume}>Download Resume</a>
+            </div>
+            <div>
+              <a href={this.props.app.cover_letter}
+                download={this.props.app.cover_letter}>Download Cover Letter</a>
+            </div>
+        </Row>
 
         <Row style={styles}>
           <button 
@@ -110,7 +114,7 @@ export default class AppCard extends React.Component {
 
       </div>
     )
-}
+  }
 }
 
 
