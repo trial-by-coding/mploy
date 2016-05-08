@@ -67,7 +67,7 @@ export default class Body extends React.Component {
           {
             name: 'In Process',
             value: charts.total_apps - (charts.denied + charts.rescinded),
-            color: '#4572a7'
+            color: '#89a54e'
           },
           {
             name: 'Denied',
