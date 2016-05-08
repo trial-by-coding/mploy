@@ -23,7 +23,7 @@ render() {
           <div>
               <h1 className='fg-white'>{user.location}</h1>
             <div>
-              <h5 className='fg-white' style={{opacity: 0.8}}><Link to = {openEmail}>{user.email}</Link></h5>
+              <h5 className='fg-white' style={{opacity: 0.8}}><Link to={openEmail}>{user.email}</Link></h5>
             </div>
             <div>
               <h5 className='fg-white' style={{opacity: 0.8}}>{user.linkedin_headline}</h5>

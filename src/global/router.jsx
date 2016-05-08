@@ -7,6 +7,8 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
 
+import {reducer as formReducer} from 'redux-form';
+
 import thunk from 'redux-thunk';
 
 import actions from 'redux/actions';
@@ -16,8 +18,13 @@ global.isBrowser = 'document' in window;
 
 const reducer = combineReducers({
   ...reducers,
-  routing: routeReducer
+  routing: routeReducer,
+  form: formReducer
 });
+
+
+const store = createStore(reducer);
+
 
 if(window.hasOwnProperty('vex')) {
   vex.defaultOptions.className = 'vex-theme-flat-attack';
@@ -108,7 +115,7 @@ module.exports = (routes) => {
                         (this.props.query ? ('?' + this.props.query)
                                           : ''))
           }, function(err, redirectLocation, renderProps) {
-            Handler = <RoutingContextWrapper data={data} renderProps={renderProps} />
+            Handler = <RoutingContextWrapper data={data} renderProps={renderProps} />;
           });
 
           return Handler;
