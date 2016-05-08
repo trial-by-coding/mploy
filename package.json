@@ -86,7 +86,7 @@
     "react-transform-hmr": "^1.0.1",
     "redbox-react": "^1.2.0",
     "redux": "^3.0.6",
-    "redux-form": "^5.2.3",
+    "redux-form": "https://registry.npmjs.org/redux-form/-/redux-form-5.2.3.tgz",
     "redux-logger": "^2.6.1",
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.3",
