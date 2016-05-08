@@ -21,7 +21,7 @@ class EmployerSidebar extends React.Component {
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
                     <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
-                      <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
+                      <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
                           <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
                         </SidebarNav>
@@ -46,7 +46,7 @@ class EmployerSidebar extends React.Component {
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
                     <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employer/profile' />
-                      <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>4</BLabel></span>}>
+                      <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>{posts.length}</BLabel></span>}>
                         <SidebarNav>
                           {
                             posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />)

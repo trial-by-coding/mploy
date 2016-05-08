@@ -45,14 +45,14 @@ export default class Body extends React.Component {
             color: '#aa4643'
           },
           {
-            name: 'Offered',
-            value: charts.offered,
-            color: '#89a54e'
-          },
-          {
             name: 'Interviewed',
             value: charts.interviewed,
             color: '#80699b'
+          },
+          {
+            name: 'Offered',
+            value: charts.offered,
+            color: '#89a54e'
           }
 
         ]);
@@ -86,6 +86,14 @@ export default class Body extends React.Component {
   }
 
   render() {
+    if (this.props.total_apps === 0){
+      return (
+        <Container id='body'>
+          <h4>Check back after you've submitted an application to see your stats.</h4>
+        </Container>
+        );
+    }
+
     return (
       <Container id='body'>
         <Grid>
