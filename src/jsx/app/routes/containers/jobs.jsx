@@ -4,6 +4,7 @@ import JobModal from 'routes/components/jobModal';
 import { connect } from 'react-redux'
 import actions from 'redux/actions';
 import { VisibilityFilters } from 'redux/actions/actionTypes';
+import { FormControl, FormGroup, InputGroup, DropdownButton, MenuItem }from 'react-bootstrap';
 
 const PureRenderMixin = require('react/addons').addons.PureRenderMixin; 
 
@@ -70,6 +71,20 @@ export default class JobsContainer extends React.Component {
       <Container id='body' className='social'>
         <Row>
           <Col md={3}>
+            <form>
+              <FormGroup>
+                <InputGroup>
+                  <FormControl type="text" />
+                  <DropdownButton
+                    componentClass={InputGroup.Button}
+                    id="input-dropdown-addon"
+                    title="Action"
+                  >
+                    <MenuItem key="1">Item</MenuItem>
+                  </DropdownButton>
+                </InputGroup>
+              </FormGroup>
+            </form>
             <div>
                <input
                   type="text"
@@ -77,6 +92,7 @@ export default class JobsContainer extends React.Component {
                   onChange={ this.filterData.bind(this) }
                   placeholder="Search by Job Title" />
             </div>
+
           </Col>
         </Row>
         <Row>

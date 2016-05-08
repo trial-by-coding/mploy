@@ -7,6 +7,7 @@ import { ADD_JOB,
          HIDE_FORM  } from './actionTypes';
 
 
+
 function getJobs() {
 	console.log('in getJobs actions');
 	return dispatch => axios.get('/user/job')
@@ -29,6 +30,13 @@ function hideForm() {
 		type: HIDE_FORM
 	};
 }
+
+
+function filterJobTitles(title) {
+	console.log('filterJobTitles', title);
+	return { type: FILTER_JOB_TITLES, title }
+}
+
 
 module.exports = {
 	getJobs: getJobs,
