@@ -45,14 +45,14 @@ export default class Body extends React.Component {
             color: '#aa4643'
           },
           {
-            name: 'Offered',
-            value: charts.offered,
-            color: '#89a54e'
-          },
-          {
             name: 'Interviewed',
             value: charts.interviewed,
             color: '#80699b'
+          },
+          {
+            name: 'Offered',
+            value: charts.offered,
+            color: '#89a54e'
           }
 
         ]);
