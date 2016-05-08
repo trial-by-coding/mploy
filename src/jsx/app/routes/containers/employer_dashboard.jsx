@@ -66,9 +66,13 @@ export default class EmployerDashboard extends React.Component {
     let interviews = this.props.interviews;
     let offers = this.props.offers;
 
-    if( !offers ) {
-      console.log('Loading');
-      return (<div> Loading... </div>)
+    if(unconsidered.length === 0 && considered.length === 0 && interviews.length === 0 && offers.length === 0){
+      return (
+        <Container id='body'>
+          <h1 style={{textAlign: 'center'}}>You haven't posted any jobs yet.</h1>
+          <h2 style={{textAlign: 'center'}}>Create job postings then process applicants here on your board.</h2>
+        </Container>
+      );
     }
 
 		return (

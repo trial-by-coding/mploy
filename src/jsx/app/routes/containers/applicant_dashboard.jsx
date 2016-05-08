@@ -27,6 +27,15 @@ export default class ApplicantDashboard extends React.Component {
     let apps = [unconsidered, considered, interviews, offers];
 
     console.log("AppContainer state", this.props);
+    if(unconsidered.length === 0 && considered.length === 0 && interviews.length === 0 && offers.length === 0){
+      return (
+        <Container id='body'>
+          <h1 style={{textAlign: 'center'}}>You haven't applied to any jobs yet! </h1>
+          <h2 style={{textAlign: 'center'}}>Apply to jobs and track your progress here on your board.</h2>
+        </Container>
+      );
+    }
+
 		return (
 		<Container id='body'>
       <Grid>

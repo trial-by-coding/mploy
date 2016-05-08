@@ -27,10 +27,10 @@ export default class Body extends React.Component {
                     <Panel>
                       <PanelBody style={{padding: 0}}>
                         <div className='text-center bg-darkblue fg-white'>
-                          <h3 style={{margin: 0, padding: 25}}>Candidates</h3>
+                          <h3 style={{margin: 0, padding: 25}}>Job Applicants</h3>
                         </div>
 								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
-                     <div>You need to sign in for those awesome features</div>
+                     <div>Sign in to view and apply to jobs.</div>
                         <div style={{marginTop: 12.5, marginBottom: 12.5}}>
 													<a href="/auth/linkedin?employer=false">
 													<Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.showLogin.bind(this).call()}>
@@ -52,7 +52,7 @@ export default class Body extends React.Component {
                           <h3 style={{margin: 0, padding: 25}}>Employers</h3>
                         </div>
 								   <div className='bg-hoverblue fg-black50 text-center' style={{padding: 12.5}}>
-                     <div>You need to sign in for those awesome features</div>
+                     <div>Sign in to create job posts and consider candidates.</div>
                         <div style={{marginTop: 12.5, marginBottom: 12.5}}>
 													<a href="/auth/linkedin?employer=true">
 													<Button id='linkedin-btn' lg bsStyle='darkblue' type='submit' onClick={this.showLogin.bind(this).call()}>

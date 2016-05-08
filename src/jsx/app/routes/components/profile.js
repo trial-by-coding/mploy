@@ -7,11 +7,12 @@ export default class Profile extends React.Component{
 
 goLinkedIn() {
   const user = this.props;
-  window.location=user.linkedin_url;
+  window.open(user.linkedin_url);
 };
 
 render() {
   const user = this.props;
+  const openEmail = 'mailto:'+user.email;
 
     return (
     <Container id='body' className='social'>
@@ -22,7 +23,7 @@ render() {
           <div>
               <h1 className='fg-white'>{user.location}</h1>
             <div>
-              <h5 className='fg-white' style={{opacity: 0.8}}><Link to={user.email}>{user.email}</Link></h5>
+              <h5 className='fg-white' style={{opacity: 0.8}}><Link to = {openEmail}>{user.email}</Link></h5>
             </div>
             <div>
               <h5 className='fg-white' style={{opacity: 0.8}}>{user.linkedin_headline}</h5>
