@@ -7,7 +7,7 @@ export default class Profile extends React.Component{
 
 goLinkedIn() {
   const user = this.props;
-  window.location=user.linkedin_url;
+  window.open(user.linkedin_url);
 };
 
 render() {

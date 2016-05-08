@@ -23,12 +23,14 @@ export default class Body extends React.Component {
 
   componentWillMount() {
     const charts = this.props;
+    console.log('charts: ', charts)
 
     setTimeout(() => {
+
+
       (() => {
         var pie = Rubix.Pie('#resume-chart', {
           title: 'Status of Current Applications',
-          subtitle: 'May 2016',
           height: 300
         });
         pie.addData([
@@ -39,8 +41,7 @@ export default class Body extends React.Component {
           },
           {
             name: 'Considered',
-            // value: charts.considered,
-            value: 20,
+            value: charts.considered,
             color: '#aa4643'
           },
           {
@@ -50,14 +51,8 @@ export default class Body extends React.Component {
           },
           {
             name: 'Interviewed',
-            value: 23,
-            //value: charts.interviewed,
+            value: charts.interviewed,
             color: '#80699b'
-          },
-          {
-            name: 'No Data',
-            value: 18, // data placeholder.
-            color: '#db843d'
           }
 
         ]);
@@ -65,15 +60,13 @@ export default class Body extends React.Component {
 
       (() => {
         var pie = Rubix.Pie('#jobs-chart', {
-          title: 'Outcomes',
-          subtitle: 'May 2016',
+          title: 'Past Application Outcomes',
           height: 300
         });
         pie.addData([
           {
             name: 'In Process',
-            value: charts.applied,
-            // in process = total apps - ( denied + rescinded)
+            value: charts.total_apps - (charts.denied + charts.rescinded),
             color: '#4572a7'
           },
           {
@@ -85,11 +78,6 @@ export default class Body extends React.Component {
             name: 'Rescinded',
             value: charts.rescinded,
             color: '#db843d'
-          },
-          {
-            name: 'No Data',
-            value: 18, // data placeholder. Use line above when data available.
-            color: '#80699b'
           }
 
         ]);
