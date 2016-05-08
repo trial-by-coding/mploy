@@ -3,12 +3,51 @@ import { connect } from 'react-redux';
 import { reduxForm } from 'redux-form';
 import actions from 'redux/actions';
 import { Link } from 'react-router';
+import { PropTypes } from 'react';
+
+export const fields = ['jobTitle', 'companyName', 'locationChange', 'jobDesc', 'skillChange', 'eduChange'];
 
 // import ReactSliderNativeBootstrap from 'react-bootstrap-native-slider';
 // import ReactStyle from 'global/jsx/react-styles/src/ReactStyle';
+const validate = values => {
+  const errors = {};
+  if(!values.jobTitle) {
+    errors.jobTitle = 'Enter a job title';
+  }
+  if(!values.companyName) {
+    errors.companyName = 'Enter a company name';
+  }
+  if(!values.locationChange) {
+    errors.locationChange = 'Enter a location';
+  }
+  if(!values.jobDesc) {
+    errors.jobDesc = 'Enter a job description';
+  }
+  if(!values.skillChange) {
+    errors.skillChange = 'Enter the required skills';
+  }
+  if(!values.eduChange) {
+    errors.eduChange = 'Enter desired education';
+  }
+  return errors;
+};
 
-@connect(state => state)
+
+@reduxForm({
+  form: 'NewJobForm',
+  fields,
+  validate
+})
+
 export default class NewJob extends React.Component {
+  static propTypes = {
+    fields: PropTypes.object.isRequired,
+    handleSubmit: PropTypes.func.isRequired,
+    resetForm: PropTypes.func.isRequired,
+    submitting: PropTypes.bool.isRequired
+  };
+
+
   constructor(props){
     super(props);
 
@@ -43,172 +82,87 @@ export default class NewJob extends React.Component {
     };
   }
 
-  // componentWillMount() {
-  //   ReactStyle.addRules(ReactStyle.create({
-  //     '#ex1Slider .slider-selection': {
-  //       background: '#55C9A6'
-  //     }
-  //   }));
-
-  //   ReactStyle.addRules(ReactStyle.create({
-  //     '#RGB': {
-  //       maxWidth: '220px',
-  //       height: '100px',
-  //       background: 'rgb(128, 200, 128)'
-  //     },
-  //     '#RC .slider-selection': {
-  //       background: '#FF8282'
-  //     },
-  //     '#RC .slider-handle': {
-  //       background: 'red'
-  //     },
-  //     '#GC .slider-selection': {
-  //       background: '#428041'
-  //     },
-  //     '#GC .slider-handle': {
-  //       background: 'green'
-  //     },
-  //     '#BC .slider-selection': {
-  //       background: '#8283FF'
-  //     },
-  //     '#BC .slider-handle': {
-  //       borderBottomColor: 'blue'
-  //     },
-  //     '#R, #G, #B': {
-  //       width: '300px'
-  //     }
-  //   }));
-  // }
-
-  // componentDidMount(){
-  //   $('#ex2').slider({});
-
-  //   $('#example_2').ionRangeSlider({
-  //     min: 1000,
-  //     max: 100000,
-  //     from: 30000,
-  //     to: 90000,
-  //     type: 'double',
-  //     step: 500,
-  //     postfix: ' €',
-  //     hasGrid: true,
-  //     gridMargin: 15
-  //   });
-  // }
-
-
   jobTitle(e){
-
     this.setState({ formVal: { ...this.state.formVal, job_title: e.target.value }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   companyName(e){
-
     this.setState({ formVal: { ...this.state.formVal, company_name: e.target.value }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   locationChange(e){
-
     this.setState({ formVal: { ...this.state.formVal, location: e.target.value }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   jobDesc(e){
-
     this.setState({ formVal: { ...this.state.formVal, job_description: e.target.value }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   eduChange(e){
-
     this.setState({ formVal: { ...this.state.formVal, desired_education: e.target.value }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   visaChange(e){
     let visaBool = e.target.value;
     visaBool === '1' ? (visaBool = true) : (visaBool = false);
-
     this.setState({ formVal: { ...this.state.formVal, visa_required:visaBool }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   minSalary(e){
-
     this.setState({ formVal: { ...this.state.formVal, min_salary: e.target.value }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   maxSalary(e){
-
     this.setState({ formVal: { ...this.state.formVal, max_salary: e.target.value }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   skillChange(e){
     let skill = e.target.value;
-
     // skills.push(e.target.value),
-    // console.log('skills after idx is:', skills);
-
     this.setState({ formVal: { ...this.state.formVal, skillName: skill }},function(){
-    // console.log("after state_extend:", this.state);
     });
-
   }
 
   addSkill(){
     let skill = this.state.formVal.skillName;
-
     let skills = this.state.formVal.skills.slice();
-
     skills.push(skill);
-
     this.setState({ formVal: { ...this.state.formVal, skills: skills, skillName:'' }},function(){
-    // console.log("after state_extend:", this.state);
     });
-
   }
 
   empType(e){
     let type = e.target.value;
-
     this.setState({ formVal: { ...this.state.formVal, employment_type:type }},function(){
-    // console.log("after state_extend:", this.state);
     });
   }
 
   onFormSubmit(e){
     e.preventDefault();
-
     this.props.dispatch(actions.postNewJob(this.state.formVal));
-
-    // console.log('app form is:', this.state.formVal);
-
   }
 
   render() {
    const align = {
-    margin:"auto",
+    'margin': 'auto',
     'maxWidth':'700px'
     };
 
     const tagMargin = {
-    'margin-left':"0px",
+    'margin-left': '0px',
     'font-size': '16px'
     };
 
-    // console.log('skills be:', this.state.formVal.skills);
+
+    const { fields: { jobTitle, companyName, locationChange, jobDesc, skillChange, eduChange }, resetForm, handleSubmit, submitting } = this.props;
 
     return (
       <Container id="body">
@@ -217,7 +171,7 @@ export default class NewJob extends React.Component {
             <Col sm={12}  collapseRight>
               <PanelContainer noOverflow controlStyles='bg-green fg-white'>
                 <Panel>
-                <Form onSubmit={this.onFormSubmit}>
+                <Form onSubmit={handleSubmit(this.onFormSubmit)}>
                   <PanelHeader className='bg-green fg-white'>
                     <Grid>
                       <Row>
@@ -231,18 +185,14 @@ export default class NewJob extends React.Component {
                     <Grid>
                       <Row>
                         <Col xs={12}>
-
                             <FormGroup>
                               <div className={`form-group ${jobTitle.touched && jobTitle.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Job Title</Label>
-                                <Input className='form-control' {...jobTitle}
-                                onChange={this.jobTitle}
-                                autoFocus type='text'  placeholder='Awesome Title here' />
+                              <Input className='form-control' {...jobTitle} onChange={this.jobTitle} autoFocus type='text'  placeholder='Awesome Title here' />
                               <div className='text-help'>{jobTitle.touched ? jobTitle.error : ''}
                               </div>
                             </div>
                             </FormGroup>
-
                             <FormGroup>
                                 <div className={`form-group ${companyName.touched && companyName.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Company Name</Label>
@@ -253,7 +203,6 @@ export default class NewJob extends React.Component {
                                 </div>
                             </div>
                             </FormGroup>
-
                             <FormGroup>
                                   <div className={`form-group ${locationChange.touched && locationChange.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Location</Label>
@@ -261,10 +210,9 @@ export default class NewJob extends React.Component {
                                 onChange={this.locationChange}
                                 autoFocus type='text'  placeholder='City, State, Country' />
                               <div className='text-help'>{locationChange.touched ? locationChange.error : ''}
-                                  </div>
+                            </div>
                             </div>
                             </FormGroup>
-
                             <FormGroup>
                               <Label htmlFor='dropdownselect'>Employment type</Label>
                               <Select onChange={this.empType} id='dropdownselect' defaultValue='2'>
@@ -274,7 +222,6 @@ export default class NewJob extends React.Component {
                                 <option value='Seasonal'>Seasonal</option>
                               </Select>
                             </FormGroup>
-
                             <FormGroup>
                                   <div className={`form-group ${jobDesc.touched && jobDesc.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='textarea'>Job description:</Label>
@@ -282,10 +229,9 @@ export default class NewJob extends React.Component {
                                         placeholder='Position details'
                                         onChange={this.jobDesc} />
                                       <div className='text-help'>{jobDesc.touched ? jobDesc.error : ''}
-                                            </div>
+                                    </div>
                                     </div>
                             </FormGroup>
-
                             <FormGroup>
                                   <div className={`form-group ${skillChange.touched && skillChange.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='textarea'>What skills are needed for this position?</Label>
@@ -306,16 +252,13 @@ export default class NewJob extends React.Component {
                                      return <span>
                                               <BLabel>{item}</BLabel>{' '}
                                             </span>;
-
                                 })}
                               </Row>
                               <div className='text-help'>{skillChange.touched ? skillChange.error : ''}
                                     </div>
                             </div>
                             </FormGroup>
-
                             <FormGroup>
-
                               <Label htmlFor='password' control>Salary Min</Label>
                                 <InputGroup>
                                   <HelpBlock>Please use numbers only.</HelpBlock>
@@ -328,7 +271,6 @@ export default class NewJob extends React.Component {
                                   autoFocus type='text'  placeholder='120k' />
                                 </InputGroup>
                             </FormGroup>
-
                             <FormGroup>
                                   <div className={`form-group ${eduChange.touched && eduChange.invalid ? 'has-danger' : ''}`}>
                               <Label htmlFor='password' control>Desired Education</Label>
@@ -336,10 +278,9 @@ export default class NewJob extends React.Component {
                                 onChange={this.eduChange}
                                 autoFocus type='text'  placeholder='Education level' />
                               <div className='text-help'>{eduChange.touched ? eduChange.error : ''}
-                                      </div>
+                              </div>
                               </div>
                             </FormGroup>
-
                             <FormGroup>
                               <Label htmlFor='dropdownselect'>Will your company sponsor visa's?</Label>
                               <Select onChange={this.visaChange} id='dropdownselect' defaultValue='2'>
@@ -347,7 +288,6 @@ export default class NewJob extends React.Component {
                                 <option value='2'>No</option>
                               </Select>
                             </FormGroup>
-
                         </Col>
                       </Row>
                     </Grid>
@@ -358,8 +298,12 @@ export default class NewJob extends React.Component {
                         <Col xs={12}>
                           <br/>
                           <div>
+                          <Button type="button" disabled={submitting} onClick={resetForm} outlined bsStyle='lightgreen'>
+                            Clear Values
+                          </Button>
                             <Button outlined bsStyle='lightgreen' href='/employer'>cancel</Button>{' '}
-                            <Button type="submit" outlined bsStyle='lightgreen'>submit</Button>
+                            <Button type="submit" outlined bsStyle='lightgreen' onClick={handleSubmit} disabled={submitting}>{submitting ? <i/> : <i/>} Submit
+                            </Button>
                           </div>
                           <br/>
                         </Col>
@@ -372,49 +316,7 @@ export default class NewJob extends React.Component {
             </Col>
           </Row>
         </Grid>
-
       </Container>
     );
   }
 }
-
-function validate(values) {
-  const errors = {};
-
-  if(!values.jobTitle) {
-    errors.jobTitle = 'Enter a job title';
-  }
-  if(!values.companyName) {
-    errors.companyName = 'Enter a company name';
-  }
-  if(!values.locationChange) {
-    errors.locationChange = 'Enter a location';
-  }
-  if(!values.jobDesc) {
-    errors.jobDesc = 'Enter a job description';
-  }
-  if(!values.skillChange) {
-    errors.skillChange = 'Enter the required skills';
-  }
-  if(!values.eduChange) {
-    errors.eduChange = 'Enter desired education';
-  }
-  //return an object from the validate function
-  return errors;
-}
-
-export default reduxForm({
-  form: 'NewJobForm',
-  fields: ['jobTitle', 'companyName', 'locationChange', 'jobDesc', 'skillChange', 'eduChange'],
-  validate
-}, null, { actions })(NewJob);
-
-
-  // <FormGroup>
-  //   <Label htmlFor='password' control>Min Salary</Label>
-  //   <Row>
-  //     <Col sm={12}>
-  //       <div>Filter by price interval: <b>$ 10</b> <Input id='ex2' ref='ex2' type='text' className='span2' value='' data-slider-min='10' data-slider-max='1000' data-slider-step='5' data-slider-value='[250,450]'/> <b>$ 1000</b></div>
-  //     </Col>
-  //   </Row>
-  // </FormGroup>
