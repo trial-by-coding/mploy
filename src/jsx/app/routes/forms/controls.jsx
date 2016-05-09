@@ -1,37 +1,11 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
 import actions from 'redux/actions';
 import { Link } from 'react-router';
-import { PropTypes } from 'react';
 import request from 'superagent';
 
-export const fields = ['eduChange', 'aboutChange'];
-
-const validate = values => {
-  const errors = {};
-  if(!values.eduChange) {
-    errors.eduChange = 'Enter your education';
-  }
-  if(!values.aboutChange) {
-    errors.aboutChange = 'Enter something about yourself';
-  }
-  return errors;
-};
-
-@reduxForm({
-  form: 'NewAppForm',
-  fields,
-  validate
-})
 
 export default class Body extends React.Component {
-  static propTypes = {
-    fields: PropTypes.object.isRequired,
-    handleSubmit: PropTypes.func.isRequired,
-    resetForm: PropTypes.func.isRequired,
-    submitting: PropTypes.bool.isRequired
-  };
 
     constructor(props){
     super(props);
@@ -64,10 +38,6 @@ export default class Body extends React.Component {
   }
 
   //helper functions start
-  onFormSubmit(e) {
-  e.preventDefault();
-  this.props.dispatch(actions.applyToJob(this.state.formVal));
-}
 
 eduChange(e) {
   this.setState({
@@ -153,7 +123,14 @@ setResume(e) {
         }
       }, function () {});
     });
-}
+
+  }
+    onFormSubmit(e) {
+    e.preventDefault();
+    this.props.dispatch(actions.applyToJob(this.state.formVal));
+  }
+
+
   //end helper funcs
 
   render() {
@@ -167,7 +144,6 @@ setResume(e) {
     //     skillsVals.push(appFormList[key])
     //   }
     // }
-    const { fields: { eduChange, aboutChange }, resetForm, handleSubmit, submitting } = this.props;
 
     return (
       <Container id='body'>
@@ -176,7 +152,8 @@ setResume(e) {
         <Col sm={12} collapseRight>
         <PanelContainer noOverflow controlStyles='bg-green fg-white'>
           <Panel>
-            <Form onSubmit={handleSubmit(this.onFormSubmit)}>
+
+            <Form onSubmit={this.onFormSubmit}>
               <PanelHeader className='bg-green fg-white'>
                 <Grid>
                   <Row>
@@ -209,11 +186,9 @@ setResume(e) {
 
                     <FormGroup>
                       <Label htmlFor='password' control>Education</Label>
-                        <div className={`form-group ${eduChange.touched && eduChange.invalid ? 'has-danger' : ''}`}>
-                      <Input className='form-control' {...eduChange} onChange={this.eduChange} autoFocus type='text' placeholder='Degree(s)' />
-                        <div className='text-help'>{eduChange.touched ? eduChange.error : ''}
-                        </div>
-                      </div>
+
+                      <Input onChange={this.eduChange} autoFocus type='text' placeholder='Degree(s)' />
+
                     </FormGroup>
 
                     <FormGroup>
@@ -225,12 +200,9 @@ setResume(e) {
                     </FormGroup>
 
                     <FormGroup>
-                      <div className={`form-group ${aboutChange.touched && aboutChange.invalid ? 'has-danger' : ''}`}>
                       <Label htmlFor='textarea'>Why are you the top candidate?</Label>
-                      <Textarea className='form-control' {...aboutChange} id='textarea' rows='3' placeholder='Sell yourself!' onChange={this.aboutChange} />
-                        <div className='text-help'>{aboutChange.touched ? aboutChange.error : ''}
-                        </div>
-                      </div>
+                      <Textarea id='textarea' rows='3' placeholder='Sell yourself!' onChange={this.aboutChange} />
+
                     </FormGroup>
 
                     <FormGroup>
