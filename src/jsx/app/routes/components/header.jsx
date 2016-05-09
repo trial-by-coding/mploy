@@ -61,7 +61,6 @@ class  HeaderNavigation extends React.Component {
       className: classNames('pull-right', this.props.className)
     };
 
-console.log('fknnnnn notifs:', this.props.notifications)
 
     return (
 

@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import axios from 'axios';
 import SidebarMixin from 'global/jsx/sidebar_component';
 import actions from 'redux/actions';
-import { connect } from 'react-redux';
 import Header from 'routes/components/header';
 import EmployerSidebar from 'routes/components/employer_sidebar';
 import Footer from 'routes/components/footer';
@@ -14,8 +13,7 @@ import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/components/calendar';
 import Charts from 'routes/containers/chart_stats';
 import NewJob from 'routes/containers/newjob';
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 
 
 @SidebarMixin

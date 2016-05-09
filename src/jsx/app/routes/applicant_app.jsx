@@ -13,8 +13,6 @@ import ApplicationContainer from 'routes/containers/applications';
 import Jobs from 'routes/containers/jobs';
 import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/components/calendar';
-import { connect } from 'react-redux'
-import actions from 'redux/actions';
 
 
 
@@ -33,7 +31,6 @@ export default class ApplicantApp extends React.Component {
 
 
 	render() {
-		console.log('WTF is notifs',this.props)
     const { dispatch } = this.props;
 		var classes = classNames({
 			'container-open': this.props.open
