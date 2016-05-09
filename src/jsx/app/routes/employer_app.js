@@ -38,6 +38,7 @@ export default class EmployerApp extends React.Component {
 			});
 	};
 
+
 	render() {
     const { dispatch } = this.props;
 		var classes = classNames({
