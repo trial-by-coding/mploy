@@ -28,14 +28,14 @@ function addTodo(text) {
 function addTodoWithDelay(host, text) {
   return function (dispatch) {
     return AsyncTask((done) => {
-      console.log('calling AsyncTask');
+      // console.log('calling AsyncTask');
       setTimeout(() => {
-        console.log('dispatched!');
+        // console.log('dispatched!');
         dispatch(addTodo(text));
         done();
       }, 500);
     });
-  }
+  };
 }
 
 function removeTodo(index) {

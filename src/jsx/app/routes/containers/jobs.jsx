@@ -3,10 +3,10 @@ import JobCard from 'routes/components/jobCard';
 import JobModal from 'routes/components/jobModal';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
-import { FormControl, FormGroup, InputGroup, DropdownButton, MenuItem }from 'react-bootstrap';
+import { FormControl, FormGroup, InputGroup, DropdownButton, MenuItem } from 'react-bootstrap';
 
-const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-
+// const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 @connect(state => state)
 export default class JobsContainer extends React.Component {

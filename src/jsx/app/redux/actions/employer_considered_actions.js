@@ -10,14 +10,14 @@ function getEmployerConsidered(jobID){
 }
 
 function getApplicantConsidered() {
-		console.log('getConsidered Actions')
+		// console.log('getConsidered Actions')
 	return dispatch => axios.get('/user/applicant/currentuserapps/considered')
 		.then(
 			payload => dispatch({ type: GET_EMPLOYER_CONSIDERED, payload }));
 }
 
 function addConsidered(item) {
-	console.log('advance action creator', item);
+	// console.log('advance action creator', item);
 	return {type: ADD_CONSIDERED, item};
 }
 
@@ -30,4 +30,4 @@ module.exports = {
 	getApplicantConsidered: getApplicantConsidered,
 	addConsidered: addConsidered,
 	removeConsidered: removeConsidered
-}
+};

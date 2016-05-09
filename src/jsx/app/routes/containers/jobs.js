@@ -4,8 +4,8 @@ import JobModal from 'routes/components/jobModal';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
-const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
-
+// const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
+import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 @connect(state => state)
 export default class JobsContainer extends React.Component {

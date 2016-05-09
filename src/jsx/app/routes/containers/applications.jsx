@@ -48,7 +48,7 @@ export default class ApplicationContainer extends React.Component {
   if(!this.props.appList.items) {
     return <div> Loading... </div>;
   }
-console.log("applist before render:", this.props.applist);
+// console.log("applist before render:", this.props.applist);
 	return (
     <Container id='body' className='social'>
       <Grid>

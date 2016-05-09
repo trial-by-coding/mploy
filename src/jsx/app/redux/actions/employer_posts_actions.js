@@ -5,20 +5,30 @@ import {	GET_JOB_POSTS,
 					SET_JOB_POST	} from './actionTypes';
 
 function getJobPosts() {
-	console.log('jobposts')
+	// console.log('jobposts');
 	return dispatch => axios.get('/user/employer/jobscreated')
 		.then(
 			payload => dispatch({ type: GET_JOB_POSTS, payload })
-		)
+		);
 }
 
-function addJobPost(item){ return  { type: ADD_JOB_POST, item } }
+function addJobPost(item) {
+	return  {
+		type: ADD_JOB_POST, item
+	};
+	}
 
-function removeJobPost(index){ return { type: REMOVE_JOB_POST, index } }
+function removeJobPost(index) {
+	return {
+		type: REMOVE_JOB_POST, index
+	};
+	}
 
-function setJobPost(jobID){ 
-	console.log('setJobPost jobID', jobID);
-	return { type: SET_JOB_POST, jobID } 
+function setJobPost(jobID){
+	// console.log('setJobPost jobID', jobID);
+	return {
+		type: SET_JOB_POST, jobID
+	};
 }
 
 module.exports = {
@@ -26,4 +36,4 @@ module.exports = {
 	addJobPost: addJobPost,
 	removeJobPost: removeJobPost,
 	setJobPost: setJobPost
-}
+};

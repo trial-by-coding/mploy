@@ -58,8 +58,13 @@ var routes = require('./public/js/' + defaultAppName + '/' + defaultAppName + '.
 
 import { Provider } from 'react-redux';
 import { routeReducer } from 'redux-simple-router';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
+import promise from 'redux-promise';
+import createLogger from 'redux-logger';
+// import devTools from 'remote-redux-devtools';
+
 
 var reducers = require('./src/jsx/'+defaultAppName+'/redux/reducers');
 var actions = require('./src/jsx/'+defaultAppName+'/redux/actions');
@@ -68,11 +73,20 @@ global.getActions = function() {
   return actions;
 };
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const logger = createLogger();
+
+  // const enhancer = compose(
+  //   applyMiddleware(thunk, promise, logger),
+  //   devTools()
+  // );
+
+const createStoreWithMiddleware = applyMiddleware(thunk, promise, logger)(createStore);
+
 global.getStore = function() {
   return createStoreWithMiddleware(combineReducers({
     ...reducers,
-    routing: routeReducer
+    routing: routeReducer,
+    form: formReducer
   }));
 };
 
@@ -114,7 +128,7 @@ global.renderHTML = function(req, res, next, store) {
   res.header('Access-Control-Allow-Headers', 'X-Requested-With');
   var isRTL = req.cookies.rubix_dir === 'rtl' ? true : false;
 
-  var data = "";
+var data = "";
   if (store) {
     data = escape(encodeURIComponent(JSON.stringify(store.getState())));
   }
@@ -136,26 +150,26 @@ global.renderHTML = function(req, res, next, store) {
       if (renderProps.location.pathname.substring(0,9) ==='/employer' || renderProps.location.pathname.substring(0,10) === '/applicant'){
 
         if (!req.user){
-          renderProps.location.pathname = '/'
-          res.redirect('/')
+          renderProps.location.pathname = '/';
+          res.redirect('/');
         }
         if(req.user && renderProps.location.pathname.substring(0,10) === '/applicant'){
           var applicant = !req.user.employer;
 
           if(!applicant){
-            renderProps.location.pathname = '/employer'
-            redir = '/employer'
-          } 
+            renderProps.location.pathname = '/employer';
+            redir = '/employer';
+          }
         }
         if (req.user && renderProps.location.pathname.substring(0,9) ==='/employer'){
           var employer = req.user.employer;
 
           if(!employer){
-            renderProps.location.pathname = '/applicant'
-            redir = '/applicant'
-          } 
+            renderProps.location.pathname = '/applicant';
+            redir = '/applicant';
+          }
         } if (req.user && redir){
-          res.redirect(redir)
+          res.redirect(redir);
         } else {
           if(isRTL) {
             str = rtl.replace(new RegExp('{container}', 'g'), str);

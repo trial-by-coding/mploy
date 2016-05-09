@@ -9,7 +9,7 @@ import { ADD_JOB,
 
 
 function getJobs() {
-	console.log('in getJobs actions');
+	// console.log('in getJobs actions');
 	return dispatch => axios.get('/user/job')
     .then(
       payload => dispatch({ type: FETCH_JOBS, payload })
@@ -18,14 +18,14 @@ function getJobs() {
 }
 
 function showForm() {
-	console.log('showForm');
+	// console.log('showForm');
 	return {
 		type: SHOW_FORM
 	};
 }
 
 function hideForm() {
-	console.log('hideForm');
+	// console.log('hideForm');
 	return {
 		type: HIDE_FORM
 	};
@@ -33,8 +33,8 @@ function hideForm() {
 
 
 function filterJobTitles(title) {
-	console.log('filterJobTitles', title);
-	return { type: FILTER_JOB_TITLES, title }
+	// console.log('filterJobTitles', title);
+	return { type: FILTER_JOB_TITLES, title };
 }
 
 

@@ -10,14 +10,14 @@ function getEmployerInterviews(jobID){
 }
 
 function getApplicantInterviews() {
-		console.log('getInterviews Actions')
+		// console.log('getInterviews Actions')
 	return dispatch => axios.get('/user/applicant/currentuserapps/interviews')
 		.then(
 			payload => dispatch({ type: GET_EMPLOYER_INTERVIEWS, payload }));
 }
 
 function addInterview(item) {
-	console.log('advance action creator');
+	// console.log('advance action creator');
 	return {type: ADD_INTERVIEW, item};
 }
 
@@ -30,4 +30,4 @@ module.exports = {
 	getApplicantInterviews: getApplicantInterviews,
 	addInterview: addInterview,
 	removeInterview: removeInterview
-}
+};

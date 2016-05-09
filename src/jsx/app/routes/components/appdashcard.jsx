@@ -2,7 +2,7 @@ import classNames from 'classnames';
 
 export default class appdashCard extends React.Component {
   render() {
-    console.log('appdashcarddata', this.props)
+    // console.log('appdashcarddata', this.props)
     return (
       <div>
         <Col md={10}>
@@ -12,6 +12,6 @@ export default class appdashCard extends React.Component {
           </div>
         </Col>
       </div>
-    )
+    );
   }
 }

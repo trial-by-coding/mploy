@@ -92,7 +92,7 @@ if(shouldScaffold) {
     rmSDir(path.join(process.cwd(), 'src', 'jsx', scaffoldName));
     rmSDir(path.join(process.cwd(), 'src', 'sass', scaffoldName));
     rmSDir(path.join(process.cwd(), 'test', scaffoldName));
-    console.log('\n');
+    // console.log('\n');
   }
 
   function createProject(scaffoldName) {
@@ -117,7 +117,7 @@ if(shouldScaffold) {
         copyFolder(path.join(process.cwd(), '.rubix', 'scaffold', 'fonts'),
                    path.join(process.cwd(), 'public', 'fonts', 'dropbox', scaffoldName),
                    function() {
-          console.log('\n');
+          // console.log('\n');
           gutil.log(gutil.colors.bgBlue(gutil.colors.white('[     Completed Scaffolding Project: ' +scaffoldName + '     ]\n')));
         });
       });

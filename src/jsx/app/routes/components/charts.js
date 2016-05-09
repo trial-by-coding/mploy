@@ -23,10 +23,8 @@ export default class Body extends React.Component {
 
   componentWillMount() {
     const charts = this.props;
-    console.log('charts: ', charts)
 
     setTimeout(() => {
-
 
       (() => {
         var pie = Rubix.Pie('#resume-chart', {

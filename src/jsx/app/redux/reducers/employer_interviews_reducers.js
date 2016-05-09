@@ -6,19 +6,19 @@ import {  GET_EMPLOYER_INTERVIEWS,
 function interviews(state = [], action) {
 		switch(action.type) {
 		case GET_EMPLOYER_INTERVIEWS:
-			console.log("interviews:", action.payload)
+			// console.log("interviews:", action.payload)
 			const interviews = action.payload.data;
-			return [...interviews]
+			return [...interviews];
 		case ADD_INTERVIEW:
-			return [...state.slice(), action.item]
+			return [...state.slice(), action.item];
 		case REMOVE_INTERVIEW:
 			return [...state.slice(0, action.index),
-						  ...state.slice(action.index + 1) ]
+						  ...state.slice(action.index + 1) ];
 		default:
-			return state
+			return state;
 	}
 }
 
 module.exports = {
 	interviews: interviews
-}
+};

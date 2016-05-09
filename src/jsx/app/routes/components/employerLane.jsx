@@ -1,8 +1,6 @@
 import classNames from 'classnames';
 import EmployerDashboardCard from './empdashcard';
 
-
-
 export default class EmployerLane extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +8,7 @@ export default class EmployerLane extends React.Component {
 
   render() {
     let list = this.props.data;
-    let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item']
+    let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
     return (
       <div className='shortcard'>
         <ul>
@@ -27,5 +25,3 @@ export default class EmployerLane extends React.Component {
     );
   }
 }
-
-

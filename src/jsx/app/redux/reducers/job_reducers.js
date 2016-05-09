@@ -8,31 +8,31 @@ import  { ADD_JOB,
           FETCH_JOBS } from '../actions/actionTypes';
 
 
-var initialState = { 
+var initialState = {
   showForm: false,
-  items: [] 
+  items: []
 };
 
 function jobList(state = initialState, action) {
   switch (action.type) {
     case FETCH_JOBS:
-      console.log('FETCH_JOBS', action.payload.data);
+      // console.log('FETCH_JOBS', action.payload.data);
       const data = action.payload.data;
       return Object.assign({}, state, {
         items: data
       });
     case SHOW_FORM:
-      console.log('SHOW_FORM');
+      // console.log('SHOW_FORM');
       return Object.assign({}, state, {
         showForm: true
       });
     case HIDE_FORM:
-      console.log('HIDE_FORM');
+      // console.log('HIDE_FORM');
       return Object.assign({}, state, {
         showForm: false
       });
     case APP_FORM_POP:
-      console.log('APP_FORM, reducer fired!',action.payload.data);
+      // console.log('APP_FORM, reducer fired!',action.payload.data);
       const appForm = action.payload.data;
       return Object.assign({}, state, {
         appFormPop: appForm

@@ -9,7 +9,7 @@ function appList(state = {}, action) {
   // console.log('state in reducer is:', state)
   switch (action.type) {
     case FETCH_APP:
-      console.log('action recieved:', action.payload);
+      // console.log('action recieved:', action.payload);
       const data = action.payload.data;
       return Object.assign({}, state, {
         items: data
@@ -19,9 +19,9 @@ function appList(state = {}, action) {
         items: [...state.items.slice(0, action.appID), ...state.items.slice(action.appID + 1)]
       });
     case ADD_APP:
-      console.log("ADD_APP action fired!",action.payload);
+      // console.log("ADD_APP action fired!",action.payload);
     case ADD_JOB:
-      console.log("ADD_APP action fired!",action.payload);
+      // console.log("ADD_APP action fired!",action.payload);
     default:
       return state;
     }

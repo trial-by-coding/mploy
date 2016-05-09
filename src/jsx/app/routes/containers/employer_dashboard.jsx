@@ -1,54 +1,53 @@
 import classNames from 'classnames';
 
-import SidebarMixin from 'global/jsx/sidebar_component';
+// import SidebarMixin from 'global/jsx/sidebar_component';
 
 import EmployerLane from 'routes/components/employerLane';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
 
 
 @connect(state => state)
 export default class EmployerDashboard extends React.Component {
 	constructor(props) {
-		super(props)
+		super(props);
   }
 
 
   advance = (appID, status, item, index)  => {
     // console.log('employer dashboard props', this.props);
-    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index))
-                                        this.props.dispatch(actions.addConsidered(item))}
-    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index))
-                                        this.props.dispatch(actions.addInterview(item))}
-    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index))
-                                        this.props.dispatch(actions.addOffer(item))}
-    else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index)) }  
+    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index));
+                                        this.props.dispatch(actions.addConsidered(item));}
+    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));
+                                        this.props.dispatch(actions.addInterview(item));}
+    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));
+                                        this.props.dispatch(actions.addOffer(item));}
+    else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index)); }
 
     this.props.dispatch(actions.advanceEmployerRequest(appID));
   };
 
   revert = (appID, status, item, index) => {
-    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)) }
-    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index))
-                                        this.props.dispatch(actions.addUnconsidered(item))}
-    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index))
-                                        this.props.dispatch(actions.addConsidered(item))}
+    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); }
+    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));
+                                        this.props.dispatch(actions.addUnconsidered(item));}
+    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));
+                                        this.props.dispatch(actions.addConsidered(item));}
     else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index)),
-                                        this.props.dispatch(actions.addInterview(item)) } 
+                                        this.props.dispatch(actions.addInterview(item)); }
 
-    this.props.dispatch(actions.revertEmployerRequest(appID)); 
+    this.props.dispatch(actions.revertEmployerRequest(appID));
   };
 
   reject = (jobID, appID, status, index) => {
     ModalManager.remove();
-    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)) }
-    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index))}
-    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index))}
-    else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index))} 
+    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); }
+    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));}
+    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));}
+    else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index));}
 
-    this.props.dispatch(actions.rejectApp(jobID, appID));  
+    this.props.dispatch(actions.rejectApp(jobID, appID));
 
   };
 
@@ -60,7 +59,7 @@ export default class EmployerDashboard extends React.Component {
 
 
 	render() {
-    console.log('employer dashboard props', this.props);
+    // console.log('employer dashboard props', this.props);
     let unconsidered = this.props.unconsidered;
     let considered = this.props.considered;
     let interviews = this.props.interviews;
@@ -99,7 +98,7 @@ export default class EmployerDashboard extends React.Component {
           </Col>
           <Col md={3}>
             <div> Considered </div>
-        		<EmployerLane data={considered} 
+        		<EmployerLane data={considered}
                           lane={'considered'}
                           advance={this.advance}
                           accept={this.accept}
@@ -109,7 +108,7 @@ export default class EmployerDashboard extends React.Component {
           </Col>
           <Col md={3}>
             <div> Interviews </div>
-        		<EmployerLane data={interviews} 
+        		<EmployerLane data={interviews}
                           lane={'interviews'}
                           advance={this.advance}
                           accept={this.accept}
@@ -119,7 +118,7 @@ export default class EmployerDashboard extends React.Component {
           </Col>
           <Col md={3}>
             <div> Offers </div>
-        		<EmployerLane data={offers} 
+        		<EmployerLane data={offers}
                           lane={'offers'}
                           advance={this.advance}
                           accept={this.accept}
@@ -130,6 +129,6 @@ export default class EmployerDashboard extends React.Component {
         </Row>
       </Grid>
     </Container>
-    )
+    );
 	}
 }

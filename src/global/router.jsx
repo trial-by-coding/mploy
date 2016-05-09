@@ -4,12 +4,16 @@ import { Router, match, RoutingContext } from 'react-router';
 import createHashHistory from 'history/lib/createHashHistory';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { syncReduxAndRouter, routeReducer } from 'redux-simple-router';
 
 import {reducer as formReducer} from 'redux-form';
 
 import thunk from 'redux-thunk';
+import promise from 'redux-promise';
+// import devTools from 'remote-redux-devtools';
+import createLogger from 'redux-logger';
+
 
 import actions from 'redux/actions';
 import reducers from 'redux/reducers';
@@ -21,9 +25,6 @@ const reducer = combineReducers({
   routing: routeReducer,
   form: formReducer
 });
-
-
-const store = createStore(reducer);
 
 
 if(window.hasOwnProperty('vex')) {
@@ -72,8 +73,13 @@ module.exports = (routes) => {
 
     var initialState = undefined;
     if(global.server_data) initialState = JSON.parse(decodeURIComponent(unescape(global.server_data)));
-    const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
+    const logger = createLogger();
+
+    const createStoreWithMiddleware = compose(applyMiddleware(thunk, promise, logger),window.devToolsExtension ? window.devToolsExtension() : f => f)(createStore);
+
     const store = createStoreWithMiddleware(reducer, initialState);
+
     syncReduxAndRouter(history, store);
     var r = routes(history, onUpdate);
     r = (

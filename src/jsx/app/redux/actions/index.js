@@ -5,7 +5,7 @@ import empdash from './empdash_actions';
 import appdash from './appdash_actions';
 import profile from './profile_actions';
 import charts from './chart_actions';
-import applicantapp from './applicant_actions'
+import applicantapp from './applicant_actions';
 import employerunconsidered from './employer_unconsidered_actions';
 import employerconsidered from './employer_considered_actions';
 import employerinterviews from './employer_interviews_actions';

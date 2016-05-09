@@ -6,7 +6,7 @@ import {  GET_EMPLOYER_CONSIDERED,
 function considered(state = [], action) {
 		switch(action.type) {
 		case GET_EMPLOYER_CONSIDERED:
-			console.log("considered:", action.payload);
+			// console.log("considered:", action.payload);
 			const considered = action.payload.data;
 			return [...considered];
 		case ADD_CONSIDERED:

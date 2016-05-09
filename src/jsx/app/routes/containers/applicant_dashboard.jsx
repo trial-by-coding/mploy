@@ -23,7 +23,7 @@ export default class ApplicantDashboard extends React.Component {
     let dispatch = this.props.dispatch;
     let apps = [unconsidered, considered, interviews, offers];
 
-    console.log("AppContainer state", this.props);
+    // console.log("AppContainer state", this.props);
     if(unconsidered.length === 0 && considered.length === 0 && interviews.length === 0 && offers.length === 0){
       return (
         <Container id='body'>
@@ -45,19 +45,19 @@ export default class ApplicantDashboard extends React.Component {
           </Col>
           <Col md={3}>
             <div> Considered </div>
-            <ApplicantLane data={considered} 
+            <ApplicantLane data={considered}
                           lane={'considered'}
                           dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Interviews </div>
-            <ApplicantLane data={interviews} 
+            <ApplicantLane data={interviews}
                           lane={'interviews'}
                           dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Offers </div>
-            <ApplicantLane data={offers} 
+            <ApplicantLane data={offers}
                           lane={'offers'}
                           dispatch={this.props.dispatch}/>
           </Col>

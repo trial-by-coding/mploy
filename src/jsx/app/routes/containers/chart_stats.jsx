@@ -17,8 +17,6 @@ render() {
 
   const { dispatch } = this.props;
 
-  console.log('this.props.charts: ', this.props.charts)
-
         // const firstname  = this.props.charts.firstname;
         const denied = this.props.charts.denied;
         const rescinded = this.props.charts.rescinded;
