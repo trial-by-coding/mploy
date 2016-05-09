@@ -78,8 +78,8 @@ export default class extends React.Component {
   }
 
   selectJobPost = (jobID) => {
-    console.log('job post selected')
-    this.props.dispatch(actions.setJobPost(jobID));
+    console.log('job post selected', this);
+    this.props.dispatch(actions.selectJob(jobID));
   };
 
   render() {
