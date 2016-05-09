@@ -419,7 +419,7 @@ export var SidebarNavItem = React.createClass({
       sidebarParent.css('visibility', 'visible');
 
       setTimeout(() => {
-        if(this.mounted) this.setState({active: true});
+        //if(this.mounted) this.setState({active: true});
         var height = $(node).height();
 
         var top = $(node).offset().top;
