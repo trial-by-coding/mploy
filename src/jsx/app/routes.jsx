@@ -19,14 +19,13 @@ export default (browserHistory, onUpdate) => {
   return (
     <Router history={browserHistory} onUpdate={onUpdate}>
       <Route path='/' component={Landing}/>
+
       <Route path='/applicant' component={ApplicantApp}>
         <IndexRoute component={ApplicantDashboard} />
         <Route path='/applicantprofile' component={Profile} />
         <Route path='/applicantjobs' component={Jobs} />
         <Route path='/applicantcharts' component={Charts} />
         <Route path='/applicantcalendar' component={Calendar} />
-        {/*<Route path='/sidebar' component={Applicant_Sidebar} />*/}
-
       </Route>
 
       <Route path='/employer' component={EmployerApp} >

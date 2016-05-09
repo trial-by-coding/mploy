@@ -76,6 +76,7 @@
     "q": "^1.4.1",
     "raw-loader": "^0.5.1",
     "react": "^0.14.6",
+    "react-addons-pure-render-mixin": "^15.0.2",
     "react-addons-test-utils": "^0.14.6",
     "react-bootstrap": "^0.29.2",
     "react-bootstrap-native-slider": "^2.0.0",
@@ -89,6 +90,7 @@
     "redux": "^3.0.6",
     "redux-form": "https://registry.npmjs.org/redux-form/-/redux-form-5.2.3.tgz",
     "redux-logger": "^2.6.1",
+    "redux-promise": "^0.5.3",
     "redux-simple-router": "^1.0.2",
     "redux-thunk": "^1.0.3",
     "run-sequence": "^1.1.5",
@@ -101,6 +103,7 @@
     "yargs": "^3.32.0"
   },
   "devDependencies": {
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "remote-redux-devtools": "^0.3.2"
   }
 }

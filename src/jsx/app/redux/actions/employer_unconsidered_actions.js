@@ -4,9 +4,9 @@ import	{	GET_EMPLOYER_UNCONSIDERED,
 					REMOVE_UNCONSIDERED	} from './actionTypes';
 
 
-					
+
 function getEmployerUnconsidered(jobID){
-	console.log('getUnconsidered Actions')
+	// console.log('getUnconsidered Actions')
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=unconsidered')
 		.then(
 			payload => dispatch({ type: GET_EMPLOYER_UNCONSIDERED, payload})
@@ -15,14 +15,14 @@ function getEmployerUnconsidered(jobID){
 }
 
 function getApplicantUnconsidered() {
-	console.log('getUnconsidered Actions')
+	// console.log('getUnconsidered Actions')
 	return dispatch => axios.get('/user/applicant/currentuserapps/unconsidered')
 		.then(
 			payload => dispatch({ type: GET_EMPLOYER_UNCONSIDERED, payload }));
 }
 
 function addUnconsidered(item) {
-	console.log('advance action creator');
+	// console.log('advance action creator');
 	return {type: ADD_UNCONSIDERED, item};
 }
 
@@ -35,4 +35,4 @@ module.exports = {
 	getApplicantUnconsidered: getApplicantUnconsidered,
 	addUnconsidered: addUnconsidered,
 	removeUnconsidered: removeUnconsidered
-}
+};

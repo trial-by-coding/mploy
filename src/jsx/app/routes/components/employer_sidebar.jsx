@@ -1,8 +1,10 @@
 import {
-  Sidebar, SidebarNav, SidebarNavItem,
-  SidebarControls, SidebarControlBtn
+  Sidebar,
+  SidebarNav,
+  SidebarNavItem,
+  SidebarControls,
+  SidebarControlBtn
 } from 'global/jsx/sidebar_component';
-
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from 'redux/actions';
@@ -81,7 +83,7 @@ export default class extends React.Component {
 
   render() {
     const user = this.props;
-    console.log('siderbar props', this.props);
+    // console.log('siderbar props', this.props);
 
     let posts = this.props.posts;
 

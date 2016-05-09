@@ -1,5 +1,4 @@
 import classNames from 'classnames';
-
 import { connect } from 'react-redux';
 import Controls from '../forms/controls';
 import actions from 'redux/actions';
@@ -7,7 +6,7 @@ import actions from 'redux/actions';
 class JobHeader extends React.Component {
   render() {
     const pStyles = {
-      fontSize: '10px'
+      'fontSize': '10px'
     };
     return (
       <div className='jobheader'>
@@ -31,7 +30,7 @@ class JobHeader extends React.Component {
 class JobBody extends React.Component {
   render() {
     const pStyles = {
-      fontSize: '10px'
+      'fontSize': '10px'
     };
     return (
       <div className='jobbody'>
@@ -78,8 +77,8 @@ class JobApply extends React.Component {
 
   render() {
     const btnStyles = {
-      textAlign: 'center',
-      margin: '0 auto'
+      'textAlign': 'center',
+      'margin': '0 auto'
     };
     return (
       <div className="jobapply">
@@ -108,19 +107,19 @@ export default class JobCard extends React.Component {
 
     // console.log('jobCard', this.state);
     const styles = {
-      margin: '12.5px 0',
-      borderBottom: '1px dotted #999',
-      paddingBottom: 12.5,
-      textAlign: 'center'
+      'margin': '12.5px 0',
+      'borderBottom': '1px dotted #999',
+      'paddingBottom': 12.5,
+      'textAlign': 'center'
     };
 
     const panelStyle = {
-      'max-width': '400px',
-      'padding-top': '0px'
+      'maxWidth': '400px',
+      'paddingTop': '0px'
     };
 
     const colStyle = {
-      zIndex: -100
+      'zIndex': -100
     };
 
 

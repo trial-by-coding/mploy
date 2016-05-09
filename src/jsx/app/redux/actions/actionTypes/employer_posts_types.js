@@ -3,4 +3,4 @@ module.exports = {
 	ADD_JOB_POST: 'ADD_JOB_POST',
 	REMOVE_JOB_POST: 'REMOVE_JOB_POST',
 	SET_JOB_POST: 'SET_JOB_POST'
-}
+};

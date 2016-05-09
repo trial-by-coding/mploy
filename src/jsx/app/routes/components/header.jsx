@@ -1,4 +1,4 @@
-import { History } from 'react-router';
+import { History, Link, State, Navigation } from 'react-router';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { SidebarBtn } from 'global/jsx/sidebar_component';
@@ -15,11 +15,37 @@ export default class Brand extends React.Component {
   }
 }
 
+var DirectNavItem = React.createClass({
+  mixins: [State, Navigation],
+  render() {
+    var active = false;
+    var currentLocation = this.context.router.state.location.pathname;
+
+    if(!active && this.props.path) {
+      active = this.isActive(this.props.path) && (currentLocation === this.props.path);
+    }
+
+    var classes = classNames({
+      'pressed': active
+    });
+    return (
+      <NavItem className={classes} {...this.props}>
+        <Link to={this.props.path}>
+          <Icon bundle={this.props.bundle || 'fontello'} glyph={this.props.glyph} />
+        </Link>
+      </NavItem>
+    );
+  }
+});
+
+
+
 var HeaderNavigation = React.createClass({
-  mixins: [ History ],
-  logout: function() {
+  mixins: [State, Navigation],
+  logout(e) {
       window.location = '/auth/logout';
   },
+
   render() {
     var props = {
       ...this.props,
@@ -54,7 +80,8 @@ export default class Header extends React.Component {
                     <Brand />
                   </Col>
                   <Col xs={3} sm={8}>
-                    <HeaderNavigation />
+                    <HeaderNavigation pressed={this.props.pressed} />
+                    {/*<HeaderNavigation />*/}
                   </Col>
                 </Row>
               </Container>

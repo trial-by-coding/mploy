@@ -1,28 +1,31 @@
 import classNames from 'classnames';
 import moment from 'moment';
-
-import { connect } from 'react-redux'
-
+import { connect } from 'react-redux';
 import actions from 'redux/actions';
-import { VisibilityFilters } from 'redux/actions/actionTypes';
-
 // const AppCard = ({app}) => {
 
 export default class AppCard extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
   }
 
   render() {
     let skills_met= JSON.parse(this.props.app.skills_met);
-    let skillsArray = this.props.app.skills
+    let skillsArray = this.props.app.skills;
+    // console.log('app be:', this.props.app)
+    let skillList = [];
+    for (var key in this.props.app) {
+      if (key.indexOf('skill') !== -1 && this.props.app[key] !== null) {
+        skillList.push(key);
+      }
+    }
 
     const styles = {
       margin: '12.5px 0',
       paddingBottom: '10px',
-      'text-align': 'left'
+      'textAlign': 'left'
     };
-      console.log('props in appCard:',this.props)
+      // console.log('props in appCard:',this.props);
 
     if(!this.props.app) {
         return ( <div>Loading...</div>);
@@ -41,18 +44,18 @@ export default class AppCard extends React.Component {
             </div>
           </Col>
         </Row>
-    
+
         <Row style={styles}>
           <h4> Has Specified Skills:</h4>
           <row className='skills'>
-          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === true}).map( skill => <div className="label col-md-3 label-success"> {skill} </div> ) }
+          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === true;}).map( skill => <div className="label col-md-3 label-success"> {skill} </div> ) }
           </row>
         </Row>
 
         <Row style={styles}>
           <h4> Lacking Specified Skills:</h4>
           <row className='skills'>
-          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === false}).map( skill => <div className="label col-md-3 label-danger"> {skill} </div> ) }
+          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === false;}).map( skill => <div className="label col-md-3 label-danger"> {skill} </div> ) }
           </row>
         </Row>
 
@@ -61,21 +64,21 @@ export default class AppCard extends React.Component {
           <row className='skills'>
             { this.props.app.personal_statement }
           </row>
-        </Row> 
+        </Row>
 
         <Row style={styles}>
           <h4>Years of Relevant Experience:</h4>
           <row className='skills'>
           { this.props.app.years_experience }
           </row>
-        </Row> 
+        </Row>
 
         <Row style={styles}>
           <h4>Education:</h4>
           <row className='skills'>
           { this.props.app.education }
           </row>
-        </Row> 
+        </Row>
 
         <Row style={styles}>
           <h4>Would Require Visa Sponsorship:</h4>
@@ -86,7 +89,7 @@ export default class AppCard extends React.Component {
             <h4> Applied on: </h4>
             {moment(this.props.app.created_at).format('LLLL')}
           </row>
-        </Row> 
+        </Row>
 
        <Row style={styles}>
           <h4>Documents:</h4>
@@ -101,11 +104,11 @@ export default class AppCard extends React.Component {
         </Row>
 
         <Row style={styles}>
-          <button 
+          <button
           className='btn btn-primary accept'>
           Move Forward
           </button>
-          <button 
+          <button
           onClick={this.deleteTask}
           className='btn btn-default reject'>
           Reject
@@ -113,8 +116,6 @@ export default class AppCard extends React.Component {
         </Row>
 
       </div>
-    )
+    );
   }
 }
-
-

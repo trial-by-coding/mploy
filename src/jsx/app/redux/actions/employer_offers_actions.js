@@ -10,14 +10,14 @@ function getEmployerOffers(jobID){
 }
 
 function getApplicantOffers() {
-		console.log('getOffers Actions')
+		// console.log('getOffers Actions')
 	return dispatch => axios.get('/user/applicant/currentuserapps/offers')
 		.then(
 			payload => dispatch({ type: GET_EMPLOYER_OFFERS, payload }));
 }
 
 function addOffer(item) {
-	console.log('advance action creator');
+	// console.log('advance action creator');
 	return {type: ADD_OFFER, item};
 }
 
@@ -30,4 +30,4 @@ module.exports = {
 	getApplicantOffers: getApplicantOffers,
 	addOffer: addOffer,
 	removeOffer: removeOffer
-}
+};
