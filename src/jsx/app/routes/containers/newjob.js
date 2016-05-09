@@ -64,9 +64,9 @@ export default class NewJob extends React.Component {
     submitting: PropTypes.bool.isRequired
   };
 
-  static contextTypes = {
-    router: PropTypes.object
-  };
+  // static contextTypes = {
+  //   router: PropTypes.object
+  // };
 
   constructor(props){
     super(props);
@@ -204,11 +204,11 @@ empType(e) {
 
 onFormSubmit(e) {
   e.preventDefault();
-  this.props.dispatch(actions.postNewJob(this.state.formVal))
-  .then(() => {
-    console.log("R o u t e r!");
-    this.context.router.push('/employer/jobs');
-  });
+  this.props.dispatch(actions.postNewJob(this.state.formVal));
+  // .then(() => {
+  //   console.log("R o u t e r!");
+  //   this.context.router.push('/employer/jobs');
+  // });
 }
 
 
@@ -235,7 +235,7 @@ onFormSubmit(e) {
     };
 
 
-    const { fields: { jobTitle, companyName, locationChange, jobDesc, skillChange, addSkill, eduChange, visaChange, minSalary, maxSalary, empType }, resetForm, handleSubmit, submitting } = this.props;
+    const { fields: { jobTitle, companyName, locationChange, jobDesc, skillChange, addSkill, eduChange, visaChange, minSalary, maxSalary, empType }, resetForm, handleSubmit, submitting, onFormSubmit } = this.props;
 
     return (
       <Container id="body">
@@ -258,32 +258,32 @@ onFormSubmit(e) {
                   <Grid>
                     <Row>
                       <Col xs={12}>
-                      <div className={`form-group ${jobTitle.touched && jobTitle.invalid ? 'has-danger' : ''}`}>
                         <FormGroup>
+                      <div className={`form-group ${jobTitle.touched && jobTitle.invalid ? 'has-danger' : ''}`}>
                           <Label htmlFor='password' control>Job Title</Label>
                           <Input className='form-control' {...jobTitle} autoFocus type='text' placeholder='' />
                           <div className='text-help' style={error}>{jobTitle.touched ? jobTitle.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
+                    <FormGroup>
                       <div className={`form-group ${companyName.touched && companyName.invalid ? 'has-danger' : ''}`}>
-                        <FormGroup>
                           <Label htmlFor='password' control>Company Name</Label>
                           <Input className='form-control' {...companyName} autoFocus type='text' placeholder='' />
                           <div className='text-help' style={error}>{companyName.touched ? companyName.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
+                    <FormGroup>
                       <div className={`form-group ${locationChange.touched && locationChange.invalid ? 'has-danger' : ''}`}>
-                        <FormGroup>
                           <Label htmlFor='password' control>Location</Label>
                           <Input className='form-control' {...locationChange} autoFocus type='text' placeholder='City, State, Country' />
                           <div className='text-help' style={error}>{locationChange.touched ? locationChange.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
+                    <FormGroup>
                       <div className={`form-group ${empType.touched && empType.invalid ? 'has-danger' : ''}`}>
-                        <FormGroup>
                           <Label htmlFor='dropdownselect'>Employment type</Label>
                           <Select className='form-control' {...empType} id='dropdownselect' defaultValue='2'>
                                               <option value='Part time'>Part time</option>
@@ -293,19 +293,19 @@ onFormSubmit(e) {
                                             </Select>
                           <div className='text-help' style={error}>{empType.touched ? empType.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
+                    <FormGroup>
                       <div className={`form-group ${jobDesc.touched && jobDesc.invalid ? 'has-danger' : ''}`}>
-                        <FormGroup>
                           <Label htmlFor='textarea'>Job description:</Label>
                           <Textarea id='textarea' rows='5' className='form-control' {...jobDesc} placeholder='Position details' />
                           <div className='text-help' style={error}>{jobDesc.touched ? jobDesc.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
 
+                    <FormGroup>
                       <div className={`form-group ${skillChange.touched && skillChange.invalid ? 'has-danger' : ''}`}>
-                        <FormGroup>
                           <Label htmlFor='textarea'>What skills are needed for this position?</Label>
                           <InputGroup>
                             <Input type='text' className='form-control' {...skillChange} id='searchbtnicon' placeholder='Enter skills here ...'
@@ -325,38 +325,38 @@ onFormSubmit(e) {
                           </Row>
                           <div className='text-help'>{skillChange.touched ? skillChange.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
 
 
                       <FormGroup>
+                        <InputGroup>
                         <div className={`form-group ${minSalary.touched && minSalary.invalid ? 'has-danger' : ''}`}>
-                          <InputGroup>
                             <Label htmlFor='password' control>Salary</Label>
                             <HelpBlock>Please use numbers only.</HelpBlock>
                           <Input className='form-control' {...minSalary} autoFocus type='text' placeholder='minimum salary' />
                             <div className='text-help' style={error}>{minSalary.touched ? minSalary.error : ''}
                             </div>
+                          </div>
                           </InputGroup>
-                        </div>
-                        <div className={`form-group ${maxSalary.touched && maxSalary.invalid ? 'has-danger' : ''}`}>
                           <InputGroup>
+                        <div className={`form-group ${maxSalary.touched && maxSalary.invalid ? 'has-danger' : ''}`}>
                             <Input className='form-control' {...maxSalary} autoFocus type='text' placeholder='maximum salary' />
                             <div className='text-help' style={error}>{maxSalary.touched ? maxSalary.error : ''}
                             </div>
-                          </InputGroup>
                         </div>
+                      </InputGroup>
                       </FormGroup>
+                      <FormGroup>
                       <div className={`form-group ${eduChange.touched && eduChange.invalid ? 'has-danger' : ''}`}>
-                        <FormGroup>
                           <Label htmlFor='password' control>Desired Education</Label>
                           <Input className='form-control' {...eduChange} autoFocus type='text' placeholder='Education level' />
                           <div className='text-help' style={error}>{eduChange.touched ? eduChange.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
+                    <FormGroup>
                       <div className={`form-group ${visaChange.touched && visaChange.invalid ? 'has-danger' : ''}`}>
-                        <FormGroup>
                           <Label htmlFor='dropdownselect'>Will your company sponsor visa's?</Label>
                           <Select className='form-control' {...visaChange} id='dropdownselect' defaultValue='2'>
                               <option value='1'>Yes</option>
@@ -364,8 +364,8 @@ onFormSubmit(e) {
                               </Select>
                           <div className='text-help' style={error}>{visaChange.touched ? visaChange.error : ''}
                           </div>
-                        </FormGroup>
                       </div>
+                    </FormGroup>
                       </Col>
                     </Row>
                   </Grid>
@@ -380,7 +380,7 @@ onFormSubmit(e) {
                         <Link to='/employer'>
                         <Button outlined bsStyle='lightgreen'>cancel</Button>
                         </Link>{' '}
-                        <Button type="submit" outlined bsStyle='lightgreen' disabled={submitting}>{submitting ? <i/> : <i/>} Submit</Button>
+                        <Button type="submit" outlined bsStyle='lightgreen'>Submit</Button>
                       </div>
                       <br/>
                       </Col>
