@@ -68,15 +68,28 @@ export default class JobsContainer extends React.Component {
 
       <Container id='body' className='social'>
         <Row>
-          <Col md={3}>
-            <div>
-               <input
-                  type="text"
-                  className="form-control"
-                  onChange={ this.filterData.bind(this) }
-                  placeholder="Search by Job Title" />
-            </div>
-          </Col>
+          <div>
+            <Col xs={6} collapseRight>
+              <InputGroup>
+                <Input  type="text"
+                        className="form-control"
+                        onChange={ this.filterData.bind(this, ) }
+                        placeholder="Search by Job Title" />
+                <InputGroupButton>
+                  <DropdownButton container={this} menu='btnwithdropdown2'>
+                    <span>Action </span><Caret/>
+                  </DropdownButton>
+                  <Menu ref='btnwithdropdown2' alignRight>
+                    <MenuItem href='#'>Action</MenuItem>
+                    <MenuItem href='#'>Another Action</MenuItem>
+                    <MenuItem href='#'>Something else here</MenuItem>
+                    <MenuItem divider></MenuItem>
+                    <MenuItem href='#'>Separated link</MenuItem>
+                  </Menu>
+                </InputGroupButton>
+              </InputGroup>
+            </Col>
+          </div>
         </Row>
         <Row>
           <div>
