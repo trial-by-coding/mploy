@@ -104,18 +104,9 @@ export default class extends React.Component {
             </Row>
           </Grid>
         </div>
-        <SidebarControls>
-          <SidebarControlBtn bundle='fontello' glyph='home' sidebar={0} />
-          <SidebarControlBtn bundle='fontello' glyph='th-list-2' sidebar={1} />
-        </SidebarControls>
         <div id='sidebar-container'>
-          <Sidebar sidebar={0}>
-            <EmployerSidebar />
-          </Sidebar>
-          <Sidebar sidebar={1}>
             <EmployerSidebar  posts={this.props.posts}
                               setJobPost={this.setJobPost}/>
-          </Sidebar>
         </div>
       </div>
     );
