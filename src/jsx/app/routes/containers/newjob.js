@@ -5,47 +5,48 @@ import actions from 'redux/actions';
 import { Link } from 'react-router';
 import { PropTypes } from 'react';
 
-export const fields = ['jobTitle', 'companyName', 'locationChange', 'jobDesc', 'skillChange', 'addSkill','eduChange', 'visaChange', 'minSalary', 'maxSalary', 'empType'];
+export const fields = ['job_title', 'company_name', 'job_description', 'desired_education', 'min_salary', 'max_salary', 'location'];
 
 const validate = values => {
   const errors = {};
-  if(!values.jobTitle) {
-    errors.jobTitle = 'Enter a job title';
-  } else if (values.jobTitle.length < 2) {
-    errors.jobTitle = 'Must be longer than on letter!';
-  }
-    if(!values.companyName) {
-    errors.companyName = 'Enter a company name';
-  } else if (values.companyName.length < 2) {
-    errors.companyName = 'Must be longer than on letter!';
-  }
-  if(!values.locationChange) {
-    errors.locationChange = 'Enter a location';
-  }
-  if(!values.jobDesc) {
-    errors.jobDesc = 'Enter a job description';
-  }
-  if(!values.skillChange) {
-    errors.skillChange = 'Enter the required skills';
-  }
-  if(!values.addSkill) {
-    errors.addSkill = 'Enter desired skills';
-  }
-  if(!values.empType) {
-    errors.empType = 'Enter employment_type';
-  }
-  if(!values.minSalary) {
-    errors.minSalary = 'Enter minimum salary';
-  }
-  if(!values.maxSalary) {
-    errors.maxSalary = 'Enter maximum salary';
-  }
-  if(!values.eduChange) {
-    errors.eduChange = 'Enter desired education';
-  }
-  if(!values.visaChange) {
-    errors.visaChange = 'Enter visa requirement';
-  }
+  if(!values.job_title) {
+    errors.job_title = 'Enter a job title';
+  } 
+  // else if (values.job_title.length < 2) {
+  //   errors.job_title = 'Must be longer than on letter!';
+  // }
+  //   if(!values.company_name) {
+  //   errors.company_name = 'Enter a company name';
+  // } else if (values.company_name.length < 2) {
+  //   errors.company_name = 'Must be longer than on letter!';
+  // }
+  // if(!values.location) {
+  //   errors.location = 'Enter a location';
+  // }
+  // if(!values.job_description) {
+  //   errors.job_description = 'Enter a job description';
+  // }
+  // if(!values.skillChange) {
+  //   errors.skillChange = 'Enter the required skills';
+  // }
+  // if(!values.addSkill) {
+  //   errors.addSkill = 'Enter desired skills';
+  // }
+  // if(!values.employment_type) {
+  //   errors.employment_type = 'Enter employment_type';
+  // }
+  // if(!values.min_salary) {
+  //   errors.min_salary = 'Enter minimum salary';
+  // }
+  // if(!values.max_salary) {
+  //   errors.max_salary = 'Enter maximum salary';
+  // }
+  // if(!values.desired_education) {
+  //   errors.desired_education = 'Enter desired education';
+  // }
+  // if(!values.visa_required) {
+  //   errors.visa_required = 'Enter visa requirement';
+  // }
   return errors;
 };
 
@@ -70,150 +71,7 @@ export default class NewJob extends React.Component {
 
   constructor(props){
     super(props);
-
-    //binding helper functions
-    this.onFormSubmit = this.onFormSubmit.bind(this);
-    this.jobTitle = this.jobTitle.bind(this);
-    this.companyName = this.companyName.bind(this);
-    this.locationChange = this.locationChange.bind(this);
-    this.jobDesc = this.jobDesc.bind(this);
-    this.eduChange = this.eduChange.bind(this);
-    this.visaChange = this.visaChange.bind(this);
-    this.minSalary = this.minSalary.bind(this);
-    this.maxSalary = this.maxSalary.bind(this);
-    this.skillChange = this.skillChange.bind(this);
-    this.addSkill = this.addSkill.bind(this);
-    this.empType = this.empType.bind(this);
-
-    // initial state
-    this.state = {
-      formVal: {
-        skillName: '',
-        company_name: null,
-        job_title: null,
-        location: null,
-        job_description: null,
-        desired_education: null,
-        min_salary: null,
-        max_salary: null,
-        employment_type: null,
-        visa_required: null,
-        skills: ['test']
-      }
-    };
   }
-
-//helper functions start
-
-jobTitle(e) {
-  this.setState({
-      formVal: {...this.state.formVal,
-        job_title: e.target.value
-      }
-    }, function () {});
-}
-
-companyName(e) {
-  this.setState({
-      formVal: {...this.state.formVal,
-        company_name: e.target.value
-      }
-    }, function () {});
-}
-
-locationChange(e) {
-  this.setState({
-    formVal: {...this.state.formVal,
-      location: e.target.value
-    }
-  }, function () {});
-}
-
-jobDesc(e) {
-  this.setState({
-    formVal: {...this.state.formVal,
-      job_description: e.target.value
-    }
-  }, function () {});
-}
-
-eduChange(e) {
-  this.setState({
-    formVal: {...this.state.formVal,
-      desired_education: e.target.value
-    }
-  }, function () {});
-}
-
-visaChange(e) {
-  let visaBool = e.target.value;
-  visaBool === '1' ? (visaBool = true) : (visaBool = false);
-  this.setState({
-    formVal: {...this.state.formVal,
-      visa_required: visaBool
-    }
-  }, function () {});
-}
-
-minSalary(e) {
-  this.setState({
-    formVal: {...this.state.formVal,
-      min_salary: e.target.value
-    }
-  }, function () {});
-}
-
-maxSalary(e) {
-  this.setState({
-    formVal: {...this.state.formVal,
-      max_salary: e.target.value
-    }
-  }, function () {});
-}
-
-skillChange(e) {
-  let skill = e.target.value;
-  // skills.push(e.target.value),
-  this.setState({
-    formVal: {...this.state.formVal,
-      skillName: skill
-    }
-  }, function () {});
-}
-
-addSkill() {
-  let skill = this.state.formVal.skillName;
-  let skills = this.state.formVal.skills.slice();
-  skills.push(skill);
-  this.setState({
-    formVal: {...this.state.formVal,
-      skills,
-      skillName: ''
-    }
-  }, function () {});
-}
-
-empType(e) {
-  let type = e.target.value;
-  this.setState({
-    formVal: {...this.state.formVal,
-      employment_type: type
-    }
-  }, function () {});
-}
-
-onFormSubmit(e) {
-  e.preventDefault();
-  this.props.dispatch(actions.postNewJob(this.state.formVal));
-  // .then(() => {
-  //   console.log("R o u t e r!");
-  //   this.context.router.push('/employer/jobs');
-  // });
-}
-
-
-//end helper funcs
-
 
   render() {
    const align = {
@@ -234,18 +92,17 @@ onFormSubmit(e) {
       'color': '#A94442'
     };
 
-
-    const { fields: { jobTitle, companyName, locationChange, jobDesc, skillChange, addSkill, eduChange, visaChange, minSalary, maxSalary, empType }, resetForm, handleSubmit, submitting, onFormSubmit } = this.props;
+    const { fields: { job_title, company_name, job_description, desired_education, min_salary, max_salary, location}, resetForm, handleSubmit, submitting } = this.props;
+    const that = this;
 
     return (
       <Container id="body">
-      <Grid>
+        <Grid>
         <Row style={align}>
           <Col sm={12} collapseRight>
           <PanelContainer noOverflow controlStyles='bg-green fg-white'>
             <Panel>
-              <Form onSubmit={handleSubmit(this.onFormSubmit)}>
-                <PanelHeader className='bg-green fg-white'>
+             <PanelHeader className='bg-green fg-white'>
                   <Grid>
                     <Row>
                       <Col xs={12}>
@@ -254,146 +111,73 @@ onFormSubmit(e) {
                     </Row>
                   </Grid>
                 </PanelHeader>
-                <PanelBody>
-                  <Grid>
-                    <Row>
-                      <Col xs={12}>
-                        <FormGroup>
-                      <div className={`form-group ${jobTitle.touched && jobTitle.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='password' control>Job Title</Label>
-                          <Input className='form-control' {...jobTitle} autoFocus type='text' placeholder='' />
-                          <div className='text-help' style={error}>{jobTitle.touched ? jobTitle.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <div className={`form-group ${companyName.touched && companyName.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='password' control>Company Name</Label>
-                          <Input className='form-control' {...companyName} autoFocus type='text' placeholder='' />
-                          <div className='text-help' style={error}>{companyName.touched ? companyName.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <div className={`form-group ${locationChange.touched && locationChange.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='password' control>Location</Label>
-                          <Input className='form-control' {...locationChange} autoFocus type='text' placeholder='City, State, Country' />
-                          <div className='text-help' style={error}>{locationChange.touched ? locationChange.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <div className={`form-group ${empType.touched && empType.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='dropdownselect'>Employment type</Label>
-                          <Select className='form-control' {...empType} id='dropdownselect' defaultValue='2'>
-                                              <option value='Part time'>Part time</option>
-                                              <option value='Full time'>Full Time</option>
-                                              <option value='Temporary'>Temporary</option>
-                                              <option value='Seasonal'>Seasonal</option>
-                                            </Select>
-                          <div className='text-help' style={error}>{empType.touched ? empType.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <div className={`form-group ${jobDesc.touched && jobDesc.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='textarea'>Job description:</Label>
-                          <Textarea id='textarea' rows='5' className='form-control' {...jobDesc} placeholder='Position details' />
-                          <div className='text-help' style={error}>{jobDesc.touched ? jobDesc.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
+              <form onSubmit={handleSubmit((data) =>{
+                that.props.dispatch(actions.postNewJob(data))
+              })}>
 
-                    <FormGroup>
-                      <div className={`form-group ${skillChange.touched && skillChange.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='textarea'>What skills are needed for this position?</Label>
-                          <InputGroup>
-                            <Input type='text' className='form-control' {...skillChange} id='searchbtnicon' placeholder='Enter skills here ...'
-                              onChange={this.skillChange} value={this.state.formVal.skillName} />
-                            <InputGroupAddon className='plain'>
-                              <Button onClick={this.addSkill}>
-                                  <span> add </span>
-                                  <Icon bundle='fontello' glyph='plus' />
-                                </Button>
-                            </InputGroupAddon>
-                          </InputGroup>
+              <div>
+                <label>Job Title</label>
+                <div>
+                  <input type="text" placeholder="Job Title" {...job_title}/>
+                </div>
+                {job_title.touched && job_title.error && <div>{job_title.error}</div>}
+              </div>
 
-                          <Row style={tagMargin}>
-                            {this.state.formVal.skills.map(function(item){ return <span>
-                                          <BLabel>{item}</BLabel>{' '}
-                                        </span>; })}
-                          </Row>
-                          <div className='text-help'>{skillChange.touched ? skillChange.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
+              <div>
+                <label>Job Description</label>
+                <div>
+                  <input type="text" placeholder="Job Description" {...job_description}/>
+                </div>
+                {job_description.touched && job_description.error && <div>{job_description.error}</div>}
+              </div>
 
+              <div>
+                <label>Desired Education</label>
+                <div>
+                  <input type="text" placeholder="Desired Education" {...company_name}/>
+                </div>
+                {desired_education.touched && desired_education.error && <div>{desired_education.error}</div>}
+              </div>
 
-                      <FormGroup>
-                        <InputGroup>
-                        <div className={`form-group ${minSalary.touched && minSalary.invalid ? 'has-danger' : ''}`}>
-                            <Label htmlFor='password' control>Salary</Label>
-                            <HelpBlock>Please use numbers only.</HelpBlock>
-                          <Input className='form-control' {...minSalary} autoFocus type='text' placeholder='minimum salary' />
-                            <div className='text-help' style={error}>{minSalary.touched ? minSalary.error : ''}
-                            </div>
-                          </div>
-                          </InputGroup>
-                          <InputGroup>
-                        <div className={`form-group ${maxSalary.touched && maxSalary.invalid ? 'has-danger' : ''}`}>
-                            <Input className='form-control' {...maxSalary} autoFocus type='text' placeholder='maximum salary' />
-                            <div className='text-help' style={error}>{maxSalary.touched ? maxSalary.error : ''}
-                            </div>
-                        </div>
-                      </InputGroup>
-                      </FormGroup>
-                      <FormGroup>
-                      <div className={`form-group ${eduChange.touched && eduChange.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='password' control>Desired Education</Label>
-                          <Input className='form-control' {...eduChange} autoFocus type='text' placeholder='Education level' />
-                          <div className='text-help' style={error}>{eduChange.touched ? eduChange.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
-                    <FormGroup>
-                      <div className={`form-group ${visaChange.touched && visaChange.invalid ? 'has-danger' : ''}`}>
-                          <Label htmlFor='dropdownselect'>Will your company sponsor visa's?</Label>
-                          <Select className='form-control' {...visaChange} id='dropdownselect' defaultValue='2'>
-                              <option value='1'>Yes</option>
-                              <option value='2'>No</option>
-                              </Select>
-                          <div className='text-help' style={error}>{visaChange.touched ? visaChange.error : ''}
-                          </div>
-                      </div>
-                    </FormGroup>
-                      </Col>
-                    </Row>
-                  </Grid>
-                </PanelBody>
-                <PanelFooter className='bg-darkgreen45 text-right'>
-                  <Grid>
-                    <Row>
-                      <Col xs={12}>
-                      <br/>
-                      <div>
-                        <Button type="button" disabled={submitting} onClick={resetForm} outlined bsStyle='lightgreen' style={float}>Clear Values</Button>{' '}
-                        <Link to='/employer'>
-                        <Button outlined bsStyle='lightgreen'>cancel</Button>
-                        </Link>{' '}
-                        <Button type="submit" outlined bsStyle='lightgreen'>Submit</Button>
-                      </div>
-                      <br/>
-                      </Col>
-                    </Row>
-                  </Grid>
-                </PanelFooter>
-              </Form>
+              <div>
+                <label>Minimum Salary</label>
+                <div>
+                  <input type="text" placeholder="Minimum Salary" {...min_salary}/>
+                </div>
+                {min_salary.touched && min_salary.error && <div>{min_salary.error}</div>}
+              </div>
+
+              <div>
+                <label>Maximum Salary</label>
+                <div>
+                  <input type="text" placeholder="Maximum Salary" {...min_salary}/>
+                </div>
+                {min_salary.touched && min_salary.error && <div>{min_salary.error}</div>}
+              </div>
+
+              <div>
+                <label>Location</label>
+                <div>
+                  <input type="text" placeholder="Location" {...location}/>
+                </div>
+                {location.touched && location.error && <div>{location.error}</div>}
+              </div>
+
+              <div>
+              <button type="submit" disabled={submitting}>
+                {submitting ? <i/> : <i/>} Submit
+              </button>
+              <button type="button" disabled={submitting} onClick={resetForm}>
+                Clear Values
+              </button>
+              </div>
+              </form>
             </Panel>
           </PanelContainer>
           </Col>
         </Row>
-      </Grid>
-    </Container>
+        </Grid>
+      </Container>
     );
   }
 }
