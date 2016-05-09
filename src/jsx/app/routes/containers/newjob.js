@@ -111,67 +111,67 @@ export default class NewJob extends React.Component {
                     </Row>
                   </Grid>
                 </PanelHeader>
-              <form onSubmit={handleSubmit((data) =>{
-                that.props.dispatch(actions.postNewJob(data))
-              })}>
+                  <Form onSubmit={handleSubmit((data) =>{
+                    that.props.dispatch(actions.postNewJob(data))
+                  })}>
+                <PanelBody>
+                <Grid>
+                    <Row>
+                      <Col xs={12}>
 
-              <div>
-                <label>Job Title</label>
-                <div>
-                  <input type="text" placeholder="Job Title" {...job_title}/>
-                </div>
-                {job_title.touched && job_title.error && <div>{job_title.error}</div>}
-              </div>
+                  <div>
+                    <label>Job Title</label>
+                    <div>
+                      <input type="text" placeholder="Job Title" {...job_title}/>
+                    </div>
+                    {job_title.touched && job_title.error && <div>{job_title.error}</div>}
+                  </div>
 
-              <div>
-                <label>Job Description</label>
-                <div>
-                  <input type="text" placeholder="Job Description" {...job_description}/>
-                </div>
-                {job_description.touched && job_description.error && <div>{job_description.error}</div>}
-              </div>
+                  <div>
+                    <label>Job Description</label>
+                    <div>
+                      <input type="text" placeholder="Job Description" {...job_description}/>
+                    </div>
+                    {job_description.touched && job_description.error && <div>{job_description.error}</div>}
+                  </div>
 
-              <div>
-                <label>Desired Education</label>
-                <div>
-                  <input type="text" placeholder="Desired Education" {...company_name}/>
-                </div>
-                {desired_education.touched && desired_education.error && <div>{desired_education.error}</div>}
-              </div>
+                  <div>
+                    <label>Desired Education</label>
+                    <div>
+                      <input type="text" placeholder="Desired Education" {...company_name}/>
+                    </div>
+                    {desired_education.touched && desired_education.error && <div>{desired_education.error}</div>}
+                  </div>
 
-              <div>
-                <label>Minimum Salary</label>
-                <div>
-                  <input type="text" placeholder="Minimum Salary" {...min_salary}/>
-                </div>
-                {min_salary.touched && min_salary.error && <div>{min_salary.error}</div>}
-              </div>
-
-              <div>
-                <label>Maximum Salary</label>
-                <div>
-                  <input type="text" placeholder="Maximum Salary" {...min_salary}/>
-                </div>
-                {min_salary.touched && min_salary.error && <div>{min_salary.error}</div>}
-              </div>
-
-              <div>
-                <label>Location</label>
-                <div>
-                  <input type="text" placeholder="Location" {...location}/>
-                </div>
-                {location.touched && location.error && <div>{location.error}</div>}
-              </div>
-
-              <div>
-              <button type="submit" disabled={submitting}>
-                {submitting ? <i/> : <i/>} Submit
-              </button>
-              <button type="button" disabled={submitting} onClick={resetForm}>
-                Clear Values
-              </button>
-              </div>
-              </form>
+                  <div>
+                    <label>Minimum Salary</label>
+                    <div>
+                      <input type="text" placeholder="Minimum Salary" {...min_salary}/>
+                    </div>
+                    {min_salary.touched && min_salary.error && <div>{min_salary.error}</div>}
+                  </div>
+                  </Col>
+                </Row>
+              </Grid>
+              </PanelBody>
+              <PanelFooter className='bg-darkgreen45 text-right'>
+                  <Grid>
+                    <Row>
+                      <Col xs={12}>
+                      <br/>
+                      <div>
+                        <Button type="button" disabled={submitting} onClick={resetForm} outlined bsStyle='lightgreen' style={float}>Clear Values</Button>{' '}
+                        <Link to='/employer'>
+                        <Button outlined bsStyle='lightgreen'>cancel</Button>
+                        </Link>{' '}
+                        <Button type="submit" disabled={submitting} outlined bsStyle='lightgreen'>Submit</Button>
+                      </div>
+                      <br/>
+                      </Col>
+                    </Row>
+                  </Grid>
+                </PanelFooter>
+                </Form>
             </Panel>
           </PanelContainer>
           </Col>
