@@ -4,7 +4,8 @@ import {  FETCH_JOBS,
 				  GET_EMPLOYER_CONSIDERED,
 				  GET_EMPLOYER_INTERVIEWS,
 				  GET_EMPLOYER_OFFERS,
-				  FETCH_USER							 } from './actionTypes';
+				  FETCH_USER,
+				  FETCH_NOTIFS } from './actionTypes';
 
 function fetchApplicantRequests() {
 	return dispatch => axios.get('/user/verifyuser')
@@ -31,8 +32,13 @@ function fetchApplicantRequests() {
 	.then(payload => {
 		dispatch({ type: GET_EMPLOYER_OFFERS, payload })
 		return axios.get('/user/applicant/currentuserapps/offers')
+	})	
+	.then(payload => {
+		dispatch({ type: FETCH_NOTIFS, payload })
+		return axios.get('/user/applicant/notifications')
 	})
 }
+
 
 module.exports = {
 	fetchApplicantRequests: fetchApplicantRequests

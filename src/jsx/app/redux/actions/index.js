@@ -12,7 +12,8 @@ import employerinterviews from './employer_interviews_actions';
 import employeroffers from './employer_offers_actions';
 import employerposts from './employer_posts_actions';
 import employerapp from './employer_actions';
-// import employersidebar from './employer_sidebar_actions';
+import employersidebar from './employer_sidebar_actions';
+import notifications from './notifications'
 
 
 module.exports = {
@@ -29,5 +30,6 @@ module.exports = {
   ...employeroffers,
   ...employerposts,
   ...employerapp,
-  // ...employersidebar
+  ...employersidebar,
+  ...notifications
 };

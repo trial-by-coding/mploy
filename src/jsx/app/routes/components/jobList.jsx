@@ -22,6 +22,7 @@ export default class JobList extends React.Component {
     let list = this.props.data;
     let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
     // console.log("AppList data", this.props);
+
     return (
       <div className='shortcard'>
         <ul>

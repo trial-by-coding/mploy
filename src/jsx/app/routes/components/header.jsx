@@ -1,6 +1,7 @@
 import { History, Link, State, Navigation } from 'react-router';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import Notifications from './notifications.jsx'
 import { SidebarBtn } from 'global/jsx/sidebar_component';
 
 export default class Brand extends React.Component {
@@ -14,6 +15,7 @@ export default class Brand extends React.Component {
     );
   }
 }
+
 
 var DirectNavItem = React.createClass({
   mixins: [State, Navigation],
@@ -40,11 +42,18 @@ var DirectNavItem = React.createClass({
 
 
 
-var HeaderNavigation = React.createClass({
-  mixins: [State, Navigation],
-  logout(e) {
+
+class  HeaderNavigation extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.logout = this.logout.bind(this)
+  }
+
+
+  logout() {
       window.location = '/auth/logout';
-  },
+  }
 
   render() {
     var props = {
@@ -52,8 +61,14 @@ var HeaderNavigation = React.createClass({
       className: classNames('pull-right', this.props.className)
     };
 
+console.log('fknnnnn notifs:', this.props.notifications)
+
     return (
-      <NavContent {...props}>
+
+      <NavContent className='pull-right' {...this.props}>
+        <Nav >
+         <Notifications xs={5} notifications={this.props.notifications} dispatch={this.props.dispatch} />
+        </Nav>
         <Nav>
           <NavItem className='logout' href='#' onClick={() => this.logout()}>
             <Icon bundle='fontello' glyph='off-1' />
@@ -62,10 +77,12 @@ var HeaderNavigation = React.createClass({
       </NavContent>
     );
   }
-});
+};
 
 export default class Header extends React.Component {
   render() {
+
+
     return (
       <Grid id='navbar' {...this.props}>
         <Row>
@@ -80,8 +97,7 @@ export default class Header extends React.Component {
                     <Brand />
                   </Col>
                   <Col xs={3} sm={8}>
-                    <HeaderNavigation pressed={this.props.pressed} />
-                    {/*<HeaderNavigation />*/}
+                    <HeaderNavigation pressed={this.props.pressed} notifications={this.props.notifications.notifs} dispatch={this.props.dispatch} />
                   </Col>
                 </Row>
               </Container>

@@ -14,6 +14,8 @@ import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/components/calendar';
 import Charts from 'routes/containers/chart_stats';
 import NewJob from 'routes/containers/newjob';
+import { connect } from 'react-redux'
+
 
 
 @SidebarMixin
@@ -39,7 +41,7 @@ export default class EmployerApp extends React.Component {
 	};
 
 	render() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
 		var classes = classNames({
 			'container-open': this.props.open
 
@@ -51,7 +53,7 @@ export default class EmployerApp extends React.Component {
 		return (
 			<Container id='container' className={classes}>
 				<EmployerSidebar />
-				<Header />
+				<Header dispatch={ dispatch }/>
         {this.props.children}
 				<Footer />
 			</Container>
