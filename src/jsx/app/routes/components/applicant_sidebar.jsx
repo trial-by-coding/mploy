@@ -80,17 +80,8 @@ export default class extends React.Component {
             </Row>
           </Grid>
         </div>
-        <SidebarControls>
-          <SidebarControlBtn bundle='fontello' glyph='home' sidebar={0} />
-          <SidebarControlBtn bundle='fontello' glyph='user-1' sidebar={1} />
-        </SidebarControls>
         <div id='sidebar-container'>
-          <Sidebar sidebar={0}>
             <ApplicantSidebar />
-          </Sidebar>
-          <Sidebar sidebar={1}>
-            <ApplicantSidebar />
-          </Sidebar>
         </div>
       </div>
     );
