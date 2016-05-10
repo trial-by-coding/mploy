@@ -14,6 +14,7 @@ export default class empdashCard extends React.Component {
     let item = this.props.item;
     let reject = this.props.reject;
     let accept = this.props.accept;
+    let jobList = this.props.jobList;
 
     return (
       <Modal>
@@ -21,8 +22,13 @@ export default class empdashCard extends React.Component {
            <AppCard app={this.props.item}/>
         </ModalBody>
         <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={() => reject(item.appID, status, index)} onTouchEnd={ModalManager.remove}>Reject</Button>
-          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)} onTouchEnd={ModalManager.remove} >Move Forward </Button>
+          <Button outlined bsStyle='danger' onClick={() => {
+                  reject(item.appID, item, status, index)
+                  ModalManager.create.bind(jobList[index], this.getLargeModal())}
+                }
+                  onTouchEnd={ModalManager.remove}>Reject</Button>
+          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
+
         </ModalFooter>
       </Modal>
     );
