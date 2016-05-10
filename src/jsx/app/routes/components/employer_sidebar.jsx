@@ -109,8 +109,6 @@ export default class extends React.Component {
         <div id='sidebar-container'>
             <EmployerSidebar  posts={this.props.posts}
                               select={this.selectJobPost}/>
-          </Sidebar>
-
         </div>
       </div>
     );
