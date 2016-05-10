@@ -37,6 +37,12 @@ function jobList(state = initialState, action) {
       return Object.assign({}, state, {
         appFormPop: appForm
       });
+    case ADD_JOB:
+      console.log('state: ', state)
+      console.log('action: ', action)
+      return Object.assign({}, state, {
+        items: [...state.items.slice()].push(action.job)
+      });
 
     default:
       return state;

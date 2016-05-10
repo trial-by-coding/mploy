@@ -28,9 +28,17 @@ render() {
         const statID = this.props.charts.statID;
         const user_id = this.props.charts.user_id;
 
- if(!this.props.charts.total_apps) {
-   return ( <div>Loading...</div>);
+ if(this.props.charts.total_apps === undefined) {
+   return ( <div> Loading... </div>);
  }
+
+ if (this.props.charts.total_apps === 0){
+    return (
+      <Container id='body'>
+        <h2 style={{textAlign: 'center'}}>Check back after you've submitted an application to see your stats.</h2>
+      </Container>
+      );
+  }
 
   return (
     <Container id='body' className='social'>

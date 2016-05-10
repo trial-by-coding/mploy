@@ -28,7 +28,7 @@ export default class Body extends React.Component {
 
       (() => {
         var pie = Rubix.Pie('#resume-chart', {
-          title: 'Status of Current Applications',
+          title: 'Application Progress',
           height: 300
         });
         pie.addData([
@@ -84,13 +84,6 @@ export default class Body extends React.Component {
   }
 
   render() {
-    if (this.props.total_apps === 0){
-      return (
-        <Container id='body'>
-          <h4>Check back after you've submitted an application to see your stats.</h4>
-        </Container>
-        );
-    }
 
     return (
       <Container id='body'>

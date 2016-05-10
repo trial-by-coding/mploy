@@ -133,7 +133,9 @@ export default class NewJob extends React.Component {
                     if (data.visa_required === undefined){
                       data.visa_required = false
                     }
-                    that.props.dispatch(actions.postNewJob(data))
+
+                    that.props.dispatch(actions.addJobPost(data))
+
                   })}>
                 <PanelBody>
                 <Grid>

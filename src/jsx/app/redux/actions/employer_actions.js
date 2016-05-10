@@ -5,7 +5,8 @@ import {  GET_JOB_POSTS,
 				  GET_EMPLOYER_CONSIDERED,
 				  GET_EMPLOYER_INTERVIEWS,
 				  GET_EMPLOYER_OFFERS,
-				  FETCH_USER							 } from './actionTypes';
+				  FETCH_USER,
+				  ADD_JOB						 } from './actionTypes';
 
 let jobID = undefined;
 function fetchEmployerRequests() {
@@ -62,8 +63,18 @@ function selectJob(jobID) {
 	})
 };
 
+function postNewJob(job){
+  return function(dispatch){
+    return axios.post('user/employer/submitjob',job)
+      .then(function(payload){
+      	console.log('job in postNewJob: ', job)
+        dispatch({ type: ADD_JOB, job});
+      });
+  };
+};
 
 module.exports = {
+	postNewJob:postNewJob,
 	fetchEmployerRequests: fetchEmployerRequests,
 	selectJob: selectJob
 };

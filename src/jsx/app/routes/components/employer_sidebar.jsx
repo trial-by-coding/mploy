@@ -19,7 +19,7 @@ class EmployerSidebar extends React.Component {
             <Row>
               <Col xs={12}>
                 <div className='sidebar-header'>PAGES</div>
-                <div className='sidebar-nav-container'>
+                <div className='sidebar-nav-container' overflowY='scroll'>
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
                     <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
@@ -44,7 +44,7 @@ class EmployerSidebar extends React.Component {
             <Row>
               <Col xs={12}>
                 <div className='sidebar-header'>PAGES</div>
-                <div className='sidebar-nav-container'>
+                <div className='sidebar-nav-container' overflowY='scroll'>
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
                     <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
