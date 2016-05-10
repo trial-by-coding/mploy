@@ -24,7 +24,7 @@ Notifications.getNotifications = function(userID) {
   return db('notifications')
   .join('applications', 'notifications.app_id', '=', 'applications.appID') 
   .join('job_posts', 'applications.job_id', '=', 'job_posts.jobID') 
-  .select('appID', 'company_name', 'job_title', 'new_status', 'notifications.user_Id', 'notifications.created_at')
+  .select('appID', 'notifications.notifyID', 'company_name', 'job_title', 'new_status', 'notifications.user_Id', 'notifications.created_at')
   .where({user_Id: userID})
   .then(function(records) {
     return records

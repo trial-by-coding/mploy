@@ -143,7 +143,7 @@ module.exports = function(router) {
     var rq = req.query;
     if (rq && rq.notifyID) {
       console.log("request for notifyID = ",rq.notifyID);
-      Notifications.deleteApp(rq.notifyID) 
+      Notifications.deleteNotification(rq.notifyID) 
       .then(function(data){
         res.status(200).send(JSON.stringify(data));
         console.log("Successfully deleted notificaiton: ", data);

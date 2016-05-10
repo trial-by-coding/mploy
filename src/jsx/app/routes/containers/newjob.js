@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { Field, FieldArray, reduxForm, addArrayValue } from 'redux-form'
 import actions from 'redux/actions';
 import { Link } from 'react-router';
 import { PropTypes } from 'react';
 
-export const fields = ['job_title', 'company_name', 'job_description', 'desired_education', 'min_salary', 'max_salary', 'location'];
+export const fields = ['job_title', 'company_name', 'job_description', 'desired_education', 'min_salary', 'max_salary', 'location', 'employment_type', 'visa_required', 'skills[]'];
 
 const validate = values => {
   const errors = {};
@@ -26,7 +26,7 @@ const validate = values => {
   // if(!values.job_description) {
   //   errors.job_description = 'Enter a job description';
   // }
-  // if(!values.skillChange) {
+  // if(!values.skills) {
   //   errors.skillChange = 'Enter the required skills';
   // }
   // if(!values.addSkill) {
@@ -54,24 +54,18 @@ const validate = values => {
 @reduxForm({
   form: 'NewJobForm',
   fields,
+  addValue: addArrayValue,
   validate
 })
 @connect(state => state)
 export default class NewJob extends React.Component {
   static propTypes = {
+    addValue: PropTypes.func.isRequired,
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
   };
-
-  // static contextTypes = {
-  //   router: PropTypes.object
-  // };
-
-  constructor(props){
-    super(props);
-  }
 
   render() {
    const align = {
@@ -92,7 +86,14 @@ export default class NewJob extends React.Component {
       'color': '#A94442'
     };
 
-    const { fields: { job_title, company_name, job_description, desired_education, min_salary, max_salary, location}, resetForm, handleSubmit, submitting } = this.props;
+    const {
+      fields: { job_title, company_name, job_description, desired_education, min_salary, max_salary, location, employment_type, visa_required, skills},
+               resetForm, 
+               handleSubmit, 
+               submitting,
+               addValue
+    } = this.props;
+
     const that = this;
 
     return (
@@ -119,37 +120,94 @@ export default class NewJob extends React.Component {
                     <Row>
                       <Col xs={12}>
 
-                  <div>
-                    <label>Job Title</label>
-                    <div>
-                      <input type="text" placeholder="Job Title" {...job_title}/>
+                  <FormGroup>
+                    <div className={`form-group ${job_title.touched && job_title.invalid ? 'has-danger' : ''}`}>
+                        <Label htmlFor='password' control>Job Title</Label>
+                        <Input className='form-control' {...job_title} type='text' placeholder='Job Title' />
+                        <div className='text-help' style={error}>{job_title.touched ? job_title.error : ''}
+                        </div>
                     </div>
-                    {job_title.touched && job_title.error && <div>{job_title.error}</div>}
-                  </div>
+                  </FormGroup>
 
-                  <div>
-                    <label>Job Description</label>
-                    <div>
-                      <input type="text" placeholder="Job Description" {...job_description}/>
-                    </div>
-                    {job_description.touched && job_description.error && <div>{job_description.error}</div>}
-                  </div>
+                    <FormGroup>
+                      <div className={`form-group ${company_name.touched && company_name.invalid ? 'has-danger' : ''}`}>
+                          <Label htmlFor='password' control>Company Name</Label>
+                          <Input className='form-control' {...company_name} type='text' placeholder='Company Name' />
+                          <div className='text-help' style={error}>{company_name.touched ? company_name.error : ''}
+                          </div>
+                      </div>
+                    </FormGroup>
 
-                  <div>
-                    <label>Desired Education</label>
-                    <div>
-                      <input type="text" placeholder="Desired Education" {...company_name}/>
-                    </div>
-                    {desired_education.touched && desired_education.error && <div>{desired_education.error}</div>}
-                  </div>
+                  <FormGroup>
+                      <div className={`form-group ${job_description.touched && job_description.invalid ? 'has-danger' : ''}`}>
+                          <Label htmlFor='textarea'>Job description:</Label>
+                          <Textarea id='textarea' rows='5' className='form-control' {...job_description} placeholder='Position details' />
+                          <div className='text-help' style={error}>{job_description.touched ? job_description.error : ''}
+                          </div>
+                      </div>
+                    </FormGroup>
 
-                  <div>
-                    <label>Minimum Salary</label>
-                    <div>
-                      <input type="text" placeholder="Minimum Salary" {...min_salary}/>
+                  <FormGroup>
+                    <InputGroup>
+                    <div className={`form-group ${min_salary.touched && min_salary.invalid ? 'has-danger' : ''}`}>
+                        <Label htmlFor='password' control>Salary</Label>
+                      <Input className='form-control' {...min_salary} type='text' placeholder='Minimum Salary' />
+                        <div className='text-help' style={error}>{min_salary.touched ? min_salary.error : ''}
+                        </div>
+                      </div>
+                      </InputGroup>
+                      <InputGroup>
+                    <div className={`form-group ${max_salary.touched && max_salary.invalid ? 'has-danger' : ''}`}>
+                        <Input className='form-control' {...max_salary} type='text' placeholder='Maximum Salary' />
+                        <div className='text-help' style={error}>{max_salary.touched ? max_salary.error : ''}
+                        </div>
                     </div>
-                    {min_salary.touched && min_salary.error && <div>{min_salary.error}</div>}
+                  </InputGroup>
+                </FormGroup>
+
+                <FormGroup>
+                  <div className={`form-group ${desired_education.touched && desired_education.invalid ? 'has-danger' : ''}`}>
+                      <Label htmlFor='password' control>Desired Education</Label>
+                      <Input className='form-control' {...desired_education} type='text' placeholder='Education level' />
+                      <div className='text-help' style={error}>{desired_education.touched ? desired_education.error : ''}
+                      </div>
                   </div>
+                </FormGroup>
+
+                <FormGroup>
+                  <div className={`form-group ${location.touched && location.invalid ? 'has-danger' : ''}`}>
+                      <Label htmlFor='password' control>Location</Label>
+                      <Input className='form-control' {...location} type='text' placeholder='City, State' />
+                      <div className='text-help' style={error}>{location.touched ? location.error : ''}
+                      </div>
+                  </div>
+                </FormGroup>
+
+                <FormGroup>
+                  <div className={`form-group ${employment_type.touched && employment_type.invalid ? 'has-danger' : ''}`}>
+                      <Label htmlFor='dropdownselect'>Employment type</Label>
+                        <Select className='form-control' {...employment_type} id='dropdownselect' defaultValue='2'>
+                          <option value='Part time'>Part time</option>
+                          <option value='Full time'>Full Time</option>
+                          <option value='Temporary'>Temporary</option>
+                          <option value='Seasonal'>Seasonal</option>
+                        </Select>
+                      <div className='text-help' style={error}>{employment_type.touched ? employment_type.error : ''}
+                      </div>
+                  </div>
+                </FormGroup>
+
+                <div>
+                  <ul>
+                    {skills.map((skill, index) => 
+                    <li key={index}>
+                      <label>Skill #{index + 1}</label>
+                      <input type="text" {...skill}/>
+                    </li>)}
+                  </ul>
+                  <button onClick={() => skills.addField()}>Add Skill</button>
+                </div>
+
                   </Col>
                 </Row>
               </Grid>
