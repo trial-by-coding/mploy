@@ -8,10 +8,14 @@ const initialState = {
 function notifications(state = {}, action) {
   switch (action.type) {
     case FETCH_NOTIFS:
-      console.log('FETCH_NOTIFS action:', action.payload.data)
       const data = action.payload.data;
       return Object.assign({}, state, {
         notifs: data
+      });
+    case DELETE_NOTIFS:
+      const newNotifs = action.payload.data
+      return Object.assign({}, state, {
+        notifs: newNotifs
       });
     default:
       return state

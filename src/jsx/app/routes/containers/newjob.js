@@ -52,6 +52,7 @@ const validate = values => {
   fields,
   validate
 })
+
 @connect(state => state)
 export default class NewJob extends React.Component {
   static propTypes = {

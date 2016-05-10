@@ -12,12 +12,15 @@ function getNotifications(){
     .catch(resp => console.log("Error fetching notifications", resp));
 }
 
-function deleteNotifications(item) {
-  console.log('advance action creator');
-  return {type: DELETE_NOTIFS, item};
+function deleteNotification(notifyID) {
+  return dispatch => axios.delete('/user/applicant/clearnotification?notifyID=' + notifyID)
+      .then(
+        payload => dispatch ({ type: DELETE_NOTIFS, payload})
+      )
+      .catch(resp => console.log("Error fetching notifications", resp));
 }
 
 module.exports = {
   getNotifications: getNotifications,
-  deleteNotifications: deleteNotifications,
+  deleteNotification: deleteNotification,
 }

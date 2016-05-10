@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import axios from 'axios';
 import SidebarMixin from 'global/jsx/sidebar_component';
 import actions from 'redux/actions';
-import Header from 'routes/components/header';
+import Header from 'routes/components/emp_header';
 import EmployerSidebar from 'routes/components/employer_sidebar';
 import Footer from 'routes/components/footer';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';

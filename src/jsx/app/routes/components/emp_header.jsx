@@ -1,9 +1,7 @@
 import { History, Link, State, Navigation } from 'react-router';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import Notifications from './notifications.jsx'
 import { SidebarBtn } from 'global/jsx/sidebar_component';
-import actions from 'redux/actions';
 
 export default class Brand extends React.Component {
   render() {
@@ -61,55 +59,23 @@ class  HeaderNavigation extends React.Component {
       ...this.props,
       className: classNames('pull-right', this.props.className)
     };
-    const bullHorn = {
-    position: `absolute`,
-    right: `90px`
-    }
 
-    const logoutBtn = {
-    position: `absolute`,
-    right: `0`,
-    'margin-right':'0px'
-    }
-
-    const rowMargins = {
-      'marginRight': '-10px'
-    }
 
     return (
 
       <NavContent className='pull-right' {...this.props}>
-      <Row style={rowMargins}>
-        <Nav xs={6} style={bullHorn} >
-         <Notifications xs={5} notifications={this.props.notifications} 
-                               dispatch={this.props.dispatch} 
-                               xNotif={this.props.xNotif} />
-        </Nav>
-        <Nav xs={6} style={logoutBtn}>
+  
+        <Nav>
           <NavItem className='logout' href='#' onClick={() => this.logout()}>
             <Icon bundle='fontello' glyph='off-1' />
           </NavItem>
         </Nav>
-      </Row>
       </NavContent>
     );
   }
 };
 
 export default class Header extends React.Component {
-  constructor(props){
-    super(props)
-    this.removeNotif = this.removeNotif.bind(this)
-  }
-
-
-  removeNotif(e,notifyID){
-    e.preventDefault()
-    this.props.dispatch(actions.deleteNotification(notifyID))
-    console.log('remove notif fired for:',notifyID)
-  }
-
-
   render() {
 
 
@@ -120,17 +86,14 @@ export default class Header extends React.Component {
             <NavBar fixedTop id='rubix-nav-header'>
               <Container fluid>
                 <Row>
-                  <Col xs={2} visible='xs'>
+                  <Col xs={3} visible='xs'>
                     <SidebarBtn />
                   </Col>
-                  <Col xs={6} sm={10}>
+                  <Col xs={6} sm={4}>
                     <Brand />
                   </Col>
-                  <Col xs={4} sm={2}>
-                    <HeaderNavigation pressed={this.props.pressed} 
-                                      notifications={this.props.notifications.notifs} 
-                                      dispatch={this.props.dispatch} 
-                                      xNotif={this.removeNotif} />
+                  <Col xs={3} sm={8}>
+                    <HeaderNavigation pressed={this.props.pressed}  dispatch={this.props.dispatch} />
                   </Col>
                 </Row>
               </Container>
