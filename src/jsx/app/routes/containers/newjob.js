@@ -13,12 +13,12 @@ const validate = values => {
     errors.job_title = 'Enter a job title';
   } 
   else if (values.job_title.length < 2) {
-    errors.job_title = 'Must be longer than on letter!';
+    errors.job_title = 'Must be longer than one letter!';
   }
     if(!values.company_name) {
     errors.company_name = 'Enter a company name';
   } else if (values.company_name.length < 2) {
-    errors.company_name = 'Must be longer than on letter!';
+    errors.company_name = 'Must be longer than one letter!';
   }
   if(!values.location) {
     errors.location = 'Enter a location';
@@ -31,10 +31,14 @@ const validate = values => {
   }
   if(!values.min_salary) {
     errors.min_salary = 'Enter minimum salary';
+  } else if (isNaN(Number(values.min_salary))) {
+    errors.min_salary = 'Must be a number'
   }
 
   if(!values.max_salary) {
     errors.max_salary = 'Enter maximum salary';
+  } else if (isNaN(Number(values.max_salary))) {
+    errors.max_salary = 'Must be a number'
   }
 
   if(!values.desired_education) {
@@ -43,6 +47,7 @@ const validate = values => {
   if(!values.visa_required) {
     errors.visa_required = 'Enter visa requirement';
   }
+
   return errors;
 };
 
@@ -215,7 +220,10 @@ export default class NewJob extends React.Component {
                         <input type="text" {...skill}/>
                       </li>)}
                     </ul>
-                    <button onClick={() => skills.addField()}>Add Skill</button>
+                    <button onClick={function(event) {
+                      event.preventDefault()
+                      skills.addField()
+                    }}>Add Skill</button>
                   </div>
                 </FormGroup>
 
