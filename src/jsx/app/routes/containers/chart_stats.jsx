@@ -28,7 +28,7 @@ render() {
         const statID = this.props.charts.statID;
         const user_id = this.props.charts.user_id;
 
- if(!this.props.charts) {
+ if(!this.props.charts.total_apps) {
    return ( <div>Loading...</div>);
  }
 
