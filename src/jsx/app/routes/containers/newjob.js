@@ -27,7 +27,7 @@ const validate = values => {
     errors.job_description = 'Enter a job description';
   }
   if(!values.employment_type) {
-    errors.employment_type = 'Enter employment_type';
+    errors.employment_type = 'Enter employment type';
   }
   if(!values.min_salary) {
     errors.min_salary = 'Enter minimum salary';
@@ -46,6 +46,23 @@ const validate = values => {
   }
   if(!values.visa_required) {
     errors.visa_required = 'Enter visa requirement';
+  }
+
+  if (!values.skills || !values.skills.length) {
+    errors.skills = { _error: 'At least one skill must be entered' }
+  } else {
+    const skillsArrayErrors = []
+    values.skills.forEach((skill, skillIndex) => {
+      const skillErrors = {}
+      if (!skill) {
+        skillErrors[skillIndex]= 'Required'
+        skillsArrayErrors[skillIndex] = skillErrors
+      }
+      return skillErrors
+    })
+    if(skillsArrayErrors.length) {
+      errors.skills = skillsArrayErrors
+    }
   }
 
   return errors;
@@ -211,20 +228,30 @@ export default class NewJob extends React.Component {
                   </div>
                 </FormGroup>
                 <Row>
+
                   <FormGroup>
-                    <div>
                       <Col md={12}>
                         <Button onClick={function(event) {
                             event.preventDefault()
                             skills.addField()
-                          }}>Add Skill</Button>
+                          }}>Add a Skill</Button>
                       </Col>
                       <div>
+                    <div className={`form-group ${skills.touched && skills.invalid ? 'has-danger' : ''}`}>
                         {skills.map((skill, index) => 
-                        <Col md={4}> <div key={index}>
+                        <Col md={6}> <div key={index}>
                           <label>Skill #{index + 1}:</label>
-                          <input type="text" {...skill}/>
-                        </div> </Col>)}
+                          <input type="text" placeholder="Enter a desired skill"{...skill}/>
+                          <button
+                            type="button"
+                            title="Remove Skill"
+                            onClick={() => skills.removeField(index)}>
+                            x
+                          </button>
+                        </div> 
+                          <div className='text-help' style={error}>{skills.touched ? skills.error : ''}
+                          </div>
+                        </Col>)}
                       </div>
                     </div>
                   </FormGroup>
