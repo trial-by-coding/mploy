@@ -210,23 +210,25 @@ export default class NewJob extends React.Component {
                       </div>
                   </div>
                 </FormGroup>
-
-                <FormGroup>
-                  <div>
-                    <ul>
-                      {skills.map((skill, index) => 
-                      <li key={index}>
-                        <label>Skill #{index + 1}:</label>
-                        <input type="text" {...skill}/>
-                      </li>)}
-                    </ul>
-                    <button onClick={function(event) {
-                      event.preventDefault()
-                      skills.addField()
-                    }}>Add Skill</button>
-                  </div>
-                </FormGroup>
-
+                <Row>
+                  <FormGroup>
+                    <div>
+                      <Col md={12}>
+                        <Button onClick={function(event) {
+                            event.preventDefault()
+                            skills.addField()
+                          }}>Add Skill</Button>
+                      </Col>
+                      <div>
+                        {skills.map((skill, index) => 
+                        <Col md={4}> <div key={index}>
+                          <label>Skill #{index + 1}:</label>
+                          <input type="text" {...skill}/>
+                        </div> </Col>)}
+                      </div>
+                    </div>
+                  </FormGroup>
+                </Row>
                   </Col>
                 </Row>
               </Grid>
