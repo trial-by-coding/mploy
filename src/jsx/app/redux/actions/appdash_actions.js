@@ -34,9 +34,14 @@ function getApplicantOffers(jobID){
 		);
 }
 
+function rescindApp(appID) {
+	return dispatch => axios.delete('/user/applicant/rescindapp?appID='+appID)
+}
+
 module.exports = {
 	getApplicantUnconsidered: getApplicantUnconsidered,
 	getApplicantConsidered: getApplicantConsidered,
 	getApplicantInterviews: getApplicantInterviews,
-	getApplicantOffers: getApplicantOffers
+	getApplicantOffers: getApplicantOffers,
+	rescindApp: rescindApp
 };

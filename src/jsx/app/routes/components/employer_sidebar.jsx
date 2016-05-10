@@ -51,7 +51,7 @@ class EmployerSidebar extends React.Component {
                       <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>{posts.length}</BLabel></span>}>
                         <SidebarNav>
                           {
-                            posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} href='/employer' />)
+                            posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
                           }
                           <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
                         </SidebarNav>
@@ -77,8 +77,10 @@ export default class extends React.Component {
     this.props.dispatch(actions.fetchUser());
   }
 
-  setJobPost = (jobID) => {
-    this.props.dispatch(actions.setJobPost(jobID));
+  selectJobPost = (jobID) => {
+    console.log('job post selected', this);
+    this.props.dispatch(actions.selectJob(jobID));
+    
   };
 
   render() {
@@ -106,7 +108,9 @@ export default class extends React.Component {
         </div>
         <div id='sidebar-container'>
             <EmployerSidebar  posts={this.props.posts}
-                              setJobPost={this.setJobPost}/>
+                              select={this.selectJobPost}/>
+          </Sidebar>
+
         </div>
       </div>
     );

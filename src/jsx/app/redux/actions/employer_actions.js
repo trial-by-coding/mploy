@@ -13,8 +13,8 @@ function fetchEmployerRequests() {
 		.then(payload => {
 			jobID = payload.data[0].jobID;
 			// console.log('payload', payload);
-			dispatch({ type: GET_JOB_POSTS, payload });
 			dispatch({ type: SET_JOB_POST, jobID});
+			dispatch({ type: GET_JOB_POSTS, payload });
 			return axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=unconsidered');
 		})
 		.then(payload => {
@@ -40,6 +40,30 @@ function fetchEmployerRequests() {
 		});
 }
 
+function selectJob(jobID) {
+	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=unconsidered')
+	.then(payload => {
+		dispatch({ type: SET_JOB_POST, jobID });
+		dispatch({ type: GET_EMPLOYER_UNCONSIDERED, payload});
+		return axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=considered');
+	})
+	.then(payload => {
+		// console.log('considered payload', payload)
+		dispatch({ type: GET_EMPLOYER_CONSIDERED, payload});
+		return axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=interviews');
+	})
+	.then(payload => {
+		// console.log('interviews payload', payload)
+		dispatch({ type: GET_EMPLOYER_INTERVIEWS, payload});
+		return axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=offers');
+	})
+	.then(payload => {
+		dispatch({ type: GET_EMPLOYER_OFFERS, payload});
+	})
+};
+
+
 module.exports = {
-	fetchEmployerRequests: fetchEmployerRequests
+	fetchEmployerRequests: fetchEmployerRequests,
+	selectJob: selectJob
 };

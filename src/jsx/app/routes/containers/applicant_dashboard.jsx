@@ -14,6 +14,16 @@ export default class ApplicantDashboard extends React.Component {
 
   }
 
+  rescind = (appID, index, status) => {
+    console.log('appID', appID);
+    console.log('index', index);
+    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); }
+    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));}
+    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));}
+    else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index));}
+    this.props.dispatch(actions.rescindApp(appID));
+  };
+
 	render() {
 
     let unconsidered = this.props.unconsidered;
@@ -39,27 +49,31 @@ export default class ApplicantDashboard extends React.Component {
         <Row>
         	<Col md={3}>
             <div> Unconsidered </div>
-            <ApplicantLane data={unconsidered}
-                          lane={'unconsidered'}
-                          dispatch={this.props.dispatch}/>
+            <ApplicantLane  data={unconsidered}
+                            rescind={this.rescind}
+                            lane={'unconsidered'}
+                            dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Considered </div>
-            <ApplicantLane data={considered}
-                          lane={'considered'}
-                          dispatch={this.props.dispatch}/>
+            <ApplicantLane  data={considered}
+                            rescind={this.rescind}
+                            lane={'considered'}
+                            dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Interviews </div>
-            <ApplicantLane data={interviews}
-                          lane={'interviews'}
-                          dispatch={this.props.dispatch}/>
+            <ApplicantLane  data={interviews}
+                            rescind={this.rescind}
+                            lane={'interviews'}
+                            dispatch={this.props.dispatch}/>
           </Col>
           <Col md={3}>
             <div> Offers </div>
-            <ApplicantLane data={offers}
-                          lane={'offers'}
-                          dispatch={this.props.dispatch}/>
+            <ApplicantLane  data={offers}
+                            rescind={this.rescind}
+                            lane={'offers'}
+                            dispatch={this.props.dispatch}/>
           </Col>
         </Row>
       </Grid>

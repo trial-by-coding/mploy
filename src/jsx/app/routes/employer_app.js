@@ -25,6 +25,7 @@ export default class EmployerApp extends React.Component {
 
 	componentDidMount() {
 		this.props.dispatch(actions.fetchEmployerRequests());
+		
 	}
 
 	isEmployer = () => {
@@ -37,6 +38,7 @@ export default class EmployerApp extends React.Component {
 				}
 			});
 	};
+
 
 	render() {
     const { dispatch } = this.props;
