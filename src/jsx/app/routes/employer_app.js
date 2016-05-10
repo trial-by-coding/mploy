@@ -2,8 +2,7 @@ import classNames from 'classnames';
 import axios from 'axios';
 import SidebarMixin from 'global/jsx/sidebar_component';
 import actions from 'redux/actions';
-import { connect } from 'react-redux';
-import Header from 'routes/components/header';
+import Header from 'routes/components/emp_header';
 import EmployerSidebar from 'routes/components/employer_sidebar';
 import Footer from 'routes/components/footer';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
@@ -14,6 +13,7 @@ import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/components/calendar';
 import Charts from 'routes/containers/chart_stats';
 import NewJob from 'routes/containers/newjob';
+import { connect } from 'react-redux';
 
 
 @SidebarMixin
@@ -39,7 +39,7 @@ export default class EmployerApp extends React.Component {
 	};
 
 	render() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
 		var classes = classNames({
 			'container-open': this.props.open
 
@@ -51,7 +51,7 @@ export default class EmployerApp extends React.Component {
 		return (
 			<Container id='container' className={classes}>
 				<EmployerSidebar />
-				<Header />
+				<Header dispatch={ dispatch }/>
         {this.props.children}
 				<Footer />
 			</Container>

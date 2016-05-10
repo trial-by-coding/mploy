@@ -15,9 +15,12 @@ import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/components/calendar';
 
 
+
+
 @SidebarMixin
 @connect(state => state)
 export default class ApplicantApp extends React.Component {
+
 	constructor(props) {
 		super(props);
 	}
@@ -25,15 +28,17 @@ export default class ApplicantApp extends React.Component {
 			this.props.dispatch(actions.fetchApplicantRequests());
 		}
 
+
+
 	render() {
-    const dispatch = this.props.dispatch;
+    const { dispatch } = this.props;
 		var classes = classNames({
 			'container-open': this.props.open
 		});
 		return (
 			<Container id='container' className={classes}>
 				<ApplicantSidebar />
-				<Header />
+				<Header notifications={this.props.notifications} dispatch={ dispatch } />
         {this.props.children}
 				<Footer />
 			</Container>

@@ -8,6 +8,7 @@ import employerconsidered from './employer_considered_reducers';
 import employerinterviews from './employer_interviews_reducers';
 import employeroffers from './employer_offers_reducers';
 import charts from './chart_reducers';
+import notifications from './notifications'
 
 module.exports = {
   ...apps,
@@ -19,6 +20,6 @@ module.exports = {
   ...employerunconsidered,
   ...employerconsidered,
   ...employerinterviews,
-  ...employeroffers
-
+  ...employeroffers,
+  ...notifications
 };

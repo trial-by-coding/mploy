@@ -32,9 +32,7 @@ export default class JobsContainer extends React.Component {
 
     const { dispatch } = this.props;
     const { filteredData } = this.state;
-		console.log('container props', this);
-    console.log('jobcontainer state', this.state);
-    console.log('filteredData', filteredData);
+
 		let jobList = this.props.jobList.items;
 
 		const styles = {
