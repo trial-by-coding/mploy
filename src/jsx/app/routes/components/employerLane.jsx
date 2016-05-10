@@ -8,11 +8,13 @@ export default class EmployerLane extends React.Component {
 
   render() {
     let list = this.props.data;
+    console.log('list is:', list)
     let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
     return (
       <div className='shortcard'>
         <ul>
           {list.map((item, index) => <EmployerDashboardCard item={item}
+                                                            jobList={this.props.data}
                                                             index={index}
                                                             lane={this.props.lane}
                                                             advance={this.props.advance}

@@ -40,15 +40,15 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.revertEmployerRequest(appID));
   };
 
-  reject = (jobID, appID, status, index) => {
+  reject = (appID, item, status, index, jobList) => {
+    console.log('in reject:',' appID:', appID, 'item:', item,  'status:' ,status, ' index:', index)
     ModalManager.remove();
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); }
     else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));}
     else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));}
     else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index));}
 
-    this.props.dispatch(actions.rejectApp(jobID, appID));
-
+    this.props.dispatch(actions.rejectEmployerRequest(appID));
   };
 
   accept = (appID, status, item, index) => {
