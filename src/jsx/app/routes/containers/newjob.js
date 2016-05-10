@@ -33,17 +33,10 @@ const validate = values => {
     errors.min_salary = 'Enter minimum salary';
   }
 
-  if(typeof values.min_salary !== 'number') {
-    errors.min_salary = 'Minimum salary must be a number';
-  }
-
   if(!values.max_salary) {
     errors.max_salary = 'Enter maximum salary';
   }
 
-  if(typeof values.min_salary !== 'number') {
-    errors.max_salary = 'Minimum salary must be a number';
-  }
   if(!values.desired_education) {
     errors.desired_education = 'Enter desired education';
   }
