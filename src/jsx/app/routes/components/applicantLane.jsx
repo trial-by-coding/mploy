@@ -10,7 +10,9 @@ export default class ApplicantLane extends React.Component {
     // console.log("AppList data", list);
     return (
       <div className='shortcard'>
-        {list.map(item => <ApplicantDashboardCard item={item}/>)}
+        {list.map((item, index) => <ApplicantDashboardCard  item={item}
+                                                            index={index}
+                                                            rescind={this.props.rescind}/>)}
       </div>
     );
   }

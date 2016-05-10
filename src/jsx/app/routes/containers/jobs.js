@@ -3,6 +3,7 @@ import JobCard from 'routes/components/jobCard';
 import JobModal from 'routes/components/jobModal';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
+import { FormGroup, InputGroup, FormControl, DropdownButton} from 'react-bootstrap';
 
 // const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 import PureRenderMixin from 'react-addons-pure-render-mixin';
@@ -13,16 +14,37 @@ export default class JobsContainer extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      input:''
+      jobtitle:'',
+      company: '',
+      location: '',
+      jobtype: ''
     };
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
-  filterData(event) {
+  filterData(type, event) {
+    console.log('event', event);
+    console.log('type', type);
     event.preventDefault();
     const regex = new RegExp(event.target.value, 'i');
+    if(type === 'jobtitle' ) {
+      this.setState({ jobtitle: regex });
+    }
+    if(type === 'company') {
+      this.setState({ company: regex });
+    }
+    if(type === 'location') {
+      this.setState({ location: regex });
+    }
+    if(type === 'jobtype') {
+      this.setState({ jobtype: regex });
+    }
+  };
+
+  setFilter(filter) {
+    console.log('filter', filter);
     this.setState({
-      input: regex
+      filter: filter
     });
   };
 
@@ -69,31 +91,54 @@ export default class JobsContainer extends React.Component {
       <Container id='body' className='social'>
         <Row>
           <div>
-            <Col xs={6} collapseRight>
+            <Col xs={3} collapseRight>
               <InputGroup>
                 <Input  type="text"
                         className="form-control"
-                        onChange={ this.filterData.bind(this, ) }
+                        onChange={ this.filterData.bind(this, 'jobtitle') }
                         placeholder="Search by Job Title" />
                 <InputGroupButton>
-                  <DropdownButton container={this} menu='btnwithdropdown2'>
-                    <span>Action </span><Caret/>
-                  </DropdownButton>
-                  <Menu ref='btnwithdropdown2' alignRight>
-                    <MenuItem href='#'>Action</MenuItem>
-                    <MenuItem href='#'>Another Action</MenuItem>
-                    <MenuItem href='#'>Something else here</MenuItem>
-                    <MenuItem divider></MenuItem>
-                    <MenuItem href='#'>Separated link</MenuItem>
-                  </Menu>
                 </InputGroupButton>
               </InputGroup>
+            </Col>
+             <Col xs={3} collapseRight>
+              <InputGroup>
+                <Input  type="text"
+                        className="form-control"
+                        onChange={ this.filterData.bind(this, 'company') }
+                        placeholder="Search by Company" />
+                <InputGroupButton>
+                </InputGroupButton>
+              </InputGroup>
+               <Col xs={3} collapseRight>
+              <InputGroup>
+                <Input  type="text"
+                        className="form-control"
+                        onChange={ this.filterData.bind(this, 'location') }
+                        placeholder="Search by Location" />
+                <InputGroupButton>
+                </InputGroupButton>
+              </InputGroup>
+            </Col>
+             <Col xs={3} collapseRight>
+              <InputGroup>
+                <Input  type="text"
+                        className="form-control"
+                        onChange={ this.filterData.bind(this, 'jobtype') }
+                        placeholder="Search by Job Type" />
+                <InputGroupButton>
+                </InputGroupButton>
+              </InputGroup>
+            </Col>
             </Col>
           </div>
         </Row>
         <Row>
           <div>
-          { jobList.filter(item => item.job_title.search(this.state.input) > -1)
+          { jobList.filter((item) =>  item.job_title.search(this.state.jobtitle) > -1 
+                                  &&  item.company_name.search(this.state.company) > -1
+                                  &&  item.location.search(this.state.location) > -1
+                                  &&  item.employment_type.search(this.state.jobtype) > -1)
             .map(job => <JobCard data={job}
                                  openModal={this.openModal}
                                  dispatch={dispatch} />)}

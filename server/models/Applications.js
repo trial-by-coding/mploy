@@ -185,17 +185,6 @@ Applications.updateStatus = function(appID, status) {
   })
 };
 
-// return db('applications')
-//   .join('job_posts', 'applications.job_id', '=', 'job_posts.jobID')
-//   .select(['job_posts.user_id as job_user_id', 'job_posts.*', 'job_posts.created_at as job_created_at','applications.user_id as app_user_id', 'applications.created_at as app_created_at', 'applications.cover_letter','applications.resume','applications.years_experience', 'applications.education', 'applications.personal_statement', 'applications.status', 'applications.skills_met', 'applications.can_work_here', 'users.*'])
-//   .join('users', 'applications.user_id', '=', 'users.userID')
-//   .then(function(records) {
-//     return records.filter(function(item) {return item.app_user_id === userID && item.status === status})
-//   })
-//   .catch(function(err) {
-//       throw err
-//   })
-
 Applications.getByStatus = function(jobID, status) {
   console.log('in get by status: ', status)
   return db('applications')
@@ -260,7 +249,7 @@ Applications.getAppsByUserAndStatus = function(userID, status) {
   
   return db('applications')
   .join('job_posts', 'applications.job_id', '=', 'job_posts.jobID')
-  .select(['job_posts.user_id as job_user_id', 'job_posts.*', 'job_posts.created_at as job_created_at','applications.user_id as app_user_id', 'applications.created_at as app_created_at', 'applications.cover_letter','applications.resume','applications.years_experience', 'applications.education', 'applications.personal_statement', 'applications.status', 'applications.skills_met', 'applications.can_work_here', 'users.*'])
+  .select(['job_posts.user_id as job_user_id', 'job_posts.*', 'job_posts.created_at as job_created_at','applications.user_id as app_user_id', 'applications.created_at as app_created_at', 'applications.appID', 'applications.cover_letter','applications.resume','applications.years_experience', 'applications.education', 'applications.personal_statement', 'applications.status', 'applications.skills_met', 'applications.can_work_here', 'users.*'])
   .join('users', 'applications.user_id', '=', 'users.userID')
   .then(function(records) {
     return records.filter(function(item) {return item.app_user_id === userID && item.status === status})
