@@ -11,7 +11,7 @@ function posts(state = [], action) {
 			const posts = action.payload.data;
 			return [...posts];
 		case ADD_JOB_POST:
-			return [...state.slice(), action.item];
+			return [...state.slice(), action.job];
 		case REMOVE_JOB_POST:
 			return [...state.slice(0, action.index),
 							...state.slice(action.index + 1) ];

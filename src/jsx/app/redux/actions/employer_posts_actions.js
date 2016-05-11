@@ -12,17 +12,28 @@ function getJobPosts() {
 		);
 }
 
-function addJobPost(item) {
-	return  {
-		type: ADD_JOB_POST, item
-	};
-	}
+// function addJobPost(item) {
+// 	return  {
+// 		type: ADD_JOB_POST, item
+// 	};
+// 	}
 
 function removeJobPost(index) {
 	return {
 		type: REMOVE_JOB_POST, index
 	};
 	}
+
+
+function addJobPost(job){
+  return function(dispatch){
+    return axios.post('user/employer/submitjob',job)
+      .then(function(payload){
+      	console.log('job in postNewJob: ', job)
+        dispatch({ type: ADD_JOB_POST, job});
+      });
+  };
+};
 
 function setJobPost(jobID){
 	// console.log('setJobPost jobID', jobID);

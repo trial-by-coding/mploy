@@ -3,8 +3,8 @@ import { ADD_APP,
          REMOVE_APP,
          ACCEPT_APP,
          REJECT_APP,
-         FETCH_APP,
-         ADD_JOB } from './actionTypes';
+         FETCH_APP
+       } from './actionTypes';
 
 
 
@@ -39,17 +39,7 @@ function applyToJob(app){
   };
 }
 
-function postNewJob(job){
-  return function(dispatch){
-    return axios.post('user/employer/submitjob',job)
-      .then(function(payload){
-        dispatch({ type: ADD_JOB, payload});
-      });
-  };
-}
-
 module.exports = {
-  postNewJob:postNewJob,
   applyToJob:applyToJob,
 	getApplications: getApplications,
   rejectApp: rejectApp

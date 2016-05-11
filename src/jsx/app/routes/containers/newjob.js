@@ -12,37 +12,52 @@ const validate = values => {
   if(!values.job_title) {
     errors.job_title = 'Enter a job title';
   } 
-  else if (values.job_title.length < 2) {
-    errors.job_title = 'Must be longer than on letter!';
-  }
-    if(!values.company_name) {
+
+  if(!values.company_name) {
     errors.company_name = 'Enter a company name';
-  } else if (values.company_name.length < 2) {
-    errors.company_name = 'Must be longer than on letter!';
-  }
+  } 
   if(!values.location) {
     errors.location = 'Enter a location';
   }
   if(!values.job_description) {
     errors.job_description = 'Enter a job description';
   }
-  if(!values.employment_type) {
-    errors.employment_type = 'Enter employment_type';
-  }
+
   if(!values.min_salary) {
     errors.min_salary = 'Enter minimum salary';
+  } else if (isNaN(Number(values.min_salary))) {
+    errors.min_salary = 'Must be a number'
   }
 
   if(!values.max_salary) {
     errors.max_salary = 'Enter maximum salary';
+  } else if (isNaN(Number(values.max_salary))) {
+    errors.max_salary = 'Must be a number'
+  } else if (values.min_salary && values.max_salary < values.min_salary){
+    errors.max_salary = 'Must be larger than minimum salary'
   }
 
   if(!values.desired_education) {
     errors.desired_education = 'Enter desired education';
   }
-  if(!values.visa_required) {
-    errors.visa_required = 'Enter visa requirement';
+
+  if (!values.skills || !values.skills.length) {
+    errors.skills = { _error: 'At least one skill must be entered' }
+  } else {
+    const skillsArrayErrors = []
+    values.skills.forEach((skill, skillIndex) => {
+      var skillErrors;
+      if (!skill) {
+        skillErrors = 'Required'
+        skillsArrayErrors[skillIndex] = skillErrors
+      }
+      return skillErrors
+    })
+    if(skillsArrayErrors.length) {
+      errors.skills = skillsArrayErrors
+    }
   }
+
   return errors;
 };
 
@@ -61,6 +76,10 @@ export default class NewJob extends React.Component {
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
     submitting: PropTypes.bool.isRequired
+  };
+
+  static contextTypes = {
+    router: PropTypes.object
   };
 
   render() {
@@ -110,7 +129,19 @@ export default class NewJob extends React.Component {
                 </PanelHeader>
                   <Form onSubmit={handleSubmit(function(data) {
                     console.log('data: ', data)
-                    that.props.dispatch(actions.postNewJob(data))
+                    if (data.employment_type === undefined){
+                      data.employment_type = 'Full-Time'
+                    }
+                    if (data.visa_required === undefined){
+                      data.visa_required = false
+                    }
+
+                    that.props.dispatch(actions.addJobPost(data))
+                    .then(function() {
+                      console.log('that.props: ', that.props)
+                      that.props.history.push('/employer');
+                    })
+
                   })}>
                 <PanelBody>
                 <Grid>
@@ -198,27 +229,42 @@ export default class NewJob extends React.Component {
                   <div className={`form-group ${visa_required.touched && visa_required.invalid ? 'has-danger' : ''}`}>
                       <Label htmlFor='dropdownselect'>Will your company sponsor visas?</Label>
                       <Select className='form-control' {...visa_required} id='dropdownselect' defaultValue='0'>
-                          <option value='1'>Yes</option>
                           <option value='0'>No</option>
+                          <option value='1'>Yes</option>
                           </Select>
                       <div className='text-help' style={error}>{visa_required.touched ? visa_required.error : ''}
                       </div>
                   </div>
                 </FormGroup>
-
-                <FormGroup>
-                  <div>
-                    <ul>
-                      {skills.map((skill, index) => 
-                      <li key={index}>
-                        <label>Skill #{index + 1}:</label>
-                        <input type="text" {...skill}/>
-                      </li>)}
-                    </ul>
-                    <button onClick={() => skills.addField()}>Add Skill</button>
-                  </div>
-                </FormGroup>
-
+                
+                <Row>
+                  <FormGroup>
+                      <Col md={12}>
+                        <Button onClick={function(event) {
+                            event.preventDefault()
+                            skills.addField()
+                          }}>Add a Skill</Button>
+                      </Col>
+                      <div>
+                    <div className={`form-group ${skills.touched && skills.invalid ? 'has-danger' : ''}`}>
+                        {skills.map((skill, index) => 
+                        <Col md={6}> <div key={index}>
+                          <label>Skill #{index + 1}:</label>
+                          <input type="text" placeholder="Enter a desired skill"{...skill}/>
+                          <button
+                            type="button"
+                            title="Remove Skill"
+                            onClick={() => skills.removeField(index)}>
+                            x
+                          </button>
+                        </div> 
+                          <div className='text-help' style={error}>{skills.touched ? skills.error : ''}
+                          </div>
+                        </Col>)}
+                      </div>
+                    </div>
+                  </FormGroup>
+                </Row>
                   </Col>
                 </Row>
               </Grid>
