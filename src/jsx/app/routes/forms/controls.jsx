@@ -1,12 +1,11 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
-import { Link, History } from 'react-router';
+import { Link } from 'react-router';
 import request from 'superagent';
-
+import { PropTypes } from 'react';
 
 export default class Body extends React.Component {
-
     constructor(props){
     super(props);
 
@@ -86,9 +85,9 @@ expChange(e) {
 }
 
 setCoverletter(e) {
-  var coverLetter = new FormData();
+  let coverLetter = new FormData();
   coverLetter.append("coverletter", e.target.files[0], e.target.files[0].name);
-  var that = this;
+  let that = this;
   request.post('/user/applicant/uploadcoverletter')
     .send(coverLetter)
     .end(function (err, response) {
@@ -102,9 +101,9 @@ setCoverletter(e) {
 }
 
 setResume(e) {
-  var resume = new FormData();
+  let resume = new FormData();
   resume.append("resume", e.target.files[0], e.target.files[0].name);
-  var that = this;
+  let that = this;
   request.post('/user/applicant/uploadresume')
     .send(resume)
     .end(function (err, response) {
@@ -119,10 +118,7 @@ setResume(e) {
   }
     onFormSubmit(e) {
     e.preventDefault();
-    this.props.dispatch(actions.applyToJob(this.state.formVal))
-    .then(() => {
-      this.props.history.push('/applicant');
-    });
+    this.props.dispatch(actions.applyToJob(this.state.formVal));
   }
 
   //end helper funcs
@@ -159,7 +155,6 @@ const title = {
                 <Grid>
                   <Row>
                     <Col xs={12}>
-
                     <FormGroup>
                       <Label htmlFor='dropdownselect'>Years Experience</Label>
                       <Select id='dropdownselect' defaultValue='1' onChange={this.expChange}>
@@ -214,11 +209,9 @@ const title = {
                 <Grid>
                   <Row>
                     <Col xs={12}>
-
                       <Button outlined bsStyle='lightred' style={floatLeft} onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>cancel</Button>
 
-                      <Button type="submit" outlined bsStyle='lightgreen' style={floatRight}>submit</Button>
-
+                      <Button type="submit" onClick={ModalManager.remove} outlined bsStyle='lightgreen' style={floatRight}>submit</Button>
                   </Col>
                 </Row>
               </Grid>

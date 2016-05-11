@@ -60,16 +60,11 @@ export class JobBody extends React.Component {
 }
 
 export class JobApply extends React.Component {
-
   getLargeModal() {
     return (
-
-  <Modal lg>
-
+      <Modal lg>
         <Controls dispatch={this.props.dispatch} complete={false} skillsArray={this.props.skillsArray} data={this.props.data} />
-
-
-  </Modal>
+      </Modal>
     );
   }
 
