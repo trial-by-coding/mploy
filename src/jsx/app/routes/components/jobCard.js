@@ -60,17 +60,10 @@ export class JobBody extends React.Component {
 }
 
 export class JobApply extends React.Component {
-
   getLargeModal() {
     return (
       <Modal lg>
-        <ModalBody>
         <Controls dispatch={this.props.dispatch} complete={false} skillsArray={this.props.skillsArray} data={this.props.data} />
-        </ModalBody>
-        <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
-          <Button outlined bsStyle='primary'>Save changes</Button>
-        </ModalFooter>
       </Modal>
     );
   }
@@ -98,9 +91,7 @@ export class JobApply extends React.Component {
 export default class JobCard extends React.Component {
 
   render() {
-
     let skillsArr =[];
-
     this.props.data.skills.map(function(item){
       skillsArr.push(false);
     });
@@ -133,6 +124,7 @@ export default class JobCard extends React.Component {
               <div className="jobcard">
               	<JobHeader data={this.props.data} />
                 <JobBody data={this.props.data} />
+
                 <JobApply data={this.props.data}
                           dispatch={this.props.dispatch}
                           openModal={this.props.openModal}
