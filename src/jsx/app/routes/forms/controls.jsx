@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
-import { Link } from 'react-router';
+import { Link, History } from 'react-router';
 import request from 'superagent';
 
 
@@ -45,14 +45,6 @@ eduChange(e) {
       education: e.target.value
     }
   }, function () {});
-  // var newState = React.addons.update(this.state, {
-  //   formVal: {
-  //     education: e.target.value
-  //   }
-  // });
-  // this.setState(newState,function(){
-  //   console.log("after state_extend:", this.state)
-  // });
 
 }
 
@@ -127,46 +119,47 @@ setResume(e) {
   }
     onFormSubmit(e) {
     e.preventDefault();
-    this.props.dispatch(actions.applyToJob(this.state.formVal));
+    this.props.dispatch(actions.applyToJob(this.state.formVal))
+    .then(() => {
+      this.props.history.push('/applicant');
+    });
   }
-
 
   //end helper funcs
 
   render() {
-
-    //helper func for keys in skills obj
-    // let appFormList = this.props.data;
-    // let skillsVals = [];
-
-    // for (var key in appFormList) {
-    //   if (key.indexOf('skill') !== -1 && appFormList[key] !== null) {
-    //     skillsVals.push(appFormList[key])
-    //   }
-    // }
+const floatRight = {
+  'float': 'right'
+};
+const floatLeft = {
+  'float': 'left'
+};
+const wallppr = {
+  'backgroundColor': 'white'
+};
+const title = {
+  'textAlign': 'center'
+};
 
     return (
-      <Container id='body'>
+    <Container id='body' style={wallppr}>
+    <ModalBody>
     <Grid>
       <Row>
         <Col sm={12} collapseRight>
-        <PanelContainer noOverflow controlStyles='bg-green fg-white'>
-          <Panel>
-
             <Form onSubmit={this.onFormSubmit}>
-              <PanelHeader className='bg-green fg-white'>
                 <Grid>
                   <Row>
                     <Col xs={12}>
-                    <h3>Submit Application for {this.props.data.job_title} at {this.props.data.company_name}</h3>
+                    <h4 style={title}>Submit Application for {this.props.data.job_title} at {this.props.data.company_name}</h4>
                     </Col>
                   </Row>
                 </Grid>
-              </PanelHeader>
-              <PanelBody>
+                <hr/>
                 <Grid>
                   <Row>
                     <Col xs={12}>
+
                     <FormGroup>
                       <Label htmlFor='dropdownselect'>Years Experience</Label>
                       <Select id='dropdownselect' defaultValue='1' onChange={this.expChange}>
@@ -186,9 +179,7 @@ setResume(e) {
 
                     <FormGroup>
                       <Label htmlFor='password' control>Education</Label>
-
                       <Input onChange={this.eduChange} autoFocus type='text' placeholder='Degree(s)' />
-
                     </FormGroup>
 
                     <FormGroup>
@@ -202,7 +193,6 @@ setResume(e) {
                     <FormGroup>
                       <Label htmlFor='textarea'>Why are you the top candidate?</Label>
                       <Textarea id='textarea' rows='3' placeholder='Sell yourself!' onChange={this.aboutChange} />
-
                     </FormGroup>
 
                     <FormGroup>
@@ -216,31 +206,28 @@ setResume(e) {
                       <Input onChange={this.setResume} id='fileinput' type='file' name='resume' accept='application/msword,text/plain, application/pdf' />
                       <HelpBlock>PDF,docx,doc files only.</HelpBlock>
                     </FormGroup>
+
                     </Col>
                   </Row>
                 </Grid>
-              </PanelBody>
-              <PanelFooter className='bg-darkgreen45 text-right'>
+                <hr />
                 <Grid>
                   <Row>
                     <Col xs={12}>
-                    <br/>
-                    <div>
-                      <Button outlined bsStyle='lightgreen'>cancel</Button>{' '}
-                      <Button type="submit" outlined bsStyle='lightgreen'>submit</Button>
-                    </div>
-                    <br/>
-                    </Col>
-                  </Row>
-                </Grid>
-              </PanelFooter>
+
+                      <Button outlined bsStyle='lightred' style={floatLeft} onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>cancel</Button>
+
+                      <Button type="submit" outlined bsStyle='lightgreen' style={floatRight}>submit</Button>
+
+                  </Col>
+                </Row>
+              </Grid>
             </Form>
-          </Panel>
-        </PanelContainer>
         </Col>
       </Row>
     </Grid>
-  </Container>
+  </ModalBody>
+</Container>
     );
   }
 }
