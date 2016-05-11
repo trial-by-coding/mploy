@@ -14,7 +14,7 @@ function fetchEmployerRequests() {
     return dispatch => axios.get('/user/employer/jobscreated')
         .then(payload => {
             jobID = payload.data[0].jobID;
-            // console.log('payload', payload);
+            
             dispatch({ type: SET_JOB_POST, jobID});
             dispatch({ type: GET_JOB_POSTS, payload });
             return axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=unconsidered');
