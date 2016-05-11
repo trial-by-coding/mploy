@@ -188,7 +188,7 @@ Applications.updateStatus = function(appID, status) {
 Applications.getByStatus = function(jobID, status) {
   console.log('in get by status: ', status)
   return db('applications')
-  .select(['job_posts.skills','applications.*', 'users.*'])
+  .select(['job_posts.skills', 'job_posts.job_title', 'job_posts.company_name', 'applications.*', 'users.*'])
   .join('users', 'applications.user_id', '=', 'users.userID')
   .join('job_posts', 'applications.job_id', '=', 'job_posts.jobID')
   .orderBy('created_at', 'desc')

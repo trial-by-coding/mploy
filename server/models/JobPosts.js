@@ -54,7 +54,7 @@ JobPosts.deleteJob = function(jobID) {
 JobPosts.getJob = function(jobID) {
     
     return db('job_posts')
-    .where('jobID', jobID)
+    .where({jobID: jobID})
     .then(function(record) {
       if (record.length === 0){
         err="no records with that jobID found";
