@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Controls from '../forms/controls';
 import actions from 'redux/actions';
 
-class JobHeader extends React.Component {
+export class JobHeader extends React.Component {
   render() {
     const pStyles = {
       'fontSize': '10px'
@@ -27,7 +27,7 @@ class JobHeader extends React.Component {
   }
 }
 
-class JobBody extends React.Component {
+export class JobBody extends React.Component {
   render() {
     const pStyles = {
       'fontSize': '10px'
@@ -59,7 +59,7 @@ class JobBody extends React.Component {
   }
 }
 
-class JobApply extends React.Component {
+export class JobApply extends React.Component {
 
   getLargeModal() {
     return (
