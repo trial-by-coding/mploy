@@ -47,28 +47,28 @@ export default class ApplicantDashboard extends React.Component {
 		<Container id='body'>
       <Grid>
         <Row>
-        	<Col md={3}>
+        	<Col xs={12} sm={6} md={3}>
             <div> Unconsidered </div>
             <ApplicantLane  data={unconsidered}
                             rescind={this.rescind}
                             lane={'unconsidered'}
                             dispatch={this.props.dispatch}/>
           </Col>
-          <Col md={3}>
+          <Col xs={12} sm={6} md={3}>
             <div> Considered </div>
             <ApplicantLane  data={considered}
                             rescind={this.rescind}
                             lane={'considered'}
                             dispatch={this.props.dispatch}/>
           </Col>
-          <Col md={3}>
+          <Col xs={12} sm={6} md={3}>
             <div> Interviews </div>
             <ApplicantLane  data={interviews}
                             rescind={this.rescind}
                             lane={'interviews'}
                             dispatch={this.props.dispatch}/>
           </Col>
-          <Col md={3}>
+          <Col xs={12} sm={6} md={3}>
             <div> Offers </div>
             <ApplicantLane  data={offers}
                             rescind={this.rescind}
