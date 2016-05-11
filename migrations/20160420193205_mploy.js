@@ -93,7 +93,8 @@ exports.up = function(knex, Promise) {
       table.integer('app_id')
         .unsigned()
         .references('appID')
-        .inTable('applications');
+        .inTable('applications')
+        .onDelete('CASCADE')
       table.integer('user_Id')
         .unsigned()
         .references('userID')
