@@ -24,11 +24,9 @@ function posts(state = [], action) {
 function currentPost(state = {}, action) {
 	switch(action.type) {
 		case SET_JOB_POST:
-			console.log('action in SET_JOB_POST: ', action)
 			let currentPost = action;
 			return Object.assign({}, state, currentPost)
 		case GET_JOB_INFO:
-			console.log('action in GET_JOB_INFO: ', action.payload.data[0])
 			let currentPostInfo = action.payload.data[0];
 			return Object.assign({}, state, currentPostInfo)
 		default:
