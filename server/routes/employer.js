@@ -138,6 +138,29 @@ module.exports = function(router) {
     }
   });
   
+//Get job info by job ID
+router.get('/jobinfo', function(req, res){
+    console.log('---appsbyjob:received GET, query='+JSON.stringify(req.query));
+    var rq = req.query;
+    if (rq && rq.jobID) {
+      console.log("request for jobId = ",rq.jobID);
+      JobPosts.getJob(rq.jobID)
+      .then(function(data){
+        console.log("returning job data", data);
+        res.status(200).send(JSON.stringify(data));
+      })
+      .catch(function(err){
+        console.log("could not get job data for jobID "+rq.jobID+", err:", err);
+        res.status(400).send(err);
+      });
+    } else {
+      console.log("must supply jobID in query string");
+      res.status(400).send("must supply jobID in query string");
+    }
+  });
+
+
+
 //Should we keep stats on number of jobs posted?
   router.post('/submitjob', function(req, res) {
     console.log('received submit job POST, body:',req.body);

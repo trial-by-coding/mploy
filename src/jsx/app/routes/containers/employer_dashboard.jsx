@@ -59,7 +59,8 @@ export default class EmployerDashboard extends React.Component {
 
 
 	render() {
-    // console.log('employer dashboard props', this.props);
+    console.log('employer dashboard props', this.props);
+
     let unconsidered = this.props.unconsidered;
     let considered = this.props.considered;
     let interviews = this.props.interviews;
@@ -77,7 +78,7 @@ export default class EmployerDashboard extends React.Component {
     if(this.props.posts.length && unconsidered.length === 0 && considered.length === 0 && interviews.length === 0 && offers.length === 0){
       return (
         <Container id='body'>
-          <h1 style={{textAlign: 'center'}}>No candidates have applied to this position yet.</h1>
+          <h1 style={{textAlign: 'center'}}>No candidates have applied to the {this.props.currentPost.job_title} position with {this.props.currentPost.company_name} yet.</h1>
         </Container>
       );
     }
