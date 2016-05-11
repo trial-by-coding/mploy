@@ -33,6 +33,8 @@ const validate = values => {
     errors.max_salary = 'Enter maximum salary';
   } else if (isNaN(Number(values.max_salary))) {
     errors.max_salary = 'Must be a number'
+  } else if (values.min_salary && values.max_salary < values.min_salary){
+    errors.max_salary = 'Must be larger than minimum salary'
   }
 
   if(!values.desired_education) {
@@ -135,6 +137,10 @@ export default class NewJob extends React.Component {
                     }
 
                     that.props.dispatch(actions.addJobPost(data))
+                    .then(function() {
+                      console.log('that.props: ', that.props)
+                      that.props.history.push('/employer');
+                    })
 
                   })}>
                 <PanelBody>
