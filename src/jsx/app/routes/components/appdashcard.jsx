@@ -85,17 +85,23 @@ export default class appdashCard extends React.Component {
 
     const panelStyle1 = {
     'padding': '0px',
-    'border': '1px solid #A1A1A1',
-    'height' : '80px',
+    'border': '1px solid rgba(0, 0, 0, 0.5)',
+    'min-height' : '80px',
     'border-radius':'10px',
     'maxWidth': '300px',
     'margin':'auto',
-    'margin-bottom': '15px'
+    'margin-bottom': '15px',
 
     };     
 
     const panelStyle3 = {
     'padding': '0px',
+
+    };    
+
+    const profileImg = {
+    'padding': '0px',
+    'marginTop':'10px'
 
     };   
 
@@ -108,7 +114,8 @@ export default class appdashCard extends React.Component {
     };  
 
     const position = {
-    'margin': '8px 0px'
+    'margin': '8px 0px',
+    'color':'black'
     };
 
 
@@ -123,13 +130,13 @@ export default class appdashCard extends React.Component {
                 <PanelBody style={panelBody} >
                   <Grid>
                     <Row onClick={ModalManager.create.bind(this, this.getLargeModal())}>
+                      <Col style={profileImg} xs={4} collapseRight>
+                        <img src={profilePic} width='45' height='45'
+                          style={{display: 'block', borderRadius: 45,  margin: 'auto', float: 'left'}} />
+                      </Col>
                       <Col xs={8} style={panelStyle3} className="jobcard">
                         <h5 style={position}> {jobtitle} </h5>
                         <h6 style={companyName} > {company} </h6>
-                      </Col>
-                      <Col style={panelStyle3} xs={4} collapseRight>
-                        <img src={profilePic} width='45' height='45'
-                          style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'left'}} />
                       </Col>
                     </Row>
 

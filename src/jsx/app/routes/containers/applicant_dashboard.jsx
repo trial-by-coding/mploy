@@ -30,7 +30,9 @@ export default class ApplicantDashboard extends React.Component {
     'border-radius': '0px 0px 5px 5px',
      padding: '20px 10px 0px 10px',
     'margin-bottom': '20px',
-    'border':'1px solid rgba(0, 0, 0, 0.38)'
+    'border':'1px solid rgba(0, 0, 0, 0.38)',
+    'box-shadow': '0px 2px 4px 0px rgba(0,0,0,0.50)'
+
 
     }   
 
