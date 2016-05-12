@@ -55,6 +55,9 @@ app.get('*', function(req, res, next) {
   renderHTML(req, res, next);
 });
 
+console.log('Environment Port:', process.env.PORT);
+console.log('Node Environment:', process.env.ENV);
+
 var server = app.listen(process.env.PORT, function() {
   try {
     process.send('CONNECTED');
