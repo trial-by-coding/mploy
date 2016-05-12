@@ -65,6 +65,10 @@ const validate = values => {
         skillErrors = "Skill field can't be empty"
         skillsArrayErrors[skillIndex] = skillErrors
       }
+      else if (skill.length > 30){
+        skillErrors = "Too many characters"
+        skillsArrayErrors[skillIndex] = skillErrors
+      }
       return skillErrors
     })
     if(skillsArrayErrors.length) {
@@ -254,6 +258,7 @@ export default class NewJob extends React.Component {
                 <Row>
                   <FormGroup className={`form-group ${skills.touched && skills.invalid ? 'has-danger' : ''}`}>
                   <Col md={12}>
+                  <Label htmlFor='dropdownselect'>Specify Desired Skills:</Label>
                    <div>
                       <Button onClick={function(event) {
                           event.preventDefault()
