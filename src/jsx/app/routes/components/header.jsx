@@ -57,10 +57,12 @@ class  HeaderNavigation extends React.Component {
   }
 
   render() {
+    console.log("HeaderNavigation:render:props:",this.props)
     var props = {
       ...this.props,
       className: classNames('pull-right', this.props.className)
     };
+
     const bullHorn = {
     position: `absolute`,
     right: `90px`
@@ -83,7 +85,7 @@ class  HeaderNavigation extends React.Component {
         <Nav xs={6} style={bullHorn} >
          <Notifications xs={5} notifications={this.props.notifications} 
                                dispatch={this.props.dispatch} 
-                               xNotif={this.props.xNotif} />
+                               removeNotif={this.props.removeNotif} />
         </Nav>
         <Nav xs={6} style={logoutBtn}>
           <NavItem className='logout' href='#' onClick={() => this.logout()}>
@@ -103,11 +105,11 @@ export default class Header extends React.Component {
   }
 
 
-  removeNotif(e,notifyID){
-    e.preventDefault()
-    this.props.dispatch(actions.deleteNotification(notifyID))
-    console.log('remove notif fired for:',notifyID)
-  }
+removeNotif(e, notifyID, ndx){
+  e.preventDefault()
+  this.props.dispatch(actions.deleteNotification(notifyID, ndx))
+  console.log('remove notif fired for:',notifyID, ndx)
+}
 
 
   render() {
@@ -128,9 +130,9 @@ export default class Header extends React.Component {
                   </Col>
                   <Col xs={4} sm={2}>
                     <HeaderNavigation pressed={this.props.pressed} 
-                                      notifications={this.props.notifications.notifs} 
+                                      notifications={this.props.notifications} 
                                       dispatch={this.props.dispatch} 
-                                      xNotif={this.removeNotif} />
+                                      removeNotif={this.removeNotif} />
                   </Col>
                 </Row>
               </Container>

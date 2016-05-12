@@ -47,22 +47,14 @@ export default class Notifications extends React.Component {
  
     console.log('lowest level notifs:', this.props) 
 
-    if(!this.props.notifications){
+    if(!this.props.notifications || (this.props.notifications && this.props.notifications.length === 0) ){
       return (
-
-    <NavItem dropdown className='collapse-left'>
-        <DropdownButton nav> 
-          <Icon bundle='fontello' glyph='bullhorn' />
-          <Badge className='fg-darkbrown bg-orange notification-badge'>3</Badge>
-        </DropdownButton>
-        <Menu bsStyle='green'>
-          <MenuItem active href='#'>Action</MenuItem>
-          <MenuItem href='#'>Another action</MenuItem>
-          <MenuItem href='#'>Something else here</MenuItem>
-          <MenuItem divider/>
-          <MenuItem href='#'>Separated link</MenuItem>
-        </Menu>
-    </NavItem>
+        <NavItem dropdown className='collapse-left' disabled>
+            <DropdownButton nav> 
+              <Icon bundle='fontello' glyph='bullhorn' />
+              <Badge className='fg-darkbrown bg-orange notification-badge'>0</Badge>
+            </DropdownButton>
+        </NavItem>
       )
     }
 
@@ -74,7 +66,7 @@ export default class Notifications extends React.Component {
           <Badge className='fg-darkbrown bg-orange notification-badge'>{this.props.notifications.length}</Badge>
         </DropdownButton>
         <Menu style={listNotifs}  bsStyle='white'>
-        {this.props.notifications.map(notif => 
+        {this.props.notifications.map((notif, index) => 
           <MenuItem href='#'>
             <Grid>
               <Row style={rowStyle} >
@@ -95,20 +87,16 @@ export default class Notifications extends React.Component {
                 </Col>
                 <Col xs={2} style={avaCont} className='avatar-container' collapseRight>
                   <div className='text-center'>
-                    <Icon onClick={(e)=> this.props.xNotif(e,notif.notifyID)} style={cancelBtn}  bundle='fontello' glyph='cancel-circle'/>
+                    <Icon onClick={(e)=> this.props.removeNotif(e, notif.notifyID, index)} style={cancelBtn}  bundle='fontello' glyph='cancel-circle'/>
                   </div>
                 </Col>
               </Row>
             </Grid>
           </MenuItem>
         )}
-
         </Menu>
     </NavItem>
-
-
-      )
-
+    )
   }
 }
 
