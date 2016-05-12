@@ -120,7 +120,7 @@ module.exports = function(router) {
         req.body.skills_met = JSON.stringify(req.body.skills_met)
         Applications.submit(req.body)
         .then(function(data){
-          res.status(200).send("success!");
+          res.status(200).send(data);
           console.log("Application successfully submitted")
           Stats.incrementTotalApps(req.body.user_id)
           .then(function() {

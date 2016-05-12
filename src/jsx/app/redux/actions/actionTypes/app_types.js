@@ -1,5 +1,4 @@
 module.exports = {
-  ADD_APP: 'ADD_APP',
   REMOVE_APP: 'REMOVE_APP',
   ACCEPT_APP: 'ACCEPT_APP',
   REJECT_APP: 'REJECT_APP',

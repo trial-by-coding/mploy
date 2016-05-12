@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { ADD_APP,
-         REMOVE_APP,
+import { REMOVE_APP,
          ACCEPT_APP,
          REJECT_APP,
          FETCH_APP
@@ -30,17 +29,7 @@ function rejectApp(jobID, appID) {
   // return { type: REMOVE_APP, jobID };
 }
 
-function applyToJob(app){
-  return function(dispatch){
-    return axios.post('user/applicant/submitapp',app)
-      .then(function(payload){
-        dispatch({ type: ADD_APP, payload});
-      });
-  };
-}
-
 module.exports = {
-  applyToJob:applyToJob,
 	getApplications: getApplications,
   rejectApp: rejectApp
 };
