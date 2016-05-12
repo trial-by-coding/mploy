@@ -4,7 +4,7 @@ import  { FETCH_NOTIFS,
 
           
 function getNotifications(){
-  // console.log('getUnconsidered Actions')
+  // console.log('getNotifications Actions')
   return dispatch => axios.get('/user/applicant/notifications')
     .then(
       payload => dispatch ({ type: FETCH_NOTIFS, payload})
@@ -12,10 +12,10 @@ function getNotifications(){
     .catch(resp => console.log("Error fetching notifications", resp));
 }
 
-function deleteNotification(notifyID) {
+function deleteNotification(notifyID, index) {
   return dispatch => axios.delete('/user/applicant/clearnotification?notifyID=' + notifyID)
       .then(
-        payload => dispatch ({ type: DELETE_NOTIFS, payload})
+        payload => dispatch ({ type: DELETE_NOTIFS, index: index})
       )
       .catch(resp => console.log("Error fetching notifications", resp));
 }

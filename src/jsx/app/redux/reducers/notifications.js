@@ -3,28 +3,21 @@ import  { FETCH_NOTIFS,
           DELETE_NOTIFS } from '../actions/actionTypes';
 
 const initialState = {
-      notifs: [],
+      notifs: []
     }
-function notifications(state = {}, action) {
+function notifications(state = [], action) {
   switch (action.type) {
     case FETCH_NOTIFS:
       const data = action.payload.data;
-      return Object.assign({}, state, {
-        notifs: data
-      });
+      return [...data];
     case DELETE_NOTIFS:
-      const newNotifs = action.payload.data
-      return Object.assign({}, state, {
-        notifs: newNotifs
-      });
+      const newNotifs = action.index;
+      return [ ...state.slice(0, newNotifs),
+         ...state.slice(newNotifs + 1) ];
     default:
       return state
   }
 }
-
-
-
-
 
 module.exports = {
   notifications: notifications
