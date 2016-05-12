@@ -5,7 +5,8 @@ import {  FETCH_JOBS,
 				  GET_EMPLOYER_INTERVIEWS,
 				  GET_EMPLOYER_OFFERS,
 				  FETCH_USER,
-				  FETCH_NOTIFS } from './actionTypes';
+				  FETCH_NOTIFS,
+				  ADD_UNCONSIDERED } from './actionTypes';
 
 function fetchApplicantRequests() {
 	return dispatch => axios.get('/user/verifyuser')
@@ -38,7 +39,16 @@ function fetchApplicantRequests() {
 	})
 }
 
+function applyToJob(app){
+  return function(dispatch){
+    return axios.post('user/applicant/submitapp',app)
+      .then(function(payload){
+        dispatch({ type: ADD_UNCONSIDERED, payload});
+      });
+  };
+}
 
 module.exports = {
-	fetchApplicantRequests: fetchApplicantRequests
+	fetchApplicantRequests: fetchApplicantRequests,
+	applyToJob: applyToJob
 }

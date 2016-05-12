@@ -2,10 +2,9 @@ var db = require('../db/db.js');
 
 var Applications = module.exports;
 
-//Will cover letter have to be added separately?
 Applications.submit = function(appObj) {
   return db('applications')
-  .returning('appID')
+  .returning('*')
   .insert({
     cover_letter: appObj.cover_letter,
     resume: appObj.resume,
@@ -18,17 +17,23 @@ Applications.submit = function(appObj) {
     user_id: appObj.user_id,
     can_work_here: appObj.can_work_here
   })
-  .then(function(recordID) {
-    return recordID[0]
+  .then(function(record) {
+    return record[0].appID
+  })
+  .then(function(appID) {
+    return db('applications')
+    .join('job_posts', 'applications.job_id', '=', 'job_posts.jobID')
+    .select(['job_posts.user_id as job_user_id', 'job_posts.*', 'job_posts.created_at as job_created_at','applications.user_id as app_user_id', 'applications.created_at as app_created_at', 'applications.appID', 'applications.cover_letter','applications.resume','applications.years_experience', 'applications.education', 'applications.personal_statement', 'applications.status', 'applications.skills_met', 'applications.can_work_here', 'users.*'])
+    .join('users', 'job_posts.user_id', '=', 'users.userID')
+    .where({appID: appID})
+  })
+  .then(function(result) {
+    return result[0]
   })
   .catch(function(err) {
     throw err
   })
 };
-
-//delete old unconsidered records
-//denied this will delete the app and should run after the stats method
-//check current date, if longer than 5 days ago, delete
 
 Applications.deleteApp = function(appID) {
   
