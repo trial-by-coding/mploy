@@ -5,7 +5,7 @@ import ApplicantApp from 'routes/applicant_app';
 import EmployerApp from 'routes/employer_app';
 import NewJob from 'routes/containers/newjob';
 import Jobs from 'routes/containers/jobs';
-import Controls from 'routes/forms/controls';
+import ApplyJob from 'routes/containers/apply_job';
 import Profile from 'routes/containers/profile_user';
 import Charts from 'routes/containers/chart_stats';
 import Calendar from 'routes/components/calendar';
