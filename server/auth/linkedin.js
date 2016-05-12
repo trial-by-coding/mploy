@@ -3,13 +3,19 @@ var LinkedInStrategy = require('passport-linkedin-oauth2').Strategy;
 
 var Users = require('../models/Users');
 var Stats = require('../models/Stats');
-var config = require('./config');
 var init = require('./init');
 
+if (!process.env.NODE_ENV !== 'production') {
+  var config = require('./config');
+}
+
+let LinkedInID = process.env.LINKEDIN_ID || config.linkedin.clientID
+let LinkedInSecret = process.env.LINKEDIN_SECRET || config.linkedin.clientSecret
+
 passport.use(new LinkedInStrategy({
-    clientID: config.linkedin.clientID,
-    clientSecret: config.linkedin.clientSecret,
-    callbackURL: config.linkedin.callbackURL,
+    clientID: LinkedInID,
+    clientSecret: LinkedInSecret,
+    callbackURL: '/auth/linkedin/callback',
     scope: [ 'r_basicprofile', 'r_emailaddress'],
     state: true
   },
