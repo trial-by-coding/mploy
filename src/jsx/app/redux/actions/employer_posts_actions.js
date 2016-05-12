@@ -5,18 +5,11 @@ import {	GET_JOB_POSTS,
 					SET_JOB_POST	} from './actionTypes';
 
 function getJobPosts() {
-	// console.log('jobposts');
 	return dispatch => axios.get('/user/employer/jobscreated')
 		.then(
 			payload => dispatch({ type: GET_JOB_POSTS, payload })
 		);
 }
-
-// function addJobPost(item) {
-// 	return  {
-// 		type: ADD_JOB_POST, item
-// 	};
-// 	}
 
 function removeJobPost(index) {
 	return {
@@ -29,14 +22,12 @@ function addJobPost(job){
   return function(dispatch){
     return axios.post('user/employer/submitjob',job)
       .then(function(payload){
-      	console.log('job in postNewJob: ', job)
-        dispatch({ type: ADD_JOB_POST, job});
+        dispatch({ type: ADD_JOB_POST, payload});
       });
   };
 };
 
 function setJobPost(jobID){
-	// console.log('setJobPost jobID', jobID);
 	return {
 		type: SET_JOB_POST, jobID
 	};

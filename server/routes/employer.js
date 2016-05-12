@@ -173,11 +173,11 @@ router.get('/jobinfo', function(req, res){
       .then(function(userInfo) {
       req.body.user_id = userInfo.userID;
       req.body.skills = JSON.stringify(req.body.skills);
-      JobPosts.create(req.body);
+      return JobPosts.create(req.body);
       })
       .then(function(data){
-        console.log("job post successfully submitted");
-        res.status(200).send("success!");
+        console.log("job post successfully submitted: ", data);
+        res.status(200).send(data);
       })
       .catch(function(err){
         console.log("job post submission failed, err:",err);

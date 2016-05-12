@@ -48,7 +48,6 @@ function fetchEmployerRequests() {
 }
 
 function selectJob(jobID) {
-    var appsPresent = false;
 
     return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=unconsidered')
     .then(payload => {

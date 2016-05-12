@@ -6,6 +6,7 @@ var JobPosts = module.exports;
 JobPosts.create = function(jobObj) {
     
     return db('job_posts').returning('jobID')
+    .returning('*')
     .insert({
       company_name: jobObj.company_name,
       job_title: jobObj.job_title,
@@ -19,8 +20,8 @@ JobPosts.create = function(jobObj) {
       skills: jobObj.skills,
       user_id: jobObj.user_id
     })
-    .then(function(recordID) {
-      return recordID[0]
+    .then(function(record) {
+      return record[0]
     })
     .catch(function(err) {
       throw err
