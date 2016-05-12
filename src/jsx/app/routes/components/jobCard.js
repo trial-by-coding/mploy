@@ -1,60 +1,35 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import Controls from '../forms/controls';
+import ApplyJob from 'routes/containers/apply_job';
 import actions from 'redux/actions';
 
 export class JobHeader extends React.Component {
   render() {
-    const pStyles = {
-      'fontSize': '10px'
-    };
     return (
-      <div className='jobheader'>
-      <Row>
-        <Col md={6}>
-          <div class="jobtitle">
-          <h5>{this.props.data.job_title}</h5>
-          </div>
-        </Col>
-        <Col md={6}>
-          <div class="jobimg">
-          <h5> {this.props.data.company_name}</h5>
-          </div>
-        </Col>
-      </Row>
-      </div>
+      <div>
+      <div className='text-right'>
+        <h6>photo</h6>
+        </div>
+      <div className='text-left'>
+      <h4 style={{color: 'black'}}>{this.props.data.job_title}</h4>
+      <h6 style={{color: 'lightgray'}}>{this.props.data.company_name} - {this.props.data.location}</h6>
+      <h6 overflowY='scroll' style={{height: 10}}>{this.props.data.job_description}</h6>
+    </div>
+  </div>
     );
   }
 }
-
 export class JobBody extends React.Component {
   render() {
-    const pStyles = {
-      'fontSize': '10px'
-    };
     return (
-      <div className='jobbody'>
-      <Row>
-        <div className="description">
-        <h6>{this.props.data.location}</h6>
-        Description:
-        <p style={pStyles}>{this.props.data.job_description}</p>
+      <PanelBody>
+        <div>
+          <h6 style={{float: "left"}}>{this.props.data.employment_type}</h6>
         </div>
-      </Row>
-      <Row>
-        <Col md={6}>
-          <div className="type">
-          Type:
-          <p>{this.props.data.employment_type}</p>
-          </div>
-        </Col>
-        <Col md={6}>
-          <div className="Salary">
-          Salary:<p>{this.props.data.min_salary}k-{this.props.data.max_salary}k</p>
-          </div>
-        </Col>
-      </Row>
-      </div>
+        <div>
+          <h6 className='text-right'>Salary: ${this.props.data.min_salary}-${this.props.data.max_salary}</h6>
+        </div>
+      </PanelBody>
     );
   }
 }
@@ -63,7 +38,7 @@ export class JobApply extends React.Component {
   getLargeModal() {
     return (
       <Modal lg>
-        <Controls dispatch={this.props.dispatch} complete={false} skillsArray={this.props.skillsArray} data={this.props.data} />
+        <ApplyJob dispatch={this.props.dispatch} complete={false} skillsArray={this.props.skillsArray} data={this.props.data} />
       </Modal>
     );
   }
@@ -77,9 +52,7 @@ export class JobApply extends React.Component {
       <div className="jobapply">
         <Row>
           <Col md={12}>
-            <Button bsStyle="primary"
-                    bsSize="large"
-                    onClick={ModalManager.create.bind(this, this.getLargeModal())}> Apply
+                <Button outlined style={{marginBottom: 0, btnStyles}} bsStyle='lightgreen' onClick={ModalManager.create.bind(this, this.getLargeModal())}>Apply
             </Button>
           </Col>
         </Row>
@@ -89,53 +62,34 @@ export class JobApply extends React.Component {
 }
 
 export default class JobCard extends React.Component {
-
   render() {
     let skillsArr =[];
     this.props.data.skills.map(function(item){
       skillsArr.push(false);
     });
 
-    // console.log('jobCard', this.state);
-    const styles = {
-      'margin': '12.5px 0',
-      'borderBottom': '1px dotted #999',
-      'paddingBottom': 12.5,
-      'textAlign': 'center'
-    };
-
-    const panelStyle = {
-      'maxWidth': '400px',
-      'paddingTop': '0px'
-    };
-
-    const colStyle = {
-      'zIndex': -100
-    };
-
-
     return(
-      <Col sm={12} md={4} lg={4}  className="clearfix">
-      <PanelContainer style={panelStyle}>
+      <Col sm={4} smCollapseRight>
+      <PanelContainer>
         <Panel>
-          <PanelBody >
+          <PanelHeader className='text-left' style={{margin: 25, marginTop: 0}}>
+            <JobHeader data={this.props.data} />
+          </PanelHeader>
+          <PanelBody style={{padding: 10}}>
             <Grid>
-              <Row style={styles}>
-              <div className="jobcard">
-              	<JobHeader data={this.props.data} />
+              <Row>
+                <Col xs={12}>
                 <JobBody data={this.props.data} />
-
-                <JobApply data={this.props.data}
-                          dispatch={this.props.dispatch}
-                          openModal={this.props.openModal}
-                          skillsArray={skillsArr} />
-              </div>
+                <PanelFooter className='text-center' style={{margin: 25, marginBottom: 5}}>
+                  <JobApply data={this.props.data} dispatch={this.props.dispatch} openModal={this.props.openModal} skillsArray={skillsArr} />
+                </PanelFooter>
+                </Col>
               </Row>
             </Grid>
           </PanelBody>
         </Panel>
       </PanelContainer>
-    </Col>
+      </Col>
 		);
 	}
 }

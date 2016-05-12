@@ -4,8 +4,6 @@ import JobModal from 'routes/components/jobModal';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 import { FormGroup, InputGroup, FormControl, DropdownButton} from 'react-bootstrap';
-
-// const PureRenderMixin = require('react/addons').addons.PureRenderMixin;
 import PureRenderMixin from 'react-addons-pure-render-mixin';
 
 @connect(state => state)
@@ -42,9 +40,8 @@ export default class JobsContainer extends React.Component {
   };
 
   setFilter(filter) {
-    console.log('filter', filter);
     this.setState({
-      filter: filter
+      filter
     });
   };
 
@@ -53,9 +50,6 @@ export default class JobsContainer extends React.Component {
 
     const { dispatch } = this.props;
     const { filteredData } = this.state;
-		console.log('container props', this);
-    console.log('jobcontainer state', this.state);
-    console.log('filteredData', filteredData);
 		let jobList = this.props.jobList.items;
 
 		const styles = {
@@ -77,74 +71,60 @@ export default class JobsContainer extends React.Component {
       background: 'none',
     };
 
-    const panelStyle = {
-    	'maxWidth': '400px'
-    };
-
     if(!jobList) {
     	return <div> Loading... </div>;
     }
 
 		return (
-
-
-      <Container id='body' className='social'>
+      <Container id='body'>
+      <Grid>
         <Row>
-          <div>
-            <Col xs={3} collapseRight>
+          <Col sm={12} smCollapseRight>
+          <Grid>
+            <Row style={{marginBottom: 20}}>
+              <Col xs={12}> {/*filter by jobtitle*/}
+              <Col xs={3} collapseRight>
               <InputGroup>
-                <Input  type="text"
-                        className="form-control"
-                        onChange={ this.filterData.bind(this, 'jobtitle') }
-                        placeholder="Search by Job Title" />
+                <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'jobtitle') } placeholder="Job Title" />
                 <InputGroupButton>
                 </InputGroupButton>
               </InputGroup>
-            </Col>
-             <Col xs={3} collapseRight>
+              </Col>
+              {/*filter by company*/}
+              <Col xs={3} collapseRight>
               <InputGroup>
-                <Input  type="text"
-                        className="form-control"
-                        onChange={ this.filterData.bind(this, 'company') }
-                        placeholder="Search by Company" />
+                <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'company') } placeholder="Company" />
                 <InputGroupButton>
                 </InputGroupButton>
               </InputGroup>
-               <Col xs={3} collapseRight>
+              </Col>
+              {/*filter by location*/}
+              <Col xs={3} collapseRight>
               <InputGroup>
-                <Input  type="text"
-                        className="form-control"
-                        onChange={ this.filterData.bind(this, 'location') }
-                        placeholder="Search by Location" />
+                <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'location') } placeholder="Location" />
                 <InputGroupButton>
                 </InputGroupButton>
               </InputGroup>
-            </Col>
-             <Col xs={3} collapseRight>
+              </Col>
+              {/*filter by jobtype*/}
+              <Col xs={3} collapseRight>
               <InputGroup>
-                <Input  type="text"
-                        className="form-control"
-                        onChange={ this.filterData.bind(this, 'jobtype') }
-                        placeholder="Search by Job Type" />
-                <InputGroupButton>
-                </InputGroupButton>
+                <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'jobtype') } placeholder="Job Type" />
+                <InputGroupButton />
               </InputGroup>
-            </Col>
-            </Col>
-          </div>
+              </Col>
+              {/*end all filters*/}
+              </Col>
+            </Row>
+          </Grid>
+          <Grid>
+            { jobList.filter((item) => item.job_title.search(this.state.jobtitle) > -1 && item.company_name.search(this.state.company) > -1 && item.location.search(this.state.location) > -1 && item.employment_type.search(this.state.jobtype) > -1) .map(job =>
+            <JobCard data={job} openModal={this.openModal} dispatch={dispatch} />)}
+          </Grid>
+          </Col>
         </Row>
-        <Row>
-          <div>
-          { jobList.filter((item) =>  item.job_title.search(this.state.jobtitle) > -1 
-                                  &&  item.company_name.search(this.state.company) > -1
-                                  &&  item.location.search(this.state.location) > -1
-                                  &&  item.employment_type.search(this.state.jobtype) > -1)
-            .map(job => <JobCard data={job}
-                                 openModal={this.openModal}
-                                 dispatch={dispatch} />)}
-          </div>
-        </Row>
-      </Container>
+      </Grid>
+    </Container>
 		);
 	}
 }

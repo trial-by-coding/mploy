@@ -7,7 +7,7 @@ import {
   ModalFooter
 } from 'react-modal-bootstrap';
 
-import  Controls  from '../forms/controls';
+import ApplyJob from 'routes/containers/apply_job';
 
 
 export default class JobModal extends React.Component {
