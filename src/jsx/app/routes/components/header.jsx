@@ -10,7 +10,7 @@ export default class Brand extends React.Component {
     return (
       <NavHeader {...this.props}>
         <NavBrand tabIndex='-1'>
-          <img src='' alt='mploy' width='111' height='28' />
+          <img src='/imgs/mploy_logo1.png' alt='mploy' style={{'top':'-10px'}} width='40' />
         </NavBrand>
       </NavHeader>
     );
@@ -71,7 +71,8 @@ class  HeaderNavigation extends React.Component {
     const logoutBtn = {
     position: `absolute`,
     right: `0`,
-    'margin-right':'0px'
+    'margin-right':'0px',
+    'background-color':'#383838'
     }
 
     const rowMargins = {
@@ -88,7 +89,7 @@ class  HeaderNavigation extends React.Component {
                                removeNotif={this.props.removeNotif} />
         </Nav>
         <Nav xs={6} style={logoutBtn}>
-          <NavItem className='logout' href='#' onClick={() => this.logout()}>
+          <NavItem  className='logout' href='#' onClick={() => this.logout()}>
             <Icon bundle='fontello' glyph='off-1' />
           </NavItem>
         </Nav>
@@ -119,7 +120,7 @@ removeNotif(e, notifyID, ndx){
       <Grid id='navbar' {...this.props}>
         <Row>
           <Col xs={12}>
-            <NavBar fixedTop id='rubix-nav-header'>
+            <NavBar style={{'background':'white', 'border-bottom':'1px solid rgba(0, 0, 0, 0.34)'}}fixedTop id='rubix-nav-header'>
               <Container fluid>
                 <Row>
                   <Col xs={2} visible='xs'>

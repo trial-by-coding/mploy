@@ -8,9 +8,15 @@ import {
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from 'redux/actions';
+import className from 'classnames';
+
 
 class EmployerSidebar extends React.Component {
+
   render() {
+  const navItem = {
+    'height': '55px!important'
+  }
       let posts = this.props.posts;
       if(posts === undefined || posts.length === 0) {
         return (
@@ -21,11 +27,11 @@ class EmployerSidebar extends React.Component {
                 <div className='sidebar-header'>PAGES</div>
                 <div className='sidebar-nav-container' overflowY='scroll'>
                   <SidebarNav style={{marginBottom: 0}}>
-                    <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
-                    <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
-                      <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
+                    <SidebarNavItem style={navItem} glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
+                    <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
+                      <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
-                          <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
+                          <SidebarNavItem style={navItem} glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
                         </SidebarNav>
                       </SidebarNavItem>
                       <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
@@ -46,17 +52,17 @@ class EmployerSidebar extends React.Component {
                 <div className='sidebar-header'>PAGES</div>
                 <div className='sidebar-nav-container' overflowY='scroll'>
                   <SidebarNav style={{marginBottom: 0}}>
-                    <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
-                    <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
-                      <SidebarNavItem glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts<BLabel className='bg-brown50 fg-white'>{posts.length}</BLabel></span>}>
+                    <SidebarNavItem  glyph='icon-fontello-gauge' name='Dashboard' href='/employer' style={navItem} />
+                    <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
+                      <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
                           {
-                            posts.map(item => <SidebarNavItem glyph='icon-outlined-paper-sheet' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
+                            posts.map(item => <SidebarNavItem class='sBarNavy' glyph='icon-outlined-paper-sheet' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
                           }
-                          <SidebarNavItem glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
+                          <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
                         </SidebarNav>
                       </SidebarNavItem>
-                      <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
+                      <SidebarNavItem style={navItem} glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
               </Col>
@@ -98,9 +104,9 @@ export default class extends React.Component {
                 <Img src={user.user.profile_picture} width='45' height='45'
                   style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'left'}} />
               </Col>
-              <Col xs={8} collapseLeft id='avatar-col'>
-                <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>
-                {user.user.firstname} {user.user.lastname}
+              <Col xs={8} style={{ top: '25px', left: '25px'}} collapseLeft id='avatar-col'>
+                <div >
+                {user.user.firstname} 
                 </div>
               </Col>
             </Row>
