@@ -1,8 +1,9 @@
 import classNames from 'classnames';
-import ApplicantSidebar from 'routes/components/applicant_sidebar';
-import EmployerSidebar from 'routes/components/employer_sidebar';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
+// import ApplicantSidebar from 'routes/components/applicant_sidebar';
+// import EmployerSidebar from 'routes/components/employer_sidebar';
+import Photo from 'routes/components/jobCard';
 
 
 @connect(state => state)
@@ -27,14 +28,20 @@ const { dispatch } = this.props;
  }
 
   return (
-    <Container id='body' className='social'>
+    <Container id='body'>
       <div>
-        <ApplicantSidebar
+        <Photo
         dispatch={dispatch}
         firstname={firstname}
         lastname={lastname}
         profile_picture={profile_picture}
         />
+        {/*<ApplicantSidebar
+        dispatch={dispatch}
+        firstname={firstname}
+        lastname={lastname}
+        profile_picture={profile_picture}
+        />*/}
       </div>
     </Container>
 
