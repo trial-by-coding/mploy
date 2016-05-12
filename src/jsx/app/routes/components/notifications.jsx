@@ -15,7 +15,8 @@ export default class Notifications extends React.Component {
 
   render(){
     const listNotifs = {
-    'min-height': '200px',
+    'overflow-y': 'scroll',
+    'max-height': '400px',
     display: 'block',
     left: '-300px',
     'width': '370px',
@@ -62,8 +63,8 @@ export default class Notifications extends React.Component {
 
     <NavItem dropdown className='collapse-left'>
         <DropdownButton nav> 
-          <Icon bundle='fontello' glyph='bullhorn' />
-          <Badge className='fg-darkbrown bg-orange notification-badge'>{this.props.notifications.length}</Badge>
+          <Icon bundle='fontello' glyph='bell-1' />
+          <Badge style={{'color':'#2AA38B', 'border':'1px solid black'}} className='fg-darkbrown bg-white notification-badge'>{this.props.notifications.length}</Badge>
         </DropdownButton>
         <Menu style={listNotifs}  bsStyle='white'>
         {this.props.notifications.map((notif, index) => 

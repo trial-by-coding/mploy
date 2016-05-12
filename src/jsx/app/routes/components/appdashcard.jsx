@@ -76,19 +76,31 @@ export default class appdashCard extends React.Component {
     
     const card = {
       'border': '1px solid black',
-      'border-radius': '10px'
+      'border-radius': '5px'
     }
 
     const panelStyle = {
-    'padding': '0px 10px'
+    'padding': '0px 10px',
     };
 
     const panelStyle1 = {
-    'padding': '0px'
+    'padding': '0px',
+    'border': '1px solid #A1A1A1',
+    'height' : '80px',
+    'border-radius':'10px',
+    'maxWidth': '300px',
+    'margin':'auto',
+    'margin-bottom': '15px'
+
+    };     
+
+    const panelStyle3 = {
+    'padding': '0px',
+
     };   
 
     const panelBody = {
-    'padding-top': '5px'
+    'padding-top': '5px',
     };    
 
     const companyName = {
@@ -106,24 +118,21 @@ export default class appdashCard extends React.Component {
 
       <div>
         <Col style={panelStyle} sm={12} xs={6} md={12}>
-
           <PanelContainer  style={panelStyle1} >
               <Panel style={panelStyle}>
                 <PanelBody style={panelBody} >
                   <Grid>
                     <Row onClick={ModalManager.create.bind(this, this.getLargeModal())}>
-                      <Col xs={8} style={panelStyle1} className="jobcard">
-                        <h4 style={position}> {jobtitle} </h4>
+                      <Col xs={8} style={panelStyle3} className="jobcard">
+                        <h5 style={position}> {jobtitle} </h5>
                         <h6 style={companyName} > {company} </h6>
                       </Col>
-                      <Col style={panelStyle1} xs={4} collapseRight>
+                      <Col style={panelStyle3} xs={4} collapseRight>
                         <img src={profilePic} width='45' height='45'
                           style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'left'}} />
                       </Col>
                     </Row>
-                    <Row>
-                      <div onClick={() => this.props.rescind(appID, index, status)}> Rescind </div>
-                    </Row>
+
                   </Grid>
                 </PanelBody>
               </Panel>
@@ -133,3 +142,8 @@ export default class appdashCard extends React.Component {
     );
   }
 }
+
+
+                    // <Row>
+                    //   <div onClick={() => this.props.rescind(appID, index, status)}> Rescind </div>
+                    // </Row>

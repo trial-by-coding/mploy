@@ -29,7 +29,7 @@ export default class ApplicantSidebar extends React.Component {
             </Col>
           </Row>
         </Grid>
-        <hr style={{borderColor: '#3B4648', borderWidth: 2, marginTop: 15, marginBottom: 0, width: 200}} />
+        <hr style={{borderColor: '#3B4648', borderWidth: 2, marginTop: 15, marginBottom: 0, width:  125}} />
           <Grid gutterBottom>
             <Row>
               <Col xs={12}>
@@ -43,7 +43,7 @@ export default class ApplicantSidebar extends React.Component {
               </Col>
             </Row>
           </Grid>
-         <hr style={{borderColor: '#3B4648', borderWidth: 2, marginTop: 15, marginBottom: 0, width: 200}} />
+         <hr style={{borderColor: '#3B4648', borderWidth: 2, marginTop: 15, marginBottom: 0, width: 125}} />
         </div>
     );
   }
@@ -65,16 +65,16 @@ export default class extends React.Component {
 
     return (
       <div id='sidebar' {...this.props}>
-        <div id='avatar'>
+        <div style={{'background-color':'#2AA38B'}}id='avatar'>
           <Grid>
             <Row className='fg-white'>
               <Col xs={4} collapseRight>
                 <img src={user.user.profile_picture} width='45' height='45'
-                  style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'left'}} />
+                  style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto'}} />
               </Col>
-              <Col xs={8} collapseLeft id='avatar-col'>
-                <div style={{top: 23, fontSize: 16, lineHeight: 1, position: 'relative'}}>
-                {user.user.firstname} {user.user.lastname}
+              <Col xs={8} style={{ top: '25px', left: '25px'}}collapseLeft id='avatar-col'>
+                <div>
+                {user.user.firstname} 
                 </div>
               </Col>
             </Row>
