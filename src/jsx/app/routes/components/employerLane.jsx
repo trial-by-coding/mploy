@@ -16,6 +16,7 @@ export default class EmployerLane extends React.Component {
           {list.map((item, index) => <EmployerDashboardCard item={item}
                                                             jobList={this.props.data}
                                                             index={index}
+                                                            ref={'item'+index}
                                                             lane={this.props.lane}
                                                             advance={this.props.advance}
                                                             accept={this.props.accept}
