@@ -56,7 +56,7 @@ app.get('*', function(req, res, next) {
 });
 
 console.log('Environment Port:', process.env.PORT);
-console.log('Node Environment:', process.env.ENV);
+console.log('Node Environment:', process.env.NODE_ENV);
 
 var server = app.listen(process.env.PORT, function() {
   try {
