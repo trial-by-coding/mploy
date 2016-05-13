@@ -30,8 +30,11 @@ JobPosts.create = function(jobObj) {
 
 JobPosts.getAll = function() {
     
-    return db('job_posts').select()
+    return db('job_posts')
+    .join('users', 'job_posts.user_id', '=', 'users.userID')
+    .select('job_posts.*', 'users.profile_picture')
     .then(function(records) {
+      console.log('job records: ', records)
       return records
     })
     .catch(function(err) {
