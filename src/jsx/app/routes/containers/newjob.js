@@ -39,14 +39,18 @@ const validate = values => {
     errors.min_salary = 'Enter minimum salary';
   } else if (isNaN(Number(values.min_salary))) {
     errors.min_salary = 'Must be a number'
+  } else if (values.min_salary.length < 4){
+    errors.min_salary = 'Salary should be at least 1000'
   }
 
   if(!values.max_salary) {
     errors.max_salary = 'Enter maximum salary';
   } else if (isNaN(Number(values.max_salary))) {
     errors.max_salary = 'Must be a number'
-  } else if (values.min_salary && values.max_salary < values.min_salary){
-    errors.max_salary = 'Must be larger than minimum salary'
+  } else if (values.min_salary && (values.max_salary < values.min_salary)){
+    errors.max_salary = 'Must be larger than mininum salary'
+  } else if (values.min_salary.length < 4){
+    errors.max_salary = 'Salary should be at least 1000'
   }
 
   if(!values.desired_education) {
@@ -193,23 +197,28 @@ export default class NewJob extends React.Component {
                       </div>
                     </FormGroup>
 
+                  <Row>
+                  <Col md={12}>
                   <FormGroup>
                     <InputGroup>
                     <div className={`form-group ${min_salary.touched && min_salary.invalid ? 'has-danger' : ''}`}>
                         <Label htmlFor='password' control>Salary:</Label>
-                      <Input className='form-control' {...min_salary} type='text' placeholder='Minimum Salary' />
+                      <Input className='form-control' {...min_salary} type='text' placeholder='Minimum (e.g. 1000)' />
                         <div className='text-help' style={error}>{min_salary.touched ? min_salary.error : ''}
                         </div>
                       </div>
                       </InputGroup>
                       <InputGroup>
                     <div className={`form-group ${max_salary.touched && max_salary.invalid ? 'has-danger' : ''}`}>
-                        <Input className='form-control' {...max_salary} type='text' placeholder='Maximum Salary' />
+                        <Input className='form-control' {...max_salary} type='text' placeholder='Max (e.g. 150000)' />
                         <div className='text-help' style={error}>{max_salary.touched ? max_salary.error : ''}
                         </div>
                     </div>
                   </InputGroup>
                 </FormGroup>
+                </Col>
+                </Row>
+
 
                 <FormGroup>
                   <div className={`form-group ${desired_education.touched && desired_education.invalid ? 'has-danger' : ''}`}>
