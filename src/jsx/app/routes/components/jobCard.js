@@ -8,7 +8,10 @@ export class JobHeader extends React.Component {
     return (
       <div>
       <div className='text-right'>
-        <h6>photo</h6>
+        <h6>
+          <Img src={this.props.data.profile_picture} width='45' height='45'
+              style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'right'}} />
+        </h6>
         </div>
       <div className='text-left'>
       <h4 style={{color: 'black'}}>{this.props.data.job_title}</h4>
