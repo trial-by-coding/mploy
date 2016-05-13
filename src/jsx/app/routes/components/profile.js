@@ -15,7 +15,6 @@ render() {
   const openEmail = 'mailto:'+user.email;
 
     return (
-    <Container id='body' className='social'>
       <div style={{height: 350, marginTop: -25, backgroundImage: 'url(/imgs/shots/Blick_auf_Manhattan.JPG)', backgroundSize: 'cover', position: 'relative', marginBottom: 25, backgroundPosition: 'center'}}>
         <div className='social-cover' style={{position: 'absolute', left: 0, right: 0, top: 0, bottom: 0, backgroundColor: 'rgba(0, 0, 0, 0.7)'}}>
           </div>
@@ -42,13 +41,7 @@ render() {
       </div>
   </div>
 
-        <Grid>
-          <Row>
-            {/*<Col sm={6} collapseRight>*/}
-            {/*</Col>*/}
-          </Row>
-        </Grid>
-      </Container>
+ 
     );
   }
 }

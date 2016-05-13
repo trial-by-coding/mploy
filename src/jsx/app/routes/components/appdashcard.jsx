@@ -85,7 +85,7 @@ export default class appdashCard extends React.Component {
 
     const panelStyle1 = {
     'padding': '0px',
-    'border': '1px solid rgba(0, 0, 0, 0.5)',
+    'border': '1px solid rgba(0, 0, 0, 0.30)',
     'min-height' : '80px',
     'border-radius':'10px',
     'maxWidth': '300px',
@@ -139,6 +139,15 @@ export default class appdashCard extends React.Component {
                         <h6 style={companyName} > {company} </h6>
                       </Col>
                     </Row>
+                    <Row>
+                      <Col style={{'padding-right':'0px'}}xs={12} md={12} sm={12} >
+                        <Icon onClick={() => this.props.rescind(appID, index, status)} 
+                              style={{'float':'right','font-size':'16px', 'cursor':'pointer'}}
+                              bundle='fontello' 
+                              glyph='trash-1' />
+                      </Col>
+                    </Row>
+
 
                   </Grid>
                 </PanelBody>

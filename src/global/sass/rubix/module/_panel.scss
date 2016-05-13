@@ -8,7 +8,7 @@ $panel-radius: 8px;
   overflow: hidden;
   position: relative;
   border-radius: $panel-radius;
-  margin-bottom: $line-height-computed;
+  margin-bottom: 5px;
 
   &.noOverflow {
     .rubix-panel-header:first-child {
