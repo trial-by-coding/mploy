@@ -27,7 +27,7 @@ export class JobBody extends React.Component {
           <h6 style={{float: "left"}}>{this.props.data.employment_type}</h6>
         </div>
         <div>
-          <h6 className='text-right'>Salary: ${this.props.data.min_salary}-${this.props.data.max_salary}</h6>
+          <h6 className='text-right'>Salary: ${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6>
         </div>
       </PanelBody>
     );

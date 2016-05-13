@@ -56,10 +56,10 @@ class EmployerSidebar extends React.Component {
                     <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
                       <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
-                          {
-                            posts.map(item => <SidebarNavItem class='sBarNavy' glyph='icon-outlined-paper-sheet' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
-                          }
                           <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
+                          {
+                            posts.map(item => <SidebarNavItem class='sBarNavy' glyph='icon-outlined-paper-sheet' href='/employer' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
+                          }
                         </SidebarNav>
                       </SidebarNavItem>
                       <SidebarNavItem style={navItem} glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
