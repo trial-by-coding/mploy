@@ -16,7 +16,7 @@ export class JobHeader extends React.Component {
       <div className='text-left'>
       <h4 style={{color: 'black'}}>{this.props.data.job_title}</h4>
       <h6 style={{color: 'lightgray'}}>{this.props.data.company_name} - {this.props.data.location}</h6>
-      <h6 overflowY='scroll' style={{height: 6}}>{this.props.data.job_description}</h6>
+      <h6 overflowY='scroll' style={{height: 10}}>{this.props.data.job_description}</h6>
     </div>
   </div>
     );
@@ -25,19 +25,26 @@ export class JobHeader extends React.Component {
 export class JobBody extends React.Component {
   render() {
     return (
-        <PanelBody>
-          <div>
+        <PanelBody md={12}>
             <div>
-              <h6 className='text-left'>{this.props.data.employment_type}
-                <span style={{float: "right"}}>{this.props.data.desired_education}</span>
-              </h6>
+              <Row>
+                <Col md={6}>
+                  <h6 className='text-left'>{this.props.data.employment_type}</h6>
+                </Col>
+                <Col md={6}>
+                <h6 className='text-right'>{this.props.data.desired_education}</h6>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <h6 className='text-left'>Sponsors Visas: {this.props.data.visa_required ? 'Yes' : 'No'}</h6>
+                </Col>
+                <Col md={6}>
+                <h6 className='text-right'>Salary: ${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6>
+                </Col>
+              </Row>
             </div>
-            <div>
-              <h6 className='text-left'>Sponsors Visas: {this.props.data.visa_required ? 'Yes' : 'No'}
-                <span style={{float: "right"}}>Salary: ${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</span>
-              </h6>
-            </div>
-          </div>
         </PanelBody>
     );
   }
