@@ -12,6 +12,7 @@ import Jobs from 'routes/containers/jobs';
 import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/components/calendar';
 import Charts from 'routes/containers/chart_stats';
+import JobBoard from 'routes/tables/job_board';
 import NewJob from 'routes/containers/newjob';
 import { connect } from 'react-redux';
 
@@ -25,7 +26,7 @@ export default class EmployerApp extends React.Component {
 
 	componentDidMount() {
 		this.props.dispatch(actions.fetchEmployerRequests());
-		
+
 	}
 
 	isEmployer = () => {

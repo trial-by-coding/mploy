@@ -9,6 +9,7 @@ import ApplyJob from 'routes/containers/apply_job';
 import Profile from 'routes/containers/profile_user';
 import Charts from 'routes/containers/chart_stats';
 import Calendar from 'routes/components/calendar';
+import JobBoard from 'routes/tables/job_board';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import Applicant_Sidebar from 'routes/components/applicant_sidebar';
@@ -33,6 +34,7 @@ export default (browserHistory, onUpdate) => {
         <Route path='/employerprofile' component={Profile} />
         <Route path='/employernewjob' component={NewJob} />
         <Route path='/employercalendar' component={Calendar} />
+        <Route path='/employerjobboard' component={JobBoard} />
       </Route>
     </Router>
   );
