@@ -85,9 +85,10 @@ export default class appdashCard extends React.Component {
 
     const panelStyle1 = {
     'padding': '0px',
-    'border': '1px solid rgba(0, 0, 0, 0.30)',
+    // 'border': '1px solid rgba(0, 0, 0, 0.30)',
+    'border-bottom':'1px solid rgba(0,0,0,.30)',
     'min-height' : '80px',
-    'border-radius':'10px',
+    // 'border-radius':'10px',
     'maxWidth': '300px',
     'margin':'auto',
     'margin-bottom': '15px',
@@ -124,7 +125,7 @@ export default class appdashCard extends React.Component {
       
 
       <div>
-        <Col style={panelStyle} sm={12} xs={6} md={12}>
+        <Col style={panelStyle} sm={12} xs={12} md={12}>
           <PanelContainer  style={panelStyle1} >
               <Panel style={panelStyle}>
                 <PanelBody style={panelBody} >
@@ -132,23 +133,25 @@ export default class appdashCard extends React.Component {
                     <Row onClick={ModalManager.create.bind(this, this.getLargeModal())}>
                       <Col style={profileImg} xs={4} collapseRight>
                         <img src={profilePic} width='45' height='45'
-                          style={{display: 'block', borderRadius: 45,  margin: 'auto', float: 'left'}} />
+                          style={{display: 'block', borderRadius: 45,  margin: 'auto', float: 'left', 'border':'2px solid #2AA38B', 'padding':'3px'}} />
                       </Col>
                       <Col xs={8} style={panelStyle3} className="jobcard">
-                        <h5 style={position}> {jobtitle} </h5>
-                        <h6 style={companyName} > {company} </h6>
-                      </Col>
+                        <div>
+                          <h4 style={position}> {jobtitle} </h4>
+                        </div>
+                        <div>
+                          <Col style={{padding:'0px'}} xs={10} sm={10} xs={10}>
+                            <h6 style={companyName} > {company} </h6>
+                          </Col>
+                          <Col style={{'padding':'0px'}} xs={2} md={2} sm={2} >
+                            <Icon onClick={() => this.props.rescind(appID, index, status)} 
+                                  style={{'float':'right','font-size':'16px', 'cursor':'pointer'}}
+                                  bundle='fontello' 
+                                  glyph='trash-1' />
+                          </Col>
+                        </div>
+                      </Col>                      
                     </Row>
-                    <Row>
-                      <Col style={{'padding-right':'0px'}}xs={12} md={12} sm={12} >
-                        <Icon onClick={() => this.props.rescind(appID, index, status)} 
-                              style={{'float':'right','font-size':'16px', 'cursor':'pointer'}}
-                              bundle='fontello' 
-                              glyph='trash-1' />
-                      </Col>
-                    </Row>
-
-
                   </Grid>
                 </PanelBody>
               </Panel>

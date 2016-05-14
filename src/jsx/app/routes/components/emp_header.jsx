@@ -8,7 +8,7 @@ export default class Brand extends React.Component {
     return (
       <NavHeader {...this.props}>
         <NavBrand tabIndex='-1'>
-          <img src='' alt='mploy' width='111' height='28' />
+          <img src='/imgs/mploy_logo1.png' alt='mploy' style={{'top':'-10px'}} width='40' />
         </NavBrand>
       </NavHeader>
     );
@@ -83,7 +83,7 @@ export default class Header extends React.Component {
       <Grid id='navbar' {...this.props}>
         <Row>
           <Col xs={12}>
-            <NavBar fixedTop id='rubix-nav-header'>
+            <NavBar style={{'background':'white', 'border-bottom':'1px solid rgba(0, 0, 0, 0.34)'}} fixedTop id='rubix-nav-header'>
               <Container fluid>
                 <Row>
                   <Col xs={3} visible='xs'>

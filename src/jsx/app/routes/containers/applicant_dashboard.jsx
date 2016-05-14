@@ -30,10 +30,8 @@ export default class ApplicantDashboard extends React.Component {
     'border-radius': '0px 0px 5px 5px',
      padding: '20px 10px 0px 10px',
     'margin-bottom': '20px',
-    'border':'1px solid rgba(0, 0, 0, 0.38)',
-    'box-shadow': '0px 2px 4px 0px rgba(0,0,0,0.50)'
-
-
+    // 'border':'1px solid rgba(0, 0, 0, 0.38)',
+    'box-shadow': '0px 3px 4px 0px rgba(0,0,0,0.20)' 
     }   
 
     const lanePad = {
@@ -41,7 +39,8 @@ export default class ApplicantDashboard extends React.Component {
     }
 
     const laneHeader = {
-      'background-color':'#2AA38B',
+      'box-shadow': '0px 2px 4px 0px rgba(0,0,0,0.20)',
+      'background-color':'white',    //#2AA38B
       'height': '40px',
       'textAlign': 'center',
       'border-radius': '5px 5px 0px 0px',
@@ -51,7 +50,16 @@ export default class ApplicantDashboard extends React.Component {
       'padding-top': '10px',
       'margin-top': '0px',
       'margin-bottom': '0px',
-      'color':'white'
+      'color':'#8D979E',
+      'font-weight': '400!important'
+    }
+
+    const panelHr = {
+      'margin-top': '8px',
+      'margin-bottom': '25px',
+      'border': '0',
+      'border-top': '3px solid #2AA38B',
+       width: '60%',
     }
 
 
@@ -79,7 +87,10 @@ export default class ApplicantDashboard extends React.Component {
       <Grid>
         <Row>
         	<Col clearfix style={lanePad} xs={12} sm={6} md={3}>
-            <div style={laneHeader} > <h4 style={panelH} > Unconsidered </h4> </div>
+            <div style={laneHeader} > 
+              <h4 style={panelH} > Unconsidered </h4> 
+              <hr style={panelHr}/>
+            </div>
             <div  style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
               <ApplicantLane  data={unconsidered}
                               rescind={this.rescind}
@@ -88,7 +99,10 @@ export default class ApplicantDashboard extends React.Component {
             </div>
           </Col>
           <Col clearfix style={lanePad} xs={12} sm={6} md={3}>
-            <div style={ laneHeader } > <h4 style={panelH}> Considered </h4> </div>
+            <div style={ laneHeader } > 
+              <h4 style={panelH}> Considered </h4> 
+              <hr style={panelHr}/>
+            </div>
             <div style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
               <ApplicantLane  data={considered}
                               rescind={this.rescind}
@@ -97,7 +111,10 @@ export default class ApplicantDashboard extends React.Component {
             </div>
           </Col>
           <Col clearfix style={lanePad} xs={12} sm={6} md={3}>
-            <div style={ laneHeader } > <h4 style={panelH}> Interviews </h4> </div>
+            <div style={ laneHeader } > 
+              <h4 style={panelH}> Interviews </h4> 
+              <hr style={panelHr}/>
+            </div>
             <div style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
               <ApplicantLane  data={interviews}
                               rescind={this.rescind}
@@ -106,7 +123,10 @@ export default class ApplicantDashboard extends React.Component {
             </div>
           </Col>
           <Col clearfix style={lanePad} xs={12} sm={6} md={3}>
-            <div style={ laneHeader } > <h4 style={panelH}> Offers </h4> </div>
+            <div style={ laneHeader } > 
+              <h4 style={panelH}> Offers </h4> 
+              <hr style={panelHr}/>
+            </div>
             <div style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
               <ApplicantLane  data={offers}
                             rescind={this.rescind}
