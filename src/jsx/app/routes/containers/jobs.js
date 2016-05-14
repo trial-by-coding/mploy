@@ -57,7 +57,7 @@ export default class JobsContainer extends React.Component {
 		return (
     <Container id='body'>
 
-    <Grid style={{paddingBottom: 10, paddingTop: 3}}>
+    <Grid style={{paddingBottom: 10}}>
       <Row>
         <Col sm={3} smCollapseRight>
           <PanelContainer>
@@ -134,9 +134,8 @@ export default class JobsContainer extends React.Component {
           {/*end all filters*/}
         </Row>
       </Grid>
-
       {/*jobcards*/}
-      <Row style={{paddng: 10}}>
+    <Row>
       <Grid>
         { jobList.filter((item) => item.job_title.search(this.state.jobtitle) > -1 && item.company_name.search(this.state.company)
         > -1 && item.location.search(this.state.location) > -1 && item.employment_type.search(this.state.jobtype) >

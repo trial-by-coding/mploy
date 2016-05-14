@@ -19,38 +19,46 @@ export class JobHeader extends React.Component {
 }
 export class JobBody extends React.Component {
   render() {
+    const tableLines = {
+      'padding': 0,
+      'border': 'none'
+    };
     return (
       <Grid>
-      <Row>
-        <Col xs={12}>
-        <p style={{lineHeight: 1.6, paddingBottom: 15}}>{this.props.data.job_description}</p>
-        <Table>
-          <tbody>
-            <tr>
-              <td style={{padding: 0}}><h6><strong>Education</strong></h6></td>
-              <td style={{padding: 0}}>
-                <h6>{this.props.data.desired_education}</h6></td>
-            </tr>
-            <tr>
-              <td style={{padding: 0, border: 'none'}}><h6><strong>Job Type</strong></h6></td>
-              <td style={{padding: 0, border: 'none'}}>
-                <h6>{this.props.data.employment_type}</h6></td>
-            </tr>
-            <tr>
-              <td style={{padding: 0, border: 'none'}}><h6><strong>Visa Sponsor</strong></h6></td>
-              <td style={{padding: 0, border: 'none' }}>
-                <h6>{this.props.data.visa_required ? 'Yes' : 'No'}</h6></td>
-            </tr>
-            <tr>
-              <td style={{padding: 0, border: 'none'}}><h6><strong>Salary</strong></h6></td>
-              <td style={{padding: 0, border: 'none'}}>
-                <h6>${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6></td>
-            </tr>
-          </tbody>
-        </Table>
-        </Col>
-      </Row>
-    </Grid>
+    <Row>
+      <Col xs={12}>
+      <p style={{lineHeight: 1.6, paddingBottom: 15}}>{this.props.data.job_description}</p>
+      <Table>
+        <tbody>
+          <tr>
+            <td style={{padding: 0}}>
+              <h6><strong>Education</strong></h6></td>
+            <td style={{padding: 0}}>
+              <h6>{this.props.data.desired_education}</h6></td>
+          </tr>
+          <tr>
+            <td style={tableLines}>
+              <h6><strong>Job Type</strong></h6></td>
+            <td style={tableLines}>
+              <h6>{this.props.data.employment_type}</h6></td>
+          </tr>
+          <tr>
+            <td style={tableLines}>
+              <h6><strong>Visa Sponsor</strong></h6></td>
+            <td style={tableLines}>
+              <h6>{this.props.data.visa_required ? 'Yes' : 'No'}</h6></td>
+          </tr>
+          <tr>
+            <td style={tableLines}>
+              <h6><strong>Salary</strong></h6></td>
+            <td style={tableLines}>
+              <h6>${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6></td>
+          </tr>
+        </tbody>
+      </Table>
+      </Col>
+    </Row>
+  </Grid>
     );
   }
 }
@@ -86,25 +94,22 @@ export default class JobCard extends React.Component {
     });
 
     return(
-    <Col sm={6} smCollapseRight>
-      <PanelContainer>
-        <Panel>
-
-          <PanelHeader className='text-left' style={{margin: 25}}>
-            <JobHeader data={this.props.data} />
-          </PanelHeader>
-
-          <PanelBody>
-            <JobBody data={this.props.data} />
-          </PanelBody>
-
-          <PanelFooter className='text-center' style={{marginBottom: 10}}>
-            <JobApply data={this.props.data} dispatch={this.props.dispatch} openModal={this.props.openModal} skillsArray={skillsArr} />
-          </PanelFooter>
-
-        </Panel>
-      </PanelContainer>
-      </Col>
+  <Col sm={4} smCollapseRight>
+  <PanelContainer style={{marginBottom: 15, marginTop: 15}}>
+    <Panel>
+      <PanelHeader className='text-left' style={{margin: 25}}>
+        <JobHeader data={this.props.data} />
+      </PanelHeader>
+      <PanelBody>
+        <JobBody data={this.props.data} />
+      </PanelBody>
+      <PanelFooter className='text-center' style={{paddingBottom: 10}}>
+        <JobApply data={this.props.data} dispatch={this.props.dispatch} openModal={this.props.openModal} skillsArray={skillsArr}
+        />
+      </PanelFooter>
+    </Panel>
+  </PanelContainer>
+  </Col>
 		);
 	}
 }
