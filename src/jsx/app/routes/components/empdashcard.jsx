@@ -61,6 +61,7 @@ class AppModal extends React.Component {
 
   toggleModal = () => {
     if(this.state.show){
+      this.props.dispatch(actions.fetchEmployerRequests());
       ModalManager.remove()
       this.setState({
         show:false
