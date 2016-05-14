@@ -12,14 +12,12 @@ function getJobPosts() {
 }
 
 
-	function removeJobPost(jobID) {
-	  return dispatch => axios.delete('/user/employer/deletejob?jobID=' + jobID)
-	  .then(
-	    payload => dispatch({ type: REMOVE_JOB_POST, payload })
-	  );
-	}
-
-
+function removeJobPost(jobID, index) {
+  return dispatch => axios.delete('/user/employer/deletejob?jobID=' + jobID)
+  .then(
+    payload => dispatch({type: REMOVE_JOB_POST, index: index})
+  );
+}
 
 
 function addJobPost(job){

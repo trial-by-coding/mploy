@@ -42,7 +42,7 @@ export class JobBoard extends React.Component {
                       </tr>
                     </thead>
                     <tbody>
-                      { posts.map(item =>
+                      { posts.map((item, index) =>
                       <tr href='/employer'>
                       {/*{ posts.map(item =>
                       <tr href='/employer' onClick={()=> this.props.select(item.jobID)}>*/}
@@ -54,7 +54,7 @@ export class JobBoard extends React.Component {
                         <td>{item.desired_education}</td>
                         <td>
                           <Button xs outlined bsStyle='red' onClick={()=>
-                              this.props.deleteJobPost(item.jobID)
+                              this.props.deleteJobPost(item.jobID, index)
 
                           }>Delete</Button>
                         </td>
@@ -90,9 +90,9 @@ export default class extends React.Component {
     this.props.dispatch(actions.selectJob(jobID));
   };
 
-  deleteJobPost = (jobID) => {
+  deleteJobPost = (jobID, index) => {
     console.log('deleteJP', jobID);
-    this.props.dispatch(actions.removeJobPost(jobID));
+    this.props.dispatch(actions.removeJobPost(jobID, index));
   };
 
   render() {
