@@ -11,11 +11,15 @@ function getJobPosts() {
 		);
 }
 
-function removeJobPost(index) {
-	return {
-		type: REMOVE_JOB_POST, index
-	};
+
+	function removeJobPost(jobID) {
+	  return dispatch => axios.delete('/user/employer/jobscreated?jobID=' + jobID)
+	  .then(
+	    payload => dispatch({ type: REMOVE_JOB_POST, payload })
+	  );
 	}
+
+
 
 
 function addJobPost(job){
@@ -34,8 +38,8 @@ function setJobPost(jobID){
 }
 
 module.exports = {
-	getJobPosts: getJobPosts,
-	addJobPost: addJobPost,
-	removeJobPost: removeJobPost,
-	setJobPost: setJobPost
+	getJobPosts,
+	addJobPost,
+	removeJobPost,
+	setJobPost
 };

@@ -55,9 +55,9 @@ class EmployerSidebar extends React.Component {
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem  glyph='icon-fontello-gauge' name='Dashboard' href='/employer' style={navItem} />
                     <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
+                    <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
                       <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
-                          <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
                           {
                             posts.map(item => <SidebarNavItem class='sBarNavy' glyph='icon-outlined-paper-sheet' href='/employer' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
                           }
@@ -85,16 +85,12 @@ export default class extends React.Component {
     this.props.dispatch(actions.fetchUser());
   }
 
-  // selectJobPost = (jobID) => {
-  //   console.log('job post selected', this);
-  //   this.props.dispatch(actions.selectJob(jobID));
-  //
-  // };
+  selectJobPost = (jobID) => {
+    this.props.dispatch(actions.selectJob(jobID));
+  };
 
   render() {
     const user = this.props;
-    // console.log('siderbar props', this.props);
-
     let posts = this.props.posts;
 
     return (
