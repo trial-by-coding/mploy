@@ -4,7 +4,7 @@ import AppCard from './appCard';
 
 export default class empdashCard extends React.Component {
 
-  getLargeModal() {
+  getLongModal() {
 
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
@@ -16,9 +16,9 @@ export default class empdashCard extends React.Component {
     let accept = this.props.accept;
 
     return (
-      <Modal lg>
-        <ModalBody>
-          <AppCard app={this.props.item}/>
+      <Modal>
+        <ModalBody md={12}>
+           <AppCard app={this.props.item}/>
         </ModalBody>
         <ModalFooter>
           <Button outlined bsStyle='danger' onClick={() => reject(item.appID, status, index)} onTouchEnd={ModalManager.remove}>Reject</Button>
@@ -102,7 +102,7 @@ export default class empdashCard extends React.Component {
                       </Col>
                       <Col xs={8} style={panelStyle3} className="jobcard">
                         <div >
-                          <h4 onClick={ModalManager.create.bind(this, this.getLargeModal())} style={position}> {this.props.item.firstname + ' ' + this.props.item.lastname} </h4>
+                          <h4 onClick={ModalManager.create.bind(this, this.getLongModal())} style={position}> {this.props.item.firstname + ' ' + this.props.item.lastname} </h4>
                         </div>
                         <div>
                           <Col  style={{padding:'0px'}} xs={10} sm={10} xs={10}>
