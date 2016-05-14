@@ -9,6 +9,7 @@ export default class AppCard extends React.Component {
   }
 
   render() {
+    console.log('props in AppCard', this.props);
     let skills_met= JSON.parse(this.props.app.skills_met);
     let skillsArray = this.props.app.skills;
     let skillList = [];

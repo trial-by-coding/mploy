@@ -22,6 +22,7 @@ function rejectEmployerRequest(appID) {
 			payload => dispatch({type: REJECT_EMPLOYER_REQUEST, payload}));
 }
 
+
 module.exports = {
 	advanceEmployerRequest: advanceEmployerRequest,
 	revertEmployerRequest: revertEmployerRequest,

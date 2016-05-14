@@ -1,7 +1,8 @@
 import axios from 'axios';
 import	{	GET_EMPLOYER_OFFERS,
 					ADD_OFFER,
-					REMOVE_OFFER	} from './actionTypes';
+					REMOVE_OFFER,
+					NEXT_MODAL	} from './actionTypes';
 
 function getEmployerOffers(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=offers')
@@ -25,9 +26,15 @@ function removeOffer(index) {
 	return {type: REMOVE_OFFER, index};
 }
 
+function nextOffer(index) {
+	let payload = {index: index, status: 'unconsidered'};
+	return {type: NEXT_MODAL, payload};
+}
+
 module.exports = {
 	getEmployerOffers: getEmployerOffers,
 	getApplicantOffers: getApplicantOffers,
 	addOffer: addOffer,
-	removeOffer: removeOffer
+	removeOffer: removeOffer,
+	nextOffer: nextOffer
 };

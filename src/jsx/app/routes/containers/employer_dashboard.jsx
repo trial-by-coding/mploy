@@ -41,10 +41,14 @@ export default class EmployerDashboard extends React.Component {
 
   reject = (appID, status, index) => {
     ModalManager.remove();
-    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); }
-    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));}
-    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));}
-    else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index));}
+    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); 
+                                        this.props.dispatch(actions.nextUnconsidered(index));}
+    else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));
+                                        this.props.dispatch(actions.nextConsidered(index));}
+    else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));
+                                        this.props.dispatch(actions.nextInterview(index));}
+    else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index));
+                                        this.props.dispatch(actions.nextOffer(index));}
 
 
     this.props.dispatch(actions.rejectApp(appID));
@@ -101,6 +105,7 @@ export default class EmployerDashboard extends React.Component {
     let considered = this.props.considered;
     let interviews = this.props.interviews;
     let offers = this.props.offers;
+    let currentModal = this.props.currentModal;
 
     if(this.props.posts.length === 0){
       return (
