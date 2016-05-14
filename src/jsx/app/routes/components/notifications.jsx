@@ -10,9 +10,6 @@ export default class Notifications extends React.Component {
 
   }
 
-
-
-
   render(){
     const listNotifs = {
     'overflow-y': 'scroll',
@@ -44,15 +41,16 @@ export default class Notifications extends React.Component {
     const cancelBtn = {
       'color':'black'
     }
-    
- 
-    console.log('lowest level notifs:', this.props) 
 
+    const icon = {
+      'color':'#707070'
+    }
+    
     if(!this.props.notifications || (this.props.notifications && this.props.notifications.length === 0) ){
       return (
         <NavItem dropdown className='collapse-left' disabled>
             <DropdownButton nav> 
-              <Icon bundle='fontello' glyph='bullhorn' />
+              <Icon style={icon} bundle='fontello' glyph='bell-1'/>
               <Badge className='fg-darkbrown bg-orange notification-badge'>0</Badge>
             </DropdownButton>
         </NavItem>
@@ -63,7 +61,7 @@ export default class Notifications extends React.Component {
 
     <NavItem dropdown className='collapse-left'>
         <DropdownButton nav> 
-          <Icon bundle='fontello' glyph='bell-1' />
+          <Icon style={icon} outlined bundle='fontello' glyph='bell-1' bsStyle="success"/>
           <Badge style={{'color':'#2AA38B', 'border':'1px solid black'}} className='fg-darkbrown bg-white notification-badge'>{this.props.notifications.length}</Badge>
         </DropdownButton>
         <Menu style={listNotifs}  bsStyle='white'>
@@ -100,6 +98,3 @@ export default class Notifications extends React.Component {
     )
   }
 }
-
-
-// <div><img src='/imgs/avatars/avatar22.png' width='40' height='40' alt='sarah_patchett' /></div>
