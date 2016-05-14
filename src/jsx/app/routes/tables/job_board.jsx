@@ -53,7 +53,9 @@ export class JobBoard extends React.Component {
                         <td>{item.location}</td>
                         <td>{item.desired_education}</td>
                         <td>
-                          <Button xs outlined bsStyle='red' onClick={()=> this.deleteJobPost()
+                          <Button xs outlined bsStyle='red' onClick={()=>
+                              this.props.deleteJobPost(item.jobID)
+
                           }>Delete</Button>
                         </td>
                       </tr>) }
@@ -77,9 +79,9 @@ export class JobBoard extends React.Component {
 
 @connect(state => state)
 export default class extends React.Component {
-  componentWillMount() {
-    this.props.dispatch(actions.removeJobPost());
-  }
+  // componentWillMount() {
+  //   this.props.dispatch(actions.removeJobPost());
+  // }
   constructor(props){
     super(props);
 }
@@ -89,6 +91,7 @@ export default class extends React.Component {
   };
 
   deleteJobPost = (jobID) => {
+    console.log('deleteJP', jobID);
     this.props.dispatch(actions.removeJobPost(jobID));
   };
 
@@ -98,7 +101,7 @@ export default class extends React.Component {
       <div id='body'>
         <JobBoard posts={this.props.posts}
                  select={this.selectJobPost}
-                 delete={this.deleteJobPost}
+                 deleteJobPost={this.deleteJobPost}
                 />
       </div>
     );
