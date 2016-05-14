@@ -16,7 +16,7 @@ class EmployerSidebar extends React.Component {
   render() {
   const navItem = {
     'height': '55px!important'
-  }
+  };
       let posts = this.props.posts;
       if(posts === undefined || posts.length === 0) {
         return (
@@ -34,6 +34,7 @@ class EmployerSidebar extends React.Component {
                           <SidebarNavItem style={navItem} glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
                         </SidebarNav>
                       </SidebarNavItem>
+                      <SidebarNavItem glyph='icon-fontello-th-2' name='Job Board' href='/employerjobboard' />
                       <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
@@ -54,14 +55,15 @@ class EmployerSidebar extends React.Component {
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem  glyph='icon-fontello-gauge' name='Dashboard' href='/employer' style={navItem} />
                     <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
+                    <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
                       <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
-                          <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
                           {
                             posts.map(item => <SidebarNavItem class='sBarNavy' glyph='icon-outlined-paper-sheet' href='/employer' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
                           }
                         </SidebarNav>
                       </SidebarNavItem>
+                      <SidebarNavItem glyph='icon-fontello-th-2' name='Job Board' href='/employerjobboard' />
                       <SidebarNavItem style={navItem} glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
@@ -84,15 +86,11 @@ export default class extends React.Component {
   }
 
   selectJobPost = (jobID) => {
-    console.log('job post selected', this);
     this.props.dispatch(actions.selectJob(jobID));
-    
   };
 
   render() {
     const user = this.props;
-    // console.log('siderbar props', this.props);
-
     let posts = this.props.posts;
 
     return (

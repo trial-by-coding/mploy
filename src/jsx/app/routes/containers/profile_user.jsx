@@ -3,6 +3,7 @@ import Profile from 'routes/components/profile';
 import { connect } from 'react-redux';
 import { Link, History } from 'react-router';
 import actions from 'redux/actions';
+import JobBoard from 'routes/tables/job_board';
 
 @connect(state => state)
 export default class ProfileContainer extends React.Component {
