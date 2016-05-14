@@ -16,9 +16,11 @@ class JobBoard extends React.Component {
     });
   }
   render() {
+    let posts = this.props.posts;
 
-  let posts = this.props.posts[0];
-  console.log('this.props ===', posts);
+    for(let i = 0; i < posts.length; i++) {
+      console.log('loopy >>', posts[i].job_title);
+
     return (
       <Container id='body'>
         <Grid>
@@ -44,13 +46,20 @@ class JobBoard extends React.Component {
                             </thead>
                             <tbody>
                               <tr>
-                                <td>{posts.company_name}</td>
+                                <td>{posts[i].company_name}</td>
+                                <td>{posts[i].job_title}</td>
+                                <td>{posts[i].min_salary}-
+                                {posts[i].max_salary}</td>
+                              <td>{posts[i].employment_type}</td>
+                                <td>{posts[i].location}</td>
+                                <td>{posts[i].desired_education}</td>
+                                {/*<td>{posts.company_name}</td>
                                 <td>{posts.job_title}</td>
                                 <td>{posts.min_salary}-
                                 {posts.max_salary}</td>
-                                <td>{posts.employment_type}</td>
+                              <td>{posts.employment_type}</td>
                                 <td>{posts.location}</td>
-                                <td>{posts.desired_education}</td>
+                                <td>{posts.desired_education}</td>*/}
                                 <td>
                                   <Button xs outlined bsStyle='red'>
                                     Delete
@@ -71,7 +80,8 @@ class JobBoard extends React.Component {
         </Grid>
       </Container>
     );
-  }
+}
+}
 }
 
 @connect(state => state)
@@ -80,32 +90,14 @@ export default class extends React.Component {
     super(props);
   }
   componentWillMount(){
-
-  };
-
-
-  selectJobPost = (jobID) => {
-    this.props.dispatch(actions.selectJob(jobID));
-
   };
 
   render() {
-    let posts = this.props.posts;
+    const posts = this.props;
 
     return (
-      <div id='body' {...this.props}>
-
-        <div>
-          {
-            posts.map(item => <td href='/employerjobboard'>{item.job_title} {() => this.props.select(item.jobID)} </td>)
-          }
-        </div>
-
-
-        <div id='sidebar-container'>
-            <JobBoard posts={this.props.posts}
-                    select={this.selectJobPost} />
-        </div>
+      <div id='body'>
+        <JobBoard posts={this.props.posts} />
       </div>
     );
   }

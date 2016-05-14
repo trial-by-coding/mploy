@@ -16,7 +16,7 @@ class EmployerSidebar extends React.Component {
   render() {
   const navItem = {
     'height': '55px!important'
-  }
+  };
       let posts = this.props.posts;
       if(posts === undefined || posts.length === 0) {
         return (
@@ -34,6 +34,7 @@ class EmployerSidebar extends React.Component {
                           <SidebarNavItem style={navItem} glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
                         </SidebarNav>
                       </SidebarNavItem>
+                      <SidebarNavItem glyph='icon-fontello-th-2' name='Job Board' href='/employerjobboard' />
                       <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
@@ -62,6 +63,7 @@ class EmployerSidebar extends React.Component {
                           }
                         </SidebarNav>
                       </SidebarNavItem>
+                      <SidebarNavItem glyph='icon-fontello-th-2' name='Job Board' href='/employerjobboard' />
                       <SidebarNavItem style={navItem} glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
@@ -83,11 +85,11 @@ export default class extends React.Component {
     this.props.dispatch(actions.fetchUser());
   }
 
-  selectJobPost = (jobID) => {
-    console.log('job post selected', this);
-    this.props.dispatch(actions.selectJob(jobID));
-    
-  };
+  // selectJobPost = (jobID) => {
+  //   console.log('job post selected', this);
+  //   this.props.dispatch(actions.selectJob(jobID));
+  //
+  // };
 
   render() {
     const user = this.props;
