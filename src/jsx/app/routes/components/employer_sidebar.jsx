@@ -102,7 +102,7 @@ export default class extends React.Component {
         </div>
         <div id='sidebar-container'>
             <EmployerSidebar  posts={this.props.posts}
-                              select={this.selectJobPost}/>
+                              select={this.selectJobPost} />
         </div>
       </div>
     );
