@@ -25,14 +25,27 @@ export class JobHeader extends React.Component {
 export class JobBody extends React.Component {
   render() {
     return (
-      <PanelBody>
-        <div>
-          <h6 style={{float: "left"}}>{this.props.data.employment_type}</h6>
-        </div>
-        <div>
-          <h6 className='text-right'>Salary: ${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6>
-        </div>
-      </PanelBody>
+        <PanelBody md={12}>
+            <div>
+              <Row>
+                <Col md={6}>
+                  <h6 className='text-left'>{this.props.data.employment_type}</h6>
+                </Col>
+                <Col md={6}>
+                <h6 className='text-right'>{this.props.data.desired_education}</h6>
+                </Col>
+              </Row>
+
+              <Row>
+                <Col md={6}>
+                  <h6 className='text-left'>Sponsors Visas: {this.props.data.visa_required ? 'Yes' : 'No'}</h6>
+                </Col>
+                <Col md={6}>
+                <h6 className='text-right'>Salary: ${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6>
+                </Col>
+              </Row>
+            </div>
+        </PanelBody>
     );
   }
 }
@@ -72,7 +85,7 @@ export default class JobCard extends React.Component {
     });
 
     return(
-      <Col sm={4} smCollapseRight>
+      <Col sm={6} smCollapseRight>
       <PanelContainer>
         <Panel>
           <PanelHeader className='text-left' style={{margin: 25, marginTop: 0}}>

@@ -209,7 +209,7 @@ const title = {
                 <Grid>
                   <Row>
                     <Col xs={12}>
-                      <Button outlined bsStyle='lightred' style={floatLeft} onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>cancel</Button>
+                      <Button outlined bsStyle='lightred' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>cancel</Button>
 
                       <Button type="submit" onClick={ModalManager.remove} outlined bsStyle='lightgreen' style={floatRight}>submit</Button>
                   </Col>

@@ -21,8 +21,8 @@ export default class empdashCard extends React.Component {
           <AppCard app={this.props.item}/>
         </ModalBody>
         <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={() => reject(item.job_id, item.appID, item, status, index)} onTouchEnd={ModalManager.remove}>Reject</Button>
-          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
+          <Button outlined bsStyle='danger' onClick={() => reject(item.appID, status, index)} onTouchEnd={ModalManager.remove}>Reject</Button>
+          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)} onTouchEnd={ModalManager.remove} >Move Forward </Button>
         </ModalFooter>
       </Modal>
     );

@@ -16,7 +16,6 @@ export default class EmployerDashboard extends React.Component {
 
 
   advance = (appID, status, item, index)  => {
-    // console.log('employer dashboard props', this.props);
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index));
                                         this.props.dispatch(actions.addConsidered(item));}
     else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));
@@ -40,20 +39,19 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.revertEmployerRequest(appID));
   };
 
-  reject = (jobID, appID, status, index) => {
+  reject = (appID, status, index) => {
     ModalManager.remove();
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); }
     else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));}
     else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));}
     else if(status === 'offers')      { this.props.dispatch(actions.removeOffer(index));}
 
-    this.props.dispatch(actions.rejectApp(jobID, appID));
+    this.props.dispatch(actions.rejectApp(appID));
 
   };
 
   accept = (appID, status, item, index) => {
-    // ModalManager.remove;
-    // console.log('accept',this);
+    ModalManager.remove();
     this.advance(appID, status, item, index);
   };
 

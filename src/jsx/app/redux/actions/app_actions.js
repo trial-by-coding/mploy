@@ -16,7 +16,7 @@ function getApplications(jobID) {
 
 }
 
-function rejectApp(jobID, appID) {
+function rejectApp(appID) {
 
     return function (dispatch) {
 
