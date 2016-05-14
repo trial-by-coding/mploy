@@ -110,10 +110,18 @@ export default class EmployerDashboard extends React.Component {
       );
     }
 
-    if(this.props.posts.length && unconsidered.length === 0 && considered.length === 0 && interviews.length === 0 && offers.length === 0){
+    if(this.props.posts.length && this.props.currentPost.job_title && unconsidered.length === 0 && considered.length === 0 && interviews.length === 0 && offers.length === 0){
       return (
         <Container id='body'>
           <h1 style={{textAlign: 'center'}}>No candidates have applied to the {this.props.currentPost.job_title} position with {this.props.currentPost.company_name} yet.</h1>
+        </Container>
+      );
+    }
+
+    if(!this.props.currentPost.job_title){
+      return (
+        <Container id='body'>
+          <h1 style={{textAlign: 'center'}}>Select a job post from the sidebar.</h1>
         </Container>
       );
     }

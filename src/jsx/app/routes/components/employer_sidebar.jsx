@@ -29,13 +29,8 @@ class EmployerSidebar extends React.Component {
                   <SidebarNav style={{marginBottom: 0}}>
                     <SidebarNavItem style={navItem} glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
                     <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
-                      <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
-                        <SidebarNav>
-                          <SidebarNavItem style={navItem} glyph='icon-outlined-todolist-add' name='Add New Post' href='/employernewjob' />
-                        </SidebarNav>
-                      </SidebarNavItem>
-                      <SidebarNavItem glyph='icon-fontello-th-2' name='Job Board' href='/employerjobboard' />
-                      <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
+                    <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
+                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
               </Col>
@@ -63,7 +58,7 @@ class EmployerSidebar extends React.Component {
                           }
                         </SidebarNav>
                       </SidebarNavItem>
-                      <SidebarNavItem glyph='icon-fontello-th-2' name='Job Board' href='/employerjobboard' />
+                      <SidebarNavItem glyph='icon-fontello-th-2' name='Manage Posts' href='/employerjobboard' />
                       <SidebarNavItem style={navItem} glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
