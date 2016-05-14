@@ -7,16 +7,11 @@ export class JobHeader extends React.Component {
   render() {
     return (
       <div>
-      <div className='text-right'>
-        <h6>
-          <Img src={this.props.data.profile_picture} width='45' height='45'
-              style={{display: 'block', borderRadius: 45, border: '2px solid #fff', margin: 'auto', float: 'right'}} />
-        </h6>
-        </div>
+      <Img src={this.props.data.profile_picture} width='40' height='40'
+              style={{display: 'block', borderRadius: 40, padding: 3, border: '2px solid #55c9a6', margin: 'auto', float: 'right'}} />
       <div className='text-left'>
       <h4 style={{color: 'black'}}>{this.props.data.job_title}</h4>
       <h6 style={{color: 'lightgray'}}>{this.props.data.company_name} - {this.props.data.location}</h6>
-      <h6 overflowY='scroll' style={{height: 'auto', lineHeight: 1.3}}>{this.props.data.job_description}</h6>
     </div>
   </div>
     );
@@ -25,27 +20,37 @@ export class JobHeader extends React.Component {
 export class JobBody extends React.Component {
   render() {
     return (
-        <PanelBody md={12}>
-            <div>
-              <Row>
-                <Col md={6}>
-                  <h6 className='text-left'>{this.props.data.employment_type}</h6>
-                </Col>
-                <Col md={6}>
-                <h6 className='text-right'>{this.props.data.desired_education}</h6>
-                </Col>
-              </Row>
-
-              <Row>
-                <Col md={6}>
-                  <h6 className='text-left'>Sponsors Visas: {this.props.data.visa_required ? 'Yes' : 'No'}</h6>
-                </Col>
-                <Col md={6}>
-                <h6 className='text-right'>Salary: ${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6>
-                </Col>
-              </Row>
-            </div>
-        </PanelBody>
+      <Grid>
+      <Row>
+        <Col xs={12}>
+        <p style={{lineHeight: 1.6, paddingBottom: 15}}>{this.props.data.job_description}</p>
+        <Table>
+          <tbody>
+            <tr>
+              <td style={{padding: 0}}><h6><strong>Education</strong></h6></td>
+              <td style={{padding: 0}}>
+                <h6>{this.props.data.desired_education}</h6></td>
+            </tr>
+            <tr>
+              <td style={{padding: 0, border: 'none'}}><h6><strong>Job Type</strong></h6></td>
+              <td style={{padding: 0, border: 'none'}}>
+                <h6>{this.props.data.employment_type}</h6></td>
+            </tr>
+            <tr>
+              <td style={{padding: 0, border: 'none'}}><h6><strong>Visa Sponsor</strong></h6></td>
+              <td style={{padding: 0, border: 'none' }}>
+                <h6>{this.props.data.visa_required ? 'Yes' : 'No'}</h6></td>
+            </tr>
+            <tr>
+              <td style={{padding: 0, border: 'none'}}><h6><strong>Salary</strong></h6></td>
+              <td style={{padding: 0, border: 'none'}}>
+                <h6>${this.props.data.min_salary/1000}k-${this.props.data.max_salary/1000}k</h6></td>
+            </tr>
+          </tbody>
+        </Table>
+        </Col>
+      </Row>
+    </Grid>
     );
   }
 }
@@ -60,12 +65,11 @@ export class JobApply extends React.Component {
   }
 
   render() {
-
     return (
       <div className="jobapply">
         <Row>
           <Col md={12}>
-                <Button outlined style={{marginBottom: 0}} bsStyle='lightgreen' onClick={ModalManager.create.bind(this, this.getLargeModal())}>Apply
+                <Button outlined style={{marginBottom: 10}} bsStyle='lightgreen' onClick={ModalManager.create.bind(this, this.getLargeModal())}>Apply
             </Button>
           </Col>
         </Row>
@@ -82,33 +86,25 @@ export default class JobCard extends React.Component {
     });
 
     return(
-    <Col sm={4} smCollapseRight>
+    <Col sm={6} smCollapseRight>
       <PanelContainer>
         <Panel>
 
-          <PanelHeader className='text-left' style={{margin: 25, marginTop: 0}}>
+          <PanelHeader className='text-left' style={{margin: 25}}>
             <JobHeader data={this.props.data} />
           </PanelHeader>
 
-          <PanelBody style={{padding: 10}}>
-            <Grid>
-              <Row>
-                <Col xs={12}>
-
-                <JobBody data={this.props.data} />
-
-                <PanelFooter className='text-center' style={{margin: 25, marginBottom: 5}}>
-                  <JobApply data={this.props.data} dispatch={this.props.dispatch} openModal={this.props.openModal} skillsArray={skillsArr} />
-                </PanelFooter>
-
-
-                </Col>
-              </Row>
-            </Grid>
+          <PanelBody>
+            <JobBody data={this.props.data} />
           </PanelBody>
+
+          <PanelFooter className='text-center' style={{marginBottom: 10}}>
+            <JobApply data={this.props.data} dispatch={this.props.dispatch} openModal={this.props.openModal} skillsArray={skillsArr} />
+          </PanelFooter>
+
         </Panel>
       </PanelContainer>
-    </Col>
+      </Col>
 		);
 	}
 }
