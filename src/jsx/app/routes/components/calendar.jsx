@@ -11,65 +11,10 @@ export default class Calendar extends React.Component {
         center: 'title',
         right: 'month,agendaWeek,agendaDay'
       },
-      defaultDate: '2016-08-12',
+      defaultDate: '2016-01-01',
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
-        {
-          title: 'All Day Event',
-          start: '2016-08-01'
-        },
-        {
-          title: 'Long Event',
-          start: '2016-08-07',
-          end: '2016-08-10'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2016-08-09T16:00:00'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2016-08-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2016-08-11',
-          end: '2016-08-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2016-08-12T10:30:00',
-          end: '2016-08-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2016-08-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2016-08-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2016-08-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2016-08-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2016-08-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'http://google.com/',
-          start: '2016-08-28'
-        }
-      ]
+      events: [{}]
     });
 
 
@@ -138,35 +83,19 @@ export default class Calendar extends React.Component {
         <Grid>
           <Row>
             <Col sm={12}>
-
-              <PanelContainer controlStyles='bg-orange75 fg-white'>
+              <PanelContainer controlStyles='bg-darkgreen45 fg-white'>
                 <Panel>
-                  <PanelHeader className='bg-orange75 fg-white' style={{marginBottom: 0}}>
+                  <PanelHeader className='bg-darkgreen45 fg-white' style={{marginBottom: 0}}>
                     <Grid>
                       <Row>
                         <Col xs={12}>
-                          <h3>Calendar</h3>
+                          <h3>Calendar: Agenda</h3>
                         </Col>
                       </Row>
                     </Grid>
                   </PanelHeader>
-                  <PanelBody style={{padding: 25}, {color: 'red'}, {margin: 15}}>
-                    <div id='wrap'>
-                      <div id='external-events'>
-                        <h4>Draggable Events</h4>
-                        <div className='external-event'>Interview with ABC</div>
-                        <div className='external-event'>Interview with ABC</div>
-                        <div className='external-event'>Interview with ABC</div>
-                        <div className='external-event'>Interview with ABC</div>
-                        <div className='external-event'>Interview with ABC</div>
-
-                        <Checkbox id='drop-remove'>
-                          remove after drop
-                        </Checkbox>
-                      </div>
-                      <div id='external-calendar'></div>
-                      <div style={{clear:'both'}}></div>
-                    </div>
+                  <PanelBody style={{padding: 25}}>
+                    <div id='calendar'></div>
                   </PanelBody>
                 </Panel>
               </PanelContainer>
