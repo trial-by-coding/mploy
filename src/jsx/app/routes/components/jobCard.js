@@ -77,7 +77,7 @@ export class JobApply extends React.Component {
       <div className="jobapply">
         <Row>
           <Col md={12}>
-                <Button outlined style={{marginBottom: 10}} bsStyle='lightgreen' onClick={ModalManager.create.bind(this, this.getLargeModal())}>Apply
+                <Button outlined style={{marginBottom: 0}} bsStyle='lightgreen' onClick={ModalManager.create.bind(this, this.getLargeModal())}>Apply
             </Button>
           </Col>
         </Row>
