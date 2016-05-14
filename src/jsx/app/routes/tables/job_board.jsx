@@ -79,9 +79,6 @@ export class JobBoard extends React.Component {
 
 @connect(state => state)
 export default class extends React.Component {
-  // componentWillMount() {
-  //   this.props.dispatch(actions.removeJobPost());
-  // }
   constructor(props){
     super(props);
 }
