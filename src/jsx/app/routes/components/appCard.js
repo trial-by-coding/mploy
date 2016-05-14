@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import moment from 'moment';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
-// const AppCard = ({app}) => {
 
 export default class AppCard extends React.Component {
   constructor(props){
@@ -12,7 +11,6 @@ export default class AppCard extends React.Component {
   render() {
     let skills_met= JSON.parse(this.props.app.skills_met);
     let skillsArray = this.props.app.skills;
-    // console.log('app be:', this.props.app)
     let skillList = [];
     for (var key in this.props.app) {
       if (key.indexOf('skill') !== -1 && this.props.app[key] !== null) {
@@ -25,7 +23,6 @@ export default class AppCard extends React.Component {
       paddingBottom: '10px',
       'textAlign': 'left'
     };
-      // console.log('props in appCard:',this.props);
 
     if(!this.props.app) {
         return ( <div>Loading...</div>);
@@ -48,14 +45,14 @@ export default class AppCard extends React.Component {
         <Row style={styles}>
           <h4> Has Specified Skills:</h4>
           <row className='skills'>
-          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === true;}).map( skill => <div className="label col-md-3 label-success"> {skill} </div> ) }
+          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === true;}).map( skill => <div className="label col-md-1 label-success"> {skill} </div> ) }
           </row>
         </Row>
 
         <Row style={styles}>
           <h4> Lacking Specified Skills:</h4>
           <row className='skills'>
-          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === false;}).map( skill => <div className="label col-md-3 label-danger"> {skill} </div> ) }
+          { skillsArray.filter(function(skill, idx) {return skills_met[idx] === false;}).map( skill => <div className="label col-md-1 label-danger"> {skill} </div> ) }
           </row>
         </Row>
 
@@ -101,18 +98,6 @@ export default class AppCard extends React.Component {
               <a href={this.props.app.cover_letter}
                 download={this.props.app.cover_letter}>Download Cover Letter</a>
             </div>
-        </Row>
-
-        <Row style={styles}>
-          <button
-          className='btn btn-primary accept'>
-          Move Forward
-          </button>
-          <button
-          onClick={this.deleteTask}
-          className='btn btn-default reject'>
-          Reject
-          </button>
         </Row>
 
       </div>
