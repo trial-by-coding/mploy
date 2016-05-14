@@ -1,5 +1,5 @@
-import classNames from 'classnames';
-
+import classnames from 'classnames';
+ 
 // import SidebarMixin from 'global/jsx/sidebar_component';
 
 import EmployerLane from 'routes/components/employerLane';
@@ -57,6 +57,43 @@ export default class EmployerDashboard extends React.Component {
 
 
 	render() {
+
+    const laneTemplate = {
+      'background-color':'white',
+      'border-radius': '0px 0px 5px 5px',
+       padding: '20px 10px 0px 10px',
+      'margin-bottom': '20px',
+      // 'border':'1px solid rgba(0, 0, 0, 0.38)',
+      'box-shadow': '0px 3px 4px 0px rgba(0,0,0,0.20)' 
+    }   
+
+    const lanePad = {
+      'padding':'0px 10px',
+    }
+
+    const laneHeader = {
+      'box-shadow': '0px 2px 4px 0px rgba(0,0,0,0.20)',
+      'background-color':'white',    //#2AA38B
+      'height': '40px',
+      'textAlign': 'center',
+      'border-radius': '5px 5px 0px 0px',
+    }    
+
+    const panelH = {
+      'padding-top': '10px',
+      'margin-top': '0px',
+      'margin-bottom': '0px',
+      'color':'#8D979E',
+      'font-weight': '400!important'
+    }
+
+    const panelHr = {
+      'margin-top': '8px',
+      'margin-bottom': '25px',
+      'border': '0',
+      'border-top': '3px solid #2AA38B',
+       width: '60%',
+    }
     console.log('employer dashboard props', this.props);
 
     let unconsidered = this.props.unconsidered;
@@ -85,45 +122,65 @@ export default class EmployerDashboard extends React.Component {
 		<Container id='body'>
       <Grid>
         <Row>
-        	<Col md={3}>
-            <div> Unconsidered </div>
-        		<EmployerLane data={unconsidered}
-                          lane={'unconsidered'}
-                          advance={this.advance}
-                          accept={this.accept}
-                          revert={this.revert}
-                          reject={this.reject}
-                          dispatch={this.props.dispatch}/>
+          <Col clearfix style={lanePad} xs={12} sm={6} md={3}>
+            <div style={laneHeader} > 
+              <h4 style={panelH} > Unconsidered </h4> 
+              <hr style={panelHr}/>
+            </div>    
+            <div style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
+              <EmployerLane data={unconsidered}
+                            lane={'unconsidered'}
+                            advance={this.advance}
+                            accept={this.accept}
+                            revert={this.revert}
+                            reject={this.reject}
+                            dispatch={this.props.dispatch}/>
+            </div>
           </Col>
-          <Col md={3}>
-            <div> Considered </div>
-        		<EmployerLane data={considered}
-                          lane={'considered'}
-                          advance={this.advance}
-                          accept={this.accept}
-                          revert={this.revert}
-                          reject={this.reject}
-                          dispatch={this.props.dispatch}/>
+          <Col clearfix style={lanePad} xs={12} sm={6} md={3}>
+            <div style={ laneHeader } > 
+              <h4 style={panelH}> Considered </h4> 
+              <hr style={panelHr}/>
+            </div>
+            <div style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
+          		<EmployerLane data={considered}
+                            lane={'considered'}
+                            advance={this.advance}
+                            accept={this.accept}
+                            revert={this.revert}
+                            reject={this.reject}
+                            dispatch={this.props.dispatch}/>
+              </div>
           </Col>
-          <Col md={3}>
-            <div> Interviews </div>
-        		<EmployerLane data={interviews}
-                          lane={'interviews'}
-                          advance={this.advance}
-                          accept={this.accept}
-                          revert={this.revert}
-                          reject={this.reject}
-                          dispatch={this.props.dispatch}/>
+          <Col clearfix style={lanePad} xs={12} sm={6} md={3}>
+            <div style={ laneHeader } > 
+              <h4 style={panelH}> Interviews </h4> 
+              <hr style={panelHr}/>
+            </div>
+            <div style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
+          		<EmployerLane data={interviews}
+                            lane={'interviews'}
+                            advance={this.advance}
+                            accept={this.accept}
+                            revert={this.revert}
+                            reject={this.reject}
+                            dispatch={this.props.dispatch}/>
+              </div>
           </Col>
-          <Col md={3}>
-            <div> Offers </div>
-        		<EmployerLane data={offers}
-                          lane={'offers'}
-                          advance={this.advance}
-                          accept={this.accept}
-                          revert={this.revert}
-                          reject={this.reject}
-                          dispatch={this.props.dispatch}/>
+          <Col clearfix style={lanePad} xs={12} sm={6} md={3}>
+            <div style={ laneHeader } > 
+              <h4 style={panelH}> Offers </h4> 
+              <hr style={panelHr}/>
+            </div>
+            <div style={laneTemplate} className={classnames('col-md-12 col-sm-12 col-xs-12')} >
+          		<EmployerLane data={offers}
+                            lane={'offers'}
+                            advance={this.advance}
+                            accept={this.accept}
+                            revert={this.revert}
+                            reject={this.reject}
+                            dispatch={this.props.dispatch}/>
+            </div>
           </Col>
         </Row>
       </Grid>
