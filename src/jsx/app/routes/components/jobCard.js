@@ -16,7 +16,7 @@ export class JobHeader extends React.Component {
       <div className='text-left'>
       <h4 style={{color: 'black'}}>{this.props.data.job_title}</h4>
       <h6 style={{color: 'lightgray'}}>{this.props.data.company_name} - {this.props.data.location}</h6>
-      <h6 overflowY='scroll' style={{height: 10}}>{this.props.data.job_description}</h6>
+      <h6 overflowY='scroll' style={{height: 'auto', lineHeight: 1.3}}>{this.props.data.job_description}</h6>
     </div>
   </div>
     );
@@ -60,15 +60,12 @@ export class JobApply extends React.Component {
   }
 
   render() {
-    const btnStyles = {
-      'textAlign': 'center',
-      'margin': '0 auto'
-    };
+
     return (
       <div className="jobapply">
         <Row>
           <Col md={12}>
-                <Button outlined style={{marginBottom: 0, btnStyles}} bsStyle='lightgreen' onClick={ModalManager.create.bind(this, this.getLargeModal())}>Apply
+                <Button outlined style={{marginBottom: 0}} bsStyle='lightgreen' onClick={ModalManager.create.bind(this, this.getLargeModal())}>Apply
             </Button>
           </Col>
         </Row>
@@ -85,27 +82,33 @@ export default class JobCard extends React.Component {
     });
 
     return(
-      <Col sm={6} smCollapseRight>
+    <Col sm={4} smCollapseRight>
       <PanelContainer>
         <Panel>
+
           <PanelHeader className='text-left' style={{margin: 25, marginTop: 0}}>
             <JobHeader data={this.props.data} />
           </PanelHeader>
+
           <PanelBody style={{padding: 10}}>
             <Grid>
               <Row>
                 <Col xs={12}>
+
                 <JobBody data={this.props.data} />
+
                 <PanelFooter className='text-center' style={{margin: 25, marginBottom: 5}}>
                   <JobApply data={this.props.data} dispatch={this.props.dispatch} openModal={this.props.openModal} skillsArray={skillsArr} />
                 </PanelFooter>
+
+
                 </Col>
               </Row>
             </Grid>
           </PanelBody>
         </Panel>
       </PanelContainer>
-      </Col>
+    </Col>
 		);
 	}
 }
