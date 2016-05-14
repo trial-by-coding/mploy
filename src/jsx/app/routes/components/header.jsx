@@ -109,7 +109,6 @@ export default class Header extends React.Component {
 removeNotif(e, notifyID, ndx){
   e.preventDefault()
   this.props.dispatch(actions.deleteNotification(notifyID, ndx))
-  console.log('remove notif fired for:',notifyID, ndx)
 }
 
 
