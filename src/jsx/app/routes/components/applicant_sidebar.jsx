@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from 'redux/actions';
 
+
 export default class ApplicantSidebar extends React.Component {
   render() {
     return (
