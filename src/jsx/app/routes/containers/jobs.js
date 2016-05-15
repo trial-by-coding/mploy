@@ -21,6 +21,8 @@ export default class JobsContainer extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
+
+  // Function that filters
   filterData(type, event) {
     event.preventDefault();
     const regex = new RegExp(event.target.value, 'i');

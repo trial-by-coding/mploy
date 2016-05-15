@@ -97,7 +97,7 @@ class AppModal extends React.Component {
         </ModalBody>
         <ModalFooter>
           <Button outlined bsStyle='danger' onClick={() => {
-                    reject(item.appID, item, status, index);
+                    reject(item.appID, status, index);
                   }
                 }
                   onTouchEnd={ModalManager.remove}>Reject</Button>
