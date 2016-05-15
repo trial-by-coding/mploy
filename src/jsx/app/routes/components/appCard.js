@@ -31,16 +31,25 @@ export default class AppCard extends React.Component {
       fontWeight: 'bold'
     };
 
+    const wallppr = {
+      'backgroundColor': 'white'
+    };
+
     if(!this.props.app) {
       return ( <div>Loading...</div>);
     }
 
     return (
-      <div>
+      <Container id='body' style={wallppr}>
+    <ModalBody>
+      <Grid>
         <Col md={12}>
         <Row style={styles}>
-          <img src={this.props.app.profile_picture} width='60' height='60' style={{display: 'block', borderRadius: 45, border: '2px solid #2AA38B', padding: '3px', margin: 'auto', float: 'right'}} />
-          <div style={{top: 23, color: '#575757', fontSize: 28, lineHeight: 1, position: 'relative', textAlign: 'center'}}>
+          <img src={this.props.app.profile_picture} width='60' height='60' style={{display:
+            'block', borderRadius: 60, border: '2px solid #2AA38B', padding: 3, margin:
+            'auto', float: 'right'}} />
+          <div style={{top: 23, color: '#575757', fontSize: 28, lineHeight: 1, position:
+            'relative', textAlign: 'center'}}>
             {this.props.app.username}
           </div>
         </Row>
@@ -50,16 +59,20 @@ export default class AppCard extends React.Component {
         <Row style={styles}>
           <h4 style={titles}> Has Specified Skills:</h4>
           <row className='skills'>
-            { skillsArray.filter(function(skill, idx) {return skills_met[idx] === true;}).map( skill =>
-            <div className="label label-success" style={{border: '1px solid black', padding: '3px'}}> {skill} </div> ) }
+            { skillsArray.filter(function(skill, idx) {return skills_met[idx] === true;}).map(
+            skill =>
+            <div className="label label-success" style={{border: '1px solid black', padding:
+              '3px'}}> {skill} </div> ) }
           </row>
         </Row>
 
         <Row style={styles}>
           <h4 style={titles}> Lacking Specified Skills:</h4>
           <row className='skills'>
-            { skillsArray.filter(function(skill, idx) {return skills_met[idx] === false;}).map( skill =>
-            <div className="label label-danger" style={{border: '1px solid black', padding: '3px'}}> {skill} </div> ) }
+            { skillsArray.filter(function(skill, idx) {return skills_met[idx] === false;}).map(
+            skill =>
+            <div className="label label-danger" style={{border: '1px solid black', padding:
+              '3px'}}> {skill} </div> ) }
           </row>
         </Row>
 
@@ -102,7 +115,9 @@ export default class AppCard extends React.Component {
             <a href={this.props.app.cover_letter} download={this.props.app.cover_letter}>Download Cover Letter</a>
           </div>
         </Row>
-      </div>
+      </Grid>
+    </ModalBody>
+  </Container>
     );
   }
 }
