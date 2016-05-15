@@ -50,8 +50,6 @@ class AppModal extends React.Component {
       return;
     }
 
-  getLongModal() {
-
     // adding a timeout as we need to wait for Modal transition to complete
     setTimeout(() => {
       console.log('opening next modal list:', list, 'list index', index, 'list[index]', list[index] );
