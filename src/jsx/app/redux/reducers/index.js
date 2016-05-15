@@ -8,7 +8,8 @@ import employerconsidered from './employer_considered_reducers';
 import employerinterviews from './employer_interviews_reducers';
 import employeroffers from './employer_offers_reducers';
 import charts from './chart_reducers';
-import notifications from './notifications'
+import notifications from './notifications';
+import modals from './modal_reducers';
 
 module.exports = {
   ...apps,
@@ -21,5 +22,19 @@ module.exports = {
   ...employerconsidered,
   ...employerinterviews,
   ...employeroffers,
-  ...notifications
+  ...notifications,
+  ...modals
 };
+
+
+
+// {(() => {
+//           console.log('currentModal index', currentModal.index, 'currentModal status', currentModal.status)
+//           if(currentModal.index === index && currentModal.status === status){
+//             console.log('empdashCard if statement', that);
+//             setTimeout(function(){
+//             ModalManager.create.bind(this, this.getLargeModal())
+              
+//             }, 2000);
+//           }
+//         })()}

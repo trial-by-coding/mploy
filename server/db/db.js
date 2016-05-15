@@ -4,3 +4,4 @@ var db        = require('knex')(config[env]);
 
 // Export the db object, which will be able to make database connections
 module.exports = db
+

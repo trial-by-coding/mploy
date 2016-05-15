@@ -1,7 +1,8 @@
 import axios from 'axios';
 import {	GET_EMPLOYER_CONSIDERED,
 					ADD_CONSIDERED,
-					REMOVE_CONSIDERED	} from './actionTypes';
+					REMOVE_CONSIDERED,
+					NEXT_MODAL	} from './actionTypes';
 
 function getEmployerConsidered(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=considered')
@@ -25,9 +26,15 @@ function removeConsidered(index) {
 	return {type: REMOVE_CONSIDERED, index};
 }
 
+function nextConsidered(index) {
+	let payload = {index: index, status: 'considered'};
+	return {type: NEXT_MODAL, payload};
+}
+
 module.exports = {
 	getEmployerConsidered: getEmployerConsidered,
 	getApplicantConsidered: getApplicantConsidered,
 	addConsidered: addConsidered,
-	removeConsidered: removeConsidered
+	removeConsidered: removeConsidered,
+	nextConsidered: nextConsidered
 };

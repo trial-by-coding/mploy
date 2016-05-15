@@ -6,8 +6,20 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'mploy_dev',
-      user: localuser.user
+      user: localuser.user,
+
     },
+    pool: {
+      min: 2,
+      max: 10
+    },
+    migrations: {
+      tableName: 'knex_migrations'
+    }
+  },
+  production: {
+    client:'pg',
+    connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
       max: 10

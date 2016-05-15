@@ -2,10 +2,78 @@ import classNames from 'classnames';
 import actions from 'redux/actions';
 import AppCard from './appCard';
 
-export default class empdashCard extends React.Component {
+function getModal(index, nextID, listLength, item, status, advance, accept, revert, reject, dispatch, currentModal, list) {
+  console.log('item in getModal', item)
+  return <AppModal  item={item}
+                    listLength={listLength}
+                    index={index}
+                    nextID={nextID}
+                    lane={status}
+                    advance={advance}
+                    accept={accept}
+                    revert={revert}
+                    reject={reject}
+                    dispatch={dispatch}
+                    currentModal={currentModal}
+                    list={list} />
+}
 
-  getLongModal() {
+class AppModal extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      show: true
+    }
+  }
+  onHide() {
+    var index = this.props.index;
+    var listLength = this.props.listLength;
+    var nextID = this.props.nextID+1;
+    let dispatch = this.props.dispatch;
+    let advance = this.props.advance;
+    let revert = this.props.revert;
+    let status = this.props.lane;
+    let item = this.props.item;
+    let reject = this.props.reject;
+    let accept = this.props.accept;
+    let currentModal = this.props.currentModal
+    let list = this.props.list
+    console.log('nextID', nextID);
 
+    if (nextID >= listLength) {
+      // reached last button
+      return;
+    }
+
+    if(!this.state.show) {
+      //did not reject
+      return;
+    }
+
+    // adding a timeout as we need to wait for Modal transition to complete
+    setTimeout(() => {
+      console.log('opening next modal list:', list, 'list index', index, 'list[index]', list[index] );
+      ModalManager.create(getModal(index, nextID, listLength, list[nextID], status, advance, accept, revert, reject, dispatch, currentModal, list ));
+    }, 15);
+  }
+
+  toggleModal = () => {
+    if(this.state.show){
+      this.props.dispatch(actions.fetchEmployerRequests());
+      ModalManager.remove()
+      this.setState({
+        show:false
+      })
+    }else {
+      this.setState({
+        show:true
+      })
+    }
+  };
+
+  render() {
+
+    console.log('item in AppModal', this.props.item);
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
     let revert = this.props.revert;
@@ -14,25 +82,43 @@ export default class empdashCard extends React.Component {
     let item = this.props.item;
     let reject = this.props.reject;
     let accept = this.props.accept;
+    let currentModal= this.props.currentModal
+    let listLength = this.props.listLength;
+    let list = this.props.list
 
     return (
-      <Modal>
+      <Modal onHide={::this.onHide}>
+      <Button onClick={this.toggleModal}>X</Button>
         <ModalBody md={12}>
-           <AppCard app={this.props.item}/>
+          <AppCard app={item}/>
         </ModalBody>
         <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={() => reject(item.appID, status, index)} onTouchEnd={ModalManager.remove}>Reject</Button>
-          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)} onTouchEnd={ModalManager.remove} >Move Forward </Button>
+          <Button outlined bsStyle='danger' onClick={() => {
+                    reject(item.appID, item, status, index)
+                  }
+                }
+                  onTouchEnd={ModalManager.remove}>Reject</Button>
+          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
+
         </ModalFooter>
       </Modal>
     );
   }
 
-  render() {
+}
+export default class EmpashCard extends React.Component {
+  constructor(props) {
+    super(props);
+  }
 
+  render() {
+    console.log('item in empdashcard', this.props.item);
+    let that = this;
     let profilePic = this.props.item.profile_picture;
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
+    let accept = this.props.accept;
+    let reject = this.props.reject;
     let revert = this.props.revert;
     let status = this.props.lane;
     let index = this.props.index;
@@ -59,7 +145,6 @@ export default class empdashCard extends React.Component {
       'maxWidth': '300px',
       'margin':'auto',
       'margin-bottom': '15px',
-
     };     
 
     const panelStyle3 = {
@@ -86,6 +171,11 @@ export default class empdashCard extends React.Component {
       'color':'black'
     };
 
+    let listLength = this.props.listLength;
+    let list = this.props.list;
+    let currentModal = this.props.currentModal;
+    let modalComponent = getModal(index, index, listLength, item, status, advance, accept, revert, reject, dispatch, currentModal, list);
+    let modalInstance = ModalManager.create.bind(this, modalComponent);
 
     return (
 
@@ -102,7 +192,12 @@ export default class empdashCard extends React.Component {
                       </Col>
                       <Col xs={8} style={panelStyle3} className="jobcard">
                         <div >
-                          <h4 onClick={ModalManager.create.bind(this, this.getLongModal())} style={position}> {this.props.item.firstname + ' ' + this.props.item.lastname} </h4>
+                          <h4 className='applicantname' 
+                              onClick={modalInstance}
+                              onTouchEnd={modalInstance} 
+                              style={position}> 
+                              {this.props.item.firstname + ' ' + this.props.item.lastname} 
+                          </h4>
                         </div>
                         <div>
                           <Col  style={{padding:'0px'}} xs={10} sm={10} xs={10}>

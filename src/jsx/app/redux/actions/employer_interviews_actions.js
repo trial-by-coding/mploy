@@ -1,7 +1,8 @@
 import axios from 'axios';
 import	{	GET_EMPLOYER_INTERVIEWS,
 					ADD_INTERVIEW,
-					REMOVE_INTERVIEW	} from './actionTypes';
+					REMOVE_INTERVIEW,
+					NEXT_MODAL	} from './actionTypes';
 
 function getEmployerInterviews(jobID){
 	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=interviews')
@@ -25,9 +26,15 @@ function removeInterview(index) {
 	return {type: REMOVE_INTERVIEW, index};
 }
 
+function nextInterview(index) {
+	let payload = {index: index, status: 'interviews'};
+	return {type: NEXT_MODAL, payload}
+}
+
 module.exports = {
 	getEmployerInterviews: getEmployerInterviews,
 	getApplicantInterviews: getApplicantInterviews,
 	addInterview: addInterview,
-	removeInterview: removeInterview
+	removeInterview: removeInterview,
+	nextInterview: nextInterview
 };
