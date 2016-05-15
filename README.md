@@ -5,7 +5,7 @@ The application is built on top of Rubix React/Redux Admin/Dashboard front end t
 
 ## Dependencies
 ### Rubix
-https://wrapbootstrap.com/theme/rubix-reactjs-powered-admin-template-WB09498FH
+Please refer to https://wrapbootstrap.com/theme/rubix-reactjs-powered-admin-template-WB09498FH for detailed documentation on Rubix.
 
 ## Motivation
 Mploy was designed to allow the hiring process to become more transparent and efficient. At the moment job seeking and hiring is incredibly difficult and stressful for both job seekers and employers. Productivity lessons taken from Trello and Tinder have inspired the design and implementation of this application. Mploy improves on this by allowing an applicant to be immediately notified when they move up in the hiring process. Employers are often having to deal with hundreds of applications for a single job and is easily remedied by creating a workflow that allows them to decide through applications quickly and effectively.
@@ -13,6 +13,4 @@ Mploy was designed to allow the hiring process to become more transparent and ef
 
 
 
-### Documentation
 
-Please refer to http://rubix-docs.sketchpixy.com for detailed documentation.
