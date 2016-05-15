@@ -11,7 +11,7 @@ function unconsidered(state = [], action) {
     const unconsidered = action.payload.data;
     return [...unconsidered];
   case ADD_UNCONSIDERED:
-    return [...state.slice(), action.item];
+    return [...state.slice(), action.payload.data];
   case REMOVE_UNCONSIDERED:
     return [...state.slice(0, action.index),
       ...state.slice(action.index + 1)
