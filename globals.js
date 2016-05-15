@@ -61,10 +61,6 @@ import { routeReducer } from 'redux-simple-router';
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { reducer as formReducer } from 'redux-form';
 import thunk from 'redux-thunk';
-import promise from 'redux-promise';
-import createLogger from 'redux-logger';
-// import devTools from 'remote-redux-devtools';
-
 
 var reducers = require('./src/jsx/'+defaultAppName+'/redux/reducers');
 var actions = require('./src/jsx/'+defaultAppName+'/redux/actions');
@@ -73,14 +69,7 @@ global.getActions = function() {
   return actions;
 };
 
-const logger = createLogger();
-
-  // const enhancer = compose(
-  //   applyMiddleware(thunk, promise, logger),
-  //   devTools()
-  // );
-
-const createStoreWithMiddleware = applyMiddleware(thunk, promise, logger)(createStore);
+const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 global.getStore = function() {
   return createStoreWithMiddleware(combineReducers({

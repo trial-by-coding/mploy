@@ -93,7 +93,6 @@ const validate = values => {
 @connect(state => state)
 export default class NewJob extends React.Component {
   static propTypes = {
-    addValue: PropTypes.func.isRequired,
     fields: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
     resetForm: PropTypes.func.isRequired,
