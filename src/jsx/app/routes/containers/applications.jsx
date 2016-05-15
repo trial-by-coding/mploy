@@ -18,8 +18,6 @@ export default class ApplicationContainer extends React.Component {
 	render() {
     const { dispatch } = this.props;
 
-    // console.log('in render func props:', this.props);
-
     const styles = {
       margin: '12.5px 0',
       borderBottom: '1px dotted #999',
@@ -48,13 +46,11 @@ export default class ApplicationContainer extends React.Component {
   if(!this.props.appList.items) {
     return <div> Loading... </div>;
   }
-// console.log("applist before render:", this.props.applist);
 	return (
     <Container id='body' className='social'>
       <Grid>
     		<Row>
           {this.props.appList.items.map(function(app){
-            // console.log('inside applist:', app)
              return (
                 <Col sm={12} md={4} lg={4}>
                   <PanelContainer style={panelStyle}>

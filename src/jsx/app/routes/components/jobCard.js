@@ -28,7 +28,7 @@ export class JobBody extends React.Component {
     <Row>
       <Col xs={12}>
       <p style={{lineHeight: 1.6, paddingBottom: 15}}>{this.props.data.job_description}</p>
-      <Table responsive>
+      <Table>
         <tbody>
           <tr>
             <td style={{padding: 0}}>

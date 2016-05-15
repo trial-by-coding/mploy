@@ -2,9 +2,6 @@
 /*                         Required Stylesheets.                            */
 /* ------------------------------------------------------------------------ */
 
-// import 'css/app/blessed/ltr/colors-blessed1.css';
-// import 'css/app/blessed/ltr/main-blessed1.css';
-
 import 'css/vendor/pace/pace.css';
 import 'css/app/raw/ltr/main.css';
 import 'css/app/raw/ltr/theme.css';

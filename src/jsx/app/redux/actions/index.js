@@ -1,4 +1,3 @@
-// import todos from './todo_actions';
 import apps from './app_actions';
 import jobs from './job_actions';
 import empdash from './empdash_actions';
@@ -12,7 +11,7 @@ import employerinterviews from './employer_interviews_actions';
 import employeroffers from './employer_offers_actions';
 import employerposts from './employer_posts_actions';
 import employerapp from './employer_actions';
-import notifications from './notifications'
+import notifications from './notifications';
 
 
 module.exports = {

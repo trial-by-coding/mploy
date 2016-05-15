@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { JobBody, JobHeader} from './jobCard'
+import { JobBody, JobHeader} from './jobCard';
 
 class JobModal extends React.Component {
    render() {
@@ -20,7 +20,6 @@ class JobModal extends React.Component {
     const colStyle = {
       'zIndex': -100
     };
-
 
     return(
   <Grid>
@@ -47,9 +46,6 @@ class JobModal extends React.Component {
   }
 }
 
-
-
-
 export default class appdashCard extends React.Component {
   getLargeModal() {
     return (
@@ -72,12 +68,12 @@ export default class appdashCard extends React.Component {
     let appID = this.props.item.appID;
     let index = this.props.index;
     let status = this.props.item.status;
-    console.log('appdashcarddata', this.props)
-    
+    console.log('appdashcarddata', this.props);
+
     const card = {
       'border': '1px solid black',
       'border-radius': '5px'
-    }
+    };
 
     const panelStyle = {
     'padding': '0px 10px',
@@ -93,26 +89,26 @@ export default class appdashCard extends React.Component {
     'margin':'auto',
     'margin-bottom': '15px',
 
-    };     
+    };
 
     const panelStyle3 = {
     'padding': '0px',
 
-    };    
+    };
 
     const profileImg = {
     'padding': '0px',
     'marginTop':'10px'
 
-    };   
+    };
 
     const panelBody = {
     'padding-top': '5px',
-    };    
+    };
 
     const companyName = {
     'margin': '10px 0px'
-    };  
+    };
 
     const position = {
     'margin': '8px 0px',
@@ -120,10 +116,7 @@ export default class appdashCard extends React.Component {
     };
 
 
-
     return (
-      
-
       <div>
         <Col style={panelStyle} sm={12} xs={12} md={12}>
           <PanelContainer  style={panelStyle1} >
@@ -144,13 +137,13 @@ export default class appdashCard extends React.Component {
                             <h6 style={companyName} > {company} </h6>
                           </Col>
                           <Col style={{'padding':'0px'}} xs={2} md={2} sm={2} >
-                            <Icon onClick={() => this.props.rescind(appID, index, status)} 
+                            <Icon onClick={() => this.props.rescind(appID, index, status)}
                                   style={{'float':'right','font-size':'16px', 'cursor':'pointer'}}
-                                  bundle='fontello' 
+                                  bundle='fontello'
                                   glyph='trash-1' />
                           </Col>
                         </div>
-                      </Col>                      
+                      </Col>
                     </Row>
                   </Grid>
                 </PanelBody>

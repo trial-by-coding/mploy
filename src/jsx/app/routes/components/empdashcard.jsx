@@ -3,7 +3,7 @@ import actions from 'redux/actions';
 import AppCard from './appCard';
 
 function getModal(index, nextID, listLength, item, status, advance, accept, revert, reject, dispatch, currentModal, list) {
-  console.log('item in getModal', item)
+  console.log('item in getModal', item);
   return <AppModal  item={item}
                     listLength={listLength}
                     index={index}
@@ -15,15 +15,15 @@ function getModal(index, nextID, listLength, item, status, advance, accept, reve
                     reject={reject}
                     dispatch={dispatch}
                     currentModal={currentModal}
-                    list={list} />
+                    list={list} />;
 }
 
 class AppModal extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       show: true
-    }
+    };
   }
   onHide() {
     var index = this.props.index;
@@ -36,8 +36,8 @@ class AppModal extends React.Component {
     let item = this.props.item;
     let reject = this.props.reject;
     let accept = this.props.accept;
-    let currentModal = this.props.currentModal
-    let list = this.props.list
+    let currentModal = this.props.currentModal;
+    let list = this.props.list;
     console.log('nextID', nextID);
 
     if (nextID >= listLength) {
@@ -60,14 +60,14 @@ class AppModal extends React.Component {
   toggleModal = () => {
     if(this.state.show){
       this.props.dispatch(actions.fetchEmployerRequests());
-      ModalManager.remove()
+      ModalManager.remove();
       this.setState({
         show:false
-      })
+      });
     }else {
       this.setState({
         show:true
-      })
+      });
     }
   };
 
@@ -82,9 +82,9 @@ class AppModal extends React.Component {
     let item = this.props.item;
     let reject = this.props.reject;
     let accept = this.props.accept;
-    let currentModal= this.props.currentModal
+    let currentModal= this.props.currentModal;
     let listLength = this.props.listLength;
-    let list = this.props.list
+    let list = this.props.list;
 
     return (
       <Modal onHide={::this.onHide}>
@@ -94,7 +94,7 @@ class AppModal extends React.Component {
         </ModalBody>
         <ModalFooter>
           <Button outlined bsStyle='danger' onClick={() => {
-                    reject(item.appID, item, status, index)
+                    reject(item.appID, item, status, index);
                   }
                 }
                   onTouchEnd={ModalManager.remove}>Reject</Button>
@@ -124,13 +124,10 @@ export default class EmpashCard extends React.Component {
     let index = this.props.index;
     let item = this.props.item;
 
-    console.log('empdashcarddata', this.props)
-
-
     const card = {
       'border': '1px solid black',
       'border-radius': '5px'
-    }
+    };
 
     const panelStyle = {
       'padding': '0px 10px',
@@ -145,31 +142,31 @@ export default class EmpashCard extends React.Component {
       'maxWidth': '300px',
       'margin':'auto',
       'margin-bottom': '15px',
-    };     
+    };
+
 
     const panelStyle3 = {
       'padding': '0px',
-
-    };    
+    };
 
     const profileImg = {
       'padding': '0px',
       'marginTop':'10px'
-
-    };   
+    };
 
     const panelBody = {
       'padding-top': '5px',
-    };    
+    };
 
     const companyName = {
       'margin': '10px 0px'
-    };  
+    };
 
     const position = {
       'margin': '8px 0px',
       'color':'black'
     };
+
 
     let listLength = this.props.listLength;
     let list = this.props.list;
@@ -177,8 +174,8 @@ export default class EmpashCard extends React.Component {
     let modalComponent = getModal(index, index, listLength, item, status, advance, accept, revert, reject, dispatch, currentModal, list);
     let modalInstance = ModalManager.create.bind(this, modalComponent);
 
-    return (
 
+    return (
       <div>
         <Col style={panelStyle} sm={12} xs={12} md={12}>
           <PanelContainer  style={panelStyle1} >
@@ -192,28 +189,28 @@ export default class EmpashCard extends React.Component {
                       </Col>
                       <Col xs={8} style={panelStyle3} className="jobcard">
                         <div >
-                          <h4 className='applicantname' 
+                          <h4 className='applicantname'
                               onClick={modalInstance}
-                              onTouchEnd={modalInstance} 
-                              style={position}> 
-                              {this.props.item.firstname + ' ' + this.props.item.lastname} 
+                              onTouchEnd={modalInstance}
+                              style={position}>
+                              {this.props.item.firstname + ' ' + this.props.item.lastname}
                           </h4>
                         </div>
                         <div>
                           <Col  style={{padding:'0px'}} xs={10} sm={10} xs={10}>
                             <Icon onClick={() => revert(item.appID, status, item, index)}
                                                               style={{'font-size':'16px', 'cursor':'pointer'}}
-                                                              bundle='fontello' 
+                                                              bundle='fontello'
                                                               glyph='angle-left' />
                           </Col>
                           <Col style={{'padding':'0px'}} xs={2} md={2} sm={2} >
                             <Icon onClick={() => advance(item.appID, status, item, index)}
                                   style={{'float':'right','font-size':'16px', 'cursor':'pointer'}}
-                                  bundle='fontello' 
+                                  bundle='fontello'
                                   glyph='angle-right' />
                           </Col>
                         </div>
-                      </Col>                      
+                      </Col>
                     </Row>
                   </Grid>
                 </PanelBody>

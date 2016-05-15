@@ -3,18 +3,15 @@ import { connect } from 'react-redux';
 import actions from 'redux/actions';
 import Charts from 'routes/containers/chart_stats';
 import SidebarMixin from 'global/jsx/sidebar_component';
-
 import Header from 'routes/components/header';
-import ApplicantSidebar from 'routes/components/applicant_sidebar';
 import Footer from 'routes/components/footer';
+import ApplicantSidebar from 'routes/components/applicant_sidebar';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import ApplicationContainer from 'routes/containers/applications';
 import Jobs from 'routes/containers/jobs';
 import Profile from 'routes/containers/profile_user';
 import Calendar from 'routes/components/calendar';
-
-
 
 
 @SidebarMixin
@@ -28,11 +25,9 @@ export default class ApplicantApp extends React.Component {
 			this.props.dispatch(actions.fetchApplicantRequests());
 		}
 
-
-
 	render() {
     const { dispatch } = this.props;
-		var classes = classNames({
+		let classes = classNames({
 			'container-open': this.props.open
 		});
 		return (

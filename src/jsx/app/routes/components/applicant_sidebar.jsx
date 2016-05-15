@@ -23,7 +23,6 @@ export default class ApplicantSidebar extends React.Component {
                   <SidebarNavItem glyph='icon-feather-map' name='Dashboard' href='/applicant' />
                   <SidebarNavItem glyph='icon-ikons-user-circle' name='Profile' href='/applicantprofile' />
                   <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/applicantjobs' />
-
                 </SidebarNav>
               </div>
             </Col>

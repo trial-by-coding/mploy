@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
-
 export default class Calendar extends React.Component {
   componentDidMount() {
     $('#calendar').fullCalendar({

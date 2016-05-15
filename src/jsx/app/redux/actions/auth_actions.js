@@ -1,5 +1,5 @@
-import axios from 'axios';
-import {	IS_EMPLOYER	}	from './actionTypes';
-
-function isEmployer() {
-}
+// import axios from 'axios';
+// import {	IS_EMPLOYER	}	from './actionTypes';
+//
+// function isEmployer() {
+// }

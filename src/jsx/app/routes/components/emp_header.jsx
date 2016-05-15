@@ -1,6 +1,6 @@
-import { History, Link, State, Navigation } from 'react-router';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import { SidebarBtn } from 'global/jsx/sidebar_component';
 
 export default class Brand extends React.Component {
@@ -15,56 +15,24 @@ export default class Brand extends React.Component {
   }
 }
 
-
-var DirectNavItem = React.createClass({
-  mixins: [State, Navigation],
-  render() {
-    var active = false;
-    var currentLocation = this.context.router.state.location.pathname;
-
-    if(!active && this.props.path) {
-      active = this.isActive(this.props.path) && (currentLocation === this.props.path);
-    }
-
-    var classes = classNames({
-      'pressed': active
-    });
-    return (
-      <NavItem className={classes} {...this.props}>
-        <Link to={this.props.path}>
-          <Icon bundle={this.props.bundle || 'fontello'} glyph={this.props.glyph} />
-        </Link>
-      </NavItem>
-    );
-  }
-});
-
-
-
-
-class  HeaderNavigation extends React.Component {
+class HeaderNavigation extends React.Component {
   constructor(props){
-    super(props)
-
-    this.logout = this.logout.bind(this)
+    super(props);
+    this.logout = this.logout.bind(this);
   }
-
 
   logout() {
       window.location = '/auth/logout';
   }
 
   render() {
-    var props = {
+    let props = {
       ...this.props,
       className: classNames('pull-right', this.props.className)
     };
 
-
     return (
-
       <NavContent className='pull-right' {...this.props}>
-  
         <Nav>
           <NavItem className='logout' href='#' onClick={() => this.logout()}>
             <Icon bundle='fontello' glyph='off-1' />
@@ -77,8 +45,6 @@ class  HeaderNavigation extends React.Component {
 
 export default class Header extends React.Component {
   render() {
-
-
     return (
       <Grid id='navbar' {...this.props}>
         <Row>
