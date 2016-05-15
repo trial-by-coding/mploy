@@ -12,11 +12,8 @@ export default class appModal extends React.Component {
       return;
     }
 
-    console.log('onHide');
-
     // adding a timeout as we need to wait for Modal transition to complete
     setTimeout(() => {
-      console.log('opening next modal:', nextID);
       ModalManager.create(getModal(nextID, maxID));
     }, 15);
   }
