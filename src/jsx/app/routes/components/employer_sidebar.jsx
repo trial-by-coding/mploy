@@ -2,25 +2,25 @@ import {
   Sidebar,
   SidebarNav,
   SidebarNavItem,
-  SidebarControls,
-  SidebarControlBtn
-} from 'global/jsx/sidebar_component';
+  } from 'global/jsx/sidebar_component';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from 'redux/actions';
 import className from 'classnames';
 
-class EmployerSidebar extends React.Component {
 
+class EmployerSidebar extends React.Component {
   render() {
   const navItem = {
     'height': '55px!important'
   };
-      let posts = this.props.posts;
-      if(posts === undefined || posts.length === 0) {
-        return (
-          <div>
-          <Grid>
+
+  let posts = this.props.posts;
+  if(posts === undefined || posts.length === 0) {
+
+    return (
+      <div>
+        <Grid>
             <Row>
               <Col xs={12}>
                 <div className='sidebar-header'>PAGES</div>

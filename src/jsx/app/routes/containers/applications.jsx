@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import actions from 'redux/actions';
 
+
 @connect((state) => state)
 export default class ApplicationContainer extends React.Component {
     constructor(props){

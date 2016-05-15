@@ -25,16 +25,3 @@ module.exports = {
   ...notifications,
   ...modals
 };
-
-
-
-// {(() => {
-//           console.log('currentModal index', currentModal.index, 'currentModal status', currentModal.status)
-//           if(currentModal.index === index && currentModal.status === status){
-//             console.log('empdashCard if statement', that);
-//             setTimeout(function(){
-//             ModalManager.create.bind(this, this.getLargeModal())
-              
-//             }, 2000);
-//           }
-//         })()}

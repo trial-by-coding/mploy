@@ -3,6 +3,7 @@ import EmployerLane from 'routes/components/employerLane';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
+
 @connect(state => state)
 export default class EmployerDashboard extends React.Component {
 	constructor(props) {
@@ -35,7 +36,7 @@ export default class EmployerDashboard extends React.Component {
 
   reject = (appID, status, index) => {
     ModalManager.remove();
-    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); 
+    if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index));
                                         this.props.dispatch(actions.nextUnconsidered(index));}
     else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));
                                         this.props.dispatch(actions.nextConsidered(index));}
@@ -46,7 +47,6 @@ export default class EmployerDashboard extends React.Component {
 
 
     this.props.dispatch(actions.rejectApp(appID));
-    // this.props.dispatch(actions.rejectEmployerRequest(appID));
   };
 
   accept = (appID, status, item, index) => {
@@ -60,7 +60,6 @@ export default class EmployerDashboard extends React.Component {
       'border-radius': '0px 0px 5px 5px',
        padding: '20px 10px 0px 10px',
       'margin-bottom': '20px',
-      // 'border':'1px solid rgba(0, 0, 0, 0.38)',
       'box-shadow': '0px 3px 4px 0px rgba(0,0,0,0.20)'
     };
 

@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import actions from 'redux/actions';
 import AppCard from './appCard';
 
+
 function getModal(index, nextID, listLength, item, status, advance, accept, revert, reject, dispatch, currentModal, list) {
   console.log('item in getModal', item);
   return <AppModal  item={item}
@@ -70,6 +71,8 @@ class AppModal extends React.Component {
       });
     }
   };
+
+// export default class empdashCard extends React.Component {
 
   render() {
 

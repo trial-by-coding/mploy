@@ -3,6 +3,7 @@ import ApplicantLane from 'routes/components/applicantLane';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
+
 @connect(state => state)
 export default class ApplicantDashboard extends React.Component {
 	constructor(props) {

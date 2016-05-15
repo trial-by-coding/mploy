@@ -6,8 +6,8 @@ import {
   GET_APPLICANT_OFFERS
 } from './actionTypes';
 
+
 function getApplicantUnconsidered(jobID) {
-  // console.log('getUnconsidered Actions')
   return dispatch => axios.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=unconsidered')
     .then(
       payload => dispatch({

@@ -5,6 +5,7 @@ import actions from 'redux/actions';
 import { Link } from 'react-router';
 import { PropTypes } from 'react';
 
+
 export const fields = ['job_title', 'company_name', 'job_description', 'desired_education', 'min_salary', 'max_salary', 'location', 'employment_type', 'visa_required', 'skills[]'];
 
 const validate = values => {
@@ -64,7 +65,7 @@ const validate = values => {
   } else {
     const skillsArrayErrors = [];
     values.skills.forEach((skill, skillIndex) => {
-      var skillErrors;
+      let skillErrors;
       if (!skill) {
         skillErrors = "Skill field can't be empty";
         skillsArrayErrors[skillIndex] = skillErrors;
@@ -89,7 +90,6 @@ const validate = values => {
   fields,
   validate
 })
-
 @connect(state => state)
 export default class NewJob extends React.Component {
   static propTypes = {
@@ -150,20 +150,16 @@ export default class NewJob extends React.Component {
                   </Grid>
                 </PanelHeader>
                   <Form onSubmit={handleSubmit(function(data) {
-                    console.log('data: ', data);
                     if (data.employment_type === undefined){
                       data.employment_type = 'Full-Time';
                     }
                     if (data.visa_required === undefined){
                       data.visa_required = false;
                     }
-
                     that.props.dispatch(actions.addJobPost(data))
                     .then(function() {
-                      console.log('that.props: ', that.props);
                       that.props.history.push('/employer');
                     });
-
                   })}>
                 <PanelBody>
                 <Grid>

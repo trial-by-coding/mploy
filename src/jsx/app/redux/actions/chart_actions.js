@@ -9,7 +9,6 @@ function fetchCharts() {
   );
 }
 
-
 module.exports = {
   fetchCharts
 };

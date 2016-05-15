@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from 'redux/actions';
 
+
 export default class Profile extends React.Component{
 
 goLinkedIn() {
@@ -35,8 +36,8 @@ render() {
       <h5 className='fg-white text-center' style={{opacity: 0.8}}>{user.industry}</h5>
       <div className='text-center'>
         <Button outlined inverse retainBackground bsStyle='brightblue' type='active' onClick={()=> this.goLinkedIn()}>
-                  <span>LinkedIn</span>
-              </Button>
+                    <span>LinkedIn</span>
+                </Button>
       </div>
     </div>
   </div>

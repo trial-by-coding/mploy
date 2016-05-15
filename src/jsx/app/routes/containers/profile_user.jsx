@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import actions from 'redux/actions';
 import JobBoard from 'routes/tables/job_board';
 
+
 @connect(state => state)
 export default class ProfileContainer extends React.Component {
   constructor(props){

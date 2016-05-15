@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { SidebarBtn } from 'global/jsx/sidebar_component';
 
+
 export default class Brand extends React.Component {
   render() {
     return (

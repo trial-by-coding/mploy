@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 
+
 export default class ShortCard extends React.Component {
   render() {
     return (

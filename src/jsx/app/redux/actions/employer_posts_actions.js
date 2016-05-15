@@ -6,6 +6,7 @@ import {
   SET_JOB_POST
 } from './actionTypes';
 
+
 function getJobPosts() {
   return dispatch => axios.get('/user/employer/jobscreated')
     .then(

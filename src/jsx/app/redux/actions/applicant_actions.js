@@ -10,6 +10,7 @@ import {
   ADD_UNCONSIDERED
 } from './actionTypes';
 
+
 function fetchApplicantRequests() {
   return dispatch => axios.get('/user/verifyuser')
     .then(payload => {

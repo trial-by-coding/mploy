@@ -2,8 +2,6 @@ import {
   Sidebar,
   SidebarNav,
   SidebarNavItem,
-  SidebarControls,
-  SidebarControlBtn
 } from 'global/jsx/sidebar_component';
 import classNames from 'classnames';
 import { connect } from 'react-redux';

@@ -11,6 +11,7 @@ import {
   GET_JOB_INFO
 } from './actionTypes';
 
+
 let jobID = undefined;
 
 function fetchEmployerRequests() {
@@ -71,7 +72,6 @@ function fetchEmployerRequests() {
 }
 
 function selectJob(jobID) {
-
   return dispatch => axios.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=unconsidered')
     .then(payload => {
       dispatch({

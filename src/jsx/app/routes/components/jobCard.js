@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ApplyJob from 'routes/containers/apply_job';
 import actions from 'redux/actions';
 
+
 export class JobHeader extends React.Component {
   render() {
     return (
@@ -17,6 +18,7 @@ export class JobHeader extends React.Component {
     );
   }
 }
+
 export class JobBody extends React.Component {
   render() {
     const tableLines = {
