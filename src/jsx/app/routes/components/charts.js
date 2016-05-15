@@ -27,7 +27,7 @@ export default class Body extends React.Component {
     setTimeout(() => {
 
       (() => {
-        var pie = Rubix.Pie('#resume-chart', {
+        let pie = Rubix.Pie('#resume-chart', {
           title: 'Application Progress',
           height: 300
         });
@@ -57,7 +57,7 @@ export default class Body extends React.Component {
       })();
 
       (() => {
-        var pie = Rubix.Pie('#jobs-chart', {
+        let pie = Rubix.Pie('#jobs-chart', {
           title: 'Past Application Outcomes',
           height: 300
         });
@@ -77,14 +77,12 @@ export default class Body extends React.Component {
             value: charts.rescinded,
             color: '#db843d'
           }
-
         ]);
       })();
     }, 300);
   }
 
   render() {
-
     return (
       <Container id='body'>
         <Grid>

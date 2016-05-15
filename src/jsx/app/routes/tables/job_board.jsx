@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 import actions from 'redux/actions';
 import className from 'classnames';
 
-
 export class JobBoard extends React.Component {
   componentDidMount() {
     $('#job-board')
@@ -29,7 +28,7 @@ export class JobBoard extends React.Component {
               <Grid>
                 <Row>
                   <Col xs={12}>
-                  <Table id='job-board' className='display' cellSpacing='0' width='100%'>
+                  <Table bordered responsive id='job-board' className='display' cellSpacing='0' width='100%'>
                     <thead>
                       <tr>
                         <th>Name</th>
@@ -44,8 +43,6 @@ export class JobBoard extends React.Component {
                     <tbody>
                       { posts.map((item, index) =>
                       <tr href='/employer'>
-                      {/*{ posts.map(item =>
-                      <tr href='/employer' onClick={()=> this.props.select(item.jobID)}>*/}
                         <td>{item.company_name}</td>
                         <td>{item.job_title}</td>
                         <td>{item.min_salary}-{item.max_salary}</td>
@@ -55,7 +52,6 @@ export class JobBoard extends React.Component {
                         <td>
                           <Button xs outlined bsStyle='red' onClick={()=>
                               this.props.deleteJobPost(item.jobID, index)
-
                           }>Delete</Button>
                         </td>
                       </tr>) }
@@ -83,12 +79,7 @@ export default class extends React.Component {
     super(props);
 }
 
-  selectJobPost = (jobID) => {
-    this.props.dispatch(actions.selectJob(jobID));
-  };
-
   deleteJobPost = (jobID, index) => {
-    console.log('deleteJP', jobID);
     this.props.dispatch(actions.removeJobPost(jobID, index));
   };
 
@@ -97,7 +88,6 @@ export default class extends React.Component {
     return (
       <div id='body'>
         <JobBoard posts={this.props.posts}
-                 select={this.selectJobPost}
                  deleteJobPost={this.deleteJobPost}
                 />
       </div>

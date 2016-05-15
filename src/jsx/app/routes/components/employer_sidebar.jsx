@@ -10,7 +10,6 @@ import { Link } from 'react-router';
 import actions from 'redux/actions';
 import className from 'classnames';
 
-
 class EmployerSidebar extends React.Component {
 
   render() {
@@ -27,10 +26,10 @@ class EmployerSidebar extends React.Component {
                 <div className='sidebar-header'>PAGES</div>
                 <div className='sidebar-nav-container' overflowY='scroll'>
                   <SidebarNav style={{marginBottom: 0}}>
-                    <SidebarNavItem style={navItem} glyph='icon-fontello-gauge' name='Dashboard' href='/employer' />
-                    <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
-                    <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
-                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
+                    <SidebarNavItem style={navItem} glyph='icon-feather-map' name='Dashboard' href='/employer' />
+                    <SidebarNavItem style={navItem} glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
+                    <SidebarNavItem style={navItem} glyph='icon-ikons-user-circle' name='Profile' href='/employerprofile' />
+                    <SidebarNavItem style={navItem} glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
               </Col>
@@ -48,8 +47,7 @@ class EmployerSidebar extends React.Component {
                 <div className='sidebar-header'>PAGES</div>
                 <div className='sidebar-nav-container' overflowY='scroll'>
                   <SidebarNav style={{marginBottom: 0}}>
-                    <SidebarNavItem  glyph='icon-fontello-gauge' name='Dashboard' href='/employer' style={navItem} />
-                    <SidebarNavItem style={navItem} glyph='icon-fontello-user' name='Profile' href='/employerprofile' />
+                    <SidebarNavItem  glyph='icon-feather-map' name='Dashboard' href='/employer' style={navItem} />
                     <SidebarNavItem style={navItem}glyph='icon-outlined-todolist-add' name='Create Job' href='/employernewjob' />
                       <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
@@ -58,7 +56,8 @@ class EmployerSidebar extends React.Component {
                           }
                         </SidebarNav>
                       </SidebarNavItem>
-                      <SidebarNavItem glyph='icon-fontello-th-2' name='Manage Posts' href='/employerjobboard' />
+                      <SidebarNavItem style={navItem} glyph='icon-fontello-th-2' name='Manage Posts' href='/employerjobboard' />
+                      <SidebarNavItem style={navItem} glyph='icon-ikons-user-circle' name='Profile' href='/employerprofile' />
                       <SidebarNavItem style={navItem} glyph='icon-dripicons-calendar' name='Calendar' href='/employercalendar' />
                   </SidebarNav>
                 </div>
