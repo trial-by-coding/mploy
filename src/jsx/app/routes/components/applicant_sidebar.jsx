@@ -2,13 +2,12 @@ import {
   Sidebar,
   SidebarNav,
   SidebarNavItem,
-  SidebarControls,
-  SidebarControlBtn
 } from 'global/jsx/sidebar_component';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from 'redux/actions';
+
 
 export default class ApplicantSidebar extends React.Component {
   render() {
@@ -23,7 +22,6 @@ export default class ApplicantSidebar extends React.Component {
                   <SidebarNavItem glyph='icon-feather-map' name='Dashboard' href='/applicant' />
                   <SidebarNavItem glyph='icon-ikons-user-circle' name='Profile' href='/applicantprofile' />
                   <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/applicantjobs' />
-
                 </SidebarNav>
               </div>
             </Col>

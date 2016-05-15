@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import actions from 'redux/actions';
 
+
 @connect(state => state)
 export default class ChartContainer extends React.Component {
   componentWillMount() {
@@ -14,6 +15,7 @@ export default class ChartContainer extends React.Component {
 }
 
 render() {
+
       const { dispatch } = this.props;
       const denied = this.props.charts.denied;
       const rescinded = this.props.charts.rescinded;

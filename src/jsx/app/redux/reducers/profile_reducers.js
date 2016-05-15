@@ -1,20 +1,22 @@
-import { FETCH_USER, DELETE_USER } from '../actions/actionTypes';
+import {
+  FETCH_USER,
+  DELETE_USER
+} from '../actions/actionTypes';
 
 
-function user(state = {},  action) {
+function user(state = {}, action) {
   switch (action.type) {
-    case FETCH_USER:
+  case FETCH_USER:
     const data = action.payload.data;
-      return Object.assign({}, state,  data  );
+    return Object.assign({}, state, data);
+  case DELETE_USER:
+    return [
+      ...state.slice(0, action.index),
+      ...state.slice(action.index + 1)
+    ];
 
-    case DELETE_USER:
-      return [
-        ...state.slice(0, action.index),
-        ...state.slice(action.index + 1)
-      ];
-
-    default:
-      return state;
+  default:
+    return state;
   }
 }
 

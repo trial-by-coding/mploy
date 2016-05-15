@@ -2,8 +2,6 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
-// const AppCard = ({app}) => {
-
 export default class FileCard extends React.Component {
   constructor(props){
     super(props);
@@ -15,7 +13,6 @@ export default class FileCard extends React.Component {
       paddingBottom: '10px',
       'text-align': 'left'
     };
-    // console.log('props in fileCard:',this.props);
 
     return (
       //appCard info

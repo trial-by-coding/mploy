@@ -39,9 +39,7 @@ import 'bower_components/vex/js/vex.combined.min.js';
 // vendor
 import 'js/vendor/bootstrap/bootstrap.js';
 import 'js/vendor/bootstrap-datetimepicker/bootstrap-datetimepicker.js';
-import 'js/vendor/bootstrap-slider/bootstrap-slider.js';
 import 'js/vendor/datatables/datatables.js';
-import 'js/vendor/dropzone/dropzone.js';
 import 'js/vendor/fullcalendar/fullcalendar.js';
 import 'js/vendor/fullcalendar/gcal.js';
 import 'js/vendor/fullcalendar/lib/jquery-ui.custom.min.js';
@@ -52,7 +50,6 @@ import 'js/vendor/jcrop/color.js';
 import 'js/vendor/jcrop/jcrop.js';
 import 'js/vendor/jquery-steps/jquery-steps.js';
 import 'js/vendor/jquery-validate/jquery-validate.js';
-import 'js/vendor/jquery.knob/jquery.knob.js';
 import 'js/vendor/leaflet/leaflet.js';
 import 'js/vendor/messenger/messenger.min.js';
 import 'js/vendor/morris/morris.js';
@@ -62,8 +59,6 @@ import 'js/vendor/raphael/raphael.js';
 import 'js/vendor/select2/select2.js';
 import 'js/vendor/sparklines/sparklines.js';
 import 'js/vendor/switchery/switchery.js';
-import 'js/vendor/tablesaw/tablesaw.js';
-import 'js/vendor/timeline/timeline.js';
 import 'js/vendor/p-scrollbar/src/jquery.mousewheel.js';
 
 

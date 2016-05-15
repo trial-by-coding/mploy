@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import JobCard from 'routes/components/jobCard';
-import JobModal from 'routes/components/jobModal';
+// import JobModal from 'routes/components/jobModal';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 import { FormGroup, InputGroup, FormControl, DropdownButton} from 'react-bootstrap';
 import PureRenderMixin from 'react-addons-pure-render-mixin';
+
 
 @connect(state => state)
 export default class JobsContainer extends React.Component {
@@ -21,8 +22,6 @@ export default class JobsContainer extends React.Component {
   }
 
   filterData(type, event) {
-    console.log('event', event);
-    console.log('type', type);
     event.preventDefault();
     const regex = new RegExp(event.target.value, 'i');
     if(type === 'jobtitle' ) {

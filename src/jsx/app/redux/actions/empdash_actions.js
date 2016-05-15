@@ -1,30 +1,45 @@
 import axios from 'axios';
-import {ADVANCE_EMPLOYER_REQUEST,
-		REVERT_EMPLOYER_REQUEST,
-		REJECT_EMPLOYER_REQUEST	} from './actionTypes';
+import {
+  ADVANCE_EMPLOYER_REQUEST,
+  REVERT_EMPLOYER_REQUEST,
+  REJECT_EMPLOYER_REQUEST
+} from './actionTypes';
 
 
 function advanceEmployerRequest(appID) {
-	return dispatch => axios.put('user/employer/advancestatus', {'appID': appID})
-		.then(
-			payload => dispatch({type: ADVANCE_EMPLOYER_REQUEST, payload}))
+  return dispatch => axios.put('user/employer/advancestatus', {
+      appID
+    })
+    .then(
+      payload => dispatch({
+        type: ADVANCE_EMPLOYER_REQUEST,
+        payload
+      }));
 }
 
 function revertEmployerRequest(appID) {
-	return dispatch => axios.put('user/employer/revertstatus', {'appID': appID})
-		.then(
-			payload => dispatch({type: ADVANCE_EMPLOYER_REQUEST, payload}))
+  return dispatch => axios.put('user/employer/revertstatus', {
+      appID
+    })
+    .then(
+      payload => dispatch({
+        type: ADVANCE_EMPLOYER_REQUEST,
+        payload
+      }));
 }
 
 function rejectEmployerRequest(appID) {
-	return dispatch => axios.delete('user/employer/deleteapp?appID='+ appID)
-		.then(
-			payload => dispatch({type: REJECT_EMPLOYER_REQUEST, payload}));
+  return dispatch => axios.delete('user/employer/deleteapp?appID=' + appID)
+    .then(
+      payload => dispatch({
+        type: REJECT_EMPLOYER_REQUEST,
+        payload
+      }));
 }
 
 
 module.exports = {
-	advanceEmployerRequest: advanceEmployerRequest,
-	revertEmployerRequest: revertEmployerRequest,
-	rejectEmployerRequest: rejectEmployerRequest
-}
+  advanceEmployerRequest,
+  revertEmployerRequest,
+  rejectEmployerRequest
+};

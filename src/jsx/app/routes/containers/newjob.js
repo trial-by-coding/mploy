@@ -1,9 +1,10 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form'
+import { reduxForm } from 'redux-form';
 import actions from 'redux/actions';
 import { Link } from 'react-router';
 import { PropTypes } from 'react';
+
 
 export const fields = ['job_title', 'company_name', 'job_description', 'desired_education', 'min_salary', 'max_salary', 'location', 'employment_type', 'visa_required', 'skills[]'];
 
@@ -12,19 +13,19 @@ const validate = values => {
   if(!values.job_title) {
     errors.job_title = 'Enter a job title';
   } else if (values.job_title.length > 25){
-    errors.job_title = 'Must be fewer than 25 characters'
+    errors.job_title = 'Must be fewer than 25 characters';
   }
 
   if(!values.company_name) {
     errors.company_name = 'Enter a company name';
   } else if (values.company_name.length > 50){
-    errors.company_name = 'Must be fewer than 50 characters'
+    errors.company_name = 'Must be fewer than 50 characters';
   }
 
   if(!values.location) {
     errors.location = 'Enter a location';
   } else if (values.location.length > 50){
-    errors.location = 'Must be fewer than 50 characters'
+    errors.location = 'Must be fewer than 50 characters';
   }
 
   if(!values.job_description) {
@@ -38,19 +39,19 @@ const validate = values => {
   if(!values.min_salary) {
     errors.min_salary = 'Enter minimum salary';
   } else if (isNaN(Number(values.min_salary))) {
-    errors.min_salary = 'Must be a number'
+    errors.min_salary = 'Must be a number';
   } else if (values.min_salary.length < 4){
-    errors.min_salary = 'Salary should be at least 1000'
+    errors.min_salary = 'Salary should be at least 1000';
   }
 
   if(!values.max_salary) {
     errors.max_salary = 'Enter maximum salary';
   } else if (isNaN(Number(values.max_salary))) {
-    errors.max_salary = 'Must be a number'
+    errors.max_salary = 'Must be a number';
   } else if (values.min_salary && (values.max_salary < values.min_salary)){
-    errors.max_salary = 'Must be larger than mininum salary'
+    errors.max_salary = 'Must be larger than mininum salary';
   } else if (values.min_salary.length < 4){
-    errors.max_salary = 'Salary should be at least 1000'
+    errors.max_salary = 'Salary should be at least 1000';
   }
 
   if(!values.desired_education) {
@@ -60,23 +61,23 @@ const validate = values => {
   }
 
   if (!values.skills || !values.skills.length) {
-    errors.skills = { _error: 'At least one skill must be entered' }
+    errors.skills = { _error: 'At least one skill must be entered' };
   } else {
-    const skillsArrayErrors = []
+    const skillsArrayErrors = [];
     values.skills.forEach((skill, skillIndex) => {
-      var skillErrors;
+      let skillErrors;
       if (!skill) {
-        skillErrors = "Skill field can't be empty"
-        skillsArrayErrors[skillIndex] = skillErrors
+        skillErrors = "Skill field can't be empty";
+        skillsArrayErrors[skillIndex] = skillErrors;
       }
       else if (skill.length > 30){
-        skillErrors = "Too many characters"
-        skillsArrayErrors[skillIndex] = skillErrors
+        skillErrors = "Too many characters";
+        skillsArrayErrors[skillIndex] = skillErrors;
       }
-      return skillErrors
-    })
+      return skillErrors;
+    });
     if(skillsArrayErrors.length) {
-      errors.skills = skillsArrayErrors
+      errors.skills = skillsArrayErrors;
     }
   }
 
@@ -89,7 +90,6 @@ const validate = values => {
   fields,
   validate
 })
-
 @connect(state => state)
 export default class NewJob extends React.Component {
   static propTypes = {
@@ -125,9 +125,9 @@ export default class NewJob extends React.Component {
 
     const {
       fields: { job_title, company_name, job_description, desired_education, min_salary, max_salary, location, employment_type, visa_required, skills},
-               resetForm, 
+               resetForm,
                handleSubmit,
-               pristine, 
+               pristine,
                submitting
     } = this.props;
 
@@ -150,20 +150,16 @@ export default class NewJob extends React.Component {
                   </Grid>
                 </PanelHeader>
                   <Form onSubmit={handleSubmit(function(data) {
-                    console.log('data: ', data)
                     if (data.employment_type === undefined){
-                      data.employment_type = 'Full-Time'
+                      data.employment_type = 'Full-Time';
                     }
                     if (data.visa_required === undefined){
-                      data.visa_required = false
+                      data.visa_required = false;
                     }
-
                     that.props.dispatch(actions.addJobPost(data))
                     .then(function() {
-                      console.log('that.props: ', that.props)
                       that.props.history.push('/employer');
-                    })
-
+                    });
                   })}>
                 <PanelBody>
                 <Grid>
@@ -263,15 +259,15 @@ export default class NewJob extends React.Component {
                       </div>
                   </div>
                 </FormGroup>
-                
+
                 <Row>
                   <FormGroup className={`form-group ${skills.touched && skills.invalid ? 'has-danger' : ''}`}>
                   <Col md={12}>
                   <Label htmlFor='dropdownselect'>Specify Desired Skills:</Label>
                    <div>
                       <Button onClick={function(event) {
-                          event.preventDefault()
-                          skills.addField()
+                          event.preventDefault();
+                          skills.addField();
                         }}>
                         Add a Skill
                       </Button>
@@ -280,8 +276,8 @@ export default class NewJob extends React.Component {
                     </div>
                   </Col>
                     <div>
-                        {skills.map((skill, index) => 
-                        <Col md={6}> 
+                        {skills.map((skill, index) =>
+                        <Col md={6}>
                           <div key={index}>
                             <label>Skill #{index + 1}:</label>
                             <input type="text" placeholder="Enter a desired skill"{...skill}/>
@@ -293,7 +289,7 @@ export default class NewJob extends React.Component {
                               x
                             </button>
                             </span>
-                          </div> 
+                          </div>
                             <div className='text-help' style={error}>{skill.touched ? skill.error : ''}
                             </div>
                         </Col>)}

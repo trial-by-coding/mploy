@@ -1,40 +1,59 @@
 import axios from 'axios';
-import	{	GET_EMPLOYER_OFFERS,
-					ADD_OFFER,
-					REMOVE_OFFER,
-					NEXT_MODAL	} from './actionTypes';
+import {
+  GET_EMPLOYER_OFFERS,
+  ADD_OFFER,
+  REMOVE_OFFER,
+  NEXT_MODAL
+} from './actionTypes';
 
-function getEmployerOffers(jobID){
-	return dispatch => axios.get('/user/employer/appsbystatus?jobID='+jobID+'&status=offers')
-		.then(
-			payload => dispatch({ type: GET_EMPLOYER_OFFERS, payload}));
+
+function getEmployerOffers(jobID) {
+  return dispatch => axios.get('/user/employer/appsbystatus?jobID=' + jobID + '&status=offers')
+    .then(
+      payload => dispatch({
+        type: GET_EMPLOYER_OFFERS,
+        payload
+      }));
 }
 
 function getApplicantOffers() {
-		// console.log('getOffers Actions')
-	return dispatch => axios.get('/user/applicant/currentuserapps/offers')
-		.then(
-			payload => dispatch({ type: GET_EMPLOYER_OFFERS, payload }));
+  return dispatch => axios.get('/user/applicant/currentuserapps/offers')
+    .then(
+      payload => dispatch({
+        type: GET_EMPLOYER_OFFERS,
+        payload
+      }));
 }
 
 function addOffer(item) {
-	// console.log('advance action creator');
-	return {type: ADD_OFFER, item};
+  return {
+    type: ADD_OFFER,
+    item
+  };
 }
 
 function removeOffer(index) {
-	return {type: REMOVE_OFFER, index};
+  return {
+    type: REMOVE_OFFER,
+    index
+  };
 }
 
 function nextOffer(index) {
-	let payload = {index: index, status: 'unconsidered'};
-	return {type: NEXT_MODAL, payload};
+  let payload = {
+    index,
+    status: 'unconsidered'
+  };
+  return {
+    type: NEXT_MODAL,
+    payload
+  };
 }
 
 module.exports = {
-	getEmployerOffers: getEmployerOffers,
-	getApplicantOffers: getApplicantOffers,
-	addOffer: addOffer,
-	removeOffer: removeOffer,
-	nextOffer: nextOffer
+  getEmployerOffers,
+  getApplicantOffers,
+  addOffer,
+  removeOffer,
+  nextOffer
 };

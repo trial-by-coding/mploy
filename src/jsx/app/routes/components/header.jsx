@@ -1,9 +1,9 @@
-import { History, Link, State, Navigation } from 'react-router';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import Notifications from './notifications.jsx'
-import { SidebarBtn } from 'global/jsx/sidebar_component';
 import actions from 'redux/actions';
+import { Link } from 'react-router';
+import Notifications from './notifications.jsx';
+import { SidebarBtn } from 'global/jsx/sidebar_component';
 
 export default class Brand extends React.Component {
   render() {
@@ -17,48 +17,19 @@ export default class Brand extends React.Component {
   }
 }
 
-
-var DirectNavItem = React.createClass({
-  mixins: [State, Navigation],
-  render() {
-    var active = false;
-    var currentLocation = this.context.router.state.location.pathname;
-
-    if(!active && this.props.path) {
-      active = this.isActive(this.props.path) && (currentLocation === this.props.path);
-    }
-
-    var classes = classNames({
-      'pressed': active
-    });
-    return (
-      <NavItem className={classes} {...this.props}>
-        <Link to={this.props.path}>
-          <Icon bundle={this.props.bundle || 'fontello'} glyph={this.props.glyph} />
-        </Link>
-      </NavItem>
-    );
-  }
-});
-
-
-
-
 class  HeaderNavigation extends React.Component {
   constructor(props){
-    super(props)
-
-    this.logout = this.logout.bind(this)
+    super(props);
+    this.logout = this.logout.bind(this);
   }
-
 
   logout() {
       window.location = '/auth/logout';
   }
 
   render() {
-    console.log("HeaderNavigation:render:props:",this.props)
-    var props = {
+    console.log("HeaderNavigation:render:props:",this.props);
+    let props = {
       ...this.props,
       className: classNames('pull-right', this.props.className)
     };
@@ -66,26 +37,25 @@ class  HeaderNavigation extends React.Component {
     const bullHorn = {
     position: `absolute`,
     right: `90px`
-    }
+    };
 
     const logoutBtn = {
     position: `absolute`,
     right: `0`,
     'margin-right':'0px',
     'background-color':'#383838'
-    }
+    };
 
     const rowMargins = {
       'marginRight': '-10px'
-    }
+    };
 
     return (
-
       <NavContent className='pull-right' {...this.props}>
       <Row style={rowMargins}>
         <Nav xs={6} style={bullHorn} >
-         <Notifications xs={5} notifications={this.props.notifications} 
-                               dispatch={this.props.dispatch} 
+         <Notifications xs={5} notifications={this.props.notifications}
+                               dispatch={this.props.dispatch}
                                removeNotif={this.props.removeNotif} />
         </Nav>
         <Nav xs={6} style={logoutBtn}>
@@ -101,20 +71,16 @@ class  HeaderNavigation extends React.Component {
 
 export default class Header extends React.Component {
   constructor(props){
-    super(props)
-    this.removeNotif = this.removeNotif.bind(this)
+    super(props);
+    this.removeNotif = this.removeNotif.bind(this);
   }
 
-
 removeNotif(e, notifyID, ndx){
-  e.preventDefault()
-  this.props.dispatch(actions.deleteNotification(notifyID, ndx))
+  e.preventDefault();
+  this.props.dispatch(actions.deleteNotification(notifyID, ndx));
 }
 
-
   render() {
-
-
     return (
       <Grid id='navbar' {...this.props}>
         <Row>
@@ -129,9 +95,9 @@ removeNotif(e, notifyID, ndx){
                     <Brand />
                   </Col>
                   <Col xs={4} sm={2}>
-                    <HeaderNavigation pressed={this.props.pressed} 
-                                      notifications={this.props.notifications} 
-                                      dispatch={this.props.dispatch} 
+                    <HeaderNavigation pressed={this.props.pressed}
+                                      notifications={this.props.notifications}
+                                      dispatch={this.props.dispatch}
                                       removeNotif={this.removeNotif} />
                   </Col>
                 </Row>

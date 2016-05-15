@@ -1,10 +1,11 @@
 import classNames from 'classnames';
 import axios from 'axios';
-import SidebarMixin from 'global/jsx/sidebar_component';
+import { connect } from 'react-redux';
 import actions from 'redux/actions';
+import SidebarMixin from 'global/jsx/sidebar_component';
 import Header from 'routes/components/emp_header';
-import EmployerSidebar from 'routes/components/employer_sidebar';
 import Footer from 'routes/components/footer';
+import EmployerSidebar from 'routes/components/employer_sidebar';
 import ApplicantDashboard from 'routes/containers/applicant_dashboard';
 import EmployerDashboard from 'routes/containers/employer_dashboard';
 import Applications from 'routes/containers/applications';
@@ -14,7 +15,6 @@ import Calendar from 'routes/components/calendar';
 import Charts from 'routes/containers/chart_stats';
 import JobBoard from 'routes/tables/job_board';
 import NewJob from 'routes/containers/newjob';
-import { connect } from 'react-redux';
 
 
 @SidebarMixin
@@ -26,7 +26,6 @@ export default class EmployerApp extends React.Component {
 
 	componentDidMount() {
 		this.props.dispatch(actions.fetchEmployerRequests());
-
 	}
 
 	isEmployer = () => {
@@ -40,13 +39,12 @@ export default class EmployerApp extends React.Component {
 			});
 	};
 
-
 	render() {
     const { dispatch } = this.props;
-		var classes = classNames({
+		let classes = classNames({
 			'container-open': this.props.open
-
 		});
+
 		let posts = this.props.posts;
 
 		this.isEmployer();

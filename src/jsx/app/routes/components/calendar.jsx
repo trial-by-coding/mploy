@@ -25,7 +25,7 @@ export default class Calendar extends React.Component {
 
       // create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
       // it doesn't need to have a start or end
-      var eventObject = {
+      let eventObject = {
         title: $.trim($(this).text()) // use the element's text as the event title
       };
 
@@ -80,29 +80,29 @@ export default class Calendar extends React.Component {
   render() {
     return (
       <Container id='body'>
-        <Grid>
-          <Row>
-            <Col sm={12}>
-              <PanelContainer controlStyles='bg-darkgreen45 fg-white'>
-                <Panel>
-                  <PanelHeader className='bg-darkgreen45 fg-white' style={{marginBottom: 0}}>
-                    <Grid>
-                      <Row>
-                        <Col xs={12}>
-                          <h3>Calendar: Agenda</h3>
-                        </Col>
-                      </Row>
-                    </Grid>
-                  </PanelHeader>
-                  <PanelBody style={{padding: 25}}>
-                    <div id='calendar'></div>
-                  </PanelBody>
-                </Panel>
-              </PanelContainer>
-            </Col>
-          </Row>
-        </Grid>
-      </Container>
+      <Grid>
+        <Row>
+          <Col sm={12}>
+          <PanelContainer controlStyles='bg-darkgreen45 fg-white'>
+            <Panel>
+              <PanelHeader className='bg-darkgreen45 fg-white' style={{marginBottom: 0}}>
+                <Grid>
+                  <Row>
+                    <Col xs={12}>
+                    <h3>Calendar: Agenda</h3>
+                    </Col>
+                  </Row>
+                </Grid>
+              </PanelHeader>
+              <PanelBody style={{padding: 25}}>
+                <div id='calendar'></div>
+              </PanelBody>
+            </Panel>
+          </PanelContainer>
+          </Col>
+        </Row>
+      </Grid>
+    </Container>
     );
   }
 }

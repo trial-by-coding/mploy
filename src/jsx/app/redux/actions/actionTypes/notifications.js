@@ -1,5 +1,4 @@
 module.exports = {
   FETCH_NOTIFS: 'FETCH_NOTIFS',
   DELETE_NOTIFS: 'DELETE_NOTIFS',
-}
-
+};

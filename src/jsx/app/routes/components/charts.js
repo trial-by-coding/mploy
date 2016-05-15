@@ -2,6 +2,7 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 
+
 export default class Charts extends React.Component {
   render() {
     return (

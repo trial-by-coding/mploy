@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import ApplyJob from 'routes/containers/apply_job';
 import actions from 'redux/actions';
 
+
 export class JobHeader extends React.Component {
   render() {
     return (
@@ -17,6 +18,7 @@ export class JobHeader extends React.Component {
     );
   }
 }
+
 export class JobBody extends React.Component {
   render() {
     const tableLines = {
@@ -28,7 +30,7 @@ export class JobBody extends React.Component {
     <Row>
       <Col xs={12}>
       <p style={{lineHeight: 1.6, paddingBottom: 15}}>{this.props.data.job_description}</p>
-      <Table responsive>
+      <Table>
         <tbody>
           <tr>
             <td style={{padding: 0}}>

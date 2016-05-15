@@ -5,6 +5,7 @@ import { Link } from 'react-router';
 import request from 'superagent';
 import { PropTypes } from 'react';
 
+
 export default class Body extends React.Component {
     constructor(props){
     super(props);
@@ -36,15 +37,13 @@ export default class Body extends React.Component {
     };
   }
 
-  //helper functions start
-
+//helper functions start
 eduChange(e) {
   this.setState({
     formVal: {...this.state.formVal,
       education: e.target.value
     }
   }, function () {});
-
 }
 
 visaChange(e) {
@@ -115,27 +114,26 @@ setResume(e) {
       }, function () {});
     });
 
-  }
-    onFormSubmit(e) {
-    e.preventDefault();
-    this.props.dispatch(actions.applyToJob(this.state.formVal));
-  }
-
+}
+onFormSubmit(e) {
+  e.preventDefault();
+  this.props.dispatch(actions.applyToJob(this.state.formVal));
+}
   //end helper funcs
 
   render() {
-const floatRight = {
-  'float': 'right'
-};
-const floatLeft = {
-  'float': 'left'
-};
-const wallppr = {
-  'backgroundColor': 'white'
-};
-const title = {
-  'textAlign': 'center'
-};
+    const floatRight = {
+      'float': 'right'
+    };
+    const floatLeft = {
+      'float': 'left'
+    };
+    const wallppr = {
+      'backgroundColor': 'white'
+    };
+    const title = {
+      'textAlign': 'center'
+    };
 
     return (
     <Container id='body' style={wallppr}>
@@ -210,7 +208,6 @@ const title = {
                   <Row>
                     <Col xs={12}>
                       <Button outlined bsStyle='lightred' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>cancel</Button>
-
                       <Button type="submit" onClick={ModalManager.remove} outlined bsStyle='lightgreen' style={floatRight}>submit</Button>
                   </Col>
                 </Row>

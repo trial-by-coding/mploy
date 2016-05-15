@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 import actions from 'redux/actions';
 import className from 'classnames';
 
+
 export class JobBoard extends React.Component {
   componentDidMount() {
     $('#job-board')
