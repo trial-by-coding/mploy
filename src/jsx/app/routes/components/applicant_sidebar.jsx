@@ -20,8 +20,8 @@ export default class ApplicantSidebar extends React.Component {
               <div className='sidebar-header'>PAGES</div>
               <div className='sidebar-nav-container'>
                 <SidebarNav style={{marginBottom: 0}}>
-                  <SidebarNavItem glyph='icon-fontello-gauge' name='Dashboard' href='/applicant' />
-                  <SidebarNavItem glyph='icon-fontello-user' name='Profile' href='/applicantprofile' />
+                  <SidebarNavItem glyph='icon-feather-map' name='Dashboard' href='/applicant' />
+                  <SidebarNavItem glyph='icon-ikons-user-circle' name='Profile' href='/applicantprofile' />
                   <SidebarNavItem glyph='icon-fontello-dollar' name='Jobs' href='/applicantjobs' />
 
                 </SidebarNav>
@@ -29,21 +29,21 @@ export default class ApplicantSidebar extends React.Component {
             </Col>
           </Row>
         </Grid>
-        <hr style={{borderColor: '#3B4648', borderWidth: 2, marginTop: 15, marginBottom: 0, width:  125}} />
+        <hr style={{borderColor: '#2AA38B', borderWidth: 2, marginTop: 15, marginBottom: 0, width:  125}} />
           <Grid gutterBottom>
             <Row>
               <Col xs={12}>
                 <div className='sidebar-header'>EXTRAS</div>
                 <div className='sidebar-nav-container'>
                   <SidebarNav style={{marginBottom: 0}}>
-                    <SidebarNavItem glyph='icon-dripicons-calendar' name='Calendar' href='/applicantcalendar' />
+                    <SidebarNavItem glyph='icon-fontello-calendar-1' name='Calendar' href='/applicantcalendar' />
                     <SidebarNavItem glyph='icon-fontello-chart-pie' name='Charts' href='/applicantcharts' />
                   </SidebarNav>
                 </div>
               </Col>
             </Row>
           </Grid>
-         <hr style={{borderColor: '#3B4648', borderWidth: 2, marginTop: 15, marginBottom: 0, width: 125}} />
+         <hr style={{borderColor: '#2AA38B', borderWidth: 2, marginTop: 15, marginBottom: 0, width: 125}} />
         </div>
     );
   }

@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import Charts from 'routes/components/charts';
 import { connect } from 'react-redux';
-import { Link, History } from 'react-router';
+import { Link } from 'react-router';
 import actions from 'redux/actions';
 
 @connect(state => state)
@@ -14,19 +14,16 @@ export default class ChartContainer extends React.Component {
 }
 
 render() {
-
-  const { dispatch } = this.props;
-
-        // const firstname  = this.props.charts.firstname;
-        const denied = this.props.charts.denied;
-        const rescinded = this.props.charts.rescinded;
-        const applied = this.props.charts.applied;
-        const considered = this.props.charts.considered;
-        const interviewed = this.props.charts.interviewed;
-        const offered = this.props.charts.offered;
-        const total_apps = this.props.charts.total_apps;
-        const statID = this.props.charts.statID;
-        const user_id = this.props.charts.user_id;
+      const { dispatch } = this.props;
+      const denied = this.props.charts.denied;
+      const rescinded = this.props.charts.rescinded;
+      const applied = this.props.charts.applied;
+      const considered = this.props.charts.considered;
+      const interviewed = this.props.charts.interviewed;
+      const offered = this.props.charts.offered;
+      const total_apps = this.props.charts.total_apps;
+      const statID = this.props.charts.statID;
+      const user_id = this.props.charts.user_id;
 
  if(this.props.charts.total_apps === undefined) {
    return ( <div> Loading... </div>);
@@ -35,15 +32,50 @@ render() {
  if (this.props.charts.total_apps === 0){
     return (
       <Container id='body'>
-        <h2 style={{textAlign: 'center'}}>Check back after you've submitted an application to see your stats.</h2>
+        <Grid>
+          <Row>
+            <Col sm={7} smCollapseRight>
+              <PanelContainer>
+                <Panel>
+                  <PanelBody style={{padding: 0}}>
+                    <Grid>
+                      <Row>
+                      	<Col xs={12}>
+                          <h4 style={{textAlign: 'center'}}>Check back after you've submitted an application to see your stats.</h4>
+                        </Col>
+                      </Row>
+                    </Grid>
+                  </PanelBody>
+                </Panel>
+              </PanelContainer>
+            </Col>
+          </Row>
+        </Grid>
       </Container>
       );
   }
 
   return (
-    <Container id='body' className='social'>
-      <div>
-      <h3 style={{textAlign: 'center'}}>Apply to more jobs and watch as your charts update.</h3>
+      <Container id='body'>
+        <Grid>
+          <Row>
+            <Col sm={12} smCollapseRight>
+              <PanelContainer>
+                <Panel>
+                  <PanelBody style={{padding: 0}}>
+                    <Grid>
+                      <Row>
+                        <Col xs={12}>
+                          <h4 style={{textAlign: 'center'}}>Apply to more jobs and watch as your charts update!</h4>
+                        </Col>
+                      </Row>
+                    </Grid>
+                  </PanelBody>
+                </Panel>
+              </PanelContainer>
+            </Col>
+          </Row>
+        </Grid>
         <Charts
         dispatch={dispatch}
         denied={denied}
@@ -56,7 +88,6 @@ render() {
         statID={statID}
         user_id={user_id}
         />
-      </div>
     </Container>
   );
  }
