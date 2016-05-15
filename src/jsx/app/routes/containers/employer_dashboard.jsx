@@ -10,6 +10,8 @@ export default class EmployerDashboard extends React.Component {
 		super(props);
   }
 
+  // Function that moves an application from one lane to the next depending on it's status. Also
+  // sends AJAX request to change the status in the server database.
   advance = (appID, status, item, index)  => {
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index));
                                         this.props.dispatch(actions.addConsidered(item));}
@@ -22,6 +24,8 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.advanceEmployerRequest(appID));
   };
 
+  // Function that moves an application from one lane to the previous depending on it's status. Also
+  // sends AJAX request to change the status in the server database.
   revert = (appID, status, item, index) => {
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index)); }
     else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));
@@ -34,6 +38,7 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.revertEmployerRequest(appID));
   };
 
+  // Function that removes an application from the lane and deletes the application from the server.
   reject = (appID, status, index) => {
     ModalManager.remove();
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index));
@@ -46,13 +51,16 @@ export default class EmployerDashboard extends React.Component {
                                         this.props.dispatch(actions.nextOffer(index));}
 
 
-    this.props.dispatch(actions.rejectApp(appID));
+    this.props.dispatch(actions.rejectEmployerRequest(appID));
   };
 
+  // Function used for a modal that moves an application forward and changes the status on the server database 
+  // while opening the next modal.
   accept = (appID, status, item, index) => {
     ModalManager.remove();
     this.advance(appID, status, item, index);
   };
+
 
 	render() {
     const laneTemplate = {
