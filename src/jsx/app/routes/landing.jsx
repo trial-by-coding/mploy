@@ -248,7 +248,7 @@ export default React.createClass({
           </div>
           <HeroHeader style={{'marginBottom':'35px'}}>{"Time is money."}</HeroHeader>
           <p className='text-center'>
-          MPLOY  aims to minimize efforts on both sides of the hiring process. We keep candidates informed of application status and for employers, you see how much of a match a candidate is.
+          MPLOY streamlines both sides of the hiring process. Candidates always know the status of their applications and employers can easily view applicants to find the best match.
           </p>     
         </Hero>
         <Hero style={{'backgroundColor':'#F8F8F8'}}>
@@ -266,15 +266,15 @@ export default React.createClass({
                 <h2 style={{'fontWeight':300, color:'#395660'}}> For Job Seekers </h2>
                 <h3 style={{color:'#395660'}} > Your Dashboard</h3>
                 <p style={{marginTop: 10}}>
-                  No more wondering if an employer viewed your app or not. Your dashboard updates as soon as an employer makes a decision with your application!
+                  No more wondering if an employer has viewed your app or not. Your dashboard updates any time an employer makes a decision with your application!
                 </p>
                 <h3 style={{color:'#395660'}}> Notifications</h3>
-                  <p>Get notified once an employer updates your application.</p>
+                  <p>Get notified whenever an employer updates your application.</p>
                 <p>
                 </p>                
                 <h3 style={{color:'#395660'}}> Data Visualization</h3>
                 <p>
-                 With MPLOY you have a <strong>real time dashboard</strong> that updates if an empolyer decides to accept <em>or</em> reject your application.
+                 With MPLOY you have a <strong>dashboard</strong> and <strong>charts</strong> that update if an employer decides to accept <em>or</em> reject your application so you always know where you stand.
                 </p>
               </Col>
               <Col sm={6} xs={12} collapseLeft collapseRight>
@@ -300,12 +300,12 @@ export default React.createClass({
                   Visually track all candidates and their status in your hiring process. Save time and quickly see how much of a "match" each candidate is before viewing their resume.
                 </p>
                 <h3 style={{color:'#395660'}} > Create Jobs</h3>
-                  <p>Easily add a new job post for your company. Specify which level of education, visa status, salary rate, and more that you would require your applicants to have.</p>
+                  <p>Easily add a new job post for your company. Specify which level of education, visa status, and skills you would require your applicants to have.</p>
                 <p>
                 </p>                
                 <h3 style={{color:'#395660'}} > Manage Job Postings</h3>
                 <p>
-                  Easily see all current open job postings. Delete any un-needed positions in a few clicks.
+                  Easily see all current open job postings. Delete any filled positions in a few clicks.
                 </p>  
               </Col>
             </Row>
@@ -325,7 +325,7 @@ export default React.createClass({
                 </p>                
                 <h3 style={{color:'#395660'}}> Data Visualization</h3>
                 <p>
-                 With MPLOY you have a <strong>real time dashboard</strong> that updates if an empolyer decides to accept <em>or</em> reject your application.
+                 With MPLOY you have a <strong>dashboard</strong> that updates if an employer decides to accept <em>or</em> reject your application.
                 </p>
               </Col>
               <Col sm={6} xs={12} collapseLeft collapseRight>
