@@ -26,14 +26,14 @@ render() {
           <h5 className='fg-white' style={{opacity: 0.8}}><Link to={openEmail}>{user.email}</Link></h5>
         </div>
         <div>
-          <h5 className='fg-white' style={{opacity: 0.8}}>{user.linkedin_headline}</h5>
+          <h5 className='fg-white' style={{opacity: 0.8}}>Specializes in {user.industry}</h5>
         </div>
       </div>
     </div>
     <div className='social-avatar'>
       <Img src={user.profile_picture} height='100' width='100' style={{display: 'block', borderRadius: 100, border: '2px solid #2AA38B', padding: 3, margin: 'auto', marginTop: 50}} />
       <h4 className='fg-white text-center'>{user.firstname} {user.lastname}</h4>
-      <h5 className='fg-white text-center' style={{opacity: 0.8}}>{user.industry}</h5>
+      <h5 className='fg-white text-center' style={{opacity: 0.8}}>{user.linkedin_headline}</h5>
       <div className='text-center'>
         <Button outlined inverse retainBackground bsStyle='brightblue' type='active' onClick={()=> this.goLinkedIn()}>
                     <span>LinkedIn</span>

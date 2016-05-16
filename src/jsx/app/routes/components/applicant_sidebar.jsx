@@ -68,7 +68,7 @@ export default class extends React.Component {
             <Row className='fg-white'>
               <Col style={{'padding':'0px'}} xs={12} collapseRight>
                 <img src={user.user.profile_picture} width='60' height='60'
-                  style={{display: 'block', borderRadius: 45, border: '2px solid #2AA38B', padding:'3px', margin: 'auto'}} />
+                  style={{display: 'block', borderRadius: 60, border: '2px solid #2AA38B', padding:'3px', margin: 'auto'}} />
               </Col>
             </Row>
           </Grid>

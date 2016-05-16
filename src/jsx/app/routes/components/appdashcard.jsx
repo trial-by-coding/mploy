@@ -50,7 +50,7 @@ class JobModal extends React.Component {
 export default class appdashCard extends React.Component {
   getLargeModal() {
     return (
-      <Modal md={6}>
+      <Modal md>
     <ModalBody>
       <JobModal data={this.props.item} />
     </ModalBody>
