@@ -88,10 +88,10 @@ export default class Body extends React.Component {
       <Container id='body'>
         <Grid>
           <Row>
-            <Col sm={6} collapseRight>
+            <Col sm={6}>
               <Charts id='resume-chart' />
             </Col>
-            <Col sm={6} collapseRight>
+            <Col sm={6}>
               <Charts id='jobs-chart' />
             </Col>
           </Row>
