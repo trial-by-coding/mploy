@@ -20,7 +20,6 @@ export default class JobsContainer extends React.Component {
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
 
-
   // Function that filters
   filterData(type, event) {
     event.preventDefault();
@@ -133,17 +132,11 @@ export default class JobsContainer extends React.Component {
           {/*end all filters*/}
         </Row>
       </Grid>
-      {/*jobcards*/}
-      <Row>
-      <Grid>
         { jobList.filter((item) => item.job_title.search(this.state.jobtitle) > -1 && item.company_name.search(this.state.company)
         > -1 && item.location.search(this.state.location) > -1 && item.employment_type.search(this.state.jobtype) >
         -1) .map(job =>
         <JobCard data={job} openModal={this.openModal} dispatch={dispatch} />)}
-      </Grid>
-    </Row>
-    {/*end jobcards*/}
-    </Container>
+  </Container>
     );
   }
 }

@@ -26,7 +26,7 @@ export class JobBody extends React.Component {
       'border': 'none'
     };
     return (
-      <Grid>
+  <Grid>
     <Row>
       <Col xs={12}>
       <p style={{lineHeight: 1.6, paddingBottom: 15}}>{this.props.data.job_description}</p>
@@ -96,8 +96,9 @@ export default class JobCard extends React.Component {
     });
 
     return (
-  <Col sm={4}>
-  <PanelContainer noControls style={{marginBottom: 15, marginTop: 15}}>
+
+<Col sm={4}>
+  <PanelContainer noControls style={{marginTop: 25}}>
     <Panel>
       <PanelHeader className='text-left' style={{margin: 25}}>
         <JobHeader data={this.props.data} />
@@ -111,7 +112,7 @@ export default class JobCard extends React.Component {
       </PanelFooter>
     </Panel>
   </PanelContainer>
-  </Col>
+</Col>
 		);
 	}
 }
