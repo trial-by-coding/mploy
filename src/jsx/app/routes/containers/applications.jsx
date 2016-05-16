@@ -54,7 +54,7 @@ export default class ApplicationContainer extends React.Component {
           {this.props.appList.items.map(function(app){
              return (
                 <Col sm={12} md={4} lg={4}>
-                  <PanelContainer style={panelStyle}>
+                  <PanelContainer noControls style={panelStyle}>
                     <Panel style={ panelPad }>
                       <PanelBody >
                           <AppCard dispatch={dispatch} fuckingApps={app} />

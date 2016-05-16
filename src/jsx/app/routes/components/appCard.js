@@ -43,11 +43,11 @@ export default class AppCard extends React.Component {
       <Container id='body' style={wallppr}>
     <ModalBody>
       <Grid>
-        <Col md={12}>
+        <Col sm={12}>
         <Row style={styles}>
           <img src={this.props.app.profile_picture} width='60' height='60' style={{display:
             'block', borderRadius: 60, border: '2px solid #2AA38B', padding: 3, margin:
-            'auto', float: 'right'}} />
+            'auto'}} />
           <div style={{top: 23, color: '#575757', fontSize: 28, lineHeight: 1, position:
             'relative', textAlign: 'center'}}>
             {this.props.app.username}

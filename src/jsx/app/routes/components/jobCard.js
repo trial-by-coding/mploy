@@ -95,9 +95,9 @@ export default class JobCard extends React.Component {
       skillsArr.push(false);
     });
 
-    return(
-  <Col sm={4} smCollapseRight>
-  <PanelContainer style={{marginBottom: 15, marginTop: 15}}>
+    return (
+  <Col sm={4}>
+  <PanelContainer noControls style={{marginBottom: 15, marginTop: 15}}>
     <Panel>
       <PanelHeader className='text-left' style={{margin: 25}}>
         <JobHeader data={this.props.data} />
@@ -105,7 +105,7 @@ export default class JobCard extends React.Component {
       <PanelBody>
         <JobBody data={this.props.data} />
       </PanelBody>
-      <PanelFooter className='text-center' style={{paddingBottom: 10}}>
+      <PanelFooter className='text-center' style={{paddingBottom: 10, margin: 15}}>
         <JobApply data={this.props.data} dispatch={this.props.dispatch} openModal={this.props.openModal} skillsArray={skillsArr}
         />
       </PanelFooter>

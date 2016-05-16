@@ -36,8 +36,8 @@ render() {
       <Container id='body'>
         <Grid>
           <Row>
-            <Col sm={7} smCollapseRight>
-              <PanelContainer>
+            <Col sm={7}>
+              <PanelContainer noControls>
                 <Panel>
                   <PanelBody style={{padding: 0}}>
                     <Grid>
@@ -61,8 +61,8 @@ render() {
       <Container id='body'>
         <Grid>
           <Row>
-            <Col sm={12} smCollapseRight>
-              <PanelContainer>
+            <Col sm={12}>
+              <PanelContainer noControls>
                 <Panel>
                   <PanelBody style={{padding: 0}}>
                     <Grid>

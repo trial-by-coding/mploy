@@ -54,7 +54,7 @@ export default class EmployerDashboard extends React.Component {
     this.props.dispatch(actions.rejectEmployerRequest(appID));
   };
 
-  // Function used for a modal that moves an application forward and changes the status on the server database 
+  // Function used for a modal that moves an application forward and changes the status on the server database
   // while opening the next modal.
   accept = (appID, status, item, index) => {
     ModalManager.remove();
@@ -111,7 +111,7 @@ export default class EmployerDashboard extends React.Component {
           <Grid>
             <Row>
               <Col sm={12} smCollapseRight>
-                <PanelContainer>
+                <PanelContainer noControls>
                   <Panel>
                     <PanelBody style={{padding: 0}}>
                       <Grid>
@@ -137,7 +137,7 @@ export default class EmployerDashboard extends React.Component {
           <Grid>
             <Row>
               <Col sm={12} smCollapseRight>
-                <PanelContainer>
+                <PanelContainer noControls>
                   <Panel>
                     <PanelBody style={{padding: 0}}>
                       <Grid>
@@ -163,7 +163,7 @@ export default class EmployerDashboard extends React.Component {
           <Grid>
             <Row>
               <Col sm={12} smCollapseRight>
-                <PanelContainer>
+                <PanelContainer noControls>
                   <Panel>
                     <PanelBody style={{padding: 0}}>
                       <Grid>

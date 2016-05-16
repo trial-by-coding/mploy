@@ -6,7 +6,7 @@ import actions from 'redux/actions';
 export default class Charts extends React.Component {
   render() {
     return (
-      <PanelContainer>
+      <PanelContainer noControls>
         <Panel>
           <PanelBody style={{padding: 25}}>
             <div id={this.props.id}></div>
@@ -88,10 +88,10 @@ export default class Body extends React.Component {
       <Container id='body'>
         <Grid>
           <Row>
-            <Col sm={6} collapseRight>
+            <Col sm={6}>
               <Charts id='resume-chart' />
             </Col>
-            <Col sm={6} collapseRight>
+            <Col sm={6}>
               <Charts id='jobs-chart' />
             </Col>
           </Row>
