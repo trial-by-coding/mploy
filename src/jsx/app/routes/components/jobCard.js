@@ -29,7 +29,7 @@ export class JobBody extends React.Component {
   <Grid>
     <Row>
       <Col xs={12}>
-      <p style={{lineHeight: 1.6, paddingBottom: 15}}>{this.props.data.job_description}</p>
+      <p style={{height: 90, lineHeight: 1.6, paddingBottom: 15, overflow:'hidden'}}>{this.props.data.job_description}</p>
       <Table>
         <tbody>
           <tr>
@@ -97,8 +97,8 @@ export default class JobCard extends React.Component {
 
     return (
 
-<Col sm={4}>
-  <PanelContainer noControls style={{marginTop: 25}}>
+<Col  md={4} xs={12} sm={4}>
+  <PanelContainer noControls style={{height: 470, marginTop: 25}}>
     <Panel>
       <PanelHeader className='text-left' style={{margin: 25}}>
         <JobHeader data={this.props.data} />
