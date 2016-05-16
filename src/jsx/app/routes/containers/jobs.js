@@ -12,10 +12,7 @@ export default class JobsContainer extends React.Component {
     super(props);
     this.state = {
       isOpen: false,
-      jobtitle:'',
-      company: '',
-      location: '',
-      jobtype: ''
+      input: ''
     };
     this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
   }
@@ -35,6 +32,11 @@ export default class JobsContainer extends React.Component {
     }
     if(type === 'jobtype') {
       this.setState({ jobtype: regex });
+    }
+    if(type === 'input') {
+      this.setState({
+        input: regex
+      })
     }
   };
 
@@ -65,61 +67,7 @@ export default class JobsContainer extends React.Component {
                   <Row>
                     <Col xs={12}> {/*filter by jobtitle*/}
                     <InputGroup>
-                      <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'jobtitle') } placeholder="Job Title" style={{border: 'none'}}
-                      />
-                    </InputGroup>
-                    </Col>
-                  </Row>
-                </Grid>
-              </PanelBody>
-            </Panel>
-          </PanelContainer>
-          </Col>
-          <Col sm={3}>
-          <PanelContainer noControls>
-            <Panel>
-              <PanelBody style={{padding: 0}}>
-                <Grid>
-                  <Row>
-                    <Col xs={12}> {/*filter by company*/}
-                    <InputGroup>
-                      <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'company') } placeholder="Company" style={{border: 'none'}}
-                      />
-                    </InputGroup>
-                    </Col>
-                  </Row>
-                </Grid>
-              </PanelBody>
-            </Panel>
-          </PanelContainer>
-          </Col>
-          <Col sm={3}>
-          <PanelContainer noControls>
-            <Panel>
-              <PanelBody style={{padding: 0}}>
-                <Grid>
-                  <Row>
-                    <Col xs={12}> {/*filter by location*/}
-                    <InputGroup>
-                      <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'location') } placeholder="Location" style={{border: 'none'}}
-                      />
-                    </InputGroup>
-                    </Col>
-                  </Row>
-                </Grid>
-              </PanelBody>
-            </Panel>
-          </PanelContainer>
-          </Col>
-          <Col sm={3}>
-          <PanelContainer noControls>
-            <Panel>
-              <PanelBody style={{padding: 0}}>
-                <Grid>
-                  <Row>
-                    <Col xs={12}> {/*filter by jobtype*/}
-                    <InputGroup>
-                      <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'jobtype') } placeholder="Job Type" style={{border: 'none'}}
+                      <Input type="text" className="form-control" onChange={ this.filterData.bind(this, 'input') } placeholder="Search" style={{border: 'none'}}
                       />
                     </InputGroup>
                     </Col>
@@ -132,8 +80,8 @@ export default class JobsContainer extends React.Component {
           {/*end all filters*/}
         </Row>
       </Grid>
-        { jobList.filter((item) => item.job_title.search(this.state.jobtitle) > -1 && item.company_name.search(this.state.company)
-        > -1 && item.location.search(this.state.location) > -1 && item.employment_type.search(this.state.jobtype) >
+        { jobList.filter((item) => item.job_title.search(this.state.input) > -1 || item.company_name.search(this.state.input)
+        > -1 || item.location.search(this.state.input) > -1 || item.employment_type.search(this.state.input) >
         -1) .map(job =>
         <JobCard data={job} openModal={this.openModal} dispatch={dispatch} />)}
   </Container>
