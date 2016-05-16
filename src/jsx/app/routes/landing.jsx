@@ -236,7 +236,7 @@ export default React.createClass({
           <MainHero className='text-center ' style={{height: '100vh', display:'table', width:'100%', backgroundImage: 'url(/imgs/mploy_landingBg.jpg)', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', overflow: 'hidden'}}>
             <img src='/imgs/mploy_all_white.png' width='100' verticalstyle={{marginTop: 5}} />
             <h1 style={{color:'white'}}>Job hunting for modern times.</h1>
-            <h4 style={{color:'white'}}> Find and create jobs with real time updates </h4>
+            <h4 style={{color:'white'}}> Find and create jobs while staying informed </h4>
             <Button lg bsStyle='white' onClick={ModalManager.create.bind(this, this.getLargeModal())} style={btnStyle}> Login/Signup </Button>
           </MainHero>
         </div>
@@ -366,7 +366,7 @@ export default React.createClass({
           <HeroHeader2 style={{color:'#395660', marginBottom:'35px'}}>{"Let's get to work!"}</HeroHeader2>
           <div className='text-center'>
           <p className='text-center'>
-          Find your next awesome job or talent with Mploy.
+          Find your next great job or talent with MPLOY.
           </p>
             <Button  lg bsStyle='white' onClick={ModalManager.create.bind(this, this.getLargeModal())} style={btnStyle2}> Login/Signup </Button>
 
