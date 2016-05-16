@@ -26,7 +26,7 @@ export default class EmployerLane extends React.Component {
         </ModalBody>
         <ModalFooter>
           <Button outlined bsStyle='danger' onClick={() => {
-                    reject(item.appID, item, status, index)
+                    reject(item.appID, item, status, index);
                   }
                 }
                   onTouchEnd={ModalManager.remove}>Reject</Button>
@@ -38,12 +38,12 @@ export default class EmployerLane extends React.Component {
 
   render() {
     let list = this.props.data;
-    console.log('list is:', list)
+    console.log('list is:', list);
     let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
     return (
       <div className='shortcard'>
         <ul>
-          {list.map((item, index) => {console.log('item in map', item)
+          {list.map((item, index) => {console.log('item in map', item);
                                      return <EmployerDashboardCard item={item}
                                                                    listLength={this.props.data.length}
                                                                    list={list}
@@ -55,7 +55,7 @@ export default class EmployerLane extends React.Component {
                                                                    accept={this.props.accept}
                                                                    revert={this.props.revert}
                                                                    reject={this.props.reject}
-                                                                   dispatch={this.props.dispatch}/>})}
+                                                                   dispatch={this.props.dispatch}/>;})}
         </ul>
       </div>
     );

@@ -55,8 +55,7 @@ export default class appdashCard extends React.Component {
       <JobModal data={this.props.item} />
     </ModalBody>
     <ModalFooter>
-      <Button outlined bsStyle='danger' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
-      <Button outlined bsStyle='primary'>Save changes</Button>
+      <Button outlined bsStyle='lightred' onClick={ModalManager.remove} onTouchEnd={ModalManager.remove}>Close</Button>
     </ModalFooter>
   </Modal>
     );
@@ -119,7 +118,7 @@ export default class appdashCard extends React.Component {
     return (
       <div>
     <Col style={panelStyle} sm={12} xs={12} md={12}>
-    <PanelContainer style={panelStyle1}>
+    <PanelContainer noControls style={panelStyle1}>
       <Panel style={panelStyle}>
         <PanelBody style={panelBody}>
           <Grid>

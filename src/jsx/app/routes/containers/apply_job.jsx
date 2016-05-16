@@ -140,7 +140,7 @@ onFormSubmit(e) {
     <ModalBody>
     <Grid>
       <Row>
-        <Col sm={12} collapseRight>
+        <Col sm={12}>
             <Form onSubmit={this.onFormSubmit}>
                 <Grid>
                   <Row>

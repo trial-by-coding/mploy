@@ -23,13 +23,13 @@ export class JobBoard extends React.Component {
     <Grid>
       <Row>
         <Col xs={12}>
-        <PanelContainer>
+        <PanelContainer noControls>
           <Panel>
             <PanelBody>
               <Grid>
                 <Row>
                   <Col xs={12}>
-                  <Table bordered responsive id='job-board' className='display' cellSpacing='0' width='100%'>
+                  <Table responsive id='job-board' className='display' cellSpacing='0' width='100%'>
                     <thead>
                       <tr>
                         <th>Name</th>

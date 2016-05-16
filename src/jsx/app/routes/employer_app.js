@@ -31,8 +31,6 @@ export default class EmployerApp extends React.Component {
 	isEmployer = () => {
 		axios.get('user/verifyuser')
 			.then(function(user) {
-				console.log('user data', user);
-				console.log('previous page', document.referrer);
 				if(!user.data.employer) {
 					window.location.replace(document.referrer);
 				}

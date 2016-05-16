@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import JobCard from 'routes/components/jobCard';
-// import JobModal from 'routes/components/jobModal';
 import { connect } from 'react-redux';
 import actions from 'redux/actions';
 import { FormGroup, InputGroup, FormControl, DropdownButton} from 'react-bootstrap';
@@ -59,8 +58,8 @@ export default class JobsContainer extends React.Component {
     <Container id='body'>
     <Grid style={{paddingBottom: 10}}>
       <Row>
-        <Col sm={3} smCollapseRight>
-          <PanelContainer>
+        <Col sm={3}>
+          <PanelContainer noControls>
             <Panel>
               <PanelBody style={{padding: 0}}>
                 <Grid>
@@ -77,8 +76,8 @@ export default class JobsContainer extends React.Component {
             </Panel>
           </PanelContainer>
           </Col>
-          <Col sm={3} smCollapseRight>
-          <PanelContainer>
+          <Col sm={3}>
+          <PanelContainer noControls>
             <Panel>
               <PanelBody style={{padding: 0}}>
                 <Grid>
@@ -95,8 +94,8 @@ export default class JobsContainer extends React.Component {
             </Panel>
           </PanelContainer>
           </Col>
-          <Col sm={3} smCollapseRight>
-          <PanelContainer>
+          <Col sm={3}>
+          <PanelContainer noControls>
             <Panel>
               <PanelBody style={{padding: 0}}>
                 <Grid>
@@ -113,8 +112,8 @@ export default class JobsContainer extends React.Component {
             </Panel>
           </PanelContainer>
           </Col>
-          <Col sm={3} smCollapseRight>
-          <PanelContainer>
+          <Col sm={3}>
+          <PanelContainer noControls>
             <Panel>
               <PanelBody style={{padding: 0}}>
                 <Grid>

@@ -37,7 +37,7 @@ render() {
         <Grid>
           <Row>
             <Col sm={7} smCollapseRight>
-              <PanelContainer>
+              <PanelContainer noControls>
                 <Panel>
                   <PanelBody style={{padding: 0}}>
                     <Grid>
@@ -62,7 +62,7 @@ render() {
         <Grid>
           <Row>
             <Col sm={12} smCollapseRight>
-              <PanelContainer>
+              <PanelContainer noControls>
                 <Panel>
                   <PanelBody style={{padding: 0}}>
                     <Grid>

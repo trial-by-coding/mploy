@@ -17,7 +17,6 @@ export default class Calendar extends React.Component {
       events: [{}]
     });
 
-
     /* initialize the external events
     -----------------------------------------------------------------*/
 
@@ -56,10 +55,10 @@ export default class Calendar extends React.Component {
       drop: function(date) { // this function is called when something is dropped
 
         // retrieve the dropped element's stored Event Object
-        var originalEventObject = $(this).data('eventObject');
+        let originalEventObject = $(this).data('eventObject');
 
         // we need to copy it, so that multiple events don't have a reference to the same object
-        var copiedEventObject = $.extend({}, originalEventObject);
+        let copiedEventObject = $.extend({}, originalEventObject);
 
         // assign it the date that was reported
         copiedEventObject.start = date;
@@ -83,13 +82,13 @@ export default class Calendar extends React.Component {
       <Grid>
         <Row>
           <Col sm={12}>
-          <PanelContainer controlStyles='bg-darkgreen45 fg-white'>
+          <PanelContainer noControls controlStyles='bg-darkgreen45 fg-white'>
             <Panel>
               <PanelHeader className='bg-darkgreen45 fg-white' style={{marginBottom: 0}}>
                 <Grid>
                   <Row>
                     <Col xs={12}>
-                    <h3>Calendar: Agenda</h3>
+                    <h3>Calendar</h3>
                     </Col>
                   </Row>
                 </Grid>

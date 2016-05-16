@@ -34,8 +34,7 @@ const { dispatch } = this.props;
  }
 
   return (
-    <Container id='body' className='social'>
-      <div>
+    <Container id='body'>
         <Profile
         dispatch={dispatch}
         firstname={firstname}
@@ -49,7 +48,6 @@ const { dispatch } = this.props;
         employer={employer}
         linkedin_url={linkedin_url}
         />
-      </div>
     </Container>
   );
  }

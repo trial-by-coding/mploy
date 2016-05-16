@@ -6,7 +6,7 @@ import actions from 'redux/actions';
 export default class Charts extends React.Component {
   render() {
     return (
-      <PanelContainer>
+      <PanelContainer noControls>
         <Panel>
           <PanelBody style={{padding: 25}}>
             <div id={this.props.id}></div>

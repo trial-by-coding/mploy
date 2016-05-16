@@ -53,7 +53,7 @@ export default class Header extends React.Component {
             <NavBar style={{'background':'white', 'border-bottom':'1px solid rgba(0, 0, 0, 0.34)'}} fixedTop id='rubix-nav-header'>
               <Container fluid>
                 <Row>
-                  <Col xs={3} visible='xs'>
+                  <Col xs={2} visible='xs'>
                     <SidebarBtn />
                   </Col>
                   <Col xs={6} sm={4}>

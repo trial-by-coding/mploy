@@ -165,7 +165,7 @@ export default React.createClass({
     <Grid style={middle}>
       <Row>
         <Col sm={12} xs={12} >
-        <PanelContainer>
+        <PanelContainer noControls>
           <Panel>
             <PanelBody style={{padding: 0}}>
               <div className='text-center bg-darkblue fg-white'>
@@ -187,7 +187,7 @@ export default React.createClass({
         </PanelContainer>
         </Col>
         <Col sm={12} xs={12} >
-        <PanelContainer>
+        <PanelContainer noControls>
           <Panel>
             <PanelBody style={{padding: 0}}>
               <div className='text-center bg-darkblue fg-white'>
@@ -219,17 +219,18 @@ export default React.createClass({
 
   render() {
     const btnStyle = {
-      color:'#2AA38B', 
+      color:'#2AA38B',
       'box-shadow': '0px 2px 20px 2px rgba(0,0,0,0.39)',
       'marginTop':'15px'
-    }    
+    };
     const btnStyle2 = {
       'backgroundColor':'#2AA38B',
-       color:'white', 
+       color:'white',
        'border':'1px solid #54D08B',
       'box-shadow': '0px 2px 20px 2px rgba(0,0,0,0.39)',
       'marginTop':'15px'
-    }
+    };
+
     return (
       <Container id='homepage-container'>
         <div>
@@ -242,14 +243,14 @@ export default React.createClass({
         </div>
         <Hero >
           <div className='text-center' >
-            <div > 
+            <div >
               <Icon style={{'fontSize':'10rem',color:'#3BB58C'}} glyph= "icon-stroke-gap-icons-Timer" />
             </div>
           </div>
           <HeroHeader style={{'marginBottom':'35px'}}>{"Time is money."}</HeroHeader>
           <p className='text-center'>
           MPLOY streamlines both sides of the hiring process. Candidates always know the status of their applications and employers can easily view applicants to find the best match.
-          </p>     
+          </p>
         </Hero>
         <Hero style={{'backgroundColor':'#F8F8F8'}}>
           <div className='text-center' >
@@ -259,7 +260,7 @@ export default React.createClass({
           </div>
           <HeroHeader style={{'marginBottom':'35px'}}>
             <span>{"Track your efforts."}</span></HeroHeader>
-         
+
           <Grid className='hidden-xs'>
             <Row>
               <Col style={{overflow:'hidden','textAlign':'right'}} sm={6} xs={12}  >
@@ -271,7 +272,7 @@ export default React.createClass({
                 <h3 style={{color:'#395660'}}> Notifications</h3>
                   <p>Get notified whenever an employer updates your application.</p>
                 <p>
-                </p>                
+                </p>
                 <h3 style={{color:'#395660'}}> Data Visualization</h3>
                 <p>
                  With MPLOY you have a <strong>dashboard</strong> and <strong>charts</strong> that update if an employer decides to accept <em>or</em> reject your application so you always know where you stand.
@@ -285,8 +286,9 @@ export default React.createClass({
                   <img width='250' src='/imgs/user_mobile_dashboard_mploy.png' />
                 </div>
               </Col>
-            </Row>  
-            <hr style={{margin:'50px 0px','borderTop':'1px solid #C0C0C0'}}/>          
+            </Row>
+            <hr style={{margin:'50px 0px','borderTop':'1px solid #C0C0C0'}}/>
+
             <Row>
               <Col  sm={6} xs={12} md={6} >
                 <div style={{  float: 'right'}} className='hidden-xs text-right'>
@@ -302,14 +304,14 @@ export default React.createClass({
                 <h3 style={{color:'#395660'}} > Create Jobs</h3>
                   <p>Easily add a new job post for your company. Specify which level of education, visa status, and skills you would require your applicants to have.</p>
                 <p>
-                </p>                
+                </p>
                 <h3 style={{color:'#395660'}} > Manage Job Postings</h3>
                 <p>
                   Easily see all current open job postings. Delete any filled positions in a few clicks.
-                </p>  
+                </p>
               </Col>
             </Row>
-          </Grid>          
+          </Grid>
 
           <Grid className='visible-xs'>
             <Row>
@@ -322,7 +324,7 @@ export default React.createClass({
                 <h3 style={{color:'#395660'}}> Notifications</h3>
                   <p>Get notified once an employer updates your application.</p>
                 <p>
-                </p>                
+                </p>
                 <h3 style={{color:'#395660'}}> Data Visualization</h3>
                 <p>
                  With MPLOY you have a <strong>dashboard</strong> that updates if an employer decides to accept <em>or</em> reject your application.
@@ -333,8 +335,8 @@ export default React.createClass({
                   <img style={{maxWidth:'350px','marginTop':'30px'}} src='/imgs/user_mobile_dashboard_mploy.png' />
                 </div>
               </Col>
-            </Row>  
-            <hr style={{margin:'50px 0px','borderTop':'1px solid #C0C0C0' }}/>          
+            </Row>
+            <hr style={{margin:'50px 0px','borderTop':'1px solid #C0C0C0' }}/>
             <Row>
               <Col  xs={12} md={6} sm={6} collapseLeft collapseRight>
                 <h2 style={{'fontWeight':300,color:'#395660'}}> For Employers </h2>
@@ -345,16 +347,17 @@ export default React.createClass({
                 <h3 style={{color:'#395660'}} > Create Jobs</h3>
                   <p>Easily add a new job post for your company. Specify which level of education, visa status, salary rate, and more that you would require your applicants to have.</p>
                 <p>
-                </p>                
+                </p>
                 <h3 style={{color:'#395660'}} > Manage Job Postings</h3>
                 <p>
                   Easily see all current open job postings. Delete any un-needed positions in a few clicks.
-                </p>  
+                </p>
               </Col>
               <Col   sm={6} xs={12} md={6} collapseLeft collapseRight>
                 <div className='visible-xs text-center'>
                   <img style={{maxWidth:'350px','marginTop':'30px'}}  src='/imgs/emp_mobile_jobpost_mploy.png' />
                 </div>
+
               </Col>
             </Row>
           </Grid>
@@ -362,7 +365,7 @@ export default React.createClass({
         <Hero >
           <div className='text-center'>
             <Icon style={{'fontSize':'10rem',color:'#3BB58C'}} glyph=  "icon-simple-line-icons-cup" />
-          </div>    
+          </div>
           <HeroHeader2 style={{color:'#395660', marginBottom:'35px'}}>{"Let's get to work!"}</HeroHeader2>
           <div className='text-center'>
           <p className='text-center'>

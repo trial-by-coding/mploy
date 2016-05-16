@@ -13,8 +13,6 @@ export default class ApplicantDashboard extends React.Component {
   }
 
   rescind = (appID, index, status) => {
-    console.log('appID', appID);
-    console.log('index', index);
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index));}
     else if(status === 'considered')  { this.props.dispatch(actions.removeConsidered(index));}
     else if(status === 'interviews')  { this.props.dispatch(actions.removeInterview(index));}
@@ -73,7 +71,7 @@ export default class ApplicantDashboard extends React.Component {
 					<Grid>
 						<Row>
 							<Col sm={7} smCollapseRight>
-								<PanelContainer>
+								<PanelContainer noControls>
 									<Panel>
 										<PanelBody style={{padding: 0}}>
 											<Grid>

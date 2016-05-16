@@ -4,7 +4,6 @@ import AppCard from './appCard';
 
 
 function getModal(index, nextID, listLength, item, status, advance, accept, revert, reject, dispatch, currentModal, list) {
-  console.log('item in getModal', item);
   return <AppModal  item={item}
                     listLength={listLength}
                     index={index}
@@ -27,9 +26,9 @@ class AppModal extends React.Component {
     };
   }
   onHide() {
-    var index = this.props.index;
-    var listLength = this.props.listLength;
-    var nextID = this.props.nextID+1;
+    let index = this.props.index;
+    let listLength = this.props.listLength;
+    let nextID = this.props.nextID+1;
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
     let revert = this.props.revert;
@@ -53,30 +52,27 @@ class AppModal extends React.Component {
 
     // adding a timeout as we need to wait for Modal transition to complete
     setTimeout(() => {
-      console.log('opening next modal list:', list, 'list index', index, 'list[index]', list[index] );
       ModalManager.create(getModal(index, nextID, listLength, list[nextID], status, advance, accept, revert, reject, dispatch, currentModal, list ));
     }, 15);
   }
 
   toggleModal = () => {
-    if(this.state.show){
+    if(this.state.show) {
       this.props.dispatch(actions.fetchEmployerRequests());
       ModalManager.remove();
       this.setState({
-        show:false
+        show: false
       });
-    }else {
+    } else {
       this.setState({
-        show:true
+        show: true
       });
     }
   };
 
-// export default class empdashCard extends React.Component {
 
   render() {
 
-    console.log('item in AppModal', this.props.item);
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
     let revert = this.props.revert;
@@ -91,20 +87,21 @@ class AppModal extends React.Component {
 
     return (
       <Modal onHide={::this.onHide}>
+    <ModalHeader>
       <Button onClick={this.toggleModal}>X</Button>
-        <ModalBody md={12}>
-          <AppCard app={item}/>
-        </ModalBody>
-        <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={() => {
-                    reject(item.appID, status, index);
+    </ModalHeader>
+    <ModalBody md={12}>
+      <AppCard app={item}/>
+    </ModalBody>
+    <ModalFooter>
+      <Button style={{float: 'left'}} outlined bsStyle='lightred' onClick={()=> {
+                      reject(item.appID, status, index);
+                    }
                   }
-                }
-                  onTouchEnd={ModalManager.remove}>Reject</Button>
-          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
-
-        </ModalFooter>
-      </Modal>
+                    onTouchEnd={ModalManager.remove}>Reject</Button>
+      <Button outlined bsStyle='lightgreen' onClick={()=> accept(item.appID, status, item, index)}>Accept</Button>
+    </ModalFooter>
+  </Modal>
     );
   }
 
@@ -115,7 +112,6 @@ export default class EmpashCard extends React.Component {
   }
 
   render() {
-    console.log('item in empdashcard', this.props.item);
     let that = this;
     let profilePic = this.props.item.profile_picture;
     let dispatch = this.props.dispatch;
@@ -146,7 +142,6 @@ export default class EmpashCard extends React.Component {
       'margin':'auto',
       'margin-bottom': '15px',
     };
-
 
     const panelStyle3 = {
       'padding': '0px',
@@ -181,14 +176,14 @@ export default class EmpashCard extends React.Component {
     return (
       <div>
         <Col style={panelStyle} sm={12} xs={12} md={12}>
-          <PanelContainer  style={panelStyle1} >
+          <PanelContainer noControls style={panelStyle1}>
               <Panel style={panelStyle}>
-                <PanelBody style={panelBody} >
+                <PanelBody style={panelBody}>
                   <Grid>
                     <Row >
                       <Col style={profileImg} xs={4} collapseRight>
                         <img src={profilePic} width='45' height='45'
-                          style={{display: 'block', borderRadius: 45,  margin: 'auto', float: 'left', 'border':'2px solid #2AA38B', 'padding':'3px'}} />
+                          style={{display: 'block', borderRadius: 45,  margin: 'auto', float: 'left', border :'2px solid #2AA38B', 'padding': 3}} />
                       </Col>
                       <Col xs={8} style={panelStyle3} className="jobcard">
                         <div >

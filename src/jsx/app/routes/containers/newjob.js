@@ -137,7 +137,7 @@ export default class NewJob extends React.Component {
         <Grid>
         <Row style={align}>
           <Col sm={12} collapseRight>
-          <PanelContainer noOverflow controlStyles='bg-green fg-white'>
+          <PanelContainer noControls noOverflow controlStyles='bg-green fg-white'>
             <Panel>
              <PanelHeader className='bg-green fg-white'>
                   <Grid>
@@ -305,7 +305,7 @@ export default class NewJob extends React.Component {
                       <Col xs={12}>
                       <br/>
                       <div>
-                        <Button type="button" disabled={pristine || submitting} onClick={resetForm} outlined bsStyle='lightgreen' style={float}>Clear Values</Button>{' '}
+                        <Button type="button" disabled={pristine || submitting} onClick={resetForm} outlined bsStyle='lightgreen' style={float}>Clear</Button>{' '}
                         <Link to='/employer'>
                         <Button outlined bsStyle='lightgreen'>cancel</Button>
                         </Link>{' '}

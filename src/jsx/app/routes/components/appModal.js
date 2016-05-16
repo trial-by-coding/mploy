@@ -3,9 +3,9 @@ import AppCard from './appCard';
 
 export default class appModal extends React.Component {
   onHide() {
-    var currentID = this.props.index;
-    var maxID = this.props.listLength;
-    var nextID = ++currentID;
+    let currentID = this.props.index;
+    let maxID = this.props.listLength;
+    let nextID = ++currentID;
 
     if (nextID > maxID) {
       // reached last button
@@ -20,7 +20,6 @@ export default class appModal extends React.Component {
 
 	render() {
 
-		console.log('in AppModal');
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
     let revert = this.props.revert;
@@ -37,12 +36,12 @@ export default class appModal extends React.Component {
           <AppCard app={item}/>
         </ModalBody>
         <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={() => {
+          <Button outlined bsStyle='lightred' onClick={() => {
                     reject(item.appID, item, status, index);
                   }
                 }
                   onTouchEnd={ModalManager.remove}>Reject</Button>
-          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
+                <Button outlined bsStyle='lightgreen' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
         </ModalFooter>
       </Modal>
     );
