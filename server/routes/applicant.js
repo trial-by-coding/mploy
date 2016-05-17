@@ -161,6 +161,8 @@ module.exports = function(router) {
     }
   });
 
+  //Notifications:
+
   router.get('/notifications', function(req, res){
     var linkedin_id = req.user.linkedin_id
     return Users.verifyId(linkedin_id)
@@ -175,6 +177,16 @@ module.exports = function(router) {
     console.log("No notifications retrieved for current user: ", err);
     res.status(404).send(err);
     })
+  });
+
+  //Resume and cover letter upload:
+
+  router.post('/uploadcoverletter', upload.single('coverletter'), function(req, res, next){
+    res.status(200).send(req.file.filename);
+  });
+
+  router.post('/uploadresume', upload.single('resume'), function(req, res, next){
+    res.status(200).send(req.file.filename);
   });
 
 	//catch all
