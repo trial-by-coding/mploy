@@ -56,10 +56,15 @@ function fetchApplicantRequests() {
       return axios.get('/user/applicant/notifications');
     })
     .then(payload => {
-      dispatch({
-        type: FETCH_NOTIFS,
-        payload
-      });
+      if(payload.data === "") {
+        return
+      }
+      else {
+        dispatch({
+          type: FETCH_NOTIFS,
+          payload
+        })
+      }
     });
 }
 

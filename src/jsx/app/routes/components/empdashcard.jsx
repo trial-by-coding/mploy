@@ -124,7 +124,7 @@ export default class EmpashCard extends React.Component {
 
     const card = {
       'border': '1px solid black',
-      'border-radius': '5px'
+      'borderRadius': '5px'
     };
 
     const panelStyle = {
@@ -134,12 +134,12 @@ export default class EmpashCard extends React.Component {
     const panelStyle1 = {
       'padding': '0px',
       // 'border': '1px solid rgba(0, 0, 0, 0.30)',
-      'border-bottom':'1px solid rgba(0,0,0,.30)',
-      'min-height' : '80px',
+      'borderBottom':'1px solid rgba(0,0,0,.30)',
+      'minHeight' : '80px',
       // 'border-radius':'10px',
       'maxWidth': '300px',
       'margin':'auto',
-      'margin-bottom': '15px',
+      'marginBottom': '15px',
     };
 
     const panelStyle3 = {
@@ -152,7 +152,7 @@ export default class EmpashCard extends React.Component {
     };
 
     const panelBody = {
-      'padding-top': '5px',
+      'paddingTop': '5px',
     };
 
     const companyName = {
@@ -196,13 +196,13 @@ export default class EmpashCard extends React.Component {
                         <div>
                           <Col  style={{padding:'0px'}} xs={10} sm={10} xs={10}>
                             <Icon onClick={() => revert(item.appID, status, item, index)}
-                                                              style={{'font-size':'16px', 'cursor':'pointer'}}
+                                                              style={{'fontSize':'16px', 'cursor':'pointer'}}
                                                               bundle='fontello'
                                                               glyph='angle-left' />
                           </Col>
                           <Col style={{'padding':'0px'}} xs={2} md={2} sm={2} >
                             <Icon onClick={() => advance(item.appID, status, item, index)}
-                                  style={{'float':'right','font-size':'16px', 'cursor':'pointer'}}
+                                  style={{'float':'right','fontSize':'16px', 'cursor':'pointer'}}
                                   bundle='fontello'
                                   glyph='angle-right' />
                           </Col>

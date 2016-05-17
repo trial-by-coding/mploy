@@ -175,7 +175,7 @@ module.exports = function(router) {
     })
     .catch(function(err){
     console.log("No notifications retrieved for current user: ", err);
-    res.status(404).send(err);
+    res.end();
     })
   });
 

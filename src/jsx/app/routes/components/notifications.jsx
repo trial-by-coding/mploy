@@ -10,8 +10,8 @@ export default class Notifications extends React.Component {
 
   render(){
     const listNotifs = {
-    'overflow-y': 'scroll',
-    'max-height': '400px',
+    'overflowY': 'scroll',
+    'maxHeight': '400px',
     display: 'block',
     left: '-300px',
     'width': '370px',
@@ -21,7 +21,7 @@ export default class Notifications extends React.Component {
       padding: '0px 15px'
     };
     const avaCont = {
-      'padding-left': '0px'
+      'paddingLeft': '0px'
     };
 
     const timeAgo = {
@@ -33,7 +33,7 @@ export default class Notifications extends React.Component {
     };
 
     const label = {
-      'background-color':'#3888D3'
+      'backgroundColor':'#3888D3'
     };
 
     const cancelBtn = {

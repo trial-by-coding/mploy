@@ -7,45 +7,17 @@ export default class EmployerLane extends React.Component {
     super(props);
   }
 
-  getLargeModal = () => {
-
-    let dispatch = refs['item0'].props.dispatch;
-    let advance = refs['item0'].props.advance;
-    let revert = refs['item0'].props.revert;
-    let status = refs['item0'].props.lane;
-    let index = refs['item0'].props.index;
-    let item = refs['item0'].props.item;
-    let reject = refs['item0'].props.reject;
-    let accept = refs['item0'].props.accept;
-    let jobList = refs['item0'].props.jobList;
-
-    return (
-      <Modal show={false}>
-        <ModalBody>
-          <AppCard app={item}/>
-        </ModalBody>
-        <ModalFooter>
-          <Button outlined bsStyle='danger' onClick={() => {
-                    reject(item.appID, item, status, index);
-                  }
-                }
-                  onTouchEnd={ModalManager.remove}>Reject</Button>
-          <Button outlined bsStyle='primary' onClick={() => accept(item.appID, status, item, index)}>Accept</Button>
-        </ModalFooter>
-      </Modal>
-    );
-  };
 
   render() {
     let list = this.props.data;
     let newList = ['First Item', 'Second Item', 'Third Item', 'Fourth Item'];
     return (
       <div className='shortcard'>
-          {list.map((item, index) =>  <EmployerDashboardCard item={item}
+          {list.map((item, index) =>  <EmployerDashboardCard key={item.id}
+                                                             item={item}
                                                              list={list}
                                                              currentModal={this.props.currentModal}
                                                              index={index}
-                                                             ref={'item'+index}
                                                              lane={this.props.lane}
                                                              advance={this.props.advance}
                                                              accept={this.props.accept}

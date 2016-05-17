@@ -50,7 +50,7 @@ export default class Header extends React.Component {
       <Grid id='navbar' {...this.props}>
         <Row>
           <Col xs={12}>
-            <NavBar style={{'background':'white', 'border-bottom':'1px solid rgba(0, 0, 0, 0.34)'}} fixedTop id='rubix-nav-header'>
+            <NavBar style={{'background':'white', 'borderBottom':'1px solid rgba(0, 0, 0, 0.34)'}} fixedTop id='rubix-nav-header'>
               <Container fluid>
                 <Row>
                   <Col xs={2} visible='xs'>

@@ -81,12 +81,12 @@ export default class appdashCard extends React.Component {
     const panelStyle1 = {
     'padding': '0px',
     // 'border': '1px solid rgba(0, 0, 0, 0.30)',
-    'border-bottom':'1px solid rgba(0,0,0,.30)',
-    'min-height' : '80px',
+    'borderBottom':'1px solid rgba(0,0,0,.30)',
+    'minHeight' : '80px',
     // 'border-radius':'10px',
     'maxWidth': '300px',
     'margin':'auto',
-    'margin-bottom': '15px',
+    'marginBottom': '15px',
 
     };
 
@@ -102,7 +102,7 @@ export default class appdashCard extends React.Component {
     };
 
     const panelBody = {
-    'padding-top': '5px',
+    'paddingTop': '5px',
     };
 
     const companyName = {
@@ -135,7 +135,7 @@ export default class appdashCard extends React.Component {
                 <h6 style={companyName}> {company} </h6>
                 </Col>
                 <Col style={{ 'padding': '0px'}} xs={2} md={2} sm={2}>
-                <Icon onClick={()=> this.props.rescind(appID, index, status)} style={{'float':'right','font-size':'16px', 'cursor':'pointer'}} bundle='fontello' glyph='trash-1' />
+                <Icon onClick={()=> this.props.rescind(appID, index, status)} style={{'float':'right','fontSize':'16px', 'cursor':'pointer'}} bundle='fontello' glyph='trash-1' />
                   </Col>
               </div>
               </Col>

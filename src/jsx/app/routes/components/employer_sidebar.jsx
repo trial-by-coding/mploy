@@ -52,7 +52,7 @@ class EmployerSidebar extends React.Component {
                       <SidebarNavItem style={navItem} glyph='icon-ikons-bar-chart-2 float-right-rtl' name={<span>Job Posts</span>}>
                         <SidebarNav>
                           {
-                            posts.map(item => <SidebarNavItem class='sBarNavy' glyph='icon-outlined-paper-sheet' href='/employer' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
+                            posts.map(item => <SidebarNavItem className='sBarNavy' glyph='icon-outlined-paper-sheet' href='/employer' name={item.job_title} onClick={() => this.props.select(item.jobID)} />)
                           }
                         </SidebarNav>
                       </SidebarNavItem>
@@ -89,7 +89,7 @@ export default class extends React.Component {
 
     return (
       <div id='sidebar' {...this.props}>
-        <div style={{'background-color':'#395660'}}id='avatar'>
+        <div style={{'backgroundColor':'#395660'}}id='avatar'>
           <Grid>
             <Row className='fg-white'>
               <Col style={{'padding':'0px'}} xs={12} collapseRight>
