@@ -64,11 +64,11 @@ export default class EmployerDashboard extends React.Component {
 
 	render() {
     const laneTemplate = {
-      'background-color':'white',
-      'border-radius': '0px 0px 5px 5px',
+      'backgroundColor':'white',
+      'borderRadius': '0px 0px 5px 5px',
        padding: '20px 10px 0px 10px',
-      'margin-bottom': '20px',
-      'box-shadow': '0px 3px 4px 0px rgba(0,0,0,0.20)'
+      'marginBottom': '20px',
+      'boxShadow': '0px 3px 4px 0px rgba(0,0,0,0.20)'
     };
 
     const lanePad = {
@@ -76,26 +76,26 @@ export default class EmployerDashboard extends React.Component {
     };
 
     const laneHeader = {
-      'box-shadow': '0px 2px 4px 0px rgba(0,0,0,0.20)',
-      'background-color':'white',    //#2AA38B
+      'boxShadow': '0px 2px 4px 0px rgba(0,0,0,0.20)',
+      'backgroundColor':'white',    //#2AA38B
       'height': '40px',
       'textAlign': 'center',
-      'border-radius': '5px 5px 0px 0px',
+      'borderRadius': '5px 5px 0px 0px',
     };
 
     const panelH = {
-      'padding-top': '10px',
-      'margin-top': '0px',
-      'margin-bottom': '0px',
+      'paddingTop': '10px',
+      'marginTop': '0px',
+      'marginBottom': '0px',
       'color':'#8D979E',
-      'font-weight': '400!important'
+      'fontWeight': '400!important'
     };
 
     const panelHr = {
-      'margin-top': '8px',
-      'margin-bottom': '25px',
+      'marginTop': '8px',
+      'marginBottom': '25px',
       'border': '0',
-      'border-top': '3px solid #2AA38B',
+      'borderTop': '3px solid #2AA38B',
        width: '60%',
     };
 

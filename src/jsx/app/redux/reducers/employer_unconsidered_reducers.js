@@ -8,7 +8,6 @@ import {
 function unconsidered(state = [], action) {
   switch (action.type) {
   case GET_EMPLOYER_UNCONSIDERED:
-    console.log('unconsidered action.payload', action.payload.data);
     const unconsidered = action.payload.data;
     return [...unconsidered];
   case ADD_UNCONSIDERED:

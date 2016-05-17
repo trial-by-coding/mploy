@@ -63,7 +63,7 @@ export default class extends React.Component {
 
     return (
       <div id='sidebar' {...this.props}>
-        <div style={{'background-color':'#395660'}}id='avatar'>
+        <div style={{'backgroundColor':'#395660'}}id='avatar'>
           <Grid>
             <Row className='fg-white'>
               <Col style={{'padding':'0px'}} xs={12} collapseRight>

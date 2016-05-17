@@ -11,7 +11,7 @@ export default class FileCard extends React.Component {
     const styles = {
       margin: '12.5px 0',
       paddingBottom: '10px',
-      'text-align': 'left'
+      'textAlign': 'left'
     };
 
     return (

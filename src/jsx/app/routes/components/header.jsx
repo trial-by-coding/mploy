@@ -41,8 +41,8 @@ class  HeaderNavigation extends React.Component {
     const logoutBtn = {
     position: `absolute`,
     right: `0`,
-    'margin-right':'0px',
-    'background-color':'#383838'
+    'marginRight':'0px',
+    'backgroundColor':'#383838'
     };
 
     const rowMargins = {

@@ -8,7 +8,7 @@ class MainHero extends React.Component {
       <div {...this.props}
            className={classNames(this.props.className,
                                  'homepage-hero')}>
-        <Container style={{display:'table-cell', 'vertical-align':'middle'}}fixed>
+        <Container style={{display:'table-cell', 'verticalAlign':'middle'}}fixed>
           {this.props.children}
         </Container>
       </div>
@@ -130,14 +130,14 @@ export default React.createClass({
   render() {
     const btnStyle = {
       color:'#2AA38B',
-      'box-shadow': '0px 2px 20px 2px rgba(0,0,0,0.39)',
+      'boxShadow': '0px 2px 20px 2px rgba(0,0,0,0.39)',
       'marginTop':'15px'
     };
     const btnStyle2 = {
       'backgroundColor':'#2AA38B',
        color:'white',
        'border':'1px solid #54D08B',
-      'box-shadow': '0px 2px 20px 2px rgba(0,0,0,0.39)',
+      'boxShadow': '0px 2px 20px 2px rgba(0,0,0,0.39)',
       'marginTop':'15px'
     };
 
@@ -199,7 +199,7 @@ export default React.createClass({
           </Col>
           <Col sm={6} xs={12} collapseLeft collapseRight>
           <div className='hidden-xs text-right'>
-            <img style={{ 'max-width':1100}} src='/imgs/user_dashboard_mploy.png' />
+            <img style={{ 'maxWidth':1100}} src='/imgs/user_dashboard_mploy.png' />
           </div>
           <div className='visible-xs text-center'>
             <img width='250' src='/imgs/user_mobile_dashboard_mploy.png' />
