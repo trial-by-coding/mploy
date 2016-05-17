@@ -20,7 +20,6 @@ module.exports = function(router) {
         res.redirect('/employer')
       })
       .then(function(resp) {
-        console.log('Resp from Users.verifyEmployer:', resp)
         if (resp){
           console.log('User is not an applicant.')
           res.redirect('/employer')
@@ -39,35 +38,31 @@ module.exports = function(router) {
   });
 
   router.get('/appsbyuser', function(req, res){
-    console.log('---appsbyuser:received GET, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.userID) {
-      console.log("request for userId = ",rq.userID);
       Applications.getAppsByUser(rq.userID)
       .then(function(data){
-        console.log("returning application data", data);
+        //Returning application data
         res.status(200).send(JSON.stringify(data));
       })
       .catch(function(err){
         console.log("could not get application data for userID "+rq.userID+", err:", err);
-        res.status(400).send(err);
+        res.status(404).send(err);
       })
     } else {
-      console.log("must supply userID in query string");
+      console.log("Must supply userID in query string");
       res.status(400).send("must supply userID in query string");       
     }
   }); 
 
   router.get('/currentuserapps', function(req, res){
-    console.log('---currentuserapps:received GET');
     var linkedin_id = req.user.linkedin_id
     return Users.verifyId(linkedin_id)
     .then(function(data){
-    console.log("User data: ", data);
     return Applications.getAppsByUser(data.userID)
     })
     .then(function(apps) {
-    console.log('Responding with applications for current user: ', apps)
+    //Responding with applications for current user
     res.status(200).send(apps);
     })
     .catch(function(err){
@@ -77,15 +72,13 @@ module.exports = function(router) {
   });
 
   router.get('/currentuserapps/:status', function(req, res){
-    console.log('---currentuserapps:received GET');
     var linkedin_id = req.user.linkedin_id
     return Users.verifyId(linkedin_id)
     .then(function(data){
-    console.log("User data: ", data);
     return Applications.getAppsByUserAndStatus(data.userID, req.params.status)
     })
     .then(function(apps) {
-    console.log('Responding with applications for current user: ', apps)
+    //Responding with applications for current user
     res.status(200).send(apps);
     })
     .catch(function(err){
@@ -94,27 +87,14 @@ module.exports = function(router) {
     })
   });
 
-  router.post('/uploadcoverletter', upload.single('coverletter'), function(req, res, next){
-    //console.log("applicant:uploadcoverletter:req.file=",req.file);
-    res.status(200).send(req.file.filename);
-  })
-
-  router.post('/uploadresume', upload.single('resume'), function(req, res, next){
-    //console.log("applicant:uploadresume:req.file=",req.file);
-    res.status(200).send(req.file.filename);
-  })
-
   router.post('/submitapp', function(req, res) {
-    console.log('received submit application POST, body:',req.body);
     if(! req || !req.body) {
-      console.log("error: submitapp POST with no body");
+      console.log("Error: Expected req.body");
       res.status(400).send("/submitapp expected a body object");
     } else {
       var linkedin_id = req.user.linkedin_id
       return Users.verifyId(linkedin_id)
       .then(function(userInfo) {
-        console.log("body:",req.body);
-        console.log('req.body.skills_met: ', req.body.skills_met)
         req.body.skills_met = JSON.stringify(req.body.skills_met)
         req.body.user_id = userInfo.userID
         req.body.skills_met = JSON.stringify(req.body.skills_met)
@@ -131,7 +111,7 @@ module.exports = function(router) {
           })  
         })
         .catch(function(err){
-          console.log("application submission failed, err:", err);
+          console.log("Application submission failed, err:", err);
           res.status(400).send("Application submission and/or increment failed");  
         }) 
       })
@@ -139,14 +119,12 @@ module.exports = function(router) {
   });
 
   router.delete('/clearnotification', function(req, res) {
-    console.log('---clear notification:received DELETE, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.notifyID) {
-      console.log("request for notifyID = ",rq.notifyID);
       Notifications.deleteNotification(rq.notifyID) 
       .then(function(data){
         res.status(200).send(JSON.stringify(data));
-        console.log("Successfully deleted notificaiton: ", data);
+        //Successfully deleted notification
       })
       .catch(function(err){
         console.log("Failed to remove notification "+rq.notify+", err:", err);
@@ -159,14 +137,12 @@ module.exports = function(router) {
   });
 
   router.delete('/rescindapp', function(req, res){
-    console.log('---rescind app:received DELETE, query='+JSON.stringify(req.query));
     var rq = req.query;
     if (rq && rq.appID) {
-      console.log("request for appId = ",rq.appID);
       Applications.deleteApp(rq.appID)
       .then(function(data){
         res.status(200).send(JSON.stringify(data));
-        console.log("Successfully rescinded application: ", data);
+        //Successfully rescinded application
         return Stats.incrementRescinded(data.user_id)
         .then(function() {
           console.log('App rescinded stat successfully incremented');
@@ -177,7 +153,7 @@ module.exports = function(router) {
       })
       .catch(function(err){
         console.log("Could not get application data for appID "+rq.appID+", err:", err);
-        res.status(400).send(err);
+        res.status(404).send(err);
       });
     } else {
       console.log("Must supply appID in query string");
@@ -186,20 +162,18 @@ module.exports = function(router) {
   });
 
   router.get('/notifications', function(req, res){
-    console.log('---notifications:received GET');
     var linkedin_id = req.user.linkedin_id
     return Users.verifyId(linkedin_id)
     .then(function(data){
-    console.log("User data: ", data);
     return Notifications.getNotifications(data.userID)
     })
     .then(function(notes) {
-    console.log('Responding with notifications for current user: ', notes)
+    //Responding with notifications for current user
     res.status(200).send(notes);
     })
     .catch(function(err){
     console.log("No notifications retrieved for current user: ", err);
-    res.status(400).send(err);
+    res.status(404).send(err);
     })
   });
 

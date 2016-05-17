@@ -6,7 +6,6 @@ var Stats = module.exports;
 
 //only run when new user created
 Stats.newUserData = function(userID) {
-  console.log('userID in stats: ', userID)
 
   return db('stats')
     .where({user_id: userID})
@@ -25,14 +24,11 @@ Stats.newUserData = function(userID) {
           user_id: userID
         })
       .then(function(statID) {
-        console.log('Stats initialized: ', statID)
         return statID[0]
       })
       .catch(function(err) {
         throw err
       })
-    } else {
-      console.log('User stats previously initialized')
     }
   })
 };
@@ -44,7 +40,6 @@ Stats.advanceIncrement = function(userID, status) {
     status: status
   })
   .then(function() {
-    console.log('status in stats.advance: ', status)
     switch(status){
 
       case 'considered':
@@ -96,13 +91,10 @@ Stats.advanceIncrement = function(userID, status) {
         })
 
       default:
-      console.log('Unexpected record status: ', status)
       return 'Unexpected record status: ', status
     }
   })
   .then(function(result) {
-    console.log('result in stats: ', result)
-    console.log('Status advance successful.')
     return result
   })
   .catch(function(err) {
@@ -117,7 +109,6 @@ Stats.revertIncrement = function(userID, status) {
     status: status
   })
   .then(function() {
-    console.log('status in stats.advance: ', status)
     switch(status){
 
       case 'unconsidered':
@@ -169,13 +160,10 @@ Stats.revertIncrement = function(userID, status) {
         })
 
       default:
-      console.log('Unexpected record status: ', status)
       return 'Unexpected record status: ', status
     }
   })
   .then(function(result) {
-    console.log('result in stats: ', result)
-    console.log('Status revert successful.')
     return result
   })
   .catch(function(err) {
@@ -218,7 +206,6 @@ Stats.incrementTotalApps = function(userID) {
 };
 
 Stats.incrementRescinded = function(userID) {
-  console.log('userID in incrementDenied', userID)
   return db('stats')
     .where({
       user_id: userID
@@ -235,7 +222,6 @@ Stats.incrementRescinded = function(userID) {
 };
 
 Stats.incrementDenied = function(userID) {
-  console.log('userID in incrementDenied', userID)
   return db('stats')
     .where({
       user_id: userID
