@@ -20,11 +20,9 @@ passport.use(new LinkedInStrategy({
     state: true
   },
   function(accessToken, refreshToken, profile, done) {
-    console.log('profile: ', profile)
 
     return Users.verifyId(profile.id)
     .then(function(existing) {
-      console.log('existing:', existing)
       if (existing !== undefined){
         var send = {
           linkedin_id: existing.linkedin_id
@@ -33,7 +31,6 @@ passport.use(new LinkedInStrategy({
       } else {
         return Users.insert(profile)
         .then(function(inserted) {
-          console.log('inserted: ', inserted)
           var send = {
             linkedin_id: inserted.linkedin_id
           }
@@ -42,7 +39,6 @@ passport.use(new LinkedInStrategy({
       }
       })
       .catch(function(err) {
-        console.log('Verify insert err: ', err);
         return done(null, err);
       });
 

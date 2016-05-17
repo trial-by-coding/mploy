@@ -52,14 +52,13 @@ Applications.deleteApp = function(appID) {
 
 //Updates application's previous status to next status
 Applications.advanceStatus = function(appID) {
-  
   return db('applications')
   .returning('*')
   .where({
     appID: appID
   })
   .then(function(record) {
-    console.log('record[0].status in advance status: ', record[0].status)
+
     switch(record[0].status){
       case 'unconsidered': 
 
@@ -100,12 +99,10 @@ Applications.advanceStatus = function(appID) {
         appID: appID
       })
       default:
-      console.log('Unexpected record status: ', record.status)
       return 'Unexpected record status: ', record.status
     }
   })
   .then(function(result) {
-    console.log('Status advance successful: ', result)
     return result[0]
   })
   .catch(function(err) {
@@ -121,7 +118,6 @@ Applications.revertStatus = function(appID) {
     appID: appID
   })
   .then(function(record) {
-    console.log('record[0].status in revert status: ', record[0].status)
     switch(record[0].status){
       
       case 'unconsidered': 
@@ -158,12 +154,10 @@ Applications.revertStatus = function(appID) {
       })
 
       default:
-      console.log('Unexpected record status: ', record.status)
       return 'Unexpected record status: ', record.status
     }   
   })
   .then(function(result) {
-    console.log('Status revert successful.', result[0])
     return result[0]
   })
   .catch(function(err) {
@@ -191,7 +185,6 @@ Applications.updateStatus = function(appID, status) {
 };
 
 Applications.getByStatus = function(jobID, status) {
-  console.log('in get by status: ', status)
   return db('applications')
   .select(['job_posts.skills', 'job_posts.job_title', 'job_posts.company_name', 'applications.*', 'users.*'])
   .join('users', 'applications.user_id', '=', 'users.userID')
@@ -269,7 +262,6 @@ Applications.getAppsByJob = function(jobID) {
   return db('applications').where('job_id', jobID)
   .then(function(records) {
     if (records.length === 0){
-      console.log("Applications:getAppsByJob:no records returned");
       throw ("no records found");
     }
     return records

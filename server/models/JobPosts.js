@@ -34,7 +34,6 @@ JobPosts.getAll = function() {
     .join('users', 'job_posts.user_id', '=', 'users.userID')
     .select('job_posts.*', 'users.profile_picture')
     .then(function(records) {
-      console.log('job records: ', records)
       return records
     })
     .catch(function(err) {

@@ -54,45 +54,6 @@ Users.insert = function(obj) {
   });
 };
 
-//Resume handling:
-
-//Is this proper syntax? Where before returning?
-//put request? are we updating a null value to a file?
-Users.insertResume = function(uid, resume) {
-  return db('users')
-    .where({ userID: uid })
-    .returning('userID')
-    .insert({ resume: resume })
-    .then(function(userID) {
-      console.log('Record for userID', uid);
-      return userID;
-    })
-    .then(function(record) {
-      return record[0];
-    })
-    .catch(function(err) {
-      throw err;
-    });
-};
-
-//put request?
-Users.updateResume = function(uid, newResume) {
-  return db('users')
-    .where({ userID: uid })
-    .returning('userID')
-    .update({ resume: newResume })
-    .then(function(userID) {
-      console.log('Record for userID', uid);
-      return userID;
-    })
-    .then(function(record) {
-      return record[0];
-    })
-    .catch(function(err) {
-      throw err;
-    });
-};
-
 //Employer
 
 Users.designateAsEmployer = function(linkedin_id){
