@@ -90,7 +90,6 @@ setCoverletter(e) {
   request.post('/user/applicant/uploadcoverletter')
     .send(coverLetter)
     .end(function (err, response) {
-      console.log(response);
       that.setState({
         formVal: {...that.state.formVal,
           cover_letter: response.text
@@ -106,7 +105,6 @@ setResume(e) {
   request.post('/user/applicant/uploadresume')
     .send(resume)
     .end(function (err, response) {
-      console.log(response);
       that.setState({
         formVal: {...that.state.formVal,
           resume: response.text

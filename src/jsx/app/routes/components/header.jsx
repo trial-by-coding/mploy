@@ -28,7 +28,6 @@ class  HeaderNavigation extends React.Component {
   }
 
   render() {
-    console.log("HeaderNavigation:render:props:",this.props);
     let props = {
       ...this.props,
       className: classNames('pull-right', this.props.className)

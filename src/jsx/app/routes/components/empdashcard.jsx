@@ -27,7 +27,7 @@ class AppModal extends React.Component {
   }
   onHide() {
     let index = this.props.index;
-    let listLength = this.props.listLength;
+    let listLength = this.props.list.length;
     let nextID = this.props.nextID+1;
     let dispatch = this.props.dispatch;
     let advance = this.props.advance;
@@ -38,7 +38,6 @@ class AppModal extends React.Component {
     let accept = this.props.accept;
     let currentModal = this.props.currentModal;
     let list = this.props.list;
-    console.log('nextID', nextID);
 
     if (nextID >= listLength) {
       // reached last button
