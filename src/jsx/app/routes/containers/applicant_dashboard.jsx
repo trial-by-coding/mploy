@@ -9,8 +9,6 @@ export default class ApplicantDashboard extends React.Component {
 	constructor(props) {
 		super(props);
 	}
-  componentWillMount() {
-  }
 
   rescind = (appID, index, status) => {
     if(status === 'unconsidered')     { this.props.dispatch(actions.removeUnconsidered(index));}
@@ -26,7 +24,6 @@ export default class ApplicantDashboard extends React.Component {
     'borderRadius': '0px 0px 5px 5px',
      padding: '20px 10px 0px 10px',
     'marginBottom': '20px',
-    // 'border':'1px solid rgba(0, 0, 0, 0.38)',
     'boxShadow': '0px 3px 4px 0px rgba(0,0,0,0.20)'
 	};
 

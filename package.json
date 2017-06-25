@@ -1,9 +1,8 @@
 {
-  "name": "rubix",
+  "name": "MPLOY",
   "version": "3.2.0",
   "private": true,
-  "author": "SketchPixy (support@sketchpixy.com)",
-  "copyright": "SketchPixy LLP, email: support@sketchpixy.com",
+  "author": "Trial By Coding",
   "scripts": {
     "test": "mocha server/index.test.js -w",
     "start": "NODE_ENV=production PORT=3000 APP=app node server.js"
