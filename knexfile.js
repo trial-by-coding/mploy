@@ -1,4 +1,4 @@
-var localuser = require('./localuser.js')
+var localuser = require('./localuser.js');
 
 module.exports = {
 
